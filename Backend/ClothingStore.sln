@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35521.163 d17.12
+VisualStudioVersion = 17.12.35521.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothingStore", "ClothingStore\ClothingStore.csproj", "{B1E015C8-D10B-4C62-A0AA-DDDC66EB06B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothingStore.Core", "ClothingStore.Core\ClothingStore.Core.csproj", "{2F58A084-31D7-40E6-BD9F-D60954A42C8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothingStore.Infrastructure", "ClothingStore.Infrastructure\ClothingStore.Infrastructure.csproj", "{B52E1017-6BEE-4B03-9691-7886A5EE159F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{B1E015C8-D10B-4C62-A0AA-DDDC66EB06B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1E015C8-D10B-4C62-A0AA-DDDC66EB06B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1E015C8-D10B-4C62-A0AA-DDDC66EB06B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F58A084-31D7-40E6-BD9F-D60954A42C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F58A084-31D7-40E6-BD9F-D60954A42C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F58A084-31D7-40E6-BD9F-D60954A42C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F58A084-31D7-40E6-BD9F-D60954A42C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B52E1017-6BEE-4B03-9691-7886A5EE159F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B52E1017-6BEE-4B03-9691-7886A5EE159F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B52E1017-6BEE-4B03-9691-7886A5EE159F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B52E1017-6BEE-4B03-9691-7886A5EE159F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
