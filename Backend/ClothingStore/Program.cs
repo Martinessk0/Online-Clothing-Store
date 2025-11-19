@@ -4,10 +4,19 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var conn = builder.Configuration["Database:Dev"];
+string connectionString;
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(conn)));
+if (builder.Environment.IsDevelopment())
+{
+    connectionString = builder.Configuration["Database:Dev"];
+}
+else
+{
+    connectionString = builder.Configuration["Database:Prod"];
+}
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
 //builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
 //    .AddDefaultTokenProviders();
 
