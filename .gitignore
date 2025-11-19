@@ -42,10 +42,37 @@ secrets.json
 
 node_modules/
 dist/
+tmp/
+out-tsc/
+bazel-out/
 .angular/
+.angular/cache
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+coverage/
+.sass-cache/
+connect.lock
+libpeerconnection.log
+testem.log
+typings/
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# VS Code – пазим само полезните config файлове
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
 ############################
 # Misc
@@ -54,3 +81,5 @@ yarn-error.log*
 *.tmp
 *.bak
 *.swp
+.DS_Store
+Thumbs.db
