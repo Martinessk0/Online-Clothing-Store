@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ClothesShop.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+    var categoryId = ViewBag.CategoryId ?? 1;
+}
+
+<h1>Products in Category</h1>
+
+<p>
+    <a asp-action="AddProduct" asp-route-categoryId="@categoryId" class="btn btn-success">Add New Product</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price лв.</td>
+                <td>@item.Size</td>
+                <td>@item.Color</td>
+                <td>@item.StockQuantity</td>
+                <td>
+                    <form action="/Cart/AddToCart" method="post" style="display:inline-block;">
+                        <input type="hidden" name="productId" value="@item.ProductID" />
+                        <input type="hidden" name="productName" value="@item.Name" />
+                        <input type="hidden" name="price" value="@item.Price" />
+                        <input type="hidden" name="size" value="@item.Size" />
+                        <input type="hidden" name="color" value="@item.Color" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
+                    </form>
+
+                    <a href="/Review/ProductReviews/@item.ProductID" class="btn btn-info btn-sm">Reviews</a>
+                    <a href="/Review/Create/@item.ProductID" class="btn btn-secondary btn-sm">Add Review</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to Categories</a>
+</div>

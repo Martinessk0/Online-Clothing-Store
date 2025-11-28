@@ -1,0 +1,41 @@
+﻿@model ClothesShop.Models.Product
+
+@{
+    ViewData["Title"] = "Add New Product";
+    var categoryId = ViewBag.CategoryId ?? 1;
+}
+
+<h1>Add New Product</h1>
+
+<form action="/Category/AddProduct" method="post">
+    <input type="hidden" name="CategoryID" value="@categoryId" />
+
+    <div>
+        <label>Name:</label>
+        <input type="text" name="Name" class="form-control" />
+    </div>
+    <div>
+        <label>Description:</label>
+        <input type="text" name="Description" class="form-control" />
+    </div>
+    <div>
+        <label>Price:</label>
+        <input type="number" step="0.01" name="Price" class="form-control" />
+    </div>
+    <div>
+        <label>Size:</label>
+        <input type="text" name="Size" class="form-control" />
+    </div>
+    <div>
+        <label>Color:</label>
+        <input type="text" name="Color" class="form-control" />
+    </div>
+    <div>
+        <label>Stock Quantity:</label>
+        <input type="number" name="StockQuantity" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Create Product</button>
+</form>
+
+<a asp-action="Products" asp-route-id="@categoryId" class="btn btn-secondary mt-2">Back to Products</a>
