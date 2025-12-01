@@ -1,6 +1,10 @@
+using ClothingStore.Core.Models.Auth;
 using ClothingStore.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +23,40 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 //builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
 //    .AddDefaultTokenProviders();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.Configure<JwtSettings>(
+    builder.Configuration.GetSection("JWTSettingDev"));
+
+var jwtSettings = builder.Configuration
+    .GetSection("JWTSettingDev")
+    .Get<JwtSettings>();
+
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings.ValidIssuer,
+            ValidAudience = jwtSettings.ValidAudience,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwtSettings.SecurityKey))
+        };
+    });
 
 builder.Services.AddControllers();
+builder.Services.AddApplicationServices();
 builder.Services.AddSwaggerGen();
 
 
@@ -38,6 +74,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("Frontend");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
