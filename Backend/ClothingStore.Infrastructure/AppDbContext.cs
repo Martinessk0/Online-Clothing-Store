@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClothingStore.Infrastructure
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
