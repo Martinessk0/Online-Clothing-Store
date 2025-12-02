@@ -6,5 +6,8 @@ namespace ClothingStore.Core.Contracts.Auth
     {
         Task<AuthResponse> RegisterAsync(RegisterRequest request);
         Task<AuthResponse> LoginAsync(LoginRequest request);
+
+        Task<UserProfileResponse> GetProfileAsync(string userId);
+        Task<UserProfileResponse> UpdateProfileAsync(string userId, UpdateUserProfileRequest request);
     }
 }

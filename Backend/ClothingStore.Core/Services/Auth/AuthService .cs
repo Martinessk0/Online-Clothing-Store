@@ -104,5 +104,45 @@ namespace ClothingStore.Core.Services.Auth
                 ExpiresAtUtc = expires
             };
         }
+
+        public async Task<UserProfileResponse> GetProfileAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId)
+                ?? throw new InvalidOperationException("User not found.");
+
+            return new UserProfileResponse
+            {
+                Id = user.Id,
+                Email = user.Email ?? string.Empty,
+                PhoneNumber = user.PhoneNumber
+            };
+        }
+
+        public async Task<UserProfileResponse> UpdateProfileAsync(string userId, UpdateUserProfileRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(userId)
+                ?? throw new InvalidOperationException("User not found.");
+
+            if (request.PhoneNumber != null)
+            {
+                user.PhoneNumber = request.PhoneNumber;
+            }
+
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+                throw new InvalidOperationException($"Cannot update profile: {errors}");
+            }
+
+            return new UserProfileResponse
+            {
+                Id = user.Id,
+                Email = user.Email ?? string.Empty,
+                PhoneNumber = user.PhoneNumber
+            };
+        }
+
+
     }
 }

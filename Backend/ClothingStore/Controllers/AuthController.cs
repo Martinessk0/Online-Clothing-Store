@@ -1,6 +1,8 @@
 ﻿using ClothingStore.Core.Contracts.Auth;
 using ClothingStore.Core.Models.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ClothingStore.Controllers
 {
@@ -56,6 +58,39 @@ namespace ClothingStore.Controllers
                 _logger.LogWarning(ex, "Login failed for {Email}", request.Email);
                 return Unauthorized(new { message = ex.Message });
             }
+        }
+
+        private string? GetUserId()
+        {
+            return User.FindFirstValue(ClaimTypes.NameIdentifier);
+        }
+
+        [HttpGet("profile")]
+        [Authorize]
+        public async Task<ActionResult<UserProfileResponse>> GetProfile()
+        {
+            var userId = GetUserId();
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var profile = await _authService.GetProfileAsync(userId);
+            return Ok(profile);
+        }
+
+        [HttpPut("profile")]
+        [Authorize]
+        public async Task<ActionResult<UserProfileResponse>> UpdateProfile([FromBody] UpdateUserProfileRequest request)
+        {
+            var userId = GetUserId();
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var profile = await _authService.UpdateProfileAsync(userId, request);
+            return Ok(profile);
         }
     }
 }
