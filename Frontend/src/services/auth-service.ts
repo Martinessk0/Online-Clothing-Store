@@ -48,10 +48,14 @@ export class AuthService {
     return this.http.get<UserProfile>(`${this.apiUrl}/auth/profile`);
   }
 
-  updateProfile(model: Partial<UserProfile>): Observable<UserProfile> {
-    return this.http.put<UserProfile>(`${this.apiUrl}/auth/profile`, {
-      phoneNumber: model.phoneNumber
-    });
+  updateProfile(payload: {
+    firstName?: string;
+    lastName?: string;
+    phoneNumber?: string;
+    city?: string;
+    address?: string;
+  }): Observable<UserProfile> {
+    return this.http.put<UserProfile>(`${this.apiUrl}/auth/profile`, payload);
   }
 
   public isLoggedIn(): boolean {
