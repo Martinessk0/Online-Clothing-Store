@@ -10,7 +10,10 @@ namespace ClothingStore.Infrastructure
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
 
-        //public DbSet<Entity> TableName { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -19,6 +22,27 @@ namespace ClothingStore.Infrastructure
 
 
             base.OnModelCreating(builder);
+
+            builder.Entity<Product>()
+    .HasOne(p => p.Category)
+    .WithMany(c => c.Products)
+    .HasForeignKey(p => p.CategoryId);
+
+            builder.Entity<CartItem>()
+                .HasOne(ci => ci.Cart)
+                .WithMany(c => c.CartItems)
+                .HasForeignKey(ci => ci.CartId);
+
+            builder.Entity<CartItem>()
+                .HasOne(ci => ci.Product)
+                .WithMany()
+                .HasForeignKey(ci => ci.ProductId);
+
+            builder.Entity<Cart>()
+                .HasOne<IdentityUser>()
+                .WithMany()
+                .HasForeignKey(c => c.UserId);
+
         }
     }
 }
