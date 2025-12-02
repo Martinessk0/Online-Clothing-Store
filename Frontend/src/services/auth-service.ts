@@ -6,6 +6,7 @@ import { LoginRequest } from "../models/auth/login-request";
 import { RegisterRequest } from "../models/auth/register-request";
 import { environment } from "../environments/environment";
 import { jwtDecode } from 'jwt-decode';
+import { UserProfile } from "../models/auth/user-profile";
 
 @Injectable({
   providedIn: 'root',
@@ -43,9 +44,15 @@ export class AuthService {
       );
   }
 
-//   getProfile<TProfile>(): Observable<TProfile> {
-//     return this.http.get<TProfile>(`${this.apiUrl}/auth/me`);
-//   }
+  getProfile() : Observable<UserProfile> {
+    return this.http.get<UserProfile>(`${this.apiUrl}/auth/profile`);
+  }
+
+  updateProfile(model: Partial<UserProfile>): Observable<UserProfile> {
+    return this.http.put<UserProfile>(`${this.apiUrl}/auth/profile`, {
+      phoneNumber: model.phoneNumber
+    });
+  }
 
   public isLoggedIn(): boolean {
     const token = this.getToken();

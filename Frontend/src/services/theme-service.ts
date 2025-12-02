@@ -24,7 +24,5 @@ export class ThemeService {
 
     const root = document.documentElement;
     root.classList.toggle('dark', theme === 'dark');
-
-    console.log('Theme set to:', theme, 'html classes:', root.className);
   }
 }

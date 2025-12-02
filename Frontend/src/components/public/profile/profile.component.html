@@ -1,0 +1,42 @@
+<div class="max-w-xl mx-auto space-y-6">
+  <h1 class="text-2xl font-semibold mb-4">Моят профил</h1>
+
+  @if (isLoading) {
+    <p>Зареждане...</p>
+  } @else if (error) {
+    <p class="text-red-600">{{ error }}</p>
+  } @else if (profile) {
+
+    <div class="space-y-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+      <div>
+        <label class="block text-sm font-medium mb-1">Email</label>
+        <input
+          class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 px-3 py-2 text-sm"
+          [value]="profile.email"
+          disabled
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Телефон</label>
+        <input
+          class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm"
+          [(ngModel)]="profile.phoneNumber"
+          name="phoneNumber"
+          placeholder="Добави телефон"
+        />
+      </div>
+
+      <div class="flex justify-end gap-2">
+        <button
+          class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium
+                 text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-70"
+          (click)="save()"
+          [disabled]="isSaving"
+        >
+          {{ isSaving ? 'Запазване...' : 'Запази промените' }}
+        </button>
+      </div>
+    </div>
+  }
+</div>
