@@ -21,7 +21,15 @@ export class RegisterComponent {
 
   form = this.fb.group(
     {
+      firstName: ['', [Validators.required, Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.maxLength(50)]],
+
       email: ['', [Validators.required, Validators.email]],
+
+      phoneNumber: ['', [Validators.maxLength(20)]],
+      city: ['', [Validators.maxLength(100)]],
+      address: ['', [Validators.maxLength(200)]],
+
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
     },
@@ -39,7 +47,7 @@ export class RegisterComponent {
   }
 
   get passwordMismatch(): boolean {
-    return !!this.form.errors?.['passwordMismatch'];
+    return !!this.form.errors?.['passwordMismatch'] && this.submitted;
   }
 
   onSubmit(): void {
@@ -52,9 +60,16 @@ export class RegisterComponent {
 
     const payload: RegisterRequest = {
       email: this.f.email.value ?? '',
-      password: this.f.password.value ?? ''
-    };
+      password: this.f.password.value ?? '',
+      confirmPassword: this.f.confirmPassword.value ?? '',
 
+      firstName: this.f.firstName.value ?? '',
+      lastName: this.f.lastName.value ?? '',
+
+      phoneNumber: this.f.phoneNumber.value || null,
+      city: this.f.city.value || null,
+      address: this.f.address.value || null
+    };
 
     this.authService.register(payload).subscribe({
       next: () => {

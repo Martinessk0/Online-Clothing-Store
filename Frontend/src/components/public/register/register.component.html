@@ -18,8 +18,53 @@
     }
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+
+      <!-- Име + Фамилия -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+            Собствено име
+          </label>
+          <input
+            type="text"
+            formControlName="firstName"
+            class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
+                   focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+                   dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
+            placeholder="Иван"
+          />
+          @if (f.firstName.invalid && (f.firstName.dirty || f.firstName.touched || submitted)) {
+            <p class="mt-1 text-xs text-red-600 dark:text-red-400">
+              Моля, въведи собствено име.
+            </p>
+          }
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+            Фамилия
+          </label>
+          <input
+            type="text"
+            formControlName="lastName"
+            class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
+                   focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+                   dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
+            placeholder="Петров"
+          />
+          @if (f.lastName.invalid && (f.lastName.dirty || f.lastName.touched || submitted)) {
+            <p class="mt-1 text-xs text-red-600 dark:text-red-400">
+              Моля, въведи фамилия.
+            </p>
+          }
+        </div>
+      </div>
+
+      <!-- Имейл -->
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Имейл</label>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          Имейл
+        </label>
         <input
           type="email"
           formControlName="email"
@@ -35,8 +80,57 @@
         }
       </div>
 
+      <!-- Телефон -->
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Парола</label>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          Телефон (по желание)
+        </label>
+        <input
+          type="tel"
+          formControlName="phoneNumber"
+          class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
+                 focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+                 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
+          placeholder="+359 88 123 4567"
+        />
+      </div>
+
+      <!-- Град + Адрес -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+            Град (по желание)
+          </label>
+          <input
+            type="text"
+            formControlName="city"
+            class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
+                   focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+                   dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
+            placeholder="София"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+            Адрес (по желание)
+          </label>
+          <input
+            type="text"
+            formControlName="address"
+            class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
+                   focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+                   dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
+            placeholder="ул. „Иван Шишман“ 10, вх. А"
+          />
+        </div>
+      </div>
+
+      <!-- Парола -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          Парола
+        </label>
         <input
           type="password"
           formControlName="password"
@@ -52,8 +146,11 @@
         }
       </div>
 
+      <!-- Повтори паролата -->
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Повтори паролата</label>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          Повтори паролата
+        </label>
         <input
           type="password"
           formControlName="confirmPassword"
@@ -71,6 +168,7 @@
 
       <button
         type="submit"
+        [disabled]="form.invalid && submitted"
         class="w-full rounded-lg px-4 py-2 text-sm font-medium text-white
                bg-blue-600 hover:bg-blue-700
                dark:bg-blue-500 dark:hover:bg-blue-600"
