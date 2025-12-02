@@ -1,0 +1,40 @@
+<section class="grid gap-8 lg:grid-cols-2 items-center">
+  <div>
+    <h1 class="text-3xl sm:text-4xl font-bold mb-4">
+      Добре дошъл в <span class="text-blue-600">ClothesStore</span>
+    </h1>
+    <p class="text-gray-600 dark:text-gray-300 mb-6 text-sm sm:text-base">
+      Открий модерни дрехи на добри цени. Регистрирай се, за да проследяваш поръчките си
+      и да запазваш любимите си продукти.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-3">
+      <a
+        routerLink="/register"
+        class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
+               text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+      >
+        Започни сега
+      </a>
+      <a
+        routerLink="/products"
+        class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
+               border border-gray-300 text-gray-700 hover:bg-gray-100
+               dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+      >
+        Разгледай продукти
+      </a>
+    </div>
+  </div>
+
+  <div class="hidden lg:block">
+    <div
+      class="aspect-[4/3] rounded-3xl border border-dashed border-gray-300 dark:border-gray-700
+             flex items-center justify-center"
+    >
+      <span class="text-gray-400 dark:text-gray-500 text-sm">
+        Nqkva snimka ili carousel
+      </span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,229 @@
+<nav class="bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-800">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <a
+        routerLink="/home-page"
+        class="flex items-center gap-1 text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"
+      >
+        <span class="text-blue-600">Clothes</span>Store
+      </a>
+
+      <div class="hidden md:flex items-center gap-4">
+        <a
+          routerLink="/home-page"
+          class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Начало
+        </a>
+
+        <a
+          routerLink="/products"
+          class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400"
+        >
+          Продукти
+        </a>
+
+        @if (isLoggedIn) {
+          <a
+            routerLink="/profile"
+            class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+            routerLinkActive="text-blue-600 dark:text-blue-400"
+          >
+            Профил
+          </a>
+
+          <button
+            type="button"
+            (click)="logout()"
+            class="text-sm font-medium text-red-600 hover:text-red-700"
+          >
+            Изход
+          </button>
+        } @else {
+          <a
+            routerLink="/login"
+            class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+            routerLinkActive="text-blue-600 dark:text-blue-400"
+          >
+            Вход
+          </a>
+
+          <a
+            routerLink="/register"
+            class="inline-flex items-center rounded-lg border border-blue-600 px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50
+                   dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-950/40"
+            routerLinkActive="bg-blue-600 text-white hover:bg-blue-700 border-blue-600 dark:bg-blue-500 dark:hover:bg-blue-600"
+          >
+            Регистрация
+          </a>
+        }
+
+        <button
+          type="button"
+          (click)="toggleTheme()"
+          class="ml-2 inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100
+                 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+        >
+          @if (isDark()) {
+            <!-- Sun icon -->
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="4" stroke-width="1.7"></circle>
+              <path stroke-width="1.7"
+                    d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M17.99 17.99l1.79 1.79M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M17.99 6.01l1.79-1.79" />
+            </svg>
+          } @else {
+            <!-- Moon icon -->
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="1.7"
+                    d="M20 14.5A7.5 7.5 0 0 1 10.5 5 6 6 0 1 0 20 14.5z" />
+            </svg>
+          }
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900
+               dark:text-gray-200 dark:hover:bg-gray-800 md:hidden"
+        (click)="toggleMobileMenu()"
+      >
+        <span class="sr-only">Отвори меню</span>
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+@if (isMobileMenuOpen) {
+  <div class="md:hidden border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div class="flex items-center justify-around px-4 py-3">
+
+      <a
+        routerLink="/home-page"
+        (click)="toggleMobileMenu()"
+        class="flex flex-col items-center text-gray-700 hover:text-blue-600
+               dark:text-gray-200 dark:hover:text-blue-400"
+        routerLinkActive="text-blue-600 dark:text-blue-400"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M3 11.5 12 4l9 7.5M5 10.5V20h4v-5h6v5h4v-9.5" />
+        </svg>
+        <span class="sr-only">Начало</span>
+      </a>
+
+      <a
+        routerLink="/products"
+        (click)="toggleMobileMenu()"
+        class="flex flex-col items-center text-gray-700 hover:text-blue-600
+               dark:text-gray-200 dark:hover:text-blue-400"
+        routerLinkActive="text-blue-600 dark:text-blue-400"
+      >
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M6 7h12l-1 12H7L6 7z" />
+          <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M9 10a3 3 0 0 1 6 0" />
+        </svg>
+        <span class="sr-only">Продукти</span>
+      </a>
+
+      @if (isLoggedIn) {
+        <a
+          routerLink="/profile"
+          (click)="toggleMobileMenu()"
+          class="flex flex-col items-center text-gray-700 hover:text-blue-600
+                 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="8" r="3.2" stroke-width="1.8"></circle>
+            <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                  d="M5 19.5a7 7 0 0 1 14 0" />
+          </svg>
+          <span class="sr-only">Профил</span>
+        </a>
+
+        <button
+          type="button"
+          (click)="logout(); toggleMobileMenu()"
+          class="flex flex-col items-center text-red-600 hover:text-red-700
+                 dark:text-red-400 dark:hover:text-red-300"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 5H5v14h5" />
+            <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                  d="M14 12h-8m8 0-3-3m3 3-3 3M19 5v14" />
+          </svg>
+          <span class="sr-only">Изход</span>
+        </button>
+      } @else {
+        <a
+          routerLink="/login"
+          (click)="toggleMobileMenu()"
+          class="flex flex-col items-center text-gray-700 hover:text-blue-600
+                 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                  d="M14 5h5v14h-5" />
+            <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 12h8m-8 0 3-3m-3 3 3 3" />
+          </svg>
+          <span class="sr-only">Вход</span>
+        </a>
+
+        <a
+          routerLink="/register"
+          (click)="toggleMobileMenu()"
+          class="flex flex-col items-center text-blue-600 hover:text-blue-700
+                 dark:text-blue-400 dark:hover:text-blue-300"
+          routerLinkActive="text-blue-700 dark:text-blue-300"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="7.5" r="3" stroke-width="1.8"></circle>
+            <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                  d="M5 19a7 7 0 0 1 9-3.5" />
+            <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                  d="M19 11v6m-3-3h6" />
+          </svg>
+          <span class="sr-only">Регистрация</span>
+        </a>
+      }
+
+      <button
+        type="button"
+        (click)="toggleTheme()"
+        class="flex flex-col items-center text-gray-700 hover:text-gray-900
+               dark:text-gray-200 dark:hover:text-gray-50"
+      >
+        @if (isDark()) {
+          <!-- Sun icon -->
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="4" stroke-width="1.7"></circle>
+            <path stroke-width="1.7"
+                  d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M17.99 17.99l1.79 1.79M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M17.99 6.01l1.79-1.79" />
+          </svg>
+        } @else {
+          <!-- Moon icon -->
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="1.7"
+                  d="M20 14.5A7.5 7.5 0 0 1 10.5 5 6 6 0 1 0 20 14.5z" />
+          </svg>
+        }
+        <span class="sr-only">Смяна на тема</span>
+      </button>
+    </div>
+  </div>
+}
+
+</nav>
