@@ -1,5 +1,24 @@
-<section class="grid gap-8 lg:grid-cols-2 items-center">
-  <div>
+<section class="gap-8 items-center flex flex-col lg:grid lg:grid-cols-2">
+  <div class="w-full order-1 lg:order-2">
+    <div
+      class="aspect-[4/3] w-full rounded-3xl border border-dashed border-gray-300 dark:border-gray-700
+             flex items-center justify-center overflow-hidden"
+    >
+      <img
+        src="/assets/images/home-page-light.png"
+        alt="ClothesStore light"
+        class="w-full h-full object-cover block dark:hidden"
+      />
+
+      <img
+        src="/assets/images/home-page-dark.png"
+        alt="ClothesStore dark"
+        class="w-full h-full object-cover hidden dark:block"
+      />
+    </div>
+  </div>
+
+  <div class="order-2 lg:order-1 text-center lg:text-left">
     <h1 class="text-3xl sm:text-4xl font-bold mb-4">
       Добре дошъл в <span class="text-blue-600">ClothesStore</span>
     </h1>
@@ -8,7 +27,7 @@
       и да запазваш любимите си продукти.
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-3">
+    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
       <a
         routerLink="/register"
         class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
@@ -24,17 +43,6 @@
       >
         Разгледай продукти
       </a>
-    </div>
-  </div>
-
-  <div class="hidden lg:block">
-    <div
-      class="aspect-[4/3] rounded-3xl border border-dashed border-gray-300 dark:border-gray-700
-             flex items-center justify-center"
-    >
-      <span class="text-gray-400 dark:text-gray-500 text-sm">
-        Nqkva snimka ili carousel
-      </span>
     </div>
   </div>
 </section>
