@@ -1,5 +1,6 @@
 ﻿using ClothingStore.Core.Contracts.Auth;
 using ClothingStore.Core.Models.Auth;
+using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -15,12 +16,12 @@ namespace ClothingStore.Core.Services.Auth
 {
     public class AuthService : IAuthService
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         //private readonly SignInManager<IdentityUser> _signInManager;
         private readonly JwtSettings _jwtSettings;
 
         public AuthService(
-            UserManager<IdentityUser> userManager,
+            UserManager<ApplicationUser> userManager,
             //SignInManager<IdentityUser> signInManager,
             IOptions<JwtSettings> jwtOptions)
         {
@@ -37,11 +38,16 @@ namespace ClothingStore.Core.Services.Auth
                 throw new InvalidOperationException("Email is already in use.");
             }
 
-            var user = new IdentityUser
+            var user = new ApplicationUser
             {
                 UserName = request.Email,
                 Email = request.Email,
-                PhoneNumber = request.PhoneNumber
+
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                PhoneNumber = request.PhoneNumber,
+                City = request.City,
+                Address = request.Address,
             };
 
             var result = await _userManager.CreateAsync(user, request.Password);
@@ -72,7 +78,7 @@ namespace ClothingStore.Core.Services.Auth
             return await GenerateTokenAsync(user);
         }
 
-        private async Task<AuthResponse> GenerateTokenAsync(IdentityUser user)
+        private async Task<AuthResponse> GenerateTokenAsync(ApplicationUser user)
         {
             var claims = new List<Claim>
             {
@@ -110,11 +116,19 @@ namespace ClothingStore.Core.Services.Auth
             var user = await _userManager.FindByIdAsync(userId)
                 ?? throw new InvalidOperationException("User not found.");
 
+            var roles = await _userManager.GetRolesAsync(user);
+
             return new UserProfileResponse
             {
                 Id = user.Id,
                 Email = user.Email ?? string.Empty,
-                PhoneNumber = user.PhoneNumber
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                Roles = roles,
+                CreatedAt = user.CreatedAt,
+                City = user.City,
+                Address = user.Address
             };
         }
 
@@ -123,9 +137,29 @@ namespace ClothingStore.Core.Services.Auth
             var user = await _userManager.FindByIdAsync(userId)
                 ?? throw new InvalidOperationException("User not found.");
 
+            if (request.FirstName != null)
+            {
+                user.FirstName = request.FirstName;
+            }
+
+            if (request.LastName != null)
+            {
+                user.LastName = request.LastName;
+            }
+
             if (request.PhoneNumber != null)
             {
                 user.PhoneNumber = request.PhoneNumber;
+            }
+
+            if (request.City != null)
+            {
+                user.City = request.City;
+            }
+
+            if (request.Address != null)
+            {
+                user.Address = request.Address;
             }
 
             var result = await _userManager.UpdateAsync(user);
@@ -135,13 +169,22 @@ namespace ClothingStore.Core.Services.Auth
                 throw new InvalidOperationException($"Cannot update profile: {errors}");
             }
 
+            var roles = await _userManager.GetRolesAsync(user);
+
             return new UserProfileResponse
             {
                 Id = user.Id,
                 Email = user.Email ?? string.Empty,
-                PhoneNumber = user.PhoneNumber
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                Roles = roles,
+                CreatedAt = user.CreatedAt,
+                City = user.City,
+                Address = user.Address
             };
         }
+
 
 
     }
