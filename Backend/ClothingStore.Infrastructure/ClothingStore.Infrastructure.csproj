@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Data\Configuration\" />
     <Folder Include="Data\Constants\" />
-    <Folder Include="Data\Entities\" />
   </ItemGroup>
 
 </Project>
