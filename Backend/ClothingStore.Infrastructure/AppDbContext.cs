@@ -39,7 +39,7 @@ namespace ClothingStore.Infrastructure
                 .HasForeignKey(ci => ci.ProductId);
 
             builder.Entity<Cart>()
-                .HasOne<IdentityUser>()
+                .HasOne<ApplicationUser>()
                 .WithMany()
                 .HasForeignKey(c => c.UserId);
 
