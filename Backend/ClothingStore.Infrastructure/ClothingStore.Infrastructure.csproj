@@ -21,9 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Configuration\" />
     <Folder Include="Data\Constants\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

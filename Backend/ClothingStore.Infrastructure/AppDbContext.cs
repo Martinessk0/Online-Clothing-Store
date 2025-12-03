@@ -1,4 +1,5 @@
-﻿using ClothingStore.Infrastructure.Data.Entities;
+﻿using ClothingStore.Infrastructure.Data.Configuration;
+using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -17,16 +18,10 @@ namespace ClothingStore.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //Adding Configuration (seeding)
-            //builder.ApplyConfiguration(new UserConfiguration());
-
-
-            base.OnModelCreating(builder);
-
             builder.Entity<Product>()
-    .HasOne(p => p.Category)
-    .WithMany(c => c.Products)
-    .HasForeignKey(p => p.CategoryId);
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId);
 
             builder.Entity<CartItem>()
                 .HasOne(ci => ci.Cart)
@@ -42,6 +37,13 @@ namespace ClothingStore.Infrastructure
                 .HasOne<ApplicationUser>()
                 .WithMany()
                 .HasForeignKey(c => c.UserId);
+
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new RoleConfiguration());
+            builder.ApplyConfiguration(new RoleAssignConfiguration());
+
+            base.OnModelCreating(builder);
+
 
         }
     }
