@@ -1,86 +1,63 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ClothingStore.Core.Contracts;
+using ClothingStore.Core.Models.Store;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ClothingStore.Infrastructure;
-using ClothingStore.Infrastructure.Data.Entities;
 
 namespace ClothingStore.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ReviewsController : ControllerBase
+    public class ReviewController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IReviewService _reviewService;
 
-        public ReviewsController(AppDbContext context)
+        public ReviewController(IReviewService reviewService)
         {
-            _context = context;
+            _reviewService = reviewService;
         }
 
-        // GET: api/Reviews/product/5
+        /// <summary>
+        /// Връща всички ревюта за даден продукт.
+        /// GET: api/review/product/1
+        /// </summary>
         [HttpGet("product/{productId:int}")]
-        public async Task<ActionResult<IEnumerable<Review>>> GetReviewsForProduct(int productId)
+        public async Task<ActionResult<IEnumerable<ReviewDto>>> GetForProduct(int productId)
         {
-            var reviews = await _context.Reviews
-                .Where(r => r.ProductID == productId)
-                .OrderByDescending(r => r.CreatedAt)
-                .ToListAsync();
-
+            var reviews = await _reviewService.GetByProductAsync(productId);
             return Ok(reviews);
         }
 
-        // GET: api/Reviews/5
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<Review>> GetReview(int id)
-        {
-            var review = await _context.Reviews.FindAsync(id);
-
-            if (review == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(review);
-        }
-
-        // POST: api/Reviews
+        /// <summary>
+        /// Създава ново ревю.
+        /// POST: api/review
+        /// </summary>
         [HttpPost]
-        public async Task<ActionResult<Review>> CreateReview([FromBody] Review review)
+        [Authorize] // може да го махнеш, ако Auth още не е готов
+        public async Task<ActionResult<int>> Create([FromBody] ReviewCreateDto model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (string.IsNullOrWhiteSpace(review.Status))
-            {
-                review.Status = "Approved";
-            }
+            var newId = await _reviewService.CreateAsync(model);
 
-            review.CreatedAt = DateTime.Now;
-
-            _context.Reviews.Add(review);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetReview), new { id = review.ReviewID }, review);
+            // Връщаме 201 Created
+            return CreatedAtAction(
+                nameof(GetForProduct),
+                new { productId = model.ProductId },
+                new { id = newId });
         }
 
-        // DELETE: api/Reviews/5
+        /// <summary>
+        /// Изтрива ревю по Id (примерно само за Admin).
+        /// DELETE: api/review/5
+        /// </summary>
         [HttpDelete("{id:int}")]
-        public async Task<IActionResult> DeleteReview(int id)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int id)
         {
-            var review = await _context.Reviews.FindAsync(id);
-            if (review == null)
-            {
-                return NotFound();
-            }
-
-            _context.Reviews.Remove(review);
-            await _context.SaveChangesAsync();
-
+            await _reviewService.DeleteAsync(id);
             return NoContent();
         }
     }

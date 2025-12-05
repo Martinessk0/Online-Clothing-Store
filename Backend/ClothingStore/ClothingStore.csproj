@@ -18,6 +18,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClothingStore.Core\ClothingStore.Core.csproj" />
+    <ProjectReference Include="..\ClothingStore.Infrastructure\ClothingStore.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extentions\" />
   </ItemGroup>
 
 </Project>

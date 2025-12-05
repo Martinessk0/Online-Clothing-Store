@@ -1,38 +1,34 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ClothingStore.Core.Contracts;
+using ClothingStore.Core.Models.Store;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ClothingStore.Infrastructure;
-using ClothingStore.Infrastructure.Data.Entities;
 
 namespace ClothingStore.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] // => api/Categories
+    [Route("api/[controller]")]
     public class CategoriesController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly ICategoryService _categoryService;
 
-        public CategoriesController(AppDbContext context)
+        public CategoriesController(ICategoryService categoryService)
         {
-            _context = context;
+            _categoryService = categoryService;
         }
 
-        // GET: api/Categories
+        // GET: api/categories
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetAll()
         {
-            var categories = await _context.Categories.ToListAsync();
+            var categories = await _categoryService.GetAllAsync();
             return Ok(categories);
         }
 
-        // GET: api/Categories/5
+        // GET: api/categories/5
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public async Task<ActionResult<CategoryDto>> GetById(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-
+            var category = await _categoryService.GetByIdAsync(id);
             if (category == null)
             {
                 return NotFound();
@@ -41,67 +37,41 @@ namespace ClothingStore.Controllers
             return Ok(category);
         }
 
-        // POST: api/Categories
+        // POST: api/categories
         [HttpPost]
-        public async Task<ActionResult<Category>> CreateCategory([FromBody] Category category)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<int>> Create([FromBody] CategoryCreateDto model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            var newId = await _categoryService.CreateAsync(model);
 
-            // ❗ ТУК: използваме category.Id вместо CategoryID
-            return CreatedAtAction(nameof(GetCategory),
-                new { id = category.Id }, category);
+            return CreatedAtAction(nameof(GetById), new { id = newId }, new { id = newId });
         }
 
-        // PUT: api/Categories/5
+        // PUT: api/categories/5
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category category)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Update(int id, [FromBody] CategoryUpdateDto model)
         {
-            // ❗ ТУК: сравняваме с category.Id
-            if (id != category.Id)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("ID mismatch.");
+                return BadRequest(ModelState);
             }
 
-            _context.Entry(category).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                // ❗ ТУК: проверяваме по Id
-                var exists = await _context.Categories.AnyAsync(c => c.Id == id);
-                if (!exists)
-                {
-                    return NotFound();
-                }
-
-                throw;
-            }
-
+            await _categoryService.UpdateAsync(id, model);
             return NoContent();
         }
 
-        // DELETE: api/Categories/5
+        // DELETE: api/categories/5
         [HttpDelete("{id:int}")]
-        public async Task<IActionResult> DeleteCategory(int id)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
-
+            await _categoryService.DeleteAsync(id);
             return NoContent();
         }
     }
