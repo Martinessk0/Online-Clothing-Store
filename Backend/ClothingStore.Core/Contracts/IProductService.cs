@@ -10,12 +10,12 @@ namespace ClothingStore.Core.Contracts
 {
     public interface IProductService
     {
-        public Task<Product> CreateProductAsync(ProductDTO productDTO);
-        public Task<Product> UpdateProductAsync(int id, ProductDTO productDTO);
+        public Task<Product> CreateProductAsync(ProductCreateDTO productDTO);
+        public Task<Product> UpdateProductAsync(int id, ProductUpdateDTO productDTO);
         public Task<bool> DeleteProductAsync(int id);
-        public Task<List<ProductDTO>> GetAllAsync();
+        public Task<List<ProductDTO>> GetAllAsync();    
         public Task<ProductDTO> GetByIdAsync(int id);
-
+        public Task<List<Product>> FilterAsync(ProductDTO filterDTO);
 
     }
 }

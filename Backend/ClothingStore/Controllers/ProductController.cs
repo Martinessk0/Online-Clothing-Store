@@ -18,7 +18,7 @@ namespace ClothingStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ProductDTO productDTO)
+        public async Task<IActionResult> Create([FromBody] ProductCreateDTO productDTO)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -29,7 +29,6 @@ namespace ClothingStore.Controllers
 
                 var productDto = new ProductDTO
                 {
-                    Id = product.Id,
                     Name = product.Name,
                     Description = product.Description,
                     Price = product.Price,
@@ -50,7 +49,7 @@ namespace ClothingStore.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] ProductDTO updateProductDTO)
+        public async Task<IActionResult> Update(int id, [FromBody] ProductUpdateDTO productDTO)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -61,7 +60,7 @@ namespace ClothingStore.Controllers
 
             try
             {                
-                var updatedProduct = await _productService.UpdateProductAsync(id, updateProductDTO);
+                var updatedProduct = await _productService.UpdateProductAsync(id, productDTO);
 
                 return Ok(updatedProduct);                                            
             }

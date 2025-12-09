@@ -1,0 +1,23 @@
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClothingStore.Core.Models.Product
+{
+    public class ProductUpdateDTO
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        [Precision(18, 2)]
+        public decimal Price { get; set; }
+        public string Brand { get; set; } = string.Empty;
+        public string Size { get; set; } = string.Empty;
+        public string Color { get; set; } = string.Empty;
+        public int Stock { get; set; }
+
+        public int CategoryId { get; set; }
+    }
+}

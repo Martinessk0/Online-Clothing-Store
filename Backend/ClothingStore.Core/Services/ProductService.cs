@@ -15,12 +15,12 @@ namespace ClothingStore.Core.Services
     {
         private IRepository repo;
 
-        public ProductService (IRepository repo)
+        public ProductService(IRepository repo)
         {
             this.repo = repo;
         }
 
-        public async Task<Product> CreateProductAsync(ProductDTO productDTO)
+        public async Task<Product> CreateProductAsync(ProductCreateDTO productDTO)
         {
             var category = await repo.AllReadonly<Category>()
                                      .FirstOrDefaultAsync(c => c.Id == productDTO.CategoryId);
@@ -34,14 +34,14 @@ namespace ClothingStore.Core.Services
             {
                 Name = productDTO.Name,
                 Description = productDTO.Description,
-                Price= productDTO.Price,
-                Brand= productDTO.Brand,
+                Price = productDTO.Price,
+                Brand = productDTO.Brand,
                 Size = productDTO.Size,
-                Color= productDTO.Color,
+                Color = productDTO.Color,
                 Stock = productDTO.Stock,
                 CategoryId = productDTO.CategoryId,
-                IsActive =true,
-                CreatedAt=DateTime.UtcNow
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
             };
 
             await repo.AddAsync(product);
@@ -50,7 +50,7 @@ namespace ClothingStore.Core.Services
             return product;
         }
 
-        public async Task<Product> UpdateProductAsync(int id, ProductDTO productDTO)
+        public async Task<Product> UpdateProductAsync(int id, ProductUpdateDTO productDTO)
         {
             Product product = await repo.GetByIdAsync<Product>(id);
 
@@ -127,6 +127,19 @@ namespace ClothingStore.Core.Services
                     Price = p.Price,
                     CategoryId = p.Category.Id,
                 }).FirstAsync();
+        }
+
+        public async Task<List<Product>> FilterAsync(ProductDTO filterDTO)
+        {
+            var filteredProducts = await repo.AllReadonly<Product>()
+                .WhereIf(!string.IsNullOrEmpty(filterDTO.Name), p => p.Name == filterDTO.Name)
+                .WhereIf(filterDTO.Price > 0, p => p.Price == filterDTO.Price)
+                .WhereIf(!string.IsNullOrEmpty(filterDTO.Brand), p => p.Brand == filterDTO.Brand)
+                .WhereIf(!string.IsNullOrEmpty(filterDTO.Size), p => p.Size == filterDTO.Size)
+                .WhereIf(!string.IsNullOrEmpty(filterDTO.Color), p => p.Color == filterDTO.Color)
+                .ToListAsync();
+
+            return filteredProducts;
         }
     }
 }

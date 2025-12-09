@@ -1,4 +1,6 @@
-﻿using ClothingStore.Core.Contracts.Auth;
+﻿using ClothingStore.Core.Contracts;
+using ClothingStore.Core.Contracts.Auth;
+using ClothingStore.Core.Services;
 using ClothingStore.Core.Services.Auth;
 using ClothingStore.Infrastructure.Data.Common;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -11,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IProductService, ProductService>();         
 
             return services;
         }
