@@ -22,6 +22,107 @@ namespace ClothingStore.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ClothingStore.Infrastructure.Data.Entities.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "fe0f0881-a76d-4cd6-9a79-3f6adbd5f82f",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f81c19fd-26e6-4bf4-b0d5-9fe7b6ab964e",
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "admin@test.bg",
+                            EmailConfirmed = true,
+                            FirstName = "Martin",
+                            LastName = "Grahovski",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@TEST.BG",
+                            NormalizedUserName = "ADMIN@TEST.BG",
+                            PasswordHash = "AQAAAAIAAYagAAAAELsHLYJ3ohlX9t3pZfMqITIGBk0HCxoM7DgBvgJ4riXCt+YmwIuSdrY+Llv3lhURHg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "YIXYIXE6GJSSN4KVYJROXMJQKQ2EVPJT",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@test.bg"
+                        });
+                });
+
             modelBuilder.Entity("ClothingStore.Infrastructure.Data.Entities.Cart", b =>
                 {
                     b.Property<int>("Id")
@@ -255,6 +356,20 @@ namespace ClothingStore.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -342,6 +457,18 @@ namespace ClothingStore.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "fe0f0881-a76d-4cd6-9a79-3f6adbd5f82f",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "fe0f0881-a76d-4cd6-9a79-3f6adbd5f82f",
+                            RoleId = "2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -365,7 +492,7 @@ namespace ClothingStore.Infrastructure.Migrations
 
             modelBuilder.Entity("ClothingStore.Infrastructure.Data.Entities.Cart", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("ClothingStore.Infrastructure.Data.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
