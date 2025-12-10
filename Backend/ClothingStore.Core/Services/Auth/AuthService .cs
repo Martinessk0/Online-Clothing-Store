@@ -84,13 +84,20 @@ namespace ClothingStore.Core.Services.Auth
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, user.UserName ?? string.Empty),
-                new Claim(ClaimTypes.Email, user.Email ?? string.Empty)
+                new Claim("Identifier", user.Id),
+                new Claim("Name", user.UserName ?? string.Empty),
+                new Claim("Email", user.Email ?? string.Empty)
             };
 
             var roles = await _userManager.GetRolesAsync(user);
-            claims.AddRange(roles.Select(r => new Claim(ClaimTypes.Role, r)));
+            //claims.AddRange(roles.Select(r => new Claim("roles", r)));
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+
+                claims.Add(new Claim("roles", role));
+            }
+
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
