@@ -63,7 +63,8 @@ builder.Services
             ValidIssuer = jwtSettings.ValidIssuer,
             ValidAudience = jwtSettings.ValidAudience,
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(jwtSettings.SecurityKey))
+                Encoding.UTF8.GetBytes(jwtSettings.SecurityKey)),
+            RoleClaimType = System.Security.Claims.ClaimTypes.Role
         };
     });
 
