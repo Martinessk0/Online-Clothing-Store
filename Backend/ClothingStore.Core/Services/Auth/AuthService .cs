@@ -58,6 +58,8 @@ namespace ClothingStore.Core.Services.Auth
                 throw new InvalidOperationException(errors);
             }
 
+            await _userManager.AddToRoleAsync(user, "User");
+
             return await GenerateTokenAsync(user);
         }
 
