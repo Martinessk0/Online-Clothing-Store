@@ -22,6 +22,10 @@ export class NavigationComponent {
     return this.authService.isLoggedIn();
   }
 
+  get isAdmin(): boolean{
+    return this.authService.isAdmin();
+  }
+
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }

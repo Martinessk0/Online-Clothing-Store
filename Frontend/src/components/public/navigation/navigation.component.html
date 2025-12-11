@@ -35,6 +35,16 @@
             Профил
           </a>
 
+          @if(isAdmin){
+            <a
+            routerLink="/admin"
+            class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+            routerLinkActive="text-blue-600 dark:text-blue-400"
+          >
+            Администрация
+          </a>
+          }
+
           <button
             type="button"
             (click)="logout()"
@@ -135,6 +145,21 @@
         </a>
 
         @if (isLoggedIn) {
+          @if (isAdmin) {
+            <a
+              routerLink="/admin"
+              (click)="toggleMobileMenu()"
+              class="flex flex-col items-center text-gray-700 hover:text-blue-600
+                     dark:text-gray-200 dark:hover:text-blue-400"
+              routerLinkActive="text-blue-600 dark:text-blue-400"
+            >
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 3 5 6v5c0 4 3 7 7 8 4-1 7-4 7-8V6l-7-3z" />
+              </svg>
+              <span class="sr-only">Администрация</span>
+            </a>
+          }
           <a
             routerLink="/profile"
             (click)="toggleMobileMenu()"
