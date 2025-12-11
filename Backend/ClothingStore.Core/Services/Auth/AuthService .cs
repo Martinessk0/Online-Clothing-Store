@@ -84,7 +84,7 @@ namespace ClothingStore.Core.Services.Auth
         {
             var claims = new List<Claim>
             {
-                new Claim("Identifier", user.Id),
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim("Name", user.UserName ?? string.Empty),
                 new Claim("Email", user.Email ?? string.Empty)
             };
