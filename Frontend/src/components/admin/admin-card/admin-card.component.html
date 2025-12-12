@@ -1,0 +1,61 @@
+<section
+      class="group rounded-2xl border border-slate-200/80 bg-slate-50/90 p-4 shadow-sm
+             transition hover:-translate-y-0.5 hover:shadow-md
+             dark:border-slate-700/80 dark:bg-slate-900/80"
+    >
+      <div class="flex flex-col gap-2">
+        <!-- Header -->
+        <div *ngIf="title || badge" class="flex items-baseline justify-between gap-2">
+          <h2
+            *ngIf="title"
+            class="text-sm font-semibold text-slate-900 dark:text-slate-50"
+          >
+            {{ title }}
+          </h2>
+
+          <span
+            *ngIf="badge"
+            class="rounded-full border px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide
+                   border-slate-200 bg-white/70 text-slate-500
+                   dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300"
+          >
+            {{ badge }}
+          </span>
+        </div>
+
+        <!-- Description -->
+        <p
+          *ngIf="description"
+          class="text-[11px] leading-snug text-slate-500 dark:text-slate-400"
+        >
+          {{ description }}
+        </p>
+
+        <!-- Stat block -->
+        <div *ngIf="stat !== null && stat !== undefined" class="mt-1">
+          <p class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
+            {{ stat }}
+          </p>
+          <p
+            *ngIf="statHint"
+            class="mt-1 text-[11px] text-slate-500 dark:text-slate-400"
+          >
+            {{ statHint }}
+          </p>
+        </div>
+
+        <!-- Допълнително съдържание, ако искаш -->
+        <ng-content></ng-content>
+
+        <!-- Link -->
+        <a
+          *ngIf="link && linkLabel"
+          [routerLink]="link"
+          class="mt-2 inline-flex text-xs font-medium underline underline-offset-2
+                 text-slate-700 hover:text-slate-900
+                 dark:text-slate-200 dark:hover:text-white"
+        >
+          {{ linkLabel }}
+        </a>
+      </div>
+    </section>

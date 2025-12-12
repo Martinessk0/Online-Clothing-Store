@@ -1,14 +1,14 @@
-import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
 import { ThemeService } from '../../../services/theme-service';
 
 @Component({
   selector: 'app-navigation',
-  standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './navigation.component.html'
+  templateUrl: './navigation.component.html',
+  styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
   private readonly authService = inject(AuthService);
@@ -16,13 +16,14 @@ export class NavigationComponent {
   private readonly themeService = inject(ThemeService);
 
   isMobileMenuOpen = false;
-  isDark = computed(() => this.themeService.theme() === 'dark');
+
+  readonly isDarkMode = computed(() => this.themeService.theme() === 'dark');
 
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 
-  get isAdmin(): boolean{
+  get isAdmin(): boolean {
     return this.authService.isAdmin();
   }
 
