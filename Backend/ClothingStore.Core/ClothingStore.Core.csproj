@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClothingStore.Infrastructure\ClothingStore.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Contracts\" />
-    <Folder Include="Services\" />
+    <Folder Include="Services\Auth\" />
   </ItemGroup>
 
 </Project>

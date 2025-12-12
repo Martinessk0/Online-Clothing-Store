@@ -1,45 +1,66 @@
-using ClothingStore.Infrastructure;
-using Microsoft.AspNetCore.Identity;
+﻿using ClothingStore.Infrastructure;
+using ClothingStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string connectionString;
-
-if (builder.Environment.IsDevelopment())
-{
-    connectionString = builder.Configuration["Database:Dev"];
-}
-else
-{
-    connectionString = builder.Configuration["Database:Prod"];
-}
-
+// -------------------------
+// Database
+// -------------------------
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
-//builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
-//    .AddDefaultTokenProviders();
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
+// -------------------------
+// Add Infrastructure Services (AuthService, Repository, etc.)
+// -------------------------
+builder.Services.AddApplicationServices();
+
+// -------------------------
+// Controllers
+// -------------------------
 builder.Services.AddControllers();
+
+
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// -------------------------
+// CORS (разрешава Angular фронтенда да прави заявки)
+// -------------------------
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// -------------------------
+// Development tools
+// -------------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    app.MapGet("/", () => Results.Redirect("/swagger"))
-          .ExcludeFromDescription();
 }
 
 app.UseHttpsRedirection();
 
+// CORS
+app.UseCors("AllowAll");
+
+// Authentication / Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
+// Map Controllers
 app.MapControllers();
 
 app.Run();
