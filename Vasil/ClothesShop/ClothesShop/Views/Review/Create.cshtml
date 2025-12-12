@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Add Review";
+    var productId = ViewBag.ProductId ?? 1;
+}
+
+<h1>⭐ Add Review</h1>
+
+<form action="/Review/Create" method="post">
+    <input type="hidden" name="productId" value="@productId" />
+
+    <div class="form-group">
+        <label for="rating">Rating:</label>
+        <div class="rating-stars">
+            <input type="radio" id="star5" name="rating" value="5" />
+            <label for="star5">★</label>
+            <input type="radio" id="star4" name="rating" value="4" />
+            <label for="star4">★</label>
+            <input type="radio" id="star3" name="rating" value="3" />
+            <label for="star3">★</label>
+            <input type="radio" id="star2" name="rating" value="2" />
+            <label for="star2">★</label>
+            <input type="radio" id="star1" name="rating" value="1" checked />
+            <label for="star1">★</label>
+        </div>
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="comment">Your Review:</label>
+        <textarea name="comment" class="form-control" rows="4" placeholder="Share your experience with this product..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit Review</button>
+    <a href="/Review/ProductReviews/@productId" class="btn btn-secondary mt-2">Cancel</a>
+</form>
+
+<style>
+    .rating-stars {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+        .rating-stars input {
+            display: none;
+        }
+
+        .rating-stars label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+            .rating-stars input:checked ~ label,
+            .rating-stars label:hover,
+            .rating-stars label:hover ~ label {
+                color: #ffc107;
+            }
+
+        .rating-stars input:checked + label {
+            color: #ffc107;
+        }
+</style>

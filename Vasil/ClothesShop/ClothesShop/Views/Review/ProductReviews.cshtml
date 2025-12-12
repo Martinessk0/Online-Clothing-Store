@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ClothesShop.Models.Review>
+
+@{
+    ViewData["Title"] = "Product Reviews";
+
+    double avgRating = Model.Any() ? Model.Average(r => r.Rating) : 0;
+}
+
+<h1>⭐ Product Reviews</h1>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        <p>No reviews yet. Be the first to review this product!</p>
+        <a href="/Review/Create/@ViewBag.ProductId" class="btn btn-primary">Write First Review</a>
+    </div>
+}
+else
+{
+    <h4>Average rating: @avgRating.ToString("0.0") / 5</h4>
+
+    <div class="reviews-container mt-3">
+        @foreach (var review in Model)
+        {
+            <div class="review-card card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="rating">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <span style="color: @(i <= review.Rating ? "#ffc107" : "#ddd"); font-size: 1.2rem;">★</span>
+                            }
+                            <strong class="ms-2">@review.Rating/5</strong>
+                        </div>
+                        <small class="text-muted">@review.CreatedAt.ToString("MMM dd, yyyy")</small>
+                    </div>
+
+                    <p class="mt-2">@review.Comment</p>
+
+                    <div class="review-meta">
+                        <small class="text-muted">
+                            <span class="badge bg-success">@review.Status</span>
+                            • User #@review.UserID
+                        </small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<div class="mt-3">
+    <a href="/Review/Create/@ViewBag.ProductId" class="btn btn-success">✏️ Write a Review</a>
+    <a href="/Category/Products/@ViewBag.CategoryId" class="btn btn-secondary">← Back to Categories</a>
+</div>
+
+<style>
+    .review-card {
+        border-left: 4px solid #007bff;
+    }
+
+    .rating {
+        font-size: 1.2rem;
+    }
+</style>

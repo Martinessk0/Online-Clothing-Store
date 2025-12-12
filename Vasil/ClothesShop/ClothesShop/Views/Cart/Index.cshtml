@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ClothesShop.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<h1>🛒 Your Shopping Cart</h1>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        <h4>Your cart is empty</h4>
+        <p>Start shopping by adding some products to your cart!</p>
+        <a href="/Category/Products/1" class="btn btn-primary">Continue Shopping</a>
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Size</th>
+                <th>Color</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Size</td>
+                    <td>@item.Color</td>
+                    <td>@item.TotalPrice.ToString("C")</td>
+                    <td>
+                        <form action="/Cart/RemoveFromCart" method="post">
+                            <input type="hidden" name="productId" value="@item.ProductID" />
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        <h4>Total: @Model.Sum(item => item.TotalPrice).ToString("C")</h4>
+        <a href="/Category/Products/1" class="btn btn-secondary">Continue Shopping</a>
+
+        <form action="/Order/CreateOrder" method="post" style="display:inline-block;">
+            <button type="submit" class="btn btn-success">Checkout</button>
+        </form>
+    </div>
+}

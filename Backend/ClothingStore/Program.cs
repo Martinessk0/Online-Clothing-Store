@@ -31,8 +31,8 @@ if (builder.Environment.IsDevelopment())
 }
 else
 {
-    connectionString = builder.Configuration["Database:Prod"];
-}
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -70,30 +70,38 @@ builder.Services
         };
     });
 
+// -------------------------
+// Controllers
+// -------------------------
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApplicationServices();
 builder.Services.AddSwaggerGen();
 
+// -------------------------
+// CORS (разрешава Angular фронтенда да прави заявки)
+// -------------------------
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// -------------------------
+// Development tools
+// -------------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    app.MapGet("/", () => Results.Redirect("/swagger"))
-          .ExcludeFromDescription();
 }
 
 app.UseHttpsRedirection();
 
+// Authentication / Authorization
 app.UseCors("AllowAngular");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Map Controllers
 app.MapControllers();
 
 app.Run();
