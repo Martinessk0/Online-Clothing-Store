@@ -4,6 +4,7 @@ import { authGuard } from '../guards/auth-guard';
 import { LayoutComponent } from '../components/admin/layout/layout.component';
 import { HomePageComponent } from '../components/admin/home-page/home-page.component';
 import { AdminUsersComponent } from '../components/admin/admin-users/admin-users.component';
+import { AdminCategoryComponent } from '../components/admin/admin-category/admin-category.component';
 
 
 export const adminRoutes: Routes = [
@@ -24,6 +25,10 @@ export const adminRoutes: Routes = [
       {
         path: 'users',
         component: AdminUsersComponent,
+      },
+      {
+        path: 'categories',
+        component: AdminCategoryComponent,
       },
     ],
   },
