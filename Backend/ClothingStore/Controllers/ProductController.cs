@@ -32,7 +32,7 @@ namespace ClothingStore.Controllers
                     Name = product.Name,
                     Description = product.Description,
                     Price = product.Price,
-                    CategoryId = product.Category.Id,                    
+                    CategoryId = product.CategoryId,                    
                 };
 
                 return CreatedAtAction(

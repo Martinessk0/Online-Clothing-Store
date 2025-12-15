@@ -15,6 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IAdminUserService, AdminUserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             return services;
         }
