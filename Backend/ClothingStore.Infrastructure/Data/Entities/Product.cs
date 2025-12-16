@@ -22,11 +22,7 @@ namespace ClothingStore.Infrastructure.Data.Entities
         [Required]
         [Precision(18, 2)]
         public decimal Price { get; set; }
-
         public string Brand { get; set; } = string.Empty;
-        public string Size { get; set; } = string.Empty;
-        public string Color { get; set; } = string.Empty;
-        public int Stock { get; set; }
 
         [Required]
         public int CategoryId { get; set; }
@@ -37,5 +33,7 @@ namespace ClothingStore.Infrastructure.Data.Entities
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime ModifiedAt { get; set; } = DateTime.UtcNow;
+
+        public ICollection<ProductVariant> Variants { get; set; } = new List<ProductVariant>();
     }
 }

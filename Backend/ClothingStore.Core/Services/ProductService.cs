@@ -31,13 +31,29 @@ namespace ClothingStore.Core.Services
                 Description = productDTO.Description,
                 Price = productDTO.Price,
                 Brand = productDTO.Brand,
-                Size = productDTO.Size,
-                Color = productDTO.Color,
-                Stock = productDTO.Stock,
                 CategoryId = productDTO.CategoryId,
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow
             };
+
+            foreach (var v in productDTO.Variants)
+            {
+                var colorExists = await repo.AllReadonly<Color>()
+                                            .AnyAsync(c => c.Id == v.ColorId);
+
+                if (!colorExists)
+                {
+                    throw new ArgumentException($"Color not found: {v.ColorId}");
+                }
+
+                product.Variants.Add(new ProductVariant
+                {
+                    ColorId = v.ColorId,
+                    Size = v.Size,
+                    Stock = v.Stock,
+                    IsActive = true
+                });
+            }
 
             await repo.AddAsync(product);
             await repo.SaveChangesAsync();
@@ -68,9 +84,6 @@ namespace ClothingStore.Core.Services
             product.CategoryId = category.Id;
             product.ModifiedAt = DateTime.UtcNow;
             product.Brand = productDTO.Brand;
-            product.Size = productDTO.Size;
-            product.Color = productDTO.Color;
-            product.Stock = productDTO.Stock;
 
             repo.Update(product);
             await repo.SaveChangesAsync();
@@ -98,38 +111,63 @@ namespace ClothingStore.Core.Services
 
         public async Task<List<ProductDTO>> GetAllAsync()
         {
-            return await repo.AllReadonly<Product>().Where(p => p.IsActive).Select(p => new ProductDTO()
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Description = p.Description,
-                Price = p.Price,
-                Brand = p.Brand,
-                Size = p.Size,
-                Color = p.Color,
-                Stock = p.Stock,
-                CategoryId = p.CategoryId,
-
-            }).ToListAsync();
-        }
-
-
-        public async Task<ProductDTO> GetByIdAsync(int id)
-        {
             return await repo.AllReadonly<Product>()
-                .Where(p => p.IsActive && p.Id == id)
-                .Select(p => new ProductDTO()
+                .Where(p => p.IsActive)
+                .Include(p => p.Variants)
+                    .ThenInclude(v => v.Color)
+                .Select(p => new ProductDTO
                 {
                     Id = p.Id,
                     Name = p.Name,
                     Description = p.Description,
                     Price = p.Price,
                     Brand = p.Brand,
-                    Size = p.Size,
-                    Color = p.Color,
-                    Stock = p.Stock,
-                    CategoryId = p.CategoryId
-                }).FirstAsync();
+                    CategoryId = p.CategoryId,
+                    Variants = p.Variants
+                        .Where(v => v.IsActive)
+                        .Select(v => new ProductVariantDTO
+                        {
+                            Id = v.Id,
+                            ColorId = v.ColorId,
+                            ColorName = v.Color.Name,
+                            ColorHex = v.Color.Hex,
+                            Size = v.Size,
+                            Stock = v.Stock
+                        })
+                        .ToList()
+                })
+                .ToListAsync();
+        }
+
+
+        public async Task<ProductDTO?> GetByIdAsync(int id)
+        {
+            return await repo.AllReadonly<Product>()
+                .Where(p => p.IsActive && p.Id == id)
+                .Include(p => p.Variants)
+                    .ThenInclude(v => v.Color)
+                .Select(p => new ProductDTO
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    Price = p.Price,
+                    Brand = p.Brand,
+                    CategoryId = p.CategoryId,
+                    Variants = p.Variants
+                        .Where(v => v.IsActive)
+                        .Select(v => new ProductVariantDTO
+                        {
+                            Id = v.Id,
+                            ColorId = v.ColorId,
+                            ColorName = v.Color.Name,
+                            ColorHex = v.Color.Hex,
+                            Size = v.Size,
+                            Stock = v.Stock
+                        })
+                        .ToList()
+                })
+                .FirstOrDefaultAsync();
         }
 
         public async Task<List<Product>> FilterAsync(ProductDTO filterDTO)
@@ -138,8 +176,8 @@ namespace ClothingStore.Core.Services
                 .WhereIf(!string.IsNullOrEmpty(filterDTO.Name), p => p.Name == filterDTO.Name)
                 .WhereIf(filterDTO.Price > 0, p => p.Price == filterDTO.Price)
                 .WhereIf(!string.IsNullOrEmpty(filterDTO.Brand), p => p.Brand == filterDTO.Brand)
-                .WhereIf(!string.IsNullOrEmpty(filterDTO.Size), p => p.Size == filterDTO.Size)
-                .WhereIf(!string.IsNullOrEmpty(filterDTO.Color), p => p.Color == filterDTO.Color)
+                //.WhereIf(!string.IsNullOrEmpty(filterDTO.Size), p => p.Size == filterDTO.Size)
+                //.WhereIf(!string.IsNullOrEmpty(filterDTO.Color), p => p.Color == filterDTO.Color)
                 .ToListAsync();
 
             return filteredProducts;

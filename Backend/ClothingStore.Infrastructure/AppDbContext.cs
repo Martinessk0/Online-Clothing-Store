@@ -1,8 +1,10 @@
-﻿using ClothingStore.Infrastructure.Data.Configuration;
+﻿using ClothingStore.Core.Models.Product;
+using ClothingStore.Infrastructure.Data.Configuration;
 using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace ClothingStore.Infrastructure
 {
@@ -43,6 +45,8 @@ namespace ClothingStore.Infrastructure
             builder.ApplyConfiguration(new RoleAssignConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
+            builder.ApplyConfiguration(new ColorConfiguration());
+            builder.ApplyConfiguration(new ProductVariantConfiguration());
 
 
             base.OnModelCreating(builder);
