@@ -19,5 +19,7 @@ namespace ClothingStore.Core.Models.Product
         public int Stock { get; set; }
 
         public int CategoryId { get; set; }
+
+        public List<ProductImageCreateDto> Images { get; set; } = new();
     }
 }
