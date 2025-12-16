@@ -3,11 +3,6 @@ using ClothingStore.Core.Models.Product;
 using ClothingStore.Infrastructure.Data.Common;
 using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClothingStore.Core.Services
 {
@@ -72,6 +67,10 @@ namespace ClothingStore.Core.Services
             product.Price = productDTO.Price;
             product.CategoryId = category.Id;
             product.ModifiedAt = DateTime.UtcNow;
+            product.Brand = productDTO.Brand;
+            product.Size = productDTO.Size;
+            product.Color = productDTO.Color;
+            product.Stock = productDTO.Stock;
 
             repo.Update(product);
             await repo.SaveChangesAsync();
@@ -125,7 +124,11 @@ namespace ClothingStore.Core.Services
                     Name = p.Name,
                     Description = p.Description,
                     Price = p.Price,
-                    CategoryId = p.Category.Id,
+                    Brand = p.Brand,
+                    Size = p.Size,
+                    Color = p.Color,
+                    Stock = p.Stock,
+                    CategoryId = p.CategoryId
                 }).FirstAsync();
         }
 
