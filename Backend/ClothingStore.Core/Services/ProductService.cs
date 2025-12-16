@@ -95,9 +95,31 @@ namespace ClothingStore.Core.Services
             product.ModifiedAt = DateTime.UtcNow;
             product.Brand = productDTO.Brand;
 
+            var existingVariants = await repo.All<ProductVariant>()
+                   .Where(v => v.ProductId == id)
+                   .ToListAsync();
+
+            foreach (var oldVar in existingVariants)
+            {
+                repo.Delete(oldVar);
+            }
+
+            foreach (var v in productDTO.Variants)
+            {
+                await repo.AddAsync(new ProductVariant
+                {
+                    ProductId = id,
+                    ColorId = v.ColorId,
+                    Size = v.Size,
+                    Stock = v.Stock,
+                    IsActive = true
+                });
+            }
+
+
             var existingImages = await repo.All<ProductImage>()
-         .Where(pi => pi.ProductId == id)
-         .ToListAsync();
+                .Where(pi => pi.ProductId == id)
+                .ToListAsync();
 
             foreach (var img in existingImages)
             {
@@ -192,7 +214,7 @@ namespace ClothingStore.Core.Services
             return await repo.AllReadonly<Product>()
                 .Where(p => p.IsActive && p.Id == id)
                 .Include(p => p.Images)
-                .Include(p => p.Variants)
+                .Include(p => p.Variants.Where(v => v.IsActive))
                     .ThenInclude(v => v.Color)
                 .Select(p => new ProductDTO
                 {
