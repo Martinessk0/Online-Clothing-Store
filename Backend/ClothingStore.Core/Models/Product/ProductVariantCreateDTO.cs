@@ -2,6 +2,7 @@
 {
     public class ProductVariantCreateDTO
     {
+        public int Id { get; set; }
         public int ColorId { get; set; }
         public string Size { get; set; } = string.Empty;
         public int Stock { get; set; }

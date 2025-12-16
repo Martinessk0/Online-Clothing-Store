@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } 
 import { CategoryDto } from '../../../models/category/category-dto';
 import { ProductCreateDto } from '../../../models/product/product-create-dto';
 import { Product } from '../../../models/product/product-dto';
-import { AdminProductsService } from '../../../services/admin-product-service';
+import { ProductService } from '../../../services/product-service';
 import { CategoryService } from '../../../services/category-service';
 import { ColorDto } from '../../../models/color/color-dto';
 import { ColorService } from '../../../services/color-service';
@@ -45,7 +45,7 @@ export class AdminProductComponent implements OnInit {
   });
 
   constructor(
-    private adminProductsService: AdminProductsService,
+    private productService: ProductService,
     private adminCategoriesService: CategoryService,
     private colorService: ColorService,
     private productImageUploadService: ProductImageUploadService
@@ -124,7 +124,7 @@ export class AdminProductComponent implements OnInit {
     this.loading = true;
     this.error = null;
 
-    this.adminProductsService.getProducts().subscribe({
+    this.productService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
         this.loading = false;
@@ -314,7 +314,7 @@ export class AdminProductComponent implements OnInit {
     };
 
     if (this.mode === 'create') {
-      this.adminProductsService.createProduct(dto).subscribe({
+      this.productService.createProduct(dto).subscribe({
         next: () => {
           this.closeModal();
           this.loadProducts();
@@ -325,7 +325,7 @@ export class AdminProductComponent implements OnInit {
         },
       });
     } else if (this.mode === 'edit' && this.selectedProduct) {
-      this.adminProductsService.updateProduct(this.selectedProduct.id, dto).subscribe({
+      this.productService.updateProduct(this.selectedProduct.id, dto).subscribe({
         next: () => {
           this.closeModal();
           this.loadProducts();
@@ -344,7 +344,7 @@ export class AdminProductComponent implements OnInit {
     );
     if (!confirmed) return;
 
-    this.adminProductsService.deleteProduct(product.id).subscribe({
+    this.productService.deleteProduct(product.id).subscribe({
       next: () => this.loadProducts(),
       error: (err) => {
         console.error(err);

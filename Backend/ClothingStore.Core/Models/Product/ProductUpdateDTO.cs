@@ -20,6 +20,8 @@ namespace ClothingStore.Core.Models.Product
 
         public int CategoryId { get; set; }
 
+        public List<ProductVariantCreateDTO> Variants { get; set; } = new();
+
         public List<ProductImageCreateDto> Images { get; set; } = new();
     }
 }
