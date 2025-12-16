@@ -5,13 +5,14 @@ import { LayoutComponent } from '../components/admin/layout/layout.component';
 import { HomePageComponent } from '../components/admin/home-page/home-page.component';
 import { AdminUsersComponent } from '../components/admin/admin-users/admin-users.component';
 import { AdminCategoryComponent } from '../components/admin/admin-category/admin-category.component';
+import { AdminProductComponent } from '../components/admin/admin-product/admin-product.component';
 
 
 export const adminRoutes: Routes = [
   {
     path: 'admin',
     component: LayoutComponent,
-    canActivate: [authGuard,adminGuard], 
+    canActivate: [authGuard, adminGuard],
     children: [
       {
         path: '',
@@ -29,6 +30,10 @@ export const adminRoutes: Routes = [
       {
         path: 'categories',
         component: AdminCategoryComponent,
+      },
+      {
+        path: 'products',
+        component: AdminProductComponent,
       },
     ],
   },

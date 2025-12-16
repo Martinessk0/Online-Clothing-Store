@@ -29,7 +29,6 @@ export class AdminCategoryComponent implements OnInit {
   mode: 'create' | 'edit' = 'create';
   editing: CategoryDto | null = null;
 
-  // ✅ fb е inject-нат преди form -> няма ts2729
   form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
     description: [''],

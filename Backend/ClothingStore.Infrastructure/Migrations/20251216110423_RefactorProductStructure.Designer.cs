@@ -4,6 +4,7 @@ using ClothingStore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClothingStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251216110423_RefactorProductStructure")]
+    partial class RefactorProductStructure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,64 +257,6 @@ namespace ClothingStore.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Color");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "white",
-                            Hex = "#FFFFFF",
-                            Name = "Бял"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "black",
-                            Hex = "#000000",
-                            Name = "Черен"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Code = "gray",
-                            Hex = "#808080",
-                            Name = "Сив"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Code = "navy",
-                            Hex = "#001F3F",
-                            Name = "Тъмносин"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Code = "dark-blue",
-                            Hex = "#00008B",
-                            Name = "Тъмно син"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Code = "light-blue",
-                            Hex = "#ADD8E6",
-                            Name = "Светло син"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Code = "olive",
-                            Hex = "#808000",
-                            Name = "Маслинен"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Code = "white-gray",
-                            Hex = "#D3D3D3",
-                            Name = "Бяло/сиво"
-                        });
                 });
 
             modelBuilder.Entity("ClothingStore.Infrastructure.Data.Entities.Product", b =>
@@ -510,98 +455,6 @@ namespace ClothingStore.Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductVariant");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ColorId = 1,
-                            IsActive = true,
-                            ProductId = 1,
-                            Size = "M",
-                            Stock = 120
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ColorId = 2,
-                            IsActive = true,
-                            ProductId = 2,
-                            Size = "L",
-                            Stock = 80
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ColorId = 3,
-                            IsActive = true,
-                            ProductId = 3,
-                            Size = "M",
-                            Stock = 60
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ColorId = 4,
-                            IsActive = true,
-                            ProductId = 4,
-                            Size = "S",
-                            Stock = 45
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ColorId = 5,
-                            IsActive = true,
-                            ProductId = 5,
-                            Size = "32",
-                            Stock = 70
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ColorId = 6,
-                            IsActive = true,
-                            ProductId = 6,
-                            Size = "34",
-                            Stock = 55
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ColorId = 7,
-                            IsActive = true,
-                            ProductId = 7,
-                            Size = "L",
-                            Stock = 30
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ColorId = 2,
-                            IsActive = true,
-                            ProductId = 8,
-                            Size = "M",
-                            Stock = 25
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ColorId = 8,
-                            IsActive = true,
-                            ProductId = 9,
-                            Size = "42",
-                            Stock = 40
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ColorId = 1,
-                            IsActive = true,
-                            ProductId = 10,
-                            Size = "43",
-                            Stock = 35
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
