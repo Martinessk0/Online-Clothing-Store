@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CategoryDto } from '../../../models/category/category-dto';
 import { ProductCreateDto } from '../../../models/product/product-create-dto';
 import { Product } from '../../../models/product/product-dto';
 import { AdminProductsService } from '../../../services/admin-product-service';
 import { CategoryService } from '../../../services/category-service';
+import { ColorDto } from '../../../models/color/color-dto';
+import { ColorService } from '../../../services/color-service';
 
 @Component({
   selector: 'app-admin-product',
@@ -18,6 +20,7 @@ export class AdminProductComponent implements OnInit {
 
   products: Product[] = [];
   categories: CategoryDto[] = [];
+  colors: ColorDto[] = [];
 
   loading = false;
   error: string | null = null;
@@ -33,21 +36,23 @@ export class AdminProductComponent implements OnInit {
     description: [''],
     price: [0, [Validators.required, Validators.min(0)]],
     brand: [''],
-    size: [''],
-    color: [''],
-    stock: [0, [Validators.required, Validators.min(0)]],
     categoryId: [null as number | null, Validators.required],
+    variants: this.fb.array([this.createVariantGroup()]),
   });
 
   constructor(
     private adminProductsService: AdminProductsService,
-    private adminCategoriesService: CategoryService
-  ) { }
+    private adminCategoriesService: CategoryService,
+    private colorService: ColorService
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
     this.loadCategories();
+    this.loadColors();
   }
+
+  // ---------- getters / helpers ----------
 
   get filteredProducts(): Product[] {
     const term = this.search?.trim().toLowerCase();
@@ -69,6 +74,46 @@ export class AdminProductComponent implements OnInit {
     const cat = this.categories.find((c) => c.id === categoryId);
     return cat ? cat.name : `ID: ${categoryId}`;
   }
+
+  get variants(): FormArray {
+    return this.form.get('variants') as FormArray;
+  }
+
+  private createVariantGroup() {
+    return this.fb.group({
+      colorId: [null as number | null, Validators.required],
+      size: ['', [Validators.required]],
+      stock: [0, [Validators.required, Validators.min(0)]],
+    });
+  }
+
+  getVariantSizes(product: Product): string {
+    const sizes = Array.from(
+      new Set(
+        (product.variants || [])
+          .map((v) => v.size)
+          .filter((s) => !!s)
+      )
+    );
+    return sizes.length ? sizes.join(', ') : '—';
+  }
+
+  getVariantColors(product: Product): string {
+    const colors = Array.from(
+      new Set(
+        (product.variants || [])
+          .map((v) => v.colorName)
+          .filter((c) => !!c)
+      )
+    );
+    return colors.length ? colors.join(', ') : '—';
+  }
+
+  getTotalStock(product: Product): number {
+    return (product.variants || []).reduce((sum, v) => sum + (v.stock ?? 0), 0);
+  }
+
+  // ---------- data loading ----------
 
   loadProducts(): void {
     this.loading = true;
@@ -97,6 +142,38 @@ export class AdminProductComponent implements OnInit {
     });
   }
 
+  loadColors(): void {
+    this.colorService.getColors().subscribe({
+      next: (colors: any) => (this.colors = colors),
+      error: (err: any) => {
+        console.error(err);
+        this.error = 'Грешка при зареждане на цветовете.';
+      },
+    });
+  }
+
+  // ---------- variants UI ----------
+
+  addVariant(): void {
+    this.variants.push(this.createVariantGroup());
+  }
+
+  removeVariant(index: number): void {
+    if (this.variants.length === 1) {
+      // поне 1 ред да остане
+      this.variants.at(0).reset({
+        colorId: null,
+        size: '',
+        stock: 0,
+      });
+      return;
+    }
+
+    this.variants.removeAt(index);
+  }
+
+  // ---------- modal ----------
+
   openCreate(): void {
     this.mode = 'create';
     this.selectedProduct = null;
@@ -107,11 +184,11 @@ export class AdminProductComponent implements OnInit {
       description: '',
       price: 0,
       brand: '',
-      size: '',
-      color: '',
-      stock: 0,
       categoryId: null,
     });
+
+    this.variants.clear();
+    this.variants.push(this.createVariantGroup());
   }
 
   openEdit(product: Product): void {
@@ -124,17 +201,32 @@ export class AdminProductComponent implements OnInit {
       description: product.description,
       price: product.price,
       brand: product.brand,
-      size: product.size,
-      color: product.color,
-      stock: product.stock,
       categoryId: product.categoryId,
     });
+
+    this.variants.clear();
+
+    if (product.variants && product.variants.length) {
+      product.variants.forEach((v) => {
+        this.variants.push(
+          this.fb.group({
+            colorId: [v.colorId, Validators.required],
+            size: [v.size, Validators.required],
+            stock: [v.stock, [Validators.required, Validators.min(0)]],
+          })
+        );
+      });
+    } else {
+      this.variants.push(this.createVariantGroup());
+    }
   }
 
   closeModal(): void {
     this.isModalOpen = false;
     this.selectedProduct = null;
   }
+
+  // ---------- save / delete ----------
 
   save(): void {
     if (this.form.invalid) {
@@ -144,15 +236,25 @@ export class AdminProductComponent implements OnInit {
 
     const value = this.form.value;
 
-    const dto = {
+    const dto: ProductCreateDto = {
       name: value.name!,
       description: value.description || '',
       price: value.price!,
       brand: value.brand || '',
-      size: value.size || '',
-      color: value.color || '',
-      stock: value.stock!,
       categoryId: value.categoryId!,
+      variants: this.variants.controls.map((ctrl: any) => {
+        const v = ctrl.value as {
+          colorId: number | null;
+          size: string;
+          stock: number;
+        };
+
+        return {
+          colorId: v.colorId!,
+          size: v.size,
+          stock: v.stock,
+        };
+      }),
     };
 
     if (this.mode === 'create') {
