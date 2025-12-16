@@ -41,6 +41,9 @@ namespace ClothingStore.Infrastructure
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new RoleAssignConfiguration());
+            builder.ApplyConfiguration(new CategoryConfiguration());
+            builder.ApplyConfiguration(new ProductConfiguration());
+
 
             base.OnModelCreating(builder);
 
