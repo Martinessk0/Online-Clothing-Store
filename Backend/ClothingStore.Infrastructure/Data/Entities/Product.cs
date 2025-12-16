@@ -35,5 +35,8 @@ namespace ClothingStore.Infrastructure.Data.Entities
         public DateTime ModifiedAt { get; set; } = DateTime.UtcNow;
 
         public ICollection<ProductVariant> Variants { get; set; } = new List<ProductVariant>();
+
+        public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
+
     }
 }

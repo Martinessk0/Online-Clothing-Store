@@ -55,13 +55,23 @@ namespace ClothingStore.Core.Services
                 });
             }
 
+            foreach (var img in productDTO.Images)
+            {
+                product.Images.Add(new ProductImage
+                {
+                    Url = img.Url,
+                    PublicId = img.PublicId,
+                    IsMain = img.IsMain
+                });
+            }
+
             await repo.AddAsync(product);
             await repo.SaveChangesAsync();
 
             return product;
         }
 
-        public async Task<Product> UpdateProductAsync(int id, ProductUpdateDTO productDTO)
+        public async Task UpdateProductAsync(int id, ProductUpdateDTO productDTO)
         {
             Product product = await repo.GetByIdAsync<Product>(id);
 
@@ -85,10 +95,37 @@ namespace ClothingStore.Core.Services
             product.ModifiedAt = DateTime.UtcNow;
             product.Brand = productDTO.Brand;
 
+            var existingImages = await repo.All<ProductImage>()
+         .Where(pi => pi.ProductId == id)
+         .ToListAsync();
+
+            foreach (var img in existingImages)
+            {
+                repo.Delete(img);
+            }
+
+            int sortOrder = 0;
+
+            if (productDTO.Images.Any() && !productDTO.Images.Any(i => i.IsMain))
+            {
+                productDTO.Images[0].IsMain = true;
+            }
+
+            foreach (var imgDto in productDTO.Images)
+            {
+                await repo.AddAsync(new ProductImage
+                {
+                    ProductId = id,
+                    Url = imgDto.Url,
+                    PublicId = imgDto.PublicId,
+                    IsMain = imgDto.IsMain,
+                    SortOrder = sortOrder++
+                });
+            }
+
+
             repo.Update(product);
             await repo.SaveChangesAsync();
-
-            return product;
         }
 
         public async Task<bool> DeleteProductAsync(int id)
@@ -113,6 +150,7 @@ namespace ClothingStore.Core.Services
         {
             return await repo.AllReadonly<Product>()
                 .Where(p => p.IsActive)
+                .Include(p => p.Images)
                 .Include(p => p.Variants)
                     .ThenInclude(v => v.Color)
                 .Select(p => new ProductDTO
@@ -134,7 +172,16 @@ namespace ClothingStore.Core.Services
                             Size = v.Size,
                             Stock = v.Stock
                         })
-                        .ToList()
+                        .ToList(),
+                    Images = p.Images
+                    .OrderBy(i => i.SortOrder)
+                    .Select(i => new ProductImageDto
+                    {
+                        Id = i.Id,
+                        Url = i.Url,
+                        IsMain = i.IsMain
+                    })
+                    .ToList()
                 })
                 .ToListAsync();
         }
@@ -144,6 +191,7 @@ namespace ClothingStore.Core.Services
         {
             return await repo.AllReadonly<Product>()
                 .Where(p => p.IsActive && p.Id == id)
+                .Include(p => p.Images)
                 .Include(p => p.Variants)
                     .ThenInclude(v => v.Color)
                 .Select(p => new ProductDTO
@@ -165,7 +213,16 @@ namespace ClothingStore.Core.Services
                             Size = v.Size,
                             Stock = v.Stock
                         })
-                        .ToList()
+                        .ToList(),
+                    Images = p.Images
+                    .OrderBy(i => i.SortOrder)
+                    .Select(i => new ProductImageDto
+                    {
+                        Id = i.Id,
+                        Url = i.Url,
+                        IsMain = i.IsMain
+                    })
+                    .ToList()
                 })
                 .FirstOrDefaultAsync();
         }

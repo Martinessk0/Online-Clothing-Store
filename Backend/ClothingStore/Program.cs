@@ -1,4 +1,5 @@
 using ClothingStore.Core.Models.Auth;
+using ClothingStore.Core.Models.Cloudinary;
 using ClothingStore.Infrastructure;
 using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -39,6 +40,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.Configure<CloudinarySettings>(
+    builder.Configuration.GetSection("Cloudinary"));
 
 builder.Services.Configure<JwtSettings>(
     builder.Configuration.GetSection("JWTSettingDev"));

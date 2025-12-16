@@ -1,3 +1,4 @@
+import { ProductImage } from "./product-image";
 import { ProductVariant } from "./product-variant";
 
 export interface Product {
@@ -8,4 +9,5 @@ export interface Product {
   brand: string;
   categoryId: number;
   variants: ProductVariant[];
+  images: ProductImage[];
 }

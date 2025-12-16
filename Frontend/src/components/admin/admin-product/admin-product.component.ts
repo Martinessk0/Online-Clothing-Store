@@ -8,6 +8,8 @@ import { AdminProductsService } from '../../../services/admin-product-service';
 import { CategoryService } from '../../../services/category-service';
 import { ColorDto } from '../../../models/color/color-dto';
 import { ColorService } from '../../../services/color-service';
+import { ProductImageCreateDto } from '../../../models/product/product-image-create-dto';
+import { ProductImageUploadService } from '../../../services/product-image-upload-service';
 
 @Component({
   selector: 'app-admin-product',
@@ -21,6 +23,8 @@ export class AdminProductComponent implements OnInit {
   products: Product[] = [];
   categories: CategoryDto[] = [];
   colors: ColorDto[] = [];
+  images: ProductImageCreateDto[] = [];
+  uploadingImage = false;
 
   loading = false;
   error: string | null = null;
@@ -43,8 +47,9 @@ export class AdminProductComponent implements OnInit {
   constructor(
     private adminProductsService: AdminProductsService,
     private adminCategoriesService: CategoryService,
-    private colorService: ColorService
-  ) {}
+    private colorService: ColorService,
+    private productImageUploadService: ProductImageUploadService
+  ) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -189,6 +194,8 @@ export class AdminProductComponent implements OnInit {
 
     this.variants.clear();
     this.variants.push(this.createVariantGroup());
+
+    this.images = [];
   }
 
   openEdit(product: Product): void {
@@ -219,11 +226,59 @@ export class AdminProductComponent implements OnInit {
     } else {
       this.variants.push(this.createVariantGroup());
     }
+
+    this.images = (product.images || []).map((img) => ({
+      url: img.url,
+      publicId: '',
+      isMain: img.isMain,
+    }));
   }
 
   closeModal(): void {
     this.isModalOpen = false;
     this.selectedProduct = null;
+  }
+
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || !input.files.length) return;
+
+    const file = input.files[0];
+    this.uploadingImage = true;
+
+    this.productImageUploadService.uploadProductImage(file).subscribe({
+      next: (res) => {
+        this.uploadingImage = false;
+
+        this.images.push({
+          url: res.url,
+          publicId: res.publicId,
+          isMain: this.images.length === 0,
+        });
+      },
+      error: (err) => {
+        console.error(err);
+        this.uploadingImage = false;
+        this.error = 'Грешка при качване на снимката.';
+      },
+    });
+
+    input.value = '';
+  }
+
+  setAsMain(index: number): void {
+    this.images = this.images.map((img, i) => ({
+      ...img,
+      isMain: i === index,
+    }));
+  }
+
+  removeImage(index: number): void {
+    this.images.splice(index, 1);
+
+    if (this.images.length > 0 && !this.images.some(i => i.isMain)) {
+      this.images[0].isMain = true;
+    }
   }
 
   // ---------- save / delete ----------
@@ -255,6 +310,7 @@ export class AdminProductComponent implements OnInit {
           stock: v.stock,
         };
       }),
+      images: this.images,
     };
 
     if (this.mode === 'create') {

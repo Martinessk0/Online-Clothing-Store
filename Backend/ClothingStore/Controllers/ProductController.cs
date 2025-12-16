@@ -60,9 +60,9 @@ namespace ClothingStore.Controllers
 
             try
             {                
-                var updatedProduct = await _productService.UpdateProductAsync(id, productDTO);
+                await _productService.UpdateProductAsync(id, productDTO);
 
-                return Ok(updatedProduct);                                            
+                return NoContent();                                         
             }
             catch (Exception ex)
             {
