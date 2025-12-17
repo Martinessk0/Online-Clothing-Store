@@ -8,14 +8,23 @@
     </div>
 
     <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
-      <input type="text" [(ngModel)]="search" placeholder="Търси по име/описание/марка..." class="w-full sm:w-64 rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
+      <input
+        type="text"
+        [(ngModel)]="search"
+        placeholder="Търси по име/описание/марка..."
+        class="w-full sm:w-64 rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
                placeholder:text-slate-400 outline-none
                focus:ring-2 focus:ring-slate-900/20
-               dark:border-slate-700 dark:bg-slate-900/60 dark:focus:ring-slate-100/20" />
+               dark:border-slate-700 dark:bg-slate-900/60 dark:focus:ring-slate-100/20"
+      />
 
-      <button type="button" (click)="openCreate()" class="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white
+      <button
+        type="button"
+        (click)="openCreate()"
+        class="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white
                hover:bg-black transition
-               dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white">
+               dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white"
+      >
         + Нов продукт
       </button>
     </div>
@@ -29,37 +38,46 @@
     {{ error }}
   </div>
 
-  <!-- Таблица / списък -->
-  <section *ngIf="!loading && filteredProducts.length" class="bg-white/80 dark:bg-slate-900/80
+  <section
+    *ngIf="!loading && filteredProducts.length"
+    class="bg-white/80 dark:bg-slate-900/80
            border border-slate-200 dark:border-slate-700
            rounded-2xl shadow-lg shadow-black/5 dark:shadow-black/40
-           overflow-hidden">
-    <!-- Desktop таблица -->
+           overflow-hidden"
+  >
     <div class="hidden md:block overflow-x-auto">
       <table class="min-w-full text-sm">
         <thead class="bg-slate-100 dark:bg-slate-900/90">
           <tr>
-            <th class="px-4 py-3 text-left font-medium text-slate-600 dark:text-slate-300
-                     border-b border-slate-200 dark:border-slate-700">
+            <th
+              class="px-4 py-3 text-left font-medium text-slate-600 dark:text-slate-300
+                     border-b border-slate-200 dark:border-slate-700"
+            >
               Продукт
             </th>
-            <th class="px-4 py-3 text-left font-medium text-slate-600 dark:text-slate-300
-                     border-b border-slate-200 dark:border-slate-700">
+            <th
+              class="px-4 py-3 text-left font-medium text-slate-600 dark:text-slate-300
+                     border-b border-slate-200 dark:border-slate-700"
+            >
               Детайли
             </th>
-            <th class="px-4 py-3 text-left font-medium text-slate-600 dark:text-slate-300
-                     border-b border-slate-200 dark:border-slate-700">
+            <th
+              class="px-4 py-3 text-left font-medium text-slate-600 dark:text-slate-300
+                     border-b border-slate-200 dark:border-slate-700"
+            >
               Цена / наличност
             </th>
-            <th class="px-4 py-3 text-right font-medium text-slate-600 dark:text-slate-300
-                     border-b border-slate-200 dark:border-slate-700">
+            <th
+              class="px-4 py-3 text-right font-medium text-slate-600 dark:text-slate-300
+                     border-b border-slate-200 dark:border-slate-700"
+            >
               Действия
             </th>
           </tr>
         </thead>
+
         <tbody>
           <tr *ngFor="let p of filteredProducts" class="border-b border-slate-200 dark:border-slate-800">
-            <!-- Продукт -->
             <td class="px-4 py-3 align-middle">
               <div class="font-medium text-slate-900 dark:text-slate-100">
                 {{ p.name }}
@@ -72,7 +90,6 @@
               </div>
             </td>
 
-            <!-- Детайли -->
             <td class="px-4 py-3 align-middle">
               <p class="text-slate-700 dark:text-slate-200 mb-1 line-clamp-3">
                 {{ p.description || '—' }}
@@ -85,7 +102,6 @@
               </p>
             </td>
 
-            <!-- Цена / наличност -->
             <td class="px-4 py-3 align-middle">
               <div class="font-semibold text-slate-900 dark:text-slate-100">
                 {{ p.price | number: '1.2-2' }} лв.
@@ -95,18 +111,25 @@
               </div>
             </td>
 
-            <!-- Действия -->
             <td class="px-4 py-3 align-middle">
               <div class="flex justify-end gap-2">
-                <button type="button" (click)="openEdit(p)" class="inline-flex items-center rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-medium
+                <button
+                  type="button"
+                  (click)="openEdit(p)"
+                  class="inline-flex items-center rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-medium
                          hover:bg-slate-100 transition
-                         dark:border-slate-700 dark:hover:bg-slate-800">
+                         dark:border-slate-700 dark:hover:bg-slate-800"
+                >
                   Редакция
                 </button>
 
-                <button type="button" (click)="confirmDelete(p)" class="inline-flex items-center rounded-lg border border-red-300 px-3 py-1.5 text-xs font-medium
+                <button
+                  type="button"
+                  (click)="confirmDelete(p)"
+                  class="inline-flex items-center rounded-lg border border-red-300 px-3 py-1.5 text-xs font-medium
                          text-red-700 hover:bg-red-50 transition
-                         dark:border-red-800 dark:text-red-300 dark:hover:bg-red-950/30">
+                         dark:border-red-800 dark:text-red-300 dark:hover:bg-red-950/30"
+                >
                   Изтрий
                 </button>
               </div>
@@ -147,15 +170,23 @@
         </div>
 
         <div class="flex gap-2">
-          <button type="button" (click)="openEdit(p)" class="flex-1 inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-xs font-medium
+          <button
+            type="button"
+            (click)="openEdit(p)"
+            class="flex-1 inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-xs font-medium
                    hover:bg-slate-100 transition
-                   dark:border-slate-700 dark:hover:bg-slate-800">
+                   dark:border-slate-700 dark:hover:bg-slate-800"
+          >
             Редакция
           </button>
 
-          <button type="button" (click)="confirmDelete(p)" class="flex-1 inline-flex items-center justify-center rounded-lg border border-red-300 px-3 py-2 text-xs font-medium
+          <button
+            type="button"
+            (click)="confirmDelete(p)"
+            class="flex-1 inline-flex items-center justify-center rounded-lg border border-red-300 px-3 py-2 text-xs font-medium
                    text-red-700 hover:bg-red-50 transition
-                   dark:border-red-800 dark:text-red-300 dark:hover:bg-red-950/30">
+                   dark:border-red-800 dark:text-red-300 dark:hover:bg-red-950/30"
+          >
             Изтрий
           </button>
         </div>
@@ -164,227 +195,332 @@
   </section>
 
   <!-- Ако няма продукти -->
-  <div *ngIf="!loading && !filteredProducts.length" class="text-sm text-slate-500 dark:text-slate-400
+  <div
+    *ngIf="!loading && !filteredProducts.length"
+    class="text-sm text-slate-500 dark:text-slate-400
            bg-white/80 dark:bg-slate-900/60
            border border-slate-200 dark:border-slate-700
-           rounded-xl px-4 py-3">
+           rounded-xl px-4 py-3"
+  >
     Няма намерени продукти.
   </div>
 
-  <!-- Modal за създаване / редакция -->
-  <div *ngIf="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div *ngIf="isModalOpen" class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-black/40" (click)="closeModal()"></div>
 
-    <div class="relative w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-5 shadow-xl
-             dark:border-slate-700 dark:bg-slate-900">
-      <div class="flex items-start justify-between gap-3">
-        <div>
-          <h2 class="text-lg font-semibold">
-            {{ mode === 'create' ? 'Нов продукт' : 'Редакция на продукт' }}
-          </h2>
-          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
-            Попълни данните за продукта и натисни „Запази“.
-          </p>
-        </div>
+    <div class="relative mx-auto flex h-[100dvh] w-full items-end justify-center sm:items-center sm:p-4">
+      <div
+        class="w-full sm:max-w-2xl
+               rounded-t-2xl sm:rounded-2xl
+               border border-slate-200 bg-white shadow-xl
+               dark:border-slate-700 dark:bg-slate-900
+               max-h-[92dvh] overflow-hidden
+               pb-[env(safe-area-inset-bottom)]"
+      >
+        <!-- sticky header -->
+        <div
+          class="sticky top-0 z-10 bg-white/95 backdrop-blur
+                 dark:bg-slate-900/95
+                 border-b border-slate-200 dark:border-slate-700
+                 p-4 sm:p-5"
+        >
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h2 class="text-lg font-semibold">
+                {{ mode === 'create' ? 'Нов продукт' : 'Редакция на продукт' }}
+              </h2>
+              <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                Попълни данните за продукта и натисни „Запази“.
+              </p>
+            </div>
 
-        <button type="button" (click)="closeModal()" class="rounded-lg border border-slate-300 px-2 py-1 text-xs hover:bg-slate-100 transition
-                 dark:border-slate-700 dark:hover:bg-slate-800">
-          ✕
-        </button>
-      </div>
-
-      <form class="mt-4 space-y-4" [formGroup]="form" (ngSubmit)="save()">
-        <!-- Име -->
-        <div>
-          <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
-            Име
-          </label>
-          <input type="text" formControlName="name" placeholder="Напр. Basic T-Shirt" class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
-                   placeholder:text-slate-400 outline-none
-                   focus:ring-2 focus:ring-slate-900/20
-                   dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20" />
-          <p *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
-            class="mt-1 text-[11px] text-red-600 dark:text-red-400">
-            Името е задължително (мин. 2 символа).
-          </p>
-        </div>
-
-        <!-- Описание -->
-        <div>
-          <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
-            Описание
-          </label>
-          <textarea rows="4" formControlName="description" placeholder="Кратко описание на продукта..." class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
-                   placeholder:text-slate-400 outline-none
-                   focus:ring-2 focus:ring-slate-900/20
-                   dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20"></textarea>
-        </div>
-
-        <!-- Цена / Марка -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
-              Цена (лв.)
-            </label>
-            <input type="number" step="0.01" formControlName="price" class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
-                     outline-none focus:ring-2 focus:ring-slate-900/20
-                     dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20" />
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
-              Марка
-            </label>
-            <input type="text" formControlName="brand" class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
-                     outline-none focus:ring-2 focus:ring-slate-900/20
-                     dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20" />
-          </div>
-        </div>
-
-        <!-- Категория -->
-        <div>
-          <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
-            Категория
-          </label>
-          <select formControlName="categoryId" class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
-                   outline-none focus:ring-2 focus:ring-slate-900/20
-                   dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20">
-            <option [ngValue]="null">-- избери категория --</option>
-            <option *ngFor="let c of categories" [ngValue]="c.id">
-              {{ c.name }}
-            </option>
-          </select>
-          <p *ngIf="form.get('categoryId')?.touched && form.get('categoryId')?.invalid"
-            class="mt-1 text-[11px] text-red-600 dark:text-red-400">
-            Моля, избери категория.
-          </p>
-        </div>
-
-        <!-- Варианти (цвят/размер/наличност) -->
-        <div class="space-y-2">
-          <div class="flex items-center justify-between">
-            <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
-              Варианти (цвят / размер / наличност)
-            </label>
-
-            <button type="button" (click)="addVariant()" class="text-xs inline-flex items-center rounded-lg border border-slate-300 px-2 py-1
-                     hover:bg-slate-100 transition
-                     dark:border-slate-700 dark:hover:bg-slate-800">
-              + Добави вариант
+            <button
+              type="button"
+              (click)="closeModal()"
+              class="rounded-lg border border-slate-300 px-2 py-1 text-xs hover:bg-slate-100 transition
+                     dark:border-slate-700 dark:hover:bg-slate-800"
+            >
+              ✕
             </button>
           </div>
+        </div>
 
-          <div formArrayName="variants" class="space-y-3">
-            <div *ngFor="let v of variants.controls; let i = index" [formGroupName]="i"
-              class="grid grid-cols-1 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_auto] gap-3 items-end">
-              <!-- Цвят -->
+        <div class="max-h-[calc(92dvh-72px)] overflow-y-auto p-4 sm:p-5">
+          <form class="space-y-4" [formGroup]="form" (ngSubmit)="save()">
+            <!-- Име -->
+            <div>
+              <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
+                Име
+              </label>
+              <input
+                type="text"
+                formControlName="name"
+                placeholder="Напр. Basic T-Shirt"
+                class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
+                       placeholder:text-slate-400 outline-none
+                       focus:ring-2 focus:ring-slate-900/20
+                       dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20"
+              />
+              <p
+                *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+                class="mt-1 text-[11px] text-red-600 dark:text-red-400"
+              >
+                Името е задължително (мин. 2 символа).
+              </p>
+            </div>
+
+            <!-- Описание -->
+            <div>
+              <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
+                Описание
+              </label>
+              <textarea
+                rows="4"
+                formControlName="description"
+                placeholder="Кратко описание на продукта..."
+                class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
+                       placeholder:text-slate-400 outline-none
+                       focus:ring-2 focus:ring-slate-900/20
+                       dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20"
+              ></textarea>
+            </div>
+
+            <!-- Цена / Марка -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-[11px] font-medium text-slate-700 dark:text-slate-200">
-                  Цвят
+                <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
+                  Цена (лв.)
                 </label>
-                <select formControlName="colorId" class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
+                <input
+                  type="number"
+                  step="0.01"
+                  formControlName="price"
+                  class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
                          outline-none focus:ring-2 focus:ring-slate-900/20
-                         dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20">
-                  <option [ngValue]="null">-- избери цвят --</option>
-                  <option *ngFor="let c of colors" [ngValue]="c.id">
-                    {{ c.name }}
-                  </option>
-                </select>
+                         dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20"
+                />
               </div>
 
-              <!-- Размер -->
               <div>
-                <label class="block text-[11px] font-medium text-slate-700 dark:text-slate-200">
-                  Размер
+                <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
+                  Марка
                 </label>
-                <input type="text" formControlName="size" placeholder="Напр. S, M, L" class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
+                <input
+                  type="text"
+                  formControlName="brand"
+                  class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
                          outline-none focus:ring-2 focus:ring-slate-900/20
-                         dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20" />
+                         dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20"
+                />
               </div>
+            </div>
 
-              <!-- Наличност + бутон X -->
-              <div class="flex gap-2">
-                <div class="flex-1">
-                  <label class="block text-[11px] font-medium text-slate-700 dark:text-slate-200">
-                    Наличност
-                  </label>
-                  <input type="number" formControlName="stock" class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
-                           outline-none focus:ring-2 focus:ring-slate-900/20
-                           dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20" />
-                </div>
+            <!-- Категория -->
+            <div>
+              <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
+                Категория
+              </label>
+              <select
+                formControlName="categoryId"
+                class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
+                       outline-none focus:ring-2 focus:ring-slate-900/20
+                       dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20"
+              >
+                <option [ngValue]="null">-- избери категория --</option>
+                <option *ngFor="let c of categories" [ngValue]="c.id">
+                  {{ c.name }}
+                </option>
+              </select>
+              <p
+                *ngIf="form.get('categoryId')?.touched && form.get('categoryId')?.invalid"
+                class="mt-1 text-[11px] text-red-600 dark:text-red-400"
+              >
+                Моля, избери категория.
+              </p>
+            </div>
 
-                <button type="button" (click)="removeVariant(i)" class="self-end mb-0.5 inline-flex items-center justify-center rounded-lg border border-slate-300 px-2 py-2 text-xs
+            <!-- Варианти (цвят/размер/наличност) -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
+                  Варианти (цвят / размер / наличност)
+                </label>
+
+                <button
+                  type="button"
+                  (click)="addVariant()"
+                  class="text-xs inline-flex items-center rounded-lg border border-slate-300 px-2 py-1
                          hover:bg-slate-100 transition
-                         dark:border-slate-700 dark:hover:bg-slate-800">
-                  ✕
+                         dark:border-slate-700 dark:hover:bg-slate-800"
+                >
+                  + Добави вариант
+                </button>
+              </div>
+
+              <div formArrayName="variants" class="space-y-3">
+                <div
+                  *ngFor="let v of variants.controls; let i = index"
+                  [formGroupName]="i"
+                  class="grid grid-cols-1 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_auto] gap-3 items-end"
+                >
+                  <!-- Цвят -->
+                  <div>
+                    <label class="block text-[11px] font-medium text-slate-700 dark:text-slate-200">
+                      Цвят
+                    </label>
+                    <select
+                      formControlName="colorId"
+                      class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
+                             outline-none focus:ring-2 focus:ring-slate-900/20
+                             dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20"
+                    >
+                      <option [ngValue]="null">-- избери цвят --</option>
+                      <option *ngFor="let c of colors" [ngValue]="c.id">
+                        {{ c.name }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <!-- Размер -->
+                  <div>
+                    <label class="block text-[11px] font-medium text-slate-700 dark:text-slate-200">
+                      Размер
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="size"
+                      placeholder="Напр. S, M, L"
+                      class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
+                             outline-none focus:ring-2 focus:ring-slate-900/20
+                             dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20"
+                    />
+                  </div>
+
+                  <!-- Наличност + бутон X -->
+                  <div class="flex gap-2">
+                    <div class="flex-1">
+                      <label class="block text-[11px] font-medium text-slate-700 dark:text-slate-200">
+                        Наличност
+                      </label>
+                      <input
+                        type="number"
+                        formControlName="stock"
+                        class="mt-1 w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
+                               outline-none focus:ring-2 focus:ring-slate-900/20
+                               dark:border-slate-700 dark:bg-slate-950/30 dark:focus:ring-slate-100/20"
+                      />
+                    </div>
+
+                    <button
+                      type="button"
+                      (click)="removeVariant(i)"
+                      class="self-end mb-0.5 inline-flex items-center justify-center rounded-lg border border-slate-300 px-2 py-2 text-xs
+                             hover:bg-slate-100 transition
+                             dark:border-slate-700 dark:hover:bg-slate-800"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Снимки на продукта -->
+            <div class="space-y-2">
+              <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
+                Снимки на продукта
+              </label>
+
+              <div class="flex items-center gap-3">
+                <label
+                  class="inline-flex items-center justify-center rounded-xl border border-slate-300
+                         bg-white/80 px-3 py-2 text-xs font-medium cursor-pointer
+                         hover:bg-slate-100 transition
+                         dark:border-slate-700 dark:bg-slate-950/40 dark:hover:bg-slate-800"
+                >
+                  Качи снимка
+                  <input type="file" accept="image/*" (change)="onImageSelected($event)" class="hidden" />
+                </label>
+
+                <span *ngIf="uploadingImage" class="text-xs text-slate-500 dark:text-slate-400">
+                  Качване...
+                </span>
+              </div>
+
+              <!-- preview -->
+              <div
+                *ngIf="images.length"
+                class="flex flex-wrap gap-3 pt-2
+                       rounded-xl border border-slate-200 bg-slate-50
+                       dark:border-slate-700 dark:bg-slate-950/30"
+              >
+                <div
+                  *ngFor="let img of images; let i = index"
+                  class="relative w-24 h-24 rounded-xl overflow-hidden
+                         border border-slate-200 dark:border-slate-700"
+                >
+                  <img [src]="img.url" alt="Product image" class="w-full h-full object-cover" />
+
+                  <button
+                    type="button"
+                    (click)="removeImage(i)"
+                    class="absolute top-1 right-1 rounded-full bg-black/60 text-white
+                           text-[10px] px-1.5 py-0.5"
+                  >
+                    ✕
+                  </button>
+
+                  <button
+                    *ngIf="!img.isMain"
+                    type="button"
+                    (click)="setAsMain(i)"
+                    class="absolute bottom-1 left-1 rounded-full bg-black/60 text-white
+                           text-[9px] px-2 py-0.5"
+                  >
+                    Направи основна
+                  </button>
+
+                  <div
+                    *ngIf="img.isMain"
+                    class="absolute bottom-1 left-1 rounded-full bg-emerald-600 text-white
+                           text-[9px] px-2 py-0.5"
+                  >
+                    Основна
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- sticky footer actions -->
+            <div
+              class="sticky bottom-0 -mx-4 sm:-mx-5 mt-4 border-t border-slate-200 dark:border-slate-700
+                     bg-white/95 dark:bg-slate-900/95 backdrop-blur
+                     px-4 sm:px-5 py-3"
+            >
+              <div class="flex justify-end gap-2">
+                <button
+                  type="button"
+                  (click)="closeModal()"
+                  class="inline-flex items-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium
+                         hover:bg-slate-100 transition
+                         dark:border-slate-700 dark:hover:bg-slate-800"
+                >
+                  Отказ
+                </button>
+
+                <button
+                  type="submit"
+                  class="inline-flex items-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white
+                         hover:bg-black transition
+                         dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white"
+                >
+                  Запази
                 </button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
-
-        <!-- Снимки на продукта -->
-        <div class="space-y-2">
-          <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">
-            Снимки на продукта
-          </label>
-
-          <div class="flex items-center gap-3">
-            <label class="inline-flex items-center justify-center rounded-xl border border-slate-300
-             bg-white/80 px-3 py-2 text-xs font-medium cursor-pointer
-             hover:bg-slate-100 transition
-             dark:border-slate-700 dark:bg-slate-950/40 dark:hover:bg-slate-800">
-              Качи снимка
-              <input type="file" accept="image/*" (change)="onImageSelected($event)" class="hidden" />
-            </label>
-
-            <span *ngIf="uploadingImage" class="text-xs text-slate-500 dark:text-slate-400">
-              Качване...
-            </span>
-          </div>
-
-          <!-- preview -->
-          <div *ngIf="images.length" class="flex flex-wrap gap-3 pt-2
-           rounded-xl border border-slate-200 bg-slate-50
-           dark:border-slate-700 dark:bg-slate-950/30">
-            <div *ngFor="let img of images; let i = index" class="relative w-24 h-24 rounded-xl overflow-hidden
-             border border-slate-200 dark:border-slate-700">
-              <img [src]="img.url" alt="Product image" class="w-full h-full object-cover" />
-
-              <button type="button" (click)="removeImage(i)" class="absolute top-1 right-1 rounded-full bg-black/60 text-white
-               text-[10px] px-1.5 py-0.5">
-                ✕
-              </button>
-
-              <button *ngIf="!img.isMain" type="button" (click)="setAsMain(i)" class="absolute bottom-1 left-1 rounded-full bg-black/60 text-white
-               text-[9px] px-2 py-0.5">
-                Направи основна
-              </button>
-
-              <div *ngIf="img.isMain" class="absolute bottom-1 left-1 rounded-full bg-emerald-600 text-white
-               text-[9px] px-2 py-0.5">
-                Основна
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="flex justify-end gap-2 pt-2">
-          <button type="button" (click)="closeModal()" class="inline-flex items-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium
-                   hover:bg-slate-100 transition
-                   dark:border-slate-700 dark:hover:bg-slate-800">
-            Отказ
-          </button>
-
-          <button type="submit" class="inline-flex items-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white
-                   hover:bg-black transition
-                   dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white">
-            Запази
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
