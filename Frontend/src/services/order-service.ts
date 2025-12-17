@@ -20,4 +20,8 @@ export class OrderService {
   getOrder(id: number): Observable<OrderDto> {
     return this.http.get<OrderDto>(`${this.baseUrl}/${id}`);
   }
+
+  getMyOrders(): Observable<OrderDto[]> {
+    return this.http.get<OrderDto[]>(`${this.baseUrl}/my`);
+  }
 }
