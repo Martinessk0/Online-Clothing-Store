@@ -107,4 +107,23 @@ export class AuthService {
       return true;
     }
   }
+
+  public getUserId(): string | null {
+  const token = this.getToken();
+  if (!token) return null;
+
+  try {
+    const decoded: any = jwtDecode(token);
+
+    const nameIdClaim =
+      decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] ??
+      decoded.nameid ??
+      null;
+
+    return nameIdClaim ?? null;
+  } catch {
+    return null;
+  }
+}
+
 }

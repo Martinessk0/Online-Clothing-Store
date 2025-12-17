@@ -46,7 +46,17 @@
       Цветове: {{ colors }}
     </p>
 
-    <div class="mt-1 flex justify-end">
+    <div class="mt-1 flex justify-between gap-2">
+      <button
+        type="button"
+        (click)="addToCart()"
+        class="inline-flex items-center rounded-xl bg-blue-600 px-3 py-1.5 text-xs font-medium text-white
+               hover:bg-blue-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
+        [disabled]="totalStock === 0"
+      >
+        Добави в количката
+      </button>
+
       <a
         [routerLink]="['/products', product.id]"
         class="inline-flex items-center rounded-xl border border-slate-300 px-3 py-1.5 text-xs font-medium
