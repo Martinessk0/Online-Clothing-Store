@@ -121,6 +121,7 @@ namespace ClothingStore.Core.Services
             var query = repo.AllReadonly<Order>()
                 .Include(o => o.Items)
                     .ThenInclude(i => i.Product)
+                          .ThenInclude(p => p.Images)
                 .Include(o => o.Items)
                     .ThenInclude(i => i.ProductVariant)
                         .ThenInclude(v => v!.Color)
@@ -143,6 +144,9 @@ namespace ClothingStore.Core.Services
                 Id = order.Id,
                 CustomerName = order.CustomerName,
                 Email = order.Email,
+                Phone = order.Phone,
+                Address = order.Address,
+                PaymentMethod = order.PaymentMethod.ToString(),
                 TotalAmount = order.TotalAmount,
                 Status = order.Status.ToString(),
                 CreatedAt = order.CreatedAt
@@ -150,11 +154,18 @@ namespace ClothingStore.Core.Services
 
             foreach (var item in order.Items)
             {
+                var imageUrl = item.Product.Images
+                    .OrderByDescending(img => img.IsMain)
+                    .ThenBy(img => img.SortOrder)
+                    .Select(img => img.Url)
+                    .FirstOrDefault();
+
                 dto.Items.Add(new OrderItemDto
                 {
                     ProductId = item.ProductId,
                     ProductVariantId = item.ProductVariantId,
                     Name = item.Product.Name,
+                    ImageUrl = imageUrl,
                     ColorName = item.ColorName,
                     Size = item.Size,
                     Quantity = item.Quantity,
@@ -163,6 +174,34 @@ namespace ClothingStore.Core.Services
             }
 
             return dto;
+        }
+
+        public async Task<IEnumerable<OrderDto>> GetUserOrdersAsync(string userId)
+        {
+            return await repo
+                .AllReadonly<Order>()
+                .Where(o => o.UserId == userId)
+                .OrderByDescending(o => o.CreatedAt)
+                .Select(o => new OrderDto
+                {
+                    Id = o.Id,
+                    CustomerName = o.CustomerName!,
+                    Email = o.Email!,
+                    TotalAmount = o.TotalAmount,
+                    Status = o.Status.ToString(),
+                    CreatedAt = o.CreatedAt,
+                    Items = o.Items.Select(i => new OrderItemDto
+                    {
+                        ProductId = i.ProductId,
+                        ProductVariantId = i.ProductVariantId,
+                        Name = i.Product.Name,
+                        ColorName = i.ColorName,
+                        Size = i.Size,
+                        Quantity = i.Quantity,
+                        UnitPrice = i.UnitPrice
+                    }).ToList()
+                })
+                .ToListAsync();
         }
     }
 }
