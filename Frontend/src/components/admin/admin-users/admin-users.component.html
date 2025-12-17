@@ -133,15 +133,18 @@
             <label class="inline-flex items-center cursor-pointer select-none">
               <span class="sr-only">Admin</span>
               <input type="checkbox" class="peer sr-only" [checked]="isAdmin(u)" (change)="toggleAdmin(u)" />
+
               <span class="w-10 h-5 rounded-full border
-                       border-slate-300 bg-slate-200
-                       dark:border-slate-600 dark:bg-slate-800
-                       flex items-center px-0.5 transition-colors
-                       peer-checked:bg-emerald-500/80 peer-checked:border-emerald-400">
+           border-slate-300 bg-slate-200
+           dark:border-slate-600 dark:bg-slate-800
+           flex items-center px-0.5 transition-colors
+           peer-checked:bg-emerald-500/80 peer-checked:border-emerald-400
+           dark:peer-checked:bg-emerald-500/80 dark:peer-checked:border-emerald-400">
                 <span class="h-4 w-4 rounded-full bg-white dark:bg-slate-300 shadow
-                         translate-x-0 peer-checked:translate-x-5 transition-transform"></span>
+             translate-x-0 peer-checked:translate-x-5 transition-transform"></span>
               </span>
             </label>
+
           </div>
 
           <div class="text-sm text-slate-900 dark:text-slate-100">
