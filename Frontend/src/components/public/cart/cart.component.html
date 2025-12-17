@@ -1,0 +1,61 @@
+<div class="max-w-5xl mx-auto px-4 py-8 space-y-6">
+  <h1 class="mb-2 text-2xl font-semibold tracking-tight">Кошница</h1>
+
+  <div *ngIf="!items.length" class="text-sm text-slate-500 dark:text-slate-400">
+    Кошницата ти е празна.
+    <a
+      routerLink="/products"
+      class="text-blue-600 hover:underline dark:text-blue-400"
+    >
+      Виж продуктите
+    </a>
+  </div>
+
+  <div *ngIf="items.length" class="grid gap-6 lg:grid-cols-[2fr,1fr]">
+    <div class="space-y-3">
+      <app-cart-card
+        *ngFor="let item of items"
+        [item]="item"
+        (remove)="remove(item)"
+        (quantityChange)="updateQuantity(item, $event)"
+      ></app-cart-card>
+
+      <button
+        type="button"
+        (click)="clear()"
+        class="text-[11px] text-slate-500 hover:text-slate-700
+               dark:text-slate-400 dark:hover:text-slate-200"
+      >
+        Изчисти количката
+      </button>
+    </div>
+
+    <aside
+      class="space-y-3 rounded-2xl border p-4 text-sm shadow-sm
+             bg-white/80 border-slate-200 text-slate-900
+             dark:bg-slate-900/80 dark:border-slate-800 dark:text-slate-50"
+    >
+      <div class="flex justify-between text-sm font-medium">
+        <span>Продукти</span>
+        <span>{{ totalQuantity }}</span>
+      </div>
+
+      <div class="flex justify-between text-sm font-semibold">
+        <span>Обща сума</span>
+        <span>{{ total | number: '1.2-2' }} лв.</span>
+      </div>
+
+      <a
+        routerLink="/checkout"
+        class="mt-2 inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white
+               hover:bg-blue-700"
+      >
+        Продължи към поръчка
+      </a>
+
+      <p class="text-[11px] text-slate-500 dark:text-slate-400">
+        Можеш да завършиш поръчката и като гост без регистрация.
+      </p>
+    </aside>
+  </div>
+</div>

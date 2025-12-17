@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
 import { ThemeService } from '../../../services/theme-service';
+import { CartService } from '../../../services/cart-service';
 
 @Component({
   selector: 'app-navigation',
@@ -14,6 +15,7 @@ export class NavigationComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly themeService = inject(ThemeService);
+  private readonly cartService = inject(CartService);
 
   isMobileMenuOpen = false;
   isDark = computed(() => this.themeService.theme() === 'dark');
@@ -26,6 +28,10 @@ export class NavigationComponent {
     return this.authService.isAdmin();
   }
 
+    get cartQuantity(): number {
+    return this.cartService.cart.totalQuantity;
+  }
+
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
@@ -36,6 +42,7 @@ export class NavigationComponent {
 
   logout(): void {
     this.authService.logout();
+    this.cartService.reloadForCurrentUser(false);
     this.router.navigate(['/']);
     this.isMobileMenuOpen = false;
   }

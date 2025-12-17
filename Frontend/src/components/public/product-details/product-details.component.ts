@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../models/product/product-dto';
 import { ProductService } from '../../../services/product-service';
+import { CartService } from '../../../services/cart-service';
+import { ProductVariant } from '../../../models/product/product-variant';
 
 @Component({
   selector: 'app-product-details',
@@ -16,10 +18,12 @@ export class ProductDetailsComponent implements OnInit {
   error: string | null = null;
 
   selectedImageUrl: string | null = null;
+  selectedVariant: ProductVariant | null = null;
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -36,8 +40,11 @@ export class ProductDetailsComponent implements OnInit {
         this.product = p;
         this.loading = false;
 
-        const main = p.images?.find((i) => i.isMain);
-        this.selectedImageUrl = main?.url || p.images?.[0]?.url || null;
+        const mainImage = p.images?.find((i) => i.isMain);
+        this.selectedImageUrl = mainImage?.url || p.images?.[0]?.url || null;
+
+        const mainVariant = p.variants?.[0] ?? null;
+        this.selectedVariant = mainVariant;
       },
       error: (err) => {
         console.error(err);
@@ -49,6 +56,16 @@ export class ProductDetailsComponent implements OnInit {
 
   selectImage(url: string): void {
     this.selectedImageUrl = url;
+  }
+
+  selectVariant(variant: ProductVariant): void {
+    this.selectedVariant = variant;
+  }
+
+  addToCart(): void {
+    if (!this.product) return;
+
+    this.cartService.addProduct(this.product, 1, this.selectedVariant ?? undefined);
   }
 
   getTotalStock(): number {

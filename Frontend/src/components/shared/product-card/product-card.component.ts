@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../../models/product/product-dto';
+import { CartService } from '../../../services/cart-service';
 
 @Component({
   selector: 'app-product-card',
@@ -10,6 +11,8 @@ import { Product } from '../../../models/product/product-dto';
   styleUrl: './product-card.component.scss'
 })
 export class ProductCardComponent {
+   private readonly cartService = inject(CartService);
+
   @Input({ required: true }) product!: Product;
 
   get mainImageUrl(): string {
@@ -29,5 +32,12 @@ export class ProductCardComponent {
     if (!this.product?.variants?.length) return '—';
     const names = Array.from(new Set(this.product.variants.map((v) => v.colorName)));
     return names.join(', ');
+  }
+
+  addToCart(): void {
+    if (!this.product) return;
+
+    const firstVariant = this.product.variants?.[0] ?? null;
+    this.cartService.addProduct(this.product, 1, firstVariant ?? undefined);
   }
 }

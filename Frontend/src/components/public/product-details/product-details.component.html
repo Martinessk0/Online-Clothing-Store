@@ -1,5 +1,6 @@
 <div class="space-y-6" *ngIf="!loading && product">
   <div class="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+    <!-- Снимки -->
     <section
       class="rounded-2xl border border-slate-200 bg-white/80 p-4
              dark:border-slate-800 dark:bg-slate-900/80"
@@ -44,45 +45,43 @@
       </div>
     </section>
 
-    <section class="space-y-4">
-      <div>
-        <h1 class="text-xl font-semibold text-slate-900 dark:text-slate-50">
-          {{ product.name }}
+    <!-- Детайли, варианти и количка -->
+    <section
+      class="space-y-4 rounded-2xl border border-slate-200 bg-white/80 p-4
+             dark:border-slate-800 dark:bg-slate-900/80"
+    >
+      <header class="space-y-2 border-b border-slate-200 pb-3 dark:border-slate-700">
+        <h1 class="text-lg font-semibold text-slate-900 dark:text-slate-50">
+          {{ product!.name }}
         </h1>
-        <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
-          Марка: {{ product.brand || 'Без марка' }}
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          {{ product!.brand || 'Без марка' }}
         </p>
-      </div>
-
-      <div
-        class="rounded-2xl border border-slate-200 bg-white/80 p-4
-               dark:border-slate-800 dark:bg-slate-900/80"
-      >
-        <div class="text-lg font-semibold text-slate-900 dark:text-slate-50">
-          {{ product.price | number: '1.2-2' }} лв.
+        <div class="text-base font-semibold text-slate-900 dark:text-slate-50">
+          {{ product!.price | number: '1.2-2' }} лв.
         </div>
-        <div class="text-xs text-slate-500 dark:text-slate-400">
-          Обща наличност: {{ getTotalStock() }}
-        </div>
+      </header>
 
-        <p class="mt-3 text-sm text-slate-700 dark:text-slate-200 whitespace-pre-line">
-          {{ product.description || 'Няма описание за този продукт.' }}
-        </p>
-      </div>
+      <p class="text-xs text-slate-600 dark:text-slate-300">
+        {{ product!.description || 'Описание на продукта.' }}
+      </p>
 
-      <div
-        *ngIf="product.variants?.length"
-        class="rounded-2xl border border-slate-200 bg-white/80 p-4
-               dark:border-slate-800 dark:bg-slate-900/80"
-      >
-        <h2 class="mb-2 text-sm font-semibold text-slate-900 dark:text-slate-50">
-          Варианти
+      <div *ngIf="product?.variants?.length">
+        <h2 class="mb-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
+          Размер и цвят
         </h2>
 
-        <div class="space-y-2 text-xs text-slate-700 dark:text-slate-200">
-          <div
-            *ngFor="let v of product.variants"
-            class="flex items-center justify-between"
+        <div class="space-y-2">
+          <button
+            type="button"
+            *ngFor="let v of product!.variants"
+            (click)="selectVariant(v)"
+            class="flex w-full items-center justify-between rounded-xl border px-3 py-2 text-xs
+                   transition
+                   border-slate-200 hover:border-blue-500 hover:bg-blue-50
+                   dark:border-slate-700 dark:hover:border-blue-500 dark:hover:bg-blue-950/30"
+            [class.border-blue-500]="selectedVariant?.id === v.id"
+            [class.bg-blue-50]="selectedVariant?.id === v.id"
           >
             <div class="flex items-center gap-2">
               <span
@@ -95,11 +94,39 @@
             <span class="text-slate-500 dark:text-slate-400">
               Наличност: {{ v.stock }}
             </span>
-          </div>
+          </button>
         </div>
       </div>
 
-      <!--"Добави в количка" -->
+      <!-- Добави в количката -->
+      <div
+        class="mt-4 space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm
+               dark:border-slate-700 dark:bg-slate-900/80"
+      >
+        <div class="flex items-center justify-between">
+          <span class="font-medium text-slate-800 dark:text-slate-100">
+            Обща цена
+          </span>
+          <span class="text-base font-semibold text-slate-900 dark:text-slate-50">
+            {{ product!.price | number: '1.2-2' }} лв.
+          </span>
+        </div>
+
+        <button
+          type="button"
+          (click)="addToCart()"
+          class="inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white
+                 hover:bg-blue-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
+          [disabled]="getTotalStock() === 0"
+        >
+          Добави в количката
+        </button>
+
+        <p class="text-[11px] text-slate-500 dark:text-slate-400">
+          Можеш да завършиш поръчката като гост по-късно от страницата „Кошница“ –
+          не е задължителна регистрация.
+        </p>
+      </div>
     </section>
   </div>
 </div>

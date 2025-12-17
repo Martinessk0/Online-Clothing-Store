@@ -7,6 +7,8 @@ import { ProfileComponent } from '../components/public/profile/profile.component
 import { authGuard } from '../guards/auth-guard';
 import { ProductsComponent } from '../components/public/products/products.component';
 import { ProductDetailsComponent } from '../components/public/product-details/product-details.component';
+import { CartComponent } from '../components/public/cart/cart.component';
+import { CheckoutComponent } from '../components/public/checkout/checkout.component';
 
 
 export const publicRoutes: Routes = [
@@ -38,6 +40,14 @@ export const publicRoutes: Routes = [
       {
         path: 'products/:id',
         component: ProductDetailsComponent,
+      },
+       {
+        path: 'cart',
+        component: CartComponent,
+      },
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
       },
       {
         path: 'profile',
