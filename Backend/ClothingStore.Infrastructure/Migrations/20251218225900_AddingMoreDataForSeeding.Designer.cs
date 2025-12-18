@@ -4,6 +4,7 @@ using ClothingStore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClothingStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251218225900_AddingMoreDataForSeeding")]
+    partial class AddingMoreDataForSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3112,171 +3115,171 @@ namespace ClothingStore.Infrastructure.Migrations
                             Id = 1,
                             IsMain = true,
                             ProductId = 1,
-                            PublicId = "seed/tshirt-001",
+                            PublicId = "seed/clothing-001",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=1"
+                            Url = "https://picsum.photos/seed/clothing-001/800/1000"
                         },
                         new
                         {
                             Id = 2,
                             IsMain = true,
                             ProductId = 2,
-                            PublicId = "seed/hoodie-002",
+                            PublicId = "seed/clothing-002",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=2"
+                            Url = "https://picsum.photos/seed/clothing-002/800/1000"
                         },
                         new
                         {
                             Id = 3,
                             IsMain = true,
                             ProductId = 3,
-                            PublicId = "seed/jeans-003",
+                            PublicId = "seed/clothing-003",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=3"
+                            Url = "https://picsum.photos/seed/clothing-003/800/1000"
                         },
                         new
                         {
                             Id = 4,
                             IsMain = true,
                             ProductId = 4,
-                            PublicId = "seed/jacket-004",
+                            PublicId = "seed/clothing-004",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=4"
+                            Url = "https://picsum.photos/seed/clothing-004/800/1000"
                         },
                         new
                         {
                             Id = 5,
                             IsMain = true,
                             ProductId = 5,
-                            PublicId = "seed/sneakers-005",
+                            PublicId = "seed/clothing-005",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=5"
+                            Url = "https://picsum.photos/seed/clothing-005/800/1000"
                         },
                         new
                         {
                             Id = 6,
                             IsMain = true,
                             ProductId = 6,
-                            PublicId = "seed/sweatpants-006",
+                            PublicId = "seed/clothing-006",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=6"
+                            Url = "https://picsum.photos/seed/clothing-006/800/1000"
                         },
                         new
                         {
                             Id = 7,
                             IsMain = true,
                             ProductId = 7,
-                            PublicId = "seed/shorts-007",
+                            PublicId = "seed/clothing-007",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=7"
+                            Url = "https://picsum.photos/seed/clothing-007/800/1000"
                         },
                         new
                         {
                             Id = 8,
                             IsMain = true,
                             ProductId = 8,
-                            PublicId = "seed/shirt-008",
+                            PublicId = "seed/clothing-008",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=8"
+                            Url = "https://picsum.photos/seed/clothing-008/800/1000"
                         },
                         new
                         {
                             Id = 9,
                             IsMain = true,
                             ProductId = 9,
-                            PublicId = "seed/knitwear-009",
+                            PublicId = "seed/clothing-009",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=9"
+                            Url = "https://picsum.photos/seed/clothing-009/800/1000"
                         },
                         new
                         {
                             Id = 10,
                             IsMain = true,
                             ProductId = 10,
-                            PublicId = "seed/coat-010",
+                            PublicId = "seed/clothing-010",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=10"
+                            Url = "https://picsum.photos/seed/clothing-010/800/1000"
                         },
                         new
                         {
                             Id = 11,
                             IsMain = true,
                             ProductId = 11,
-                            PublicId = "seed/activewear-011",
+                            PublicId = "seed/clothing-011",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=11"
+                            Url = "https://picsum.photos/seed/clothing-011/800/1000"
                         },
                         new
                         {
                             Id = 12,
                             IsMain = true,
                             ProductId = 12,
-                            PublicId = "seed/underwear-012",
+                            PublicId = "seed/clothing-012",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=12"
+                            Url = "https://picsum.photos/seed/clothing-012/800/1000"
                         },
                         new
                         {
                             Id = 13,
                             IsMain = true,
                             ProductId = 13,
-                            PublicId = "seed/socks-013",
+                            PublicId = "seed/clothing-013",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=13"
+                            Url = "https://picsum.photos/seed/clothing-013/800/1000"
                         },
                         new
                         {
                             Id = 14,
                             IsMain = true,
                             ProductId = 14,
-                            PublicId = "seed/accessories-014",
+                            PublicId = "seed/clothing-014",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=14"
+                            Url = "https://picsum.photos/seed/clothing-014/800/1000"
                         },
                         new
                         {
                             Id = 15,
                             IsMain = true,
                             ProductId = 15,
-                            PublicId = "seed/bag-015",
+                            PublicId = "seed/clothing-015",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=15"
+                            Url = "https://picsum.photos/seed/clothing-015/800/1000"
                         },
                         new
                         {
                             Id = 16,
                             IsMain = true,
                             ProductId = 16,
-                            PublicId = "seed/hat-016",
+                            PublicId = "seed/clothing-016",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=16"
+                            Url = "https://picsum.photos/seed/clothing-016/800/1000"
                         },
                         new
                         {
                             Id = 17,
                             IsMain = true,
                             ProductId = 17,
-                            PublicId = "seed/dress-017",
+                            PublicId = "seed/clothing-017",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=17"
+                            Url = "https://picsum.photos/seed/clothing-017/800/1000"
                         },
                         new
                         {
                             Id = 18,
                             IsMain = true,
                             ProductId = 18,
-                            PublicId = "seed/skirt-018",
+                            PublicId = "seed/clothing-018",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=18"
+                            Url = "https://picsum.photos/seed/clothing-018/800/1000"
                         },
                         new
                         {
                             Id = 19,
                             IsMain = true,
                             ProductId = 19,
-                            PublicId = "seed/kids-clothing-019",
+                            PublicId = "seed/clothing-019",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=19"
+                            Url = "https://picsum.photos/seed/clothing-019/800/1000"
                         },
                         new
                         {
@@ -3285,178 +3288,178 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 20,
                             PublicId = "seed/clothing-020",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=20"
+                            Url = "https://picsum.photos/seed/clothing-020/800/1000"
                         },
                         new
                         {
                             Id = 21,
                             IsMain = true,
                             ProductId = 21,
-                            PublicId = "seed/tshirt-021",
+                            PublicId = "seed/clothing-021",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=21"
+                            Url = "https://picsum.photos/seed/clothing-021/800/1000"
                         },
                         new
                         {
                             Id = 22,
                             IsMain = true,
                             ProductId = 22,
-                            PublicId = "seed/hoodie-022",
+                            PublicId = "seed/clothing-022",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=22"
+                            Url = "https://picsum.photos/seed/clothing-022/800/1000"
                         },
                         new
                         {
                             Id = 23,
                             IsMain = true,
                             ProductId = 23,
-                            PublicId = "seed/jeans-023",
+                            PublicId = "seed/clothing-023",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=23"
+                            Url = "https://picsum.photos/seed/clothing-023/800/1000"
                         },
                         new
                         {
                             Id = 24,
                             IsMain = true,
                             ProductId = 24,
-                            PublicId = "seed/jacket-024",
+                            PublicId = "seed/clothing-024",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=24"
+                            Url = "https://picsum.photos/seed/clothing-024/800/1000"
                         },
                         new
                         {
                             Id = 25,
                             IsMain = true,
                             ProductId = 25,
-                            PublicId = "seed/sneakers-025",
+                            PublicId = "seed/clothing-025",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=25"
+                            Url = "https://picsum.photos/seed/clothing-025/800/1000"
                         },
                         new
                         {
                             Id = 26,
                             IsMain = true,
                             ProductId = 26,
-                            PublicId = "seed/sweatpants-026",
+                            PublicId = "seed/clothing-026",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=26"
+                            Url = "https://picsum.photos/seed/clothing-026/800/1000"
                         },
                         new
                         {
                             Id = 27,
                             IsMain = true,
                             ProductId = 27,
-                            PublicId = "seed/shorts-027",
+                            PublicId = "seed/clothing-027",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=27"
+                            Url = "https://picsum.photos/seed/clothing-027/800/1000"
                         },
                         new
                         {
                             Id = 28,
                             IsMain = true,
                             ProductId = 28,
-                            PublicId = "seed/shirt-028",
+                            PublicId = "seed/clothing-028",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=28"
+                            Url = "https://picsum.photos/seed/clothing-028/800/1000"
                         },
                         new
                         {
                             Id = 29,
                             IsMain = true,
                             ProductId = 29,
-                            PublicId = "seed/knitwear-029",
+                            PublicId = "seed/clothing-029",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=29"
+                            Url = "https://picsum.photos/seed/clothing-029/800/1000"
                         },
                         new
                         {
                             Id = 30,
                             IsMain = true,
                             ProductId = 30,
-                            PublicId = "seed/coat-030",
+                            PublicId = "seed/clothing-030",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=30"
+                            Url = "https://picsum.photos/seed/clothing-030/800/1000"
                         },
                         new
                         {
                             Id = 31,
                             IsMain = true,
                             ProductId = 31,
-                            PublicId = "seed/activewear-031",
+                            PublicId = "seed/clothing-031",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=31"
+                            Url = "https://picsum.photos/seed/clothing-031/800/1000"
                         },
                         new
                         {
                             Id = 32,
                             IsMain = true,
                             ProductId = 32,
-                            PublicId = "seed/underwear-032",
+                            PublicId = "seed/clothing-032",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=32"
+                            Url = "https://picsum.photos/seed/clothing-032/800/1000"
                         },
                         new
                         {
                             Id = 33,
                             IsMain = true,
                             ProductId = 33,
-                            PublicId = "seed/socks-033",
+                            PublicId = "seed/clothing-033",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=33"
+                            Url = "https://picsum.photos/seed/clothing-033/800/1000"
                         },
                         new
                         {
                             Id = 34,
                             IsMain = true,
                             ProductId = 34,
-                            PublicId = "seed/accessories-034",
+                            PublicId = "seed/clothing-034",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=34"
+                            Url = "https://picsum.photos/seed/clothing-034/800/1000"
                         },
                         new
                         {
                             Id = 35,
                             IsMain = true,
                             ProductId = 35,
-                            PublicId = "seed/bag-035",
+                            PublicId = "seed/clothing-035",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=35"
+                            Url = "https://picsum.photos/seed/clothing-035/800/1000"
                         },
                         new
                         {
                             Id = 36,
                             IsMain = true,
                             ProductId = 36,
-                            PublicId = "seed/hat-036",
+                            PublicId = "seed/clothing-036",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=36"
+                            Url = "https://picsum.photos/seed/clothing-036/800/1000"
                         },
                         new
                         {
                             Id = 37,
                             IsMain = true,
                             ProductId = 37,
-                            PublicId = "seed/dress-037",
+                            PublicId = "seed/clothing-037",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=37"
+                            Url = "https://picsum.photos/seed/clothing-037/800/1000"
                         },
                         new
                         {
                             Id = 38,
                             IsMain = true,
                             ProductId = 38,
-                            PublicId = "seed/skirt-038",
+                            PublicId = "seed/clothing-038",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=38"
+                            Url = "https://picsum.photos/seed/clothing-038/800/1000"
                         },
                         new
                         {
                             Id = 39,
                             IsMain = true,
                             ProductId = 39,
-                            PublicId = "seed/kids-clothing-039",
+                            PublicId = "seed/clothing-039",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=39"
+                            Url = "https://picsum.photos/seed/clothing-039/800/1000"
                         },
                         new
                         {
@@ -3465,178 +3468,178 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 40,
                             PublicId = "seed/clothing-040",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=40"
+                            Url = "https://picsum.photos/seed/clothing-040/800/1000"
                         },
                         new
                         {
                             Id = 41,
                             IsMain = true,
                             ProductId = 41,
-                            PublicId = "seed/tshirt-041",
+                            PublicId = "seed/clothing-041",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=41"
+                            Url = "https://picsum.photos/seed/clothing-041/800/1000"
                         },
                         new
                         {
                             Id = 42,
                             IsMain = true,
                             ProductId = 42,
-                            PublicId = "seed/hoodie-042",
+                            PublicId = "seed/clothing-042",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=42"
+                            Url = "https://picsum.photos/seed/clothing-042/800/1000"
                         },
                         new
                         {
                             Id = 43,
                             IsMain = true,
                             ProductId = 43,
-                            PublicId = "seed/jeans-043",
+                            PublicId = "seed/clothing-043",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=43"
+                            Url = "https://picsum.photos/seed/clothing-043/800/1000"
                         },
                         new
                         {
                             Id = 44,
                             IsMain = true,
                             ProductId = 44,
-                            PublicId = "seed/jacket-044",
+                            PublicId = "seed/clothing-044",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=44"
+                            Url = "https://picsum.photos/seed/clothing-044/800/1000"
                         },
                         new
                         {
                             Id = 45,
                             IsMain = true,
                             ProductId = 45,
-                            PublicId = "seed/sneakers-045",
+                            PublicId = "seed/clothing-045",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=45"
+                            Url = "https://picsum.photos/seed/clothing-045/800/1000"
                         },
                         new
                         {
                             Id = 46,
                             IsMain = true,
                             ProductId = 46,
-                            PublicId = "seed/sweatpants-046",
+                            PublicId = "seed/clothing-046",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=46"
+                            Url = "https://picsum.photos/seed/clothing-046/800/1000"
                         },
                         new
                         {
                             Id = 47,
                             IsMain = true,
                             ProductId = 47,
-                            PublicId = "seed/shorts-047",
+                            PublicId = "seed/clothing-047",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=47"
+                            Url = "https://picsum.photos/seed/clothing-047/800/1000"
                         },
                         new
                         {
                             Id = 48,
                             IsMain = true,
                             ProductId = 48,
-                            PublicId = "seed/shirt-048",
+                            PublicId = "seed/clothing-048",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=48"
+                            Url = "https://picsum.photos/seed/clothing-048/800/1000"
                         },
                         new
                         {
                             Id = 49,
                             IsMain = true,
                             ProductId = 49,
-                            PublicId = "seed/knitwear-049",
+                            PublicId = "seed/clothing-049",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=49"
+                            Url = "https://picsum.photos/seed/clothing-049/800/1000"
                         },
                         new
                         {
                             Id = 50,
                             IsMain = true,
                             ProductId = 50,
-                            PublicId = "seed/coat-050",
+                            PublicId = "seed/clothing-050",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=50"
+                            Url = "https://picsum.photos/seed/clothing-050/800/1000"
                         },
                         new
                         {
                             Id = 51,
                             IsMain = true,
                             ProductId = 51,
-                            PublicId = "seed/activewear-051",
+                            PublicId = "seed/clothing-051",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=51"
+                            Url = "https://picsum.photos/seed/clothing-051/800/1000"
                         },
                         new
                         {
                             Id = 52,
                             IsMain = true,
                             ProductId = 52,
-                            PublicId = "seed/underwear-052",
+                            PublicId = "seed/clothing-052",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=52"
+                            Url = "https://picsum.photos/seed/clothing-052/800/1000"
                         },
                         new
                         {
                             Id = 53,
                             IsMain = true,
                             ProductId = 53,
-                            PublicId = "seed/socks-053",
+                            PublicId = "seed/clothing-053",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=53"
+                            Url = "https://picsum.photos/seed/clothing-053/800/1000"
                         },
                         new
                         {
                             Id = 54,
                             IsMain = true,
                             ProductId = 54,
-                            PublicId = "seed/accessories-054",
+                            PublicId = "seed/clothing-054",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=54"
+                            Url = "https://picsum.photos/seed/clothing-054/800/1000"
                         },
                         new
                         {
                             Id = 55,
                             IsMain = true,
                             ProductId = 55,
-                            PublicId = "seed/bag-055",
+                            PublicId = "seed/clothing-055",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=55"
+                            Url = "https://picsum.photos/seed/clothing-055/800/1000"
                         },
                         new
                         {
                             Id = 56,
                             IsMain = true,
                             ProductId = 56,
-                            PublicId = "seed/hat-056",
+                            PublicId = "seed/clothing-056",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=56"
+                            Url = "https://picsum.photos/seed/clothing-056/800/1000"
                         },
                         new
                         {
                             Id = 57,
                             IsMain = true,
                             ProductId = 57,
-                            PublicId = "seed/dress-057",
+                            PublicId = "seed/clothing-057",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=57"
+                            Url = "https://picsum.photos/seed/clothing-057/800/1000"
                         },
                         new
                         {
                             Id = 58,
                             IsMain = true,
                             ProductId = 58,
-                            PublicId = "seed/skirt-058",
+                            PublicId = "seed/clothing-058",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=58"
+                            Url = "https://picsum.photos/seed/clothing-058/800/1000"
                         },
                         new
                         {
                             Id = 59,
                             IsMain = true,
                             ProductId = 59,
-                            PublicId = "seed/kids-clothing-059",
+                            PublicId = "seed/clothing-059",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=59"
+                            Url = "https://picsum.photos/seed/clothing-059/800/1000"
                         },
                         new
                         {
@@ -3645,178 +3648,178 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 60,
                             PublicId = "seed/clothing-060",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=60"
+                            Url = "https://picsum.photos/seed/clothing-060/800/1000"
                         },
                         new
                         {
                             Id = 61,
                             IsMain = true,
                             ProductId = 61,
-                            PublicId = "seed/tshirt-061",
+                            PublicId = "seed/clothing-061",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=61"
+                            Url = "https://picsum.photos/seed/clothing-061/800/1000"
                         },
                         new
                         {
                             Id = 62,
                             IsMain = true,
                             ProductId = 62,
-                            PublicId = "seed/hoodie-062",
+                            PublicId = "seed/clothing-062",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=62"
+                            Url = "https://picsum.photos/seed/clothing-062/800/1000"
                         },
                         new
                         {
                             Id = 63,
                             IsMain = true,
                             ProductId = 63,
-                            PublicId = "seed/jeans-063",
+                            PublicId = "seed/clothing-063",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=63"
+                            Url = "https://picsum.photos/seed/clothing-063/800/1000"
                         },
                         new
                         {
                             Id = 64,
                             IsMain = true,
                             ProductId = 64,
-                            PublicId = "seed/jacket-064",
+                            PublicId = "seed/clothing-064",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=64"
+                            Url = "https://picsum.photos/seed/clothing-064/800/1000"
                         },
                         new
                         {
                             Id = 65,
                             IsMain = true,
                             ProductId = 65,
-                            PublicId = "seed/sneakers-065",
+                            PublicId = "seed/clothing-065",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=65"
+                            Url = "https://picsum.photos/seed/clothing-065/800/1000"
                         },
                         new
                         {
                             Id = 66,
                             IsMain = true,
                             ProductId = 66,
-                            PublicId = "seed/sweatpants-066",
+                            PublicId = "seed/clothing-066",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=66"
+                            Url = "https://picsum.photos/seed/clothing-066/800/1000"
                         },
                         new
                         {
                             Id = 67,
                             IsMain = true,
                             ProductId = 67,
-                            PublicId = "seed/shorts-067",
+                            PublicId = "seed/clothing-067",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=67"
+                            Url = "https://picsum.photos/seed/clothing-067/800/1000"
                         },
                         new
                         {
                             Id = 68,
                             IsMain = true,
                             ProductId = 68,
-                            PublicId = "seed/shirt-068",
+                            PublicId = "seed/clothing-068",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=68"
+                            Url = "https://picsum.photos/seed/clothing-068/800/1000"
                         },
                         new
                         {
                             Id = 69,
                             IsMain = true,
                             ProductId = 69,
-                            PublicId = "seed/knitwear-069",
+                            PublicId = "seed/clothing-069",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=69"
+                            Url = "https://picsum.photos/seed/clothing-069/800/1000"
                         },
                         new
                         {
                             Id = 70,
                             IsMain = true,
                             ProductId = 70,
-                            PublicId = "seed/coat-070",
+                            PublicId = "seed/clothing-070",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=70"
+                            Url = "https://picsum.photos/seed/clothing-070/800/1000"
                         },
                         new
                         {
                             Id = 71,
                             IsMain = true,
                             ProductId = 71,
-                            PublicId = "seed/activewear-071",
+                            PublicId = "seed/clothing-071",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=71"
+                            Url = "https://picsum.photos/seed/clothing-071/800/1000"
                         },
                         new
                         {
                             Id = 72,
                             IsMain = true,
                             ProductId = 72,
-                            PublicId = "seed/underwear-072",
+                            PublicId = "seed/clothing-072",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=72"
+                            Url = "https://picsum.photos/seed/clothing-072/800/1000"
                         },
                         new
                         {
                             Id = 73,
                             IsMain = true,
                             ProductId = 73,
-                            PublicId = "seed/socks-073",
+                            PublicId = "seed/clothing-073",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=73"
+                            Url = "https://picsum.photos/seed/clothing-073/800/1000"
                         },
                         new
                         {
                             Id = 74,
                             IsMain = true,
                             ProductId = 74,
-                            PublicId = "seed/accessories-074",
+                            PublicId = "seed/clothing-074",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=74"
+                            Url = "https://picsum.photos/seed/clothing-074/800/1000"
                         },
                         new
                         {
                             Id = 75,
                             IsMain = true,
                             ProductId = 75,
-                            PublicId = "seed/bag-075",
+                            PublicId = "seed/clothing-075",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=75"
+                            Url = "https://picsum.photos/seed/clothing-075/800/1000"
                         },
                         new
                         {
                             Id = 76,
                             IsMain = true,
                             ProductId = 76,
-                            PublicId = "seed/hat-076",
+                            PublicId = "seed/clothing-076",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=76"
+                            Url = "https://picsum.photos/seed/clothing-076/800/1000"
                         },
                         new
                         {
                             Id = 77,
                             IsMain = true,
                             ProductId = 77,
-                            PublicId = "seed/dress-077",
+                            PublicId = "seed/clothing-077",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=77"
+                            Url = "https://picsum.photos/seed/clothing-077/800/1000"
                         },
                         new
                         {
                             Id = 78,
                             IsMain = true,
                             ProductId = 78,
-                            PublicId = "seed/skirt-078",
+                            PublicId = "seed/clothing-078",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=78"
+                            Url = "https://picsum.photos/seed/clothing-078/800/1000"
                         },
                         new
                         {
                             Id = 79,
                             IsMain = true,
                             ProductId = 79,
-                            PublicId = "seed/kids-clothing-079",
+                            PublicId = "seed/clothing-079",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=79"
+                            Url = "https://picsum.photos/seed/clothing-079/800/1000"
                         },
                         new
                         {
@@ -3825,178 +3828,178 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 80,
                             PublicId = "seed/clothing-080",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=80"
+                            Url = "https://picsum.photos/seed/clothing-080/800/1000"
                         },
                         new
                         {
                             Id = 81,
                             IsMain = true,
                             ProductId = 81,
-                            PublicId = "seed/tshirt-081",
+                            PublicId = "seed/clothing-081",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=81"
+                            Url = "https://picsum.photos/seed/clothing-081/800/1000"
                         },
                         new
                         {
                             Id = 82,
                             IsMain = true,
                             ProductId = 82,
-                            PublicId = "seed/hoodie-082",
+                            PublicId = "seed/clothing-082",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=82"
+                            Url = "https://picsum.photos/seed/clothing-082/800/1000"
                         },
                         new
                         {
                             Id = 83,
                             IsMain = true,
                             ProductId = 83,
-                            PublicId = "seed/jeans-083",
+                            PublicId = "seed/clothing-083",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=83"
+                            Url = "https://picsum.photos/seed/clothing-083/800/1000"
                         },
                         new
                         {
                             Id = 84,
                             IsMain = true,
                             ProductId = 84,
-                            PublicId = "seed/jacket-084",
+                            PublicId = "seed/clothing-084",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=84"
+                            Url = "https://picsum.photos/seed/clothing-084/800/1000"
                         },
                         new
                         {
                             Id = 85,
                             IsMain = true,
                             ProductId = 85,
-                            PublicId = "seed/sneakers-085",
+                            PublicId = "seed/clothing-085",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=85"
+                            Url = "https://picsum.photos/seed/clothing-085/800/1000"
                         },
                         new
                         {
                             Id = 86,
                             IsMain = true,
                             ProductId = 86,
-                            PublicId = "seed/sweatpants-086",
+                            PublicId = "seed/clothing-086",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=86"
+                            Url = "https://picsum.photos/seed/clothing-086/800/1000"
                         },
                         new
                         {
                             Id = 87,
                             IsMain = true,
                             ProductId = 87,
-                            PublicId = "seed/shorts-087",
+                            PublicId = "seed/clothing-087",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=87"
+                            Url = "https://picsum.photos/seed/clothing-087/800/1000"
                         },
                         new
                         {
                             Id = 88,
                             IsMain = true,
                             ProductId = 88,
-                            PublicId = "seed/shirt-088",
+                            PublicId = "seed/clothing-088",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=88"
+                            Url = "https://picsum.photos/seed/clothing-088/800/1000"
                         },
                         new
                         {
                             Id = 89,
                             IsMain = true,
                             ProductId = 89,
-                            PublicId = "seed/knitwear-089",
+                            PublicId = "seed/clothing-089",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=89"
+                            Url = "https://picsum.photos/seed/clothing-089/800/1000"
                         },
                         new
                         {
                             Id = 90,
                             IsMain = true,
                             ProductId = 90,
-                            PublicId = "seed/coat-090",
+                            PublicId = "seed/clothing-090",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=90"
+                            Url = "https://picsum.photos/seed/clothing-090/800/1000"
                         },
                         new
                         {
                             Id = 91,
                             IsMain = true,
                             ProductId = 91,
-                            PublicId = "seed/activewear-091",
+                            PublicId = "seed/clothing-091",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=91"
+                            Url = "https://picsum.photos/seed/clothing-091/800/1000"
                         },
                         new
                         {
                             Id = 92,
                             IsMain = true,
                             ProductId = 92,
-                            PublicId = "seed/underwear-092",
+                            PublicId = "seed/clothing-092",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=92"
+                            Url = "https://picsum.photos/seed/clothing-092/800/1000"
                         },
                         new
                         {
                             Id = 93,
                             IsMain = true,
                             ProductId = 93,
-                            PublicId = "seed/socks-093",
+                            PublicId = "seed/clothing-093",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=93"
+                            Url = "https://picsum.photos/seed/clothing-093/800/1000"
                         },
                         new
                         {
                             Id = 94,
                             IsMain = true,
                             ProductId = 94,
-                            PublicId = "seed/accessories-094",
+                            PublicId = "seed/clothing-094",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=94"
+                            Url = "https://picsum.photos/seed/clothing-094/800/1000"
                         },
                         new
                         {
                             Id = 95,
                             IsMain = true,
                             ProductId = 95,
-                            PublicId = "seed/bag-095",
+                            PublicId = "seed/clothing-095",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=95"
+                            Url = "https://picsum.photos/seed/clothing-095/800/1000"
                         },
                         new
                         {
                             Id = 96,
                             IsMain = true,
                             ProductId = 96,
-                            PublicId = "seed/hat-096",
+                            PublicId = "seed/clothing-096",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=96"
+                            Url = "https://picsum.photos/seed/clothing-096/800/1000"
                         },
                         new
                         {
                             Id = 97,
                             IsMain = true,
                             ProductId = 97,
-                            PublicId = "seed/dress-097",
+                            PublicId = "seed/clothing-097",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=97"
+                            Url = "https://picsum.photos/seed/clothing-097/800/1000"
                         },
                         new
                         {
                             Id = 98,
                             IsMain = true,
                             ProductId = 98,
-                            PublicId = "seed/skirt-098",
+                            PublicId = "seed/clothing-098",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=98"
+                            Url = "https://picsum.photos/seed/clothing-098/800/1000"
                         },
                         new
                         {
                             Id = 99,
                             IsMain = true,
                             ProductId = 99,
-                            PublicId = "seed/kids-clothing-099",
+                            PublicId = "seed/clothing-099",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=99"
+                            Url = "https://picsum.photos/seed/clothing-099/800/1000"
                         },
                         new
                         {
@@ -4005,178 +4008,178 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 100,
                             PublicId = "seed/clothing-100",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=100"
+                            Url = "https://picsum.photos/seed/clothing-100/800/1000"
                         },
                         new
                         {
                             Id = 101,
                             IsMain = true,
                             ProductId = 101,
-                            PublicId = "seed/tshirt-101",
+                            PublicId = "seed/clothing-101",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=101"
+                            Url = "https://picsum.photos/seed/clothing-101/800/1000"
                         },
                         new
                         {
                             Id = 102,
                             IsMain = true,
                             ProductId = 102,
-                            PublicId = "seed/hoodie-102",
+                            PublicId = "seed/clothing-102",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=102"
+                            Url = "https://picsum.photos/seed/clothing-102/800/1000"
                         },
                         new
                         {
                             Id = 103,
                             IsMain = true,
                             ProductId = 103,
-                            PublicId = "seed/jeans-103",
+                            PublicId = "seed/clothing-103",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=103"
+                            Url = "https://picsum.photos/seed/clothing-103/800/1000"
                         },
                         new
                         {
                             Id = 104,
                             IsMain = true,
                             ProductId = 104,
-                            PublicId = "seed/jacket-104",
+                            PublicId = "seed/clothing-104",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=104"
+                            Url = "https://picsum.photos/seed/clothing-104/800/1000"
                         },
                         new
                         {
                             Id = 105,
                             IsMain = true,
                             ProductId = 105,
-                            PublicId = "seed/sneakers-105",
+                            PublicId = "seed/clothing-105",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=105"
+                            Url = "https://picsum.photos/seed/clothing-105/800/1000"
                         },
                         new
                         {
                             Id = 106,
                             IsMain = true,
                             ProductId = 106,
-                            PublicId = "seed/sweatpants-106",
+                            PublicId = "seed/clothing-106",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=106"
+                            Url = "https://picsum.photos/seed/clothing-106/800/1000"
                         },
                         new
                         {
                             Id = 107,
                             IsMain = true,
                             ProductId = 107,
-                            PublicId = "seed/shorts-107",
+                            PublicId = "seed/clothing-107",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=107"
+                            Url = "https://picsum.photos/seed/clothing-107/800/1000"
                         },
                         new
                         {
                             Id = 108,
                             IsMain = true,
                             ProductId = 108,
-                            PublicId = "seed/shirt-108",
+                            PublicId = "seed/clothing-108",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=108"
+                            Url = "https://picsum.photos/seed/clothing-108/800/1000"
                         },
                         new
                         {
                             Id = 109,
                             IsMain = true,
                             ProductId = 109,
-                            PublicId = "seed/knitwear-109",
+                            PublicId = "seed/clothing-109",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=109"
+                            Url = "https://picsum.photos/seed/clothing-109/800/1000"
                         },
                         new
                         {
                             Id = 110,
                             IsMain = true,
                             ProductId = 110,
-                            PublicId = "seed/coat-110",
+                            PublicId = "seed/clothing-110",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=110"
+                            Url = "https://picsum.photos/seed/clothing-110/800/1000"
                         },
                         new
                         {
                             Id = 111,
                             IsMain = true,
                             ProductId = 111,
-                            PublicId = "seed/activewear-111",
+                            PublicId = "seed/clothing-111",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=111"
+                            Url = "https://picsum.photos/seed/clothing-111/800/1000"
                         },
                         new
                         {
                             Id = 112,
                             IsMain = true,
                             ProductId = 112,
-                            PublicId = "seed/underwear-112",
+                            PublicId = "seed/clothing-112",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=112"
+                            Url = "https://picsum.photos/seed/clothing-112/800/1000"
                         },
                         new
                         {
                             Id = 113,
                             IsMain = true,
                             ProductId = 113,
-                            PublicId = "seed/socks-113",
+                            PublicId = "seed/clothing-113",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=113"
+                            Url = "https://picsum.photos/seed/clothing-113/800/1000"
                         },
                         new
                         {
                             Id = 114,
                             IsMain = true,
                             ProductId = 114,
-                            PublicId = "seed/accessories-114",
+                            PublicId = "seed/clothing-114",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=114"
+                            Url = "https://picsum.photos/seed/clothing-114/800/1000"
                         },
                         new
                         {
                             Id = 115,
                             IsMain = true,
                             ProductId = 115,
-                            PublicId = "seed/bag-115",
+                            PublicId = "seed/clothing-115",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=115"
+                            Url = "https://picsum.photos/seed/clothing-115/800/1000"
                         },
                         new
                         {
                             Id = 116,
                             IsMain = true,
                             ProductId = 116,
-                            PublicId = "seed/hat-116",
+                            PublicId = "seed/clothing-116",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=116"
+                            Url = "https://picsum.photos/seed/clothing-116/800/1000"
                         },
                         new
                         {
                             Id = 117,
                             IsMain = true,
                             ProductId = 117,
-                            PublicId = "seed/dress-117",
+                            PublicId = "seed/clothing-117",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=117"
+                            Url = "https://picsum.photos/seed/clothing-117/800/1000"
                         },
                         new
                         {
                             Id = 118,
                             IsMain = true,
                             ProductId = 118,
-                            PublicId = "seed/skirt-118",
+                            PublicId = "seed/clothing-118",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=118"
+                            Url = "https://picsum.photos/seed/clothing-118/800/1000"
                         },
                         new
                         {
                             Id = 119,
                             IsMain = true,
                             ProductId = 119,
-                            PublicId = "seed/kids-clothing-119",
+                            PublicId = "seed/clothing-119",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=119"
+                            Url = "https://picsum.photos/seed/clothing-119/800/1000"
                         },
                         new
                         {
@@ -4185,178 +4188,178 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 120,
                             PublicId = "seed/clothing-120",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=120"
+                            Url = "https://picsum.photos/seed/clothing-120/800/1000"
                         },
                         new
                         {
                             Id = 121,
                             IsMain = true,
                             ProductId = 121,
-                            PublicId = "seed/tshirt-121",
+                            PublicId = "seed/clothing-121",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=121"
+                            Url = "https://picsum.photos/seed/clothing-121/800/1000"
                         },
                         new
                         {
                             Id = 122,
                             IsMain = true,
                             ProductId = 122,
-                            PublicId = "seed/hoodie-122",
+                            PublicId = "seed/clothing-122",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=122"
+                            Url = "https://picsum.photos/seed/clothing-122/800/1000"
                         },
                         new
                         {
                             Id = 123,
                             IsMain = true,
                             ProductId = 123,
-                            PublicId = "seed/jeans-123",
+                            PublicId = "seed/clothing-123",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=123"
+                            Url = "https://picsum.photos/seed/clothing-123/800/1000"
                         },
                         new
                         {
                             Id = 124,
                             IsMain = true,
                             ProductId = 124,
-                            PublicId = "seed/jacket-124",
+                            PublicId = "seed/clothing-124",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=124"
+                            Url = "https://picsum.photos/seed/clothing-124/800/1000"
                         },
                         new
                         {
                             Id = 125,
                             IsMain = true,
                             ProductId = 125,
-                            PublicId = "seed/sneakers-125",
+                            PublicId = "seed/clothing-125",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=125"
+                            Url = "https://picsum.photos/seed/clothing-125/800/1000"
                         },
                         new
                         {
                             Id = 126,
                             IsMain = true,
                             ProductId = 126,
-                            PublicId = "seed/sweatpants-126",
+                            PublicId = "seed/clothing-126",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=126"
+                            Url = "https://picsum.photos/seed/clothing-126/800/1000"
                         },
                         new
                         {
                             Id = 127,
                             IsMain = true,
                             ProductId = 127,
-                            PublicId = "seed/shorts-127",
+                            PublicId = "seed/clothing-127",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=127"
+                            Url = "https://picsum.photos/seed/clothing-127/800/1000"
                         },
                         new
                         {
                             Id = 128,
                             IsMain = true,
                             ProductId = 128,
-                            PublicId = "seed/shirt-128",
+                            PublicId = "seed/clothing-128",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=128"
+                            Url = "https://picsum.photos/seed/clothing-128/800/1000"
                         },
                         new
                         {
                             Id = 129,
                             IsMain = true,
                             ProductId = 129,
-                            PublicId = "seed/knitwear-129",
+                            PublicId = "seed/clothing-129",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=129"
+                            Url = "https://picsum.photos/seed/clothing-129/800/1000"
                         },
                         new
                         {
                             Id = 130,
                             IsMain = true,
                             ProductId = 130,
-                            PublicId = "seed/coat-130",
+                            PublicId = "seed/clothing-130",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=130"
+                            Url = "https://picsum.photos/seed/clothing-130/800/1000"
                         },
                         new
                         {
                             Id = 131,
                             IsMain = true,
                             ProductId = 131,
-                            PublicId = "seed/activewear-131",
+                            PublicId = "seed/clothing-131",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=131"
+                            Url = "https://picsum.photos/seed/clothing-131/800/1000"
                         },
                         new
                         {
                             Id = 132,
                             IsMain = true,
                             ProductId = 132,
-                            PublicId = "seed/underwear-132",
+                            PublicId = "seed/clothing-132",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=132"
+                            Url = "https://picsum.photos/seed/clothing-132/800/1000"
                         },
                         new
                         {
                             Id = 133,
                             IsMain = true,
                             ProductId = 133,
-                            PublicId = "seed/socks-133",
+                            PublicId = "seed/clothing-133",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=133"
+                            Url = "https://picsum.photos/seed/clothing-133/800/1000"
                         },
                         new
                         {
                             Id = 134,
                             IsMain = true,
                             ProductId = 134,
-                            PublicId = "seed/accessories-134",
+                            PublicId = "seed/clothing-134",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=134"
+                            Url = "https://picsum.photos/seed/clothing-134/800/1000"
                         },
                         new
                         {
                             Id = 135,
                             IsMain = true,
                             ProductId = 135,
-                            PublicId = "seed/bag-135",
+                            PublicId = "seed/clothing-135",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=135"
+                            Url = "https://picsum.photos/seed/clothing-135/800/1000"
                         },
                         new
                         {
                             Id = 136,
                             IsMain = true,
                             ProductId = 136,
-                            PublicId = "seed/hat-136",
+                            PublicId = "seed/clothing-136",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=136"
+                            Url = "https://picsum.photos/seed/clothing-136/800/1000"
                         },
                         new
                         {
                             Id = 137,
                             IsMain = true,
                             ProductId = 137,
-                            PublicId = "seed/dress-137",
+                            PublicId = "seed/clothing-137",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=137"
+                            Url = "https://picsum.photos/seed/clothing-137/800/1000"
                         },
                         new
                         {
                             Id = 138,
                             IsMain = true,
                             ProductId = 138,
-                            PublicId = "seed/skirt-138",
+                            PublicId = "seed/clothing-138",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=138"
+                            Url = "https://picsum.photos/seed/clothing-138/800/1000"
                         },
                         new
                         {
                             Id = 139,
                             IsMain = true,
                             ProductId = 139,
-                            PublicId = "seed/kids-clothing-139",
+                            PublicId = "seed/clothing-139",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=139"
+                            Url = "https://picsum.photos/seed/clothing-139/800/1000"
                         },
                         new
                         {
@@ -4365,178 +4368,178 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 140,
                             PublicId = "seed/clothing-140",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=140"
+                            Url = "https://picsum.photos/seed/clothing-140/800/1000"
                         },
                         new
                         {
                             Id = 141,
                             IsMain = true,
                             ProductId = 141,
-                            PublicId = "seed/tshirt-141",
+                            PublicId = "seed/clothing-141",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=141"
+                            Url = "https://picsum.photos/seed/clothing-141/800/1000"
                         },
                         new
                         {
                             Id = 142,
                             IsMain = true,
                             ProductId = 142,
-                            PublicId = "seed/hoodie-142",
+                            PublicId = "seed/clothing-142",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=142"
+                            Url = "https://picsum.photos/seed/clothing-142/800/1000"
                         },
                         new
                         {
                             Id = 143,
                             IsMain = true,
                             ProductId = 143,
-                            PublicId = "seed/jeans-143",
+                            PublicId = "seed/clothing-143",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=143"
+                            Url = "https://picsum.photos/seed/clothing-143/800/1000"
                         },
                         new
                         {
                             Id = 144,
                             IsMain = true,
                             ProductId = 144,
-                            PublicId = "seed/jacket-144",
+                            PublicId = "seed/clothing-144",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=144"
+                            Url = "https://picsum.photos/seed/clothing-144/800/1000"
                         },
                         new
                         {
                             Id = 145,
                             IsMain = true,
                             ProductId = 145,
-                            PublicId = "seed/sneakers-145",
+                            PublicId = "seed/clothing-145",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=145"
+                            Url = "https://picsum.photos/seed/clothing-145/800/1000"
                         },
                         new
                         {
                             Id = 146,
                             IsMain = true,
                             ProductId = 146,
-                            PublicId = "seed/sweatpants-146",
+                            PublicId = "seed/clothing-146",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=146"
+                            Url = "https://picsum.photos/seed/clothing-146/800/1000"
                         },
                         new
                         {
                             Id = 147,
                             IsMain = true,
                             ProductId = 147,
-                            PublicId = "seed/shorts-147",
+                            PublicId = "seed/clothing-147",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=147"
+                            Url = "https://picsum.photos/seed/clothing-147/800/1000"
                         },
                         new
                         {
                             Id = 148,
                             IsMain = true,
                             ProductId = 148,
-                            PublicId = "seed/shirt-148",
+                            PublicId = "seed/clothing-148",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=148"
+                            Url = "https://picsum.photos/seed/clothing-148/800/1000"
                         },
                         new
                         {
                             Id = 149,
                             IsMain = true,
                             ProductId = 149,
-                            PublicId = "seed/knitwear-149",
+                            PublicId = "seed/clothing-149",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=149"
+                            Url = "https://picsum.photos/seed/clothing-149/800/1000"
                         },
                         new
                         {
                             Id = 150,
                             IsMain = true,
                             ProductId = 150,
-                            PublicId = "seed/coat-150",
+                            PublicId = "seed/clothing-150",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=150"
+                            Url = "https://picsum.photos/seed/clothing-150/800/1000"
                         },
                         new
                         {
                             Id = 151,
                             IsMain = true,
                             ProductId = 151,
-                            PublicId = "seed/activewear-151",
+                            PublicId = "seed/clothing-151",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=151"
+                            Url = "https://picsum.photos/seed/clothing-151/800/1000"
                         },
                         new
                         {
                             Id = 152,
                             IsMain = true,
                             ProductId = 152,
-                            PublicId = "seed/underwear-152",
+                            PublicId = "seed/clothing-152",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=152"
+                            Url = "https://picsum.photos/seed/clothing-152/800/1000"
                         },
                         new
                         {
                             Id = 153,
                             IsMain = true,
                             ProductId = 153,
-                            PublicId = "seed/socks-153",
+                            PublicId = "seed/clothing-153",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=153"
+                            Url = "https://picsum.photos/seed/clothing-153/800/1000"
                         },
                         new
                         {
                             Id = 154,
                             IsMain = true,
                             ProductId = 154,
-                            PublicId = "seed/accessories-154",
+                            PublicId = "seed/clothing-154",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=154"
+                            Url = "https://picsum.photos/seed/clothing-154/800/1000"
                         },
                         new
                         {
                             Id = 155,
                             IsMain = true,
                             ProductId = 155,
-                            PublicId = "seed/bag-155",
+                            PublicId = "seed/clothing-155",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=155"
+                            Url = "https://picsum.photos/seed/clothing-155/800/1000"
                         },
                         new
                         {
                             Id = 156,
                             IsMain = true,
                             ProductId = 156,
-                            PublicId = "seed/hat-156",
+                            PublicId = "seed/clothing-156",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=156"
+                            Url = "https://picsum.photos/seed/clothing-156/800/1000"
                         },
                         new
                         {
                             Id = 157,
                             IsMain = true,
                             ProductId = 157,
-                            PublicId = "seed/dress-157",
+                            PublicId = "seed/clothing-157",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=157"
+                            Url = "https://picsum.photos/seed/clothing-157/800/1000"
                         },
                         new
                         {
                             Id = 158,
                             IsMain = true,
                             ProductId = 158,
-                            PublicId = "seed/skirt-158",
+                            PublicId = "seed/clothing-158",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=158"
+                            Url = "https://picsum.photos/seed/clothing-158/800/1000"
                         },
                         new
                         {
                             Id = 159,
                             IsMain = true,
                             ProductId = 159,
-                            PublicId = "seed/kids-clothing-159",
+                            PublicId = "seed/clothing-159",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=159"
+                            Url = "https://picsum.photos/seed/clothing-159/800/1000"
                         },
                         new
                         {
@@ -4545,178 +4548,178 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 160,
                             PublicId = "seed/clothing-160",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=160"
+                            Url = "https://picsum.photos/seed/clothing-160/800/1000"
                         },
                         new
                         {
                             Id = 161,
                             IsMain = true,
                             ProductId = 161,
-                            PublicId = "seed/tshirt-161",
+                            PublicId = "seed/clothing-161",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=161"
+                            Url = "https://picsum.photos/seed/clothing-161/800/1000"
                         },
                         new
                         {
                             Id = 162,
                             IsMain = true,
                             ProductId = 162,
-                            PublicId = "seed/hoodie-162",
+                            PublicId = "seed/clothing-162",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=162"
+                            Url = "https://picsum.photos/seed/clothing-162/800/1000"
                         },
                         new
                         {
                             Id = 163,
                             IsMain = true,
                             ProductId = 163,
-                            PublicId = "seed/jeans-163",
+                            PublicId = "seed/clothing-163",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=163"
+                            Url = "https://picsum.photos/seed/clothing-163/800/1000"
                         },
                         new
                         {
                             Id = 164,
                             IsMain = true,
                             ProductId = 164,
-                            PublicId = "seed/jacket-164",
+                            PublicId = "seed/clothing-164",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=164"
+                            Url = "https://picsum.photos/seed/clothing-164/800/1000"
                         },
                         new
                         {
                             Id = 165,
                             IsMain = true,
                             ProductId = 165,
-                            PublicId = "seed/sneakers-165",
+                            PublicId = "seed/clothing-165",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=165"
+                            Url = "https://picsum.photos/seed/clothing-165/800/1000"
                         },
                         new
                         {
                             Id = 166,
                             IsMain = true,
                             ProductId = 166,
-                            PublicId = "seed/sweatpants-166",
+                            PublicId = "seed/clothing-166",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=166"
+                            Url = "https://picsum.photos/seed/clothing-166/800/1000"
                         },
                         new
                         {
                             Id = 167,
                             IsMain = true,
                             ProductId = 167,
-                            PublicId = "seed/shorts-167",
+                            PublicId = "seed/clothing-167",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=167"
+                            Url = "https://picsum.photos/seed/clothing-167/800/1000"
                         },
                         new
                         {
                             Id = 168,
                             IsMain = true,
                             ProductId = 168,
-                            PublicId = "seed/shirt-168",
+                            PublicId = "seed/clothing-168",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=168"
+                            Url = "https://picsum.photos/seed/clothing-168/800/1000"
                         },
                         new
                         {
                             Id = 169,
                             IsMain = true,
                             ProductId = 169,
-                            PublicId = "seed/knitwear-169",
+                            PublicId = "seed/clothing-169",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=169"
+                            Url = "https://picsum.photos/seed/clothing-169/800/1000"
                         },
                         new
                         {
                             Id = 170,
                             IsMain = true,
                             ProductId = 170,
-                            PublicId = "seed/coat-170",
+                            PublicId = "seed/clothing-170",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=170"
+                            Url = "https://picsum.photos/seed/clothing-170/800/1000"
                         },
                         new
                         {
                             Id = 171,
                             IsMain = true,
                             ProductId = 171,
-                            PublicId = "seed/activewear-171",
+                            PublicId = "seed/clothing-171",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=171"
+                            Url = "https://picsum.photos/seed/clothing-171/800/1000"
                         },
                         new
                         {
                             Id = 172,
                             IsMain = true,
                             ProductId = 172,
-                            PublicId = "seed/underwear-172",
+                            PublicId = "seed/clothing-172",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=172"
+                            Url = "https://picsum.photos/seed/clothing-172/800/1000"
                         },
                         new
                         {
                             Id = 173,
                             IsMain = true,
                             ProductId = 173,
-                            PublicId = "seed/socks-173",
+                            PublicId = "seed/clothing-173",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=173"
+                            Url = "https://picsum.photos/seed/clothing-173/800/1000"
                         },
                         new
                         {
                             Id = 174,
                             IsMain = true,
                             ProductId = 174,
-                            PublicId = "seed/accessories-174",
+                            PublicId = "seed/clothing-174",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=174"
+                            Url = "https://picsum.photos/seed/clothing-174/800/1000"
                         },
                         new
                         {
                             Id = 175,
                             IsMain = true,
                             ProductId = 175,
-                            PublicId = "seed/bag-175",
+                            PublicId = "seed/clothing-175",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=175"
+                            Url = "https://picsum.photos/seed/clothing-175/800/1000"
                         },
                         new
                         {
                             Id = 176,
                             IsMain = true,
                             ProductId = 176,
-                            PublicId = "seed/hat-176",
+                            PublicId = "seed/clothing-176",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=176"
+                            Url = "https://picsum.photos/seed/clothing-176/800/1000"
                         },
                         new
                         {
                             Id = 177,
                             IsMain = true,
                             ProductId = 177,
-                            PublicId = "seed/dress-177",
+                            PublicId = "seed/clothing-177",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=177"
+                            Url = "https://picsum.photos/seed/clothing-177/800/1000"
                         },
                         new
                         {
                             Id = 178,
                             IsMain = true,
                             ProductId = 178,
-                            PublicId = "seed/skirt-178",
+                            PublicId = "seed/clothing-178",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=178"
+                            Url = "https://picsum.photos/seed/clothing-178/800/1000"
                         },
                         new
                         {
                             Id = 179,
                             IsMain = true,
                             ProductId = 179,
-                            PublicId = "seed/kids-clothing-179",
+                            PublicId = "seed/clothing-179",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=179"
+                            Url = "https://picsum.photos/seed/clothing-179/800/1000"
                         },
                         new
                         {
@@ -4725,178 +4728,178 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 180,
                             PublicId = "seed/clothing-180",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=180"
+                            Url = "https://picsum.photos/seed/clothing-180/800/1000"
                         },
                         new
                         {
                             Id = 181,
                             IsMain = true,
                             ProductId = 181,
-                            PublicId = "seed/tshirt-181",
+                            PublicId = "seed/clothing-181",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/tshirt?lock=181"
+                            Url = "https://picsum.photos/seed/clothing-181/800/1000"
                         },
                         new
                         {
                             Id = 182,
                             IsMain = true,
                             ProductId = 182,
-                            PublicId = "seed/hoodie-182",
+                            PublicId = "seed/clothing-182",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hoodie?lock=182"
+                            Url = "https://picsum.photos/seed/clothing-182/800/1000"
                         },
                         new
                         {
                             Id = 183,
                             IsMain = true,
                             ProductId = 183,
-                            PublicId = "seed/jeans-183",
+                            PublicId = "seed/clothing-183",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jeans?lock=183"
+                            Url = "https://picsum.photos/seed/clothing-183/800/1000"
                         },
                         new
                         {
                             Id = 184,
                             IsMain = true,
                             ProductId = 184,
-                            PublicId = "seed/jacket-184",
+                            PublicId = "seed/clothing-184",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/jacket?lock=184"
+                            Url = "https://picsum.photos/seed/clothing-184/800/1000"
                         },
                         new
                         {
                             Id = 185,
                             IsMain = true,
                             ProductId = 185,
-                            PublicId = "seed/sneakers-185",
+                            PublicId = "seed/clothing-185",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sneakers?lock=185"
+                            Url = "https://picsum.photos/seed/clothing-185/800/1000"
                         },
                         new
                         {
                             Id = 186,
                             IsMain = true,
                             ProductId = 186,
-                            PublicId = "seed/sweatpants-186",
+                            PublicId = "seed/clothing-186",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=186"
+                            Url = "https://picsum.photos/seed/clothing-186/800/1000"
                         },
                         new
                         {
                             Id = 187,
                             IsMain = true,
                             ProductId = 187,
-                            PublicId = "seed/shorts-187",
+                            PublicId = "seed/clothing-187",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shorts?lock=187"
+                            Url = "https://picsum.photos/seed/clothing-187/800/1000"
                         },
                         new
                         {
                             Id = 188,
                             IsMain = true,
                             ProductId = 188,
-                            PublicId = "seed/shirt-188",
+                            PublicId = "seed/clothing-188",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/shirt?lock=188"
+                            Url = "https://picsum.photos/seed/clothing-188/800/1000"
                         },
                         new
                         {
                             Id = 189,
                             IsMain = true,
                             ProductId = 189,
-                            PublicId = "seed/knitwear-189",
+                            PublicId = "seed/clothing-189",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/knitwear?lock=189"
+                            Url = "https://picsum.photos/seed/clothing-189/800/1000"
                         },
                         new
                         {
                             Id = 190,
                             IsMain = true,
                             ProductId = 190,
-                            PublicId = "seed/coat-190",
+                            PublicId = "seed/clothing-190",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/coat?lock=190"
+                            Url = "https://picsum.photos/seed/clothing-190/800/1000"
                         },
                         new
                         {
                             Id = 191,
                             IsMain = true,
                             ProductId = 191,
-                            PublicId = "seed/activewear-191",
+                            PublicId = "seed/clothing-191",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/activewear?lock=191"
+                            Url = "https://picsum.photos/seed/clothing-191/800/1000"
                         },
                         new
                         {
                             Id = 192,
                             IsMain = true,
                             ProductId = 192,
-                            PublicId = "seed/underwear-192",
+                            PublicId = "seed/clothing-192",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/underwear?lock=192"
+                            Url = "https://picsum.photos/seed/clothing-192/800/1000"
                         },
                         new
                         {
                             Id = 193,
                             IsMain = true,
                             ProductId = 193,
-                            PublicId = "seed/socks-193",
+                            PublicId = "seed/clothing-193",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/socks?lock=193"
+                            Url = "https://picsum.photos/seed/clothing-193/800/1000"
                         },
                         new
                         {
                             Id = 194,
                             IsMain = true,
                             ProductId = 194,
-                            PublicId = "seed/accessories-194",
+                            PublicId = "seed/clothing-194",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/accessories?lock=194"
+                            Url = "https://picsum.photos/seed/clothing-194/800/1000"
                         },
                         new
                         {
                             Id = 195,
                             IsMain = true,
                             ProductId = 195,
-                            PublicId = "seed/bag-195",
+                            PublicId = "seed/clothing-195",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/bag?lock=195"
+                            Url = "https://picsum.photos/seed/clothing-195/800/1000"
                         },
                         new
                         {
                             Id = 196,
                             IsMain = true,
                             ProductId = 196,
-                            PublicId = "seed/hat-196",
+                            PublicId = "seed/clothing-196",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/hat?lock=196"
+                            Url = "https://picsum.photos/seed/clothing-196/800/1000"
                         },
                         new
                         {
                             Id = 197,
                             IsMain = true,
                             ProductId = 197,
-                            PublicId = "seed/dress-197",
+                            PublicId = "seed/clothing-197",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/dress?lock=197"
+                            Url = "https://picsum.photos/seed/clothing-197/800/1000"
                         },
                         new
                         {
                             Id = 198,
                             IsMain = true,
                             ProductId = 198,
-                            PublicId = "seed/skirt-198",
+                            PublicId = "seed/clothing-198",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/skirt?lock=198"
+                            Url = "https://picsum.photos/seed/clothing-198/800/1000"
                         },
                         new
                         {
                             Id = 199,
                             IsMain = true,
                             ProductId = 199,
-                            PublicId = "seed/kids-clothing-199",
+                            PublicId = "seed/clothing-199",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=199"
+                            Url = "https://picsum.photos/seed/clothing-199/800/1000"
                         },
                         new
                         {
@@ -4905,7 +4908,7 @@ namespace ClothingStore.Infrastructure.Migrations
                             ProductId = 200,
                             PublicId = "seed/clothing-200",
                             SortOrder = 0,
-                            Url = "https://loremflickr.com/800/1000/clothing?lock=200"
+                            Url = "https://picsum.photos/seed/clothing-200/800/1000"
                         });
                 });
 
