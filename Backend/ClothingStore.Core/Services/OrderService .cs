@@ -203,5 +203,50 @@ namespace ClothingStore.Core.Services
                 })
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<AdminOrderListItemDto>> GetAllOrdersAsync()
+        {
+            return await repo
+                .AllReadonly<Order>()
+                .OrderByDescending(o => o.CreatedAt)
+                .Select(o => new AdminOrderListItemDto
+                {
+                    Id = o.Id,
+                    CustomerName = o.CustomerName,
+                    Email = o.Email,
+                    Phone = o.Phone,
+                    Address = o.Address,
+                    TotalAmount = o.TotalAmount,
+                    Status = o.Status.ToString(),
+                    CreatedAt = o.CreatedAt,
+                    ItemsCount = o.Items.Count
+                })
+                .ToListAsync();
+        }
+
+        public async Task<bool> UpdateOrderStatusAsync(int orderId, string newStatus)
+        {
+            var order = await repo.GetByIdAsync<Order>(orderId);
+            if (order == null)
+            {
+                return false;
+            }
+
+            if (!Enum.TryParse<OrderStatus>(newStatus, ignoreCase: true, out var statusEnum))
+            {
+                return false;
+            }
+
+            order.Status = statusEnum;
+
+            await repo.SaveChangesAsync();
+            return true;
+        }
+
+        public Task<IEnumerable<string>> GetAllStatusesAsync()
+        {
+            var names = Enum.GetNames(typeof(OrderStatus)).AsEnumerable();
+            return Task.FromResult(names);
+        }
     }
 }
