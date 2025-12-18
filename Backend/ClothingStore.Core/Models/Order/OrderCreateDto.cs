@@ -13,6 +13,9 @@ namespace ClothingStore.Core.Models.Order
         [Required]
         public PaymentMethod PaymentMethod { get; set; }
 
+        public int? SpeedyOfficeId { get; set; }
+        public string? SpeedyOfficeLabel { get; set; }
+
         [MinLength(1)]
         public List<OrderCreateItemDto> Items { get; set; } = new List<OrderCreateItemDto>();
     }

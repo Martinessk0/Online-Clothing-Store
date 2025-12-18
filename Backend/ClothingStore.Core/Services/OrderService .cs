@@ -9,10 +9,12 @@ namespace ClothingStore.Core.Services
     public class OrderService : IOrderService
     {
         private readonly IRepository repo;
+        private readonly ISpeedyService speedy;
 
-        public OrderService(IRepository repo)
+        public OrderService(IRepository repo, ISpeedyService speedy)
         {
             this.repo = repo;
+            this.speedy = speedy;
         }
 
         public async Task<int> CreateOrderAsync(OrderCreateDto dto, string? userId)
@@ -53,13 +55,31 @@ namespace ClothingStore.Core.Services
                     .ToListAsync();
             }
 
+            string addressToStore = dto.Address ?? string.Empty;
+
+            if (dto.SpeedyOfficeId.HasValue)
+            {
+                var office = await speedy.GetOfficeByIdAsync(dto.SpeedyOfficeId.Value);
+
+                var label = dto.SpeedyOfficeLabel;
+                if (office != null)
+                {
+                    label = $"{office.Name}, {office.AddressFull}".Trim().Trim(',');
+                }
+
+                addressToStore = $"Speedy офис: {label}";
+            }
+
             var order = new Order
             {
                 UserId = userId,
                 CustomerName = dto.CustomerName ?? string.Empty,
                 Email = dto.Email ?? string.Empty,
                 Phone = dto.Phone ?? string.Empty,
-                Address = dto.Address ?? string.Empty,
+                //Address = dto.Address ?? string.Empty,
+                Address = addressToStore,
+                SpeedyOfficeId = dto.SpeedyOfficeId,
+                SpeedyOfficeLabel = dto.SpeedyOfficeLabel,
                 PaymentMethod = dto.PaymentMethod,
                 Status = OrderStatus.Pending,
                 CreatedAt = DateTime.UtcNow

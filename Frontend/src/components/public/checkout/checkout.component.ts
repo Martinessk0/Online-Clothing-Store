@@ -6,10 +6,11 @@ import { CartService } from '../../../services/cart-service';
 import { CartItem } from '../../../models/cart/cart-item';
 import { OrderCreateDto } from '../../../models/order/order-create';
 import { OrderService } from '../../../services/order-service';
+import { SpeedyOfficePickerComponent, SpeedyPickedOffice } from '../../shared/speedy-office-picker/speedy-office-picker.component';
 
 @Component({
   selector: 'app-checkout',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, SpeedyOfficePickerComponent],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
@@ -23,13 +24,16 @@ export class CheckoutComponent {
   backendError: string | null = null;
   backendErrorsList: string[] = [];
   successOrderId: number | null = null;
+  speedyPickerOpen = false;
+  selectedSpeedyOffice: SpeedyPickedOffice | null = null;
 
   form = this.fb.group({
     customerName: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required, Validators.minLength(6)]],
     address: ['', [Validators.required, Validators.minLength(5)]],
-    paymentMethod: ['CashOnDelivery', Validators.required]
+    paymentMethod: ['CashOnDelivery', Validators.required],
+    deliveryMethod: ['Address', Validators.required],
   });
 
   get items(): CartItem[] {
@@ -85,7 +89,9 @@ export class CheckoutComponent {
         productId: i.productId,
         productVariantId: i.variantId ?? null,
         quantity: i.quantity
-      }))
+      })),
+      speedyOfficeId: this.selectedSpeedyOffice?.id ?? null,
+      speedyOfficeLabel: this.selectedSpeedyOffice?.label ?? null
     };
 
     this.loading = true;
@@ -157,5 +163,21 @@ export class CheckoutComponent {
     };
 
     return map[clean] ?? null;
+  }
+
+  openSpeedyPicker(): void {
+    this.speedyPickerOpen = true;
+  }
+
+  onSpeedyPicked(office: SpeedyPickedOffice): void {
+    this.selectedSpeedyOffice = office;
+
+    this.form.patchValue({
+      deliveryMethod: 'SpeedyOffice',
+      address: `Speedy офис: ${office.label}`
+    });
+
+    this.form.get('address')?.markAsDirty();
+    this.form.get('address')?.markAsTouched();
   }
 }
