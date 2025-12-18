@@ -73,15 +73,26 @@ namespace ClothingStore.Core.Services
 
         public async Task UpdateProductAsync(int id, ProductUpdateDTO productDTO)
         {
-            Product product = await repo.GetByIdAsync<Product>(id);
+            if (productDTO == null)
+            {
+                throw new ArgumentNullException(nameof(productDTO));
+            }
+
+            productDTO.Variants ??= new List<ProductVariantCreateDTO>();
+            productDTO.Images ??= new List<ProductImageCreateDto>();
+
+            var product = await repo.All<Product>()
+                .Include(p => p.Variants)
+                .Include(p => p.Images)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (product == null || !product.IsActive)
             {
                 throw new ArgumentException("Product not found");
             }
 
-            Category? category = await repo.AllReadonly<Category>()
-                                     .FirstOrDefaultAsync(c => c.Id == productDTO.CategoryId);
+            var category = await repo.AllReadonly<Category>()
+                .FirstOrDefaultAsync(c => c.Id == productDTO.CategoryId);
 
             if (category == null)
             {
@@ -91,36 +102,90 @@ namespace ClothingStore.Core.Services
             product.Name = productDTO.Name;
             product.Description = productDTO.Description;
             product.Price = productDTO.Price;
+            product.Brand = productDTO.Brand;
             product.CategoryId = category.Id;
             product.ModifiedAt = DateTime.UtcNow;
-            product.Brand = productDTO.Brand;
 
-            var existingVariants = await repo.All<ProductVariant>()
-                   .Where(v => v.ProductId == id)
-                   .ToListAsync();
+            var existingVariants = product.Variants.ToList();
+            var existingVariantIds = existingVariants.Select(v => v.Id).ToList();
 
-            foreach (var oldVar in existingVariants)
-            {
-                repo.Delete(oldVar);
-            }
-
-            foreach (var v in productDTO.Variants)
-            {
-                await repo.AddAsync(new ProductVariant
-                {
-                    ProductId = id,
-                    ColorId = v.ColorId,
-                    Size = v.Size,
-                    Stock = v.Stock,
-                    IsActive = true
-                });
-            }
-
-
-            var existingImages = await repo.All<ProductImage>()
-                .Where(pi => pi.ProductId == id)
+            var variantIdsWithOrders = await repo.AllReadonly<OrderItem>()
+                .Where(oi => oi.ProductVariantId != null &&
+                             existingVariantIds.Contains(oi.ProductVariantId.Value))
+                .Select(oi => oi.ProductVariantId!.Value)
+                .Distinct()
                 .ToListAsync();
 
+            var variantsWithOrders = new HashSet<int>(variantIdsWithOrders);
+
+            var usedExistingVariantIds = new HashSet<int>();
+
+            foreach (var dto in productDTO.Variants.Where(v => v.Id > 0))
+            {
+                var existing = existingVariants.FirstOrDefault(v => v.Id == dto.Id);
+                if (existing != null)
+                {
+                    existing.ColorId = dto.ColorId;
+                    existing.Size = dto.Size;
+                    existing.Stock = dto.Stock;
+                    existing.IsActive = true;
+
+                    usedExistingVariantIds.Add(existing.Id);
+                }
+            }
+
+            foreach (var dto in productDTO.Variants)
+            {
+                if (dto.Id > 0 && usedExistingVariantIds.Contains(dto.Id))
+                {
+                    continue;
+                }
+
+                var existing = existingVariants.FirstOrDefault(v =>
+                    !usedExistingVariantIds.Contains(v.Id) &&
+                    v.ColorId == dto.ColorId &&
+                    v.Size == dto.Size);
+
+                if (existing != null)
+                {
+                    existing.Stock = dto.Stock;
+                    existing.IsActive = true;
+
+                    usedExistingVariantIds.Add(existing.Id);
+                }
+                else
+                {
+                    var newVariant = new ProductVariant
+                    {
+                        ProductId = id,
+                        ColorId = dto.ColorId,
+                        Size = dto.Size,
+                        Stock = dto.Stock,
+                        IsActive = true
+                    };
+
+                    await repo.AddAsync(newVariant);
+                }
+            }
+
+            foreach (var existing in existingVariants)
+            {
+                if (usedExistingVariantIds.Contains(existing.Id))
+                {
+                    continue;
+                }
+
+                if (variantsWithOrders.Contains(existing.Id))
+                {
+                    existing.IsActive = false;
+                }
+                else
+                {
+                    repo.Delete(existing);
+                }
+            }
+
+            var existingImages = product.Images.ToList();
             foreach (var img in existingImages)
             {
                 repo.Delete(img);
@@ -135,20 +200,29 @@ namespace ClothingStore.Core.Services
 
             foreach (var imgDto in productDTO.Images)
             {
-                await repo.AddAsync(new ProductImage
+                if (string.IsNullOrWhiteSpace(imgDto.Url))
+                {
+                    continue;
+                }
+
+                var newImage = new ProductImage
                 {
                     ProductId = id,
                     Url = imgDto.Url,
-                    PublicId = imgDto.PublicId,
+                    PublicId = imgDto.PublicId ?? string.Empty,
                     IsMain = imgDto.IsMain,
                     SortOrder = sortOrder++
-                });
-            }
+                };
 
+                await repo.AddAsync(newImage);
+            }
 
             repo.Update(product);
             await repo.SaveChangesAsync();
         }
+
+
+
 
         public async Task<bool> DeleteProductAsync(int id)
         {
