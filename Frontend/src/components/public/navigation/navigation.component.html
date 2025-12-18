@@ -1,137 +1,113 @@
-<nav class="bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-800">
+<nav class="fixed top-0 left-0 right-0 z-50 h-16 bg-white/90 backdrop-blur border-b border-gray-200
+            dark:bg-gray-900/90 dark:border-gray-800">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
 
-      <!-- Brand -->
-      <a routerLink="/home-page"
-         (click)="closeMenus()"
-         class="flex items-center gap-1 text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+      <a routerLink="/home-page" (click)="closeMenus()"
+        class="flex items-center gap-1 text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
         <span class="text-blue-600">Clothes</span>Store
       </a>
 
-      <!-- DESKTOP (md+) -->
       <div class="hidden md:flex items-center gap-4">
 
-        <a routerLink="/home-page"
-           (click)="closeMenus()"
-           class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
-           routerLinkActive="text-blue-600 dark:text-blue-400"
-           [routerLinkActiveOptions]="{ exact: true }">
+        <a routerLink="/home-page" (click)="closeMenus()"
+          class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400" [routerLinkActiveOptions]="{ exact: true }">
           Начало
         </a>
 
-        <a routerLink="/products"
-           (click)="closeMenus()"
-           class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
-           routerLinkActive="text-blue-600 dark:text-blue-400">
+        <a routerLink="/products" (click)="closeMenus()"
+          class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400">
           Продукти
         </a>
 
         @if (isLoggedIn) {
-          <!-- Profile dropdown -->
-          <div class="relative">
-            <button type="button"
-                    (click)="isProfileMenuOpen = !isProfileMenuOpen"
-                    class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium
+        <div class="relative">
+          <button type="button" (click)="isProfileMenuOpen = !isProfileMenuOpen" class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium
                            text-gray-700 hover:bg-gray-100 hover:text-gray-900
-                           dark:text-gray-200 dark:hover:bg-gray-800"
-                    [attr.aria-expanded]="isProfileMenuOpen">
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <circle cx="12" cy="8" r="3.2" stroke-width="1.8"></circle>
-                <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                      d="M5 19.5a7 7 0 0 1 14 0" />
-              </svg>
-              Профил
-              <svg class="h-4 w-4 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                      d="M6 9l6 6 6-6" />
-              </svg>
-            </button>
+                           dark:text-gray-200 dark:hover:bg-gray-800" [attr.aria-expanded]="isProfileMenuOpen">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="8" r="3.2" stroke-width="1.8"></circle>
+              <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 19.5a7 7 0 0 1 14 0" />
+            </svg>
+            Профил
+            <svg class="h-4 w-4 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
 
-            @if (isProfileMenuOpen) {
-              <div class="absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg
+          @if (isProfileMenuOpen) {
+          <div class="absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg
                           dark:border-gray-800 dark:bg-gray-900">
-                <a routerLink="/profile" (click)="closeMenus()"
-                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-800">
-                  Профил
-                </a>
+            <a routerLink="/profile" (click)="closeMenus()"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-800">
+              Профил
+            </a>
 
-                <a routerLink="/orders" (click)="closeMenus()"
-                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-800">
-                  Моите поръчки
-                </a>
+            <a routerLink="/orders" (click)="closeMenus()"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-800">
+              Моите поръчки
+            </a>
 
-                @if (isAdmin) {
-                  <a routerLink="/admin" (click)="closeMenus()"
-                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-800">
-                    Администрация
-                  </a>
-                }
-
-                <div class="h-px bg-gray-100 dark:bg-gray-800"></div>
-
-                <button type="button" (click)="logout()"
-                        class="w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50
-                               dark:text-red-400 dark:hover:bg-red-950/30">
-                  Изход
-                </button>
-              </div>
+            @if (isAdmin) {
+            <a routerLink="/admin" (click)="closeMenus()"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-800">
+              Администрация
+            </a>
             }
-          </div>
-        } @else {
-          <a routerLink="/login"
-             (click)="closeMenus()"
-             class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
-             routerLinkActive="text-blue-600 dark:text-blue-400">
-            Вход
-          </a>
 
-          <a routerLink="/register"
-             (click)="closeMenus()"
-             class="inline-flex items-center rounded-lg border border-blue-600 px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50
+            <div class="h-px bg-gray-100 dark:bg-gray-800"></div>
+
+            <button type="button" (click)="logout()" class="w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50
+                               dark:text-red-400 dark:hover:bg-red-950/30">
+              Изход
+            </button>
+          </div>
+          }
+        </div>
+        } @else {
+        <a routerLink="/login" (click)="closeMenus()"
+          class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400">
+          Вход
+        </a>
+
+        <a routerLink="/register" (click)="closeMenus()" class="inline-flex items-center rounded-lg border border-blue-600 px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50
                     dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-950/40"
-             routerLinkActive="bg-blue-600 text-white hover:bg-blue-700 border-blue-600 dark:bg-blue-500 dark:hover:bg-blue-600">
-            Регистрация
-          </a>
+          routerLinkActive="bg-blue-600 text-white hover:bg-blue-700 border-blue-600 dark:bg-blue-500 dark:hover:bg-blue-600">
+          Регистрация
+        </a>
         }
 
-        <!-- RIGHT SIDE ICONS: theme + cart (as requested) -->
         <div class="flex items-center gap-2">
 
           <!-- Theme toggle -->
-          <button type="button" (click)="toggleTheme()"
-                  class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100
-                         dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
-                  aria-label="Смяна на тема">
+          <button type="button" (click)="toggleTheme()" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100
+                         dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800" aria-label="Смяна на тема">
             @if (isDark()) {
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <circle cx="12" cy="12" r="4" stroke-width="1.7"></circle>
-                <path stroke-width="1.7"
-                      d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M17.99 17.99l1.79 1.79M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M17.99 6.01l1.79-1.79" />
-              </svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="4" stroke-width="1.7"></circle>
+              <path stroke-width="1.7"
+                d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M17.99 17.99l1.79 1.79M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M17.99 6.01l1.79-1.79" />
+            </svg>
             } @else {
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-width="1.7" d="M20 14.5A7.5 7.5 0 0 1 10.5 5 6 6 0 1 0 20 14.5z" />
-              </svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="1.7" d="M20 14.5A7.5 7.5 0 0 1 10.5 5 6 6 0 1 0 20 14.5z" />
+            </svg>
             }
           </button>
 
-          <!-- Cart icon (DESKTOP) -->
-          <a routerLink="/cart"
-             (click)="closeMenus()"
-             class="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100
+          <a routerLink="/cart" (click)="closeMenus()" class="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100
                     dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
-             routerLinkActive="ring-2 ring-blue-500/40"
-             aria-label="Кошница">
+            routerLinkActive="ring-2 ring-blue-500/40" aria-label="Кошница">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                    d="M3 4h2l1 11h11l1-7H6.5" />
+              <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 4h2l1 11h11l1-7H6.5" />
               <circle cx="9" cy="18" r="1.4" stroke-width="1.8"></circle>
               <circle cx="16" cy="18" r="1.4" stroke-width="1.8"></circle>
             </svg>
 
-            <span *ngIf="cartQuantity > 0"
-                  class="absolute -top-1 -right-1 inline-flex min-h-[1.1rem] min-w-[1.1rem]
+            <span *ngIf="cartQuantity > 0" class="absolute -top-1 -right-1 inline-flex min-h-[1.1rem] min-w-[1.1rem]
                          items-center justify-center rounded-full bg-blue-600 px-1
                          text-[10px] font-semibold text-white">
               {{ cartQuantity }}
@@ -141,38 +117,27 @@
         </div>
       </div>
 
-      <!-- MOBILE RIGHT ICONS (cart + burger) -->
       <div class="flex items-center gap-2 md:hidden">
-        <!-- Cart icon (MOBILE OUTSIDE menu) -->
-        <a routerLink="/cart"
-           (click)="closeMenus()"
-           class="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100
-                  dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
-           aria-label="Кошница">
+        <a routerLink="/cart" (click)="closeMenus()" class="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100
+                  dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800" aria-label="Кошница">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                  d="M3 4h2l1 11h11l1-7H6.5" />
+            <path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 4h2l1 11h11l1-7H6.5" />
             <circle cx="9" cy="18" r="1.4" stroke-width="1.8"></circle>
             <circle cx="16" cy="18" r="1.4" stroke-width="1.8"></circle>
           </svg>
 
-          <span *ngIf="cartQuantity > 0"
-                class="absolute -top-1 -right-1 inline-flex min-h-[1.1rem] min-w-[1.1rem]
+          <span *ngIf="cartQuantity > 0" class="absolute -top-1 -right-1 inline-flex min-h-[1.1rem] min-w-[1.1rem]
                        items-center justify-center rounded-full bg-blue-600 px-1
                        text-[10px] font-semibold text-white">
             {{ cartQuantity }}
           </span>
         </a>
 
-        <!-- Burger -->
-        <button type="button"
-                class="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900
-                       dark:text-gray-200 dark:hover:bg-gray-800"
-                (click)="toggleMobileMenu()">
+        <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900
+                       dark:text-gray-200 dark:hover:bg-gray-800" (click)="toggleMobileMenu()">
           <span class="sr-only">Отвори меню</span>
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-                  d="M4 6h16M4 12h16M4 18h16" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
@@ -180,77 +145,66 @@
     </div>
   </div>
 
-  <!-- MOBILE DRAWER -->
   @if (isMobileMenuOpen) {
-    <div class="md:hidden border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
-      <div class="px-4 py-3 space-y-2">
+  <div class="md:hidden border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div class="px-4 py-3 space-y-2">
 
-        <a routerLink="/home-page" (click)="closeMenus()"
-           class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
+      <a routerLink="/home-page" (click)="closeMenus()" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
                   dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400"
-           routerLinkActive="text-blue-600 dark:text-blue-400"
-           [routerLinkActiveOptions]="{ exact: true }">
-          Начало
-        </a>
+        routerLinkActive="text-blue-600 dark:text-blue-400" [routerLinkActiveOptions]="{ exact: true }">
+        Начало
+      </a>
 
-        <a routerLink="/products" (click)="closeMenus()"
-           class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
+      <a routerLink="/products" (click)="closeMenus()" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
                   dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400"
-           routerLinkActive="text-blue-600 dark:text-blue-400">
-          Продукти
-        </a>
+        routerLinkActive="text-blue-600 dark:text-blue-400">
+        Продукти
+      </a>
 
-        <div class="h-px bg-gray-100 dark:bg-gray-800"></div>
+      <div class="h-px bg-gray-100 dark:bg-gray-800"></div>
 
-        @if (isLoggedIn) {
-          <a routerLink="/profile" (click)="closeMenus()"
-             class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
+      @if (isLoggedIn) {
+      <a routerLink="/profile" (click)="closeMenus()" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
                     dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400">
-            Профил
-          </a>
+        Профил
+      </a>
 
-          <a routerLink="/orders" (click)="closeMenus()"
-             class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
+      <a routerLink="/orders" (click)="closeMenus()" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
                     dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400">
-            Моите поръчки
-          </a>
+        Моите поръчки
+      </a>
 
-          @if (isAdmin) {
-            <a routerLink="/admin" (click)="closeMenus()"
-               class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
+      @if (isAdmin) {
+      <a routerLink="/admin" (click)="closeMenus()" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
                       dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400">
-              Администрация
-            </a>
-          }
+        Администрация
+      </a>
+      }
 
-          <button type="button" (click)="logout()"
-                  class="w-full text-left rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50
+      <button type="button" (click)="logout()" class="w-full text-left rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50
                          dark:text-red-400 dark:hover:bg-red-950/30">
-            Изход
-          </button>
-        } @else {
-          <a routerLink="/login" (click)="closeMenus()"
-             class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
+        Изход
+      </button>
+      } @else {
+      <a routerLink="/login" (click)="closeMenus()" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
                     dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400">
-            Вход
-          </a>
+        Вход
+      </a>
 
-          <a routerLink="/register" (click)="closeMenus()"
-             class="block rounded-lg px-3 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50
+      <a routerLink="/register" (click)="closeMenus()" class="block rounded-lg px-3 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50
                     dark:text-blue-400 dark:hover:bg-blue-950/40">
-            Регистрация
-          </a>
-        }
+        Регистрация
+      </a>
+      }
 
-        <div class="h-px bg-gray-100 dark:bg-gray-800"></div>
+      <div class="h-px bg-gray-100 dark:bg-gray-800"></div>
 
-        <button type="button" (click)="toggleTheme()"
-                class="w-full text-left rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100
+      <button type="button" (click)="toggleTheme()" class="w-full text-left rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100
                        dark:text-gray-200 dark:hover:bg-gray-800">
-          @if (isDark()) { Светла тема } @else { Тъмна тема }
-        </button>
+        @if (isDark()) { Светла тема } @else { Тъмна тема }
+      </button>
 
-      </div>
     </div>
+  </div>
   }
 </nav>

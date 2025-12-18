@@ -1,8 +1,8 @@
-<nav class="bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-800">
+<nav class="fixed top-0 left-0 right-0 z-50 h-16 bg-white/90 backdrop-blur border-b border-gray-200
+            dark:bg-gray-900/90 dark:border-gray-800">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
 
-      <!-- Left: Admin brand -->
       <div class="flex items-center gap-3">
         <a routerLink="/admin"
            class="flex items-center gap-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-gray-100">
@@ -12,7 +12,6 @@
           Admin Panel
         </a>
 
-        <!-- Desktop links -->
         <div class="hidden md:flex items-center gap-3 ml-2">
           @for (link of adminLinks; track link.path) {
             <a [routerLink]="link.path"
@@ -25,16 +24,13 @@
         </div>
       </div>
 
-      <!-- Right actions -->
       <div class="hidden md:flex items-center gap-2">
 
-        <!-- Back to store -->
         <a routerLink="/home-page"
            class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400">
           Към магазина
         </a>
 
-        <!-- Theme toggle -->
         <button type="button"
           class="ml-2 inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100
                  dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
@@ -53,14 +49,12 @@
           <span class="sr-only">Смяна на тема</span>
         </button>
 
-        <!-- Logout -->
         <button type="button" (click)="logout()"
           class="ml-1 text-sm font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300">
           Изход
         </button>
       </div>
 
-      <!-- Mobile burger -->
       <div class="flex md:hidden items-center gap-2">
         <button type="button"
           class="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
@@ -73,44 +67,48 @@
       </div>
     </div>
 
-    <!-- Mobile drawer -->
-    @if (isMobileMenuOpen) {
-      <div class="md:hidden border-t border-gray-200 dark:border-gray-800 pb-4">
-        <div class="space-y-1 pt-2">
+@if (isMobileMenuOpen) {
+  <div class="fixed inset-x-0 top-16 z-50 md:hidden bg-white dark:bg-gray-900
+              border-t border-gray-200 dark:border-gray-800">
+    <div class="mx-auto max-w-7xl px-4 py-3">
+      <div class="space-y-1">
 
-          @for (link of adminLinks; track link.path) {
-            <a [routerLink]="link.path"
-               (click)="closeMobileMenu()"
-               routerLinkActive="bg-gray-100 dark:bg-gray-800"
-               [routerLinkActiveOptions]="{ exact: link.exact ?? false }"
-               class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100
-                      dark:text-gray-200 dark:hover:bg-gray-800">
-              {{ link.label }}
-            </a>
-          }
-
-          <div class="h-px bg-gray-100 dark:bg-gray-800 my-2"></div>
-
-          <a routerLink="/home-page"
+        @for (link of adminLinks; track link.path) {
+          <a [routerLink]="link.path"
              (click)="closeMobileMenu()"
+             routerLinkActive="bg-gray-100 dark:bg-gray-800"
+             [routerLinkActiveOptions]="{ exact: link.exact ?? false }"
              class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100
                     dark:text-gray-200 dark:hover:bg-gray-800">
-            Към магазина
+            {{ link.label }}
           </a>
+        }
 
-          <button type="button" (click)="toggleTheme()"
-            class="w-full text-left rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100
-                   dark:text-gray-200 dark:hover:bg-gray-800">
-            @if (isDarkMode()) { Светла тема } @else { Тъмна тема }
-          </button>
+        <div class="h-px bg-gray-100 dark:bg-gray-800 my-2"></div>
 
-          <button type="button" (click)="logout()"
-            class="block w-full text-left rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-gray-100
-                   dark:text-red-400 dark:hover:bg-gray-800">
-            Изход
-          </button>
-        </div>
+        <a routerLink="/home-page"
+           (click)="closeMobileMenu()"
+           class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100
+                  dark:text-gray-200 dark:hover:bg-gray-800">
+          Към магазина
+        </a>
+
+        <button type="button" (click)="toggleTheme()"
+          class="w-full text-left rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100
+                 dark:text-gray-200 dark:hover:bg-gray-800">
+          @if (isDarkMode()) { Светла тема } @else { Тъмна тема }
+        </button>
+
+        <button type="button" (click)="logout()"
+          class="w-full text-left rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-gray-100
+                 dark:text-red-400 dark:hover:bg-gray-800">
+          Изход
+        </button>
+
       </div>
-    }
+    </div>
+  </div>
+}
+
   </div>
 </nav>

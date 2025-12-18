@@ -8,7 +8,7 @@ import { RecommendationsCarouselComponent } from '../recommendations-carousel/re
 
 @Component({
   selector: 'app-home-page',
-  imports: [CommonModule, RouterModule,ProductCardComponent,RecommendationsCarouselComponent],
+  imports: [CommonModule, RouterModule,RecommendationsCarouselComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
