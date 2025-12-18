@@ -136,7 +136,7 @@ namespace ClothingStore.Controllers
                 }
 
                 var products = await _recommendationService
-                    .GetRecommendationsAsync(userId, anonymousId, categoryId, 4);
+                    .GetRecommendationsAsync(userId, anonymousId, categoryId, 10);
 
                 return Ok(products);
             }

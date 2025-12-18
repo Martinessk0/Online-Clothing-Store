@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 import { Product } from '../../../models/product/product-dto';
 import { RecommendationService } from '../../../services/recommendation-service';
 import { ProductCardComponent } from '../../shared/product-card/product-card.component';
+import { RecommendationsCarouselComponent } from '../recommendations-carousel/recommendations-carousel.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [CommonModule, RouterModule,ProductCardComponent],
+  imports: [CommonModule, RouterModule,ProductCardComponent,RecommendationsCarouselComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })

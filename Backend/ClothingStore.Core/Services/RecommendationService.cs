@@ -75,7 +75,7 @@ namespace ClothingStore.Core.Services
             string? userId,
             string? anonymousId,
             int? currentCategoryId,
-            int take = 4)
+            int take = 10)
         {
             var cutoff = DateTime.UtcNow.AddDays(-60);
 

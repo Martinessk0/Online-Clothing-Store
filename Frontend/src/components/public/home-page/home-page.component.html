@@ -1,20 +1,12 @@
 <section class="gap-8 items-center flex flex-col lg:grid lg:grid-cols-2">
   <div class="w-full order-1 lg:order-2">
-    <div
-      class="aspect-[4/3] w-full rounded-3xl border border-dashed border-gray-300 dark:border-gray-700
-             flex items-center justify-center overflow-hidden"
-    >
-      <img
-        src="/assets/images/home-page-light.png"
-        alt="ClothesStore light"
-        class="w-full h-full object-cover block dark:hidden"
-      />
+    <div class="aspect-[4/3] w-full rounded-3xl border border-dashed border-gray-300 dark:border-gray-700
+             flex items-center justify-center overflow-hidden">
+      <img src="/assets/images/home-page-light.png" alt="ClothesStore light"
+        class="w-full h-full object-cover block dark:hidden" />
 
-      <img
-        src="/assets/images/home-page-dark.png"
-        alt="ClothesStore dark"
-        class="w-full h-full object-cover hidden dark:block"
-      />
+      <img src="/assets/images/home-page-dark.png" alt="ClothesStore dark"
+        class="w-full h-full object-cover hidden dark:block" />
     </div>
   </div>
 
@@ -28,49 +20,18 @@
     </p>
 
     <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-      <a
-        routerLink="/register"
-        class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
-               text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
-      >
+      <a routerLink="/register" class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
+               text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
         Започни сега
       </a>
-      <a
-        routerLink="/products"
-        class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
+      <a routerLink="/products" class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
                border border-gray-300 text-gray-700 hover:bg-gray-100
-               dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
-      >
+               dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
         Разгледай продукти
       </a>
     </div>
   </div>
 </section>
 
-<section class="mt-8 space-y-4">
-  <h2 class="text-lg font-semibold tracking-tight">
-    Препоръчани за теб
-  </h2>
-
-  <div *ngIf="loading" class="text-sm text-slate-500 dark:text-slate-400">
-    Зареждаме препоръките...
-  </div>
-
-  <div
-    *ngIf="!loading && !recommended.length"
-    class="text-sm text-slate-500 dark:text-slate-400"
-  >
-    В момента няма препоръчани продукти.
-  </div>
-
-  <div
-    *ngIf="!loading && recommended.length"
-    class="grid gap-4 grid-cols-2 md:grid-cols-4"
-  >
-    <app-product-card
-      *ngFor="let product of recommended"
-      [product]="product"
-    ></app-product-card>
-  </div>
-</section>
-
+<app-recommendations-carousel source="recommended" title="Препоръчани за теб"
+  [autoRotate]="true"></app-recommendations-carousel>
