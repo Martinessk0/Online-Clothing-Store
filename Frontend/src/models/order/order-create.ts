@@ -9,4 +9,6 @@ export interface OrderCreateDto {
   address?: string | null;
   paymentMethod: PaymentMethod;
   items: OrderCreateItemDto[];
+  speedyOfficeId?: number | null;
+  speedyOfficeLabel?: string | null;
 }

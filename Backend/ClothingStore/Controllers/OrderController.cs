@@ -81,5 +81,20 @@ namespace ClothingStore.Controllers
 
             return Ok(order);
         }
+
+        [HttpGet("my")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetMyOrders()
+        {
+            var userId = GetUserId();
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized();
+            }
+
+            var orders = await orderService.GetUserOrdersAsync(userId);
+            return Ok(orders);
+        }
     }
 }

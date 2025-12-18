@@ -50,6 +50,11 @@ namespace ClothingStore.Infrastructure.Data.Entities
         [Required]
         public PaymentMethod PaymentMethod { get; set; } = PaymentMethod.CashOnDelivery;
 
+        public int? SpeedyOfficeId { get; set; }
+
+        [MaxLength(300)]
+        public string? SpeedyOfficeLabel { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public ICollection<OrderItem> Items { get; set; } = new List<OrderItem>();

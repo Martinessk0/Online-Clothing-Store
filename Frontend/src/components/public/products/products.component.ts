@@ -1,16 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { Product } from '../../../models/product/product-dto';
 import { ProductService } from '../../../services/product-service';
 import { ProductCardComponent } from '../../shared/product-card/product-card.component';
 import { FormsModule } from '@angular/forms';
 import { ProductFilterDto } from '../../../models/product/product-filter-dto';
+import { RecommendationService } from '../../../services/recommendation-service';
 
 @Component({
   selector: 'app-products',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ProductCardComponent,],
+  imports: [CommonModule, FormsModule, ProductCardComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
@@ -26,6 +25,10 @@ export class ProductsComponent implements OnInit {
   colors: string[] = [];
 
   constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private recommendationService: RecommendationService
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -64,6 +67,19 @@ loadFilterOptions(): void {
         this.error = 'Грешка при зареждане на продуктите.';
         this.loading = false;
       },
+    });
+  }
+  //Kato dobavim search
+  onSearchChange(term: string): void {
+    this.search = term;
+    const value = term.trim();
+    if (!value) {
+      return;
+    }
+
+    this.recommendationService.trackInteraction({
+      type: 'Search',
+      payload: value,
     });
   }
 

@@ -9,10 +9,12 @@ namespace ClothingStore.Core.Services
     public class OrderService : IOrderService
     {
         private readonly IRepository repo;
+        private readonly ISpeedyService speedy;
 
-        public OrderService(IRepository repo)
+        public OrderService(IRepository repo, ISpeedyService speedy)
         {
             this.repo = repo;
+            this.speedy = speedy;
         }
 
         public async Task<int> CreateOrderAsync(OrderCreateDto dto, string? userId)
@@ -53,13 +55,31 @@ namespace ClothingStore.Core.Services
                     .ToListAsync();
             }
 
+            string addressToStore = dto.Address ?? string.Empty;
+
+            if (dto.SpeedyOfficeId.HasValue)
+            {
+                var office = await speedy.GetOfficeByIdAsync(dto.SpeedyOfficeId.Value);
+
+                var label = dto.SpeedyOfficeLabel;
+                if (office != null)
+                {
+                    label = $"{office.Name}, {office.AddressFull}".Trim().Trim(',');
+                }
+
+                addressToStore = $"Speedy офис: {label}";
+            }
+
             var order = new Order
             {
                 UserId = userId,
                 CustomerName = dto.CustomerName ?? string.Empty,
                 Email = dto.Email ?? string.Empty,
                 Phone = dto.Phone ?? string.Empty,
-                Address = dto.Address ?? string.Empty,
+                //Address = dto.Address ?? string.Empty,
+                Address = addressToStore,
+                SpeedyOfficeId = dto.SpeedyOfficeId,
+                SpeedyOfficeLabel = dto.SpeedyOfficeLabel,
                 PaymentMethod = dto.PaymentMethod,
                 Status = OrderStatus.Pending,
                 CreatedAt = DateTime.UtcNow
@@ -121,6 +141,7 @@ namespace ClothingStore.Core.Services
             var query = repo.AllReadonly<Order>()
                 .Include(o => o.Items)
                     .ThenInclude(i => i.Product)
+                          .ThenInclude(p => p.Images)
                 .Include(o => o.Items)
                     .ThenInclude(i => i.ProductVariant)
                         .ThenInclude(v => v!.Color)
@@ -143,6 +164,9 @@ namespace ClothingStore.Core.Services
                 Id = order.Id,
                 CustomerName = order.CustomerName,
                 Email = order.Email,
+                Phone = order.Phone,
+                Address = order.Address,
+                PaymentMethod = order.PaymentMethod.ToString(),
                 TotalAmount = order.TotalAmount,
                 Status = order.Status.ToString(),
                 CreatedAt = order.CreatedAt
@@ -150,11 +174,18 @@ namespace ClothingStore.Core.Services
 
             foreach (var item in order.Items)
             {
+                var imageUrl = item.Product.Images
+                    .OrderByDescending(img => img.IsMain)
+                    .ThenBy(img => img.SortOrder)
+                    .Select(img => img.Url)
+                    .FirstOrDefault();
+
                 dto.Items.Add(new OrderItemDto
                 {
                     ProductId = item.ProductId,
                     ProductVariantId = item.ProductVariantId,
                     Name = item.Product.Name,
+                    ImageUrl = imageUrl,
                     ColorName = item.ColorName,
                     Size = item.Size,
                     Quantity = item.Quantity,
@@ -163,6 +194,79 @@ namespace ClothingStore.Core.Services
             }
 
             return dto;
+        }
+
+        public async Task<IEnumerable<OrderDto>> GetUserOrdersAsync(string userId)
+        {
+            return await repo
+                .AllReadonly<Order>()
+                .Where(o => o.UserId == userId)
+                .OrderByDescending(o => o.CreatedAt)
+                .Select(o => new OrderDto
+                {
+                    Id = o.Id,
+                    CustomerName = o.CustomerName!,
+                    Email = o.Email!,
+                    TotalAmount = o.TotalAmount,
+                    Status = o.Status.ToString(),
+                    CreatedAt = o.CreatedAt,
+                    Items = o.Items.Select(i => new OrderItemDto
+                    {
+                        ProductId = i.ProductId,
+                        ProductVariantId = i.ProductVariantId,
+                        Name = i.Product.Name,
+                        ColorName = i.ColorName,
+                        Size = i.Size,
+                        Quantity = i.Quantity,
+                        UnitPrice = i.UnitPrice
+                    }).ToList()
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<AdminOrderListItemDto>> GetAllOrdersAsync()
+        {
+            return await repo
+                .AllReadonly<Order>()
+                .OrderByDescending(o => o.CreatedAt)
+                .Select(o => new AdminOrderListItemDto
+                {
+                    Id = o.Id,
+                    CustomerName = o.CustomerName,
+                    Email = o.Email,
+                    Phone = o.Phone,
+                    Address = o.Address,
+                    TotalAmount = o.TotalAmount,
+                    Status = o.Status.ToString(),
+                    CreatedAt = o.CreatedAt,
+                    ItemsCount = o.Items.Count
+                })
+                .ToListAsync();
+        }
+
+        public async Task<bool> UpdateOrderStatusAsync(int orderId, string newStatus)
+        {
+            var order = await repo.GetByIdAsync<Order>(orderId);
+            if (order == null)
+            {
+                return false;
+            }
+
+            if (!Enum.TryParse<OrderStatus>(newStatus, ignoreCase: true, out var statusEnum))
+            {
+                return false;
+            }
+
+            order.Status = statusEnum;
+
+            await repo.SaveChangesAsync();
+            return true;
+        }
+
+        public Task<IEnumerable<string>> GetAllStatusesAsync()
+        {
+            var names = Enum.GetNames(typeof(OrderStatus)).AsEnumerable();
+            return Task.FromResult(names);
         }
     }
 }

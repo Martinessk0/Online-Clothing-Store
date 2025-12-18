@@ -1,0 +1,104 @@
+<div class="max-w-5xl mx-auto px-4 py-8 space-y-6">
+    <a routerLink="/orders" class="inline-flex items-center text-xs text-slate-500 hover:text-slate-800
+           dark:text-slate-400 dark:hover:text-slate-100">
+        ← Назад към поръчките
+    </a>
+
+    <div *ngIf="loading" class="text-sm text-slate-500 dark:text-slate-400">
+        Зареждане на поръчката...
+    </div>
+
+    <div *ngIf="error" class="text-sm text-red-600 dark:text-red-400">
+        {{ error }}
+    </div>
+
+    <div *ngIf="!loading && !error && order" class="space-y-4">
+        <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div>
+                <h1 class="text-2xl font-semibold tracking-tight">
+                    Поръчка #{{ order!.id }}
+                </h1>
+                <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                    Направена на {{ order!.createdAt | date: 'dd.MM.yyyy HH:mm' }}
+                </p>
+            </div>
+            <div class="text-right">
+                <div class="text-xs text-slate-500 dark:text-slate-400 mb-1">Статус</div>
+                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs
+                 bg-slate-100 text-slate-700
+                 dark:bg-slate-800 dark:text-slate-200">
+                    {{ order!.status }}
+                </span>
+            </div>
+        </header>
+
+        <section class="grid gap-4 md:grid-cols-[2fr,1fr]">
+            <div class="space-y-2 rounded-2xl border border-slate-200 bg-white/80 p-4
+               dark:border-slate-800 dark:bg-slate-900/80">
+                <h2 class="text-sm font-semibold mb-2">Артикули</h2>
+                <div class="divide-y divide-slate-100 dark:divide-slate-800">
+                    <div *ngFor="let item of order!.items" class="flex items-center justify-between gap-3 py-3">
+                        <div class="flex items-center gap-3">
+                            <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl
+               bg-slate-100 dark:bg-slate-800">
+                                <img *ngIf="item.imageUrl; else noImage" [src]="item.imageUrl!" [alt]="item.name"
+                                    class="h-full w-full object-cover" />
+                                <ng-template #noImage>
+                                    <div class="flex h-full w-full items-center justify-center text-[10px]
+                   text-slate-400 dark:text-slate-500">
+                                        Без снимка
+                                    </div>
+                                </ng-template>
+                            </div>
+
+                            <div class="space-y-0.5">
+                                <div class="text-sm font-medium">
+                                    {{ item.name }}
+                                </div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">
+                                    <span *ngIf="item.colorName">Цвят: {{ item.colorName }} • </span>
+                                    <span *ngIf="item.size">Размер: {{ item.size }} • </span>
+                                    Количество: {{ item.quantity }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-right text-sm font-medium">
+                            {{ item.lineTotal | number: '1.2-2' }} лв.
+                            <div class="text-[11px] text-slate-500 dark:text-slate-400">
+                                ({{ item.unitPrice | number: '1.2-2' }} лв./бр.)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/80 p-4
+               dark:border-slate-800 dark:bg-slate-900/80">
+                <h2 class="text-sm font-semibold mb-2">Обобщение</h2>
+
+                <div class="flex justify-between text-sm">
+                    <span class="text-slate-500 dark:text-slate-400">Брой артикули</span>
+                    <span class="font-medium">{{ totalItems }}</span>
+                </div>
+
+                <div class="flex justify-between text-sm">
+                    <span class="text-slate-500 dark:text-slate-400">Обща сума</span>
+                    <span class="font-semibold">
+                        {{ order!.totalAmount | number : '1.2-2' }} лв.
+                    </span>
+                </div>
+
+                <div class="pt-3 border-t border-slate-100 dark:border-slate-800
+         text-xs text-slate-500 dark:text-slate-400 space-y-0.5">
+                    <div>Клиент: {{ order!.customerName }}</div>
+                    <div>Имейл: {{ order!.email }}</div>
+                    <div>Телефон: {{ order!.phone }}</div>
+                    <div>Адрес: {{ order!.address }}</div>
+                    <div>Метод на плащане: {{ paymentMethodLabel }}</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

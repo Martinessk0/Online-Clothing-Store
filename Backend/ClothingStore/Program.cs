@@ -1,10 +1,14 @@
+using ClothingStore.Core.Contracts;
 using ClothingStore.Core.Models.Auth;
 using ClothingStore.Core.Models.Cloudinary;
+using ClothingStore.Core.Models.Speedy;
+using ClothingStore.Core.Services;
 using ClothingStore.Infrastructure;
 using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
@@ -48,6 +52,9 @@ builder.Services.Configure<CloudinarySettings>(
 builder.Services.Configure<JwtSettings>(
     builder.Configuration.GetSection("JWTSettingDev"));
 
+builder.Services.Configure<SpeedyOptions>(
+    builder.Configuration.GetSection("Speedy"));
+
 var jwtSettings = builder.Configuration
     .GetSection("JWTSettingDev")
     .Get<JwtSettings>();
@@ -81,6 +88,11 @@ builder.Services.AddControllers()
          options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
      });
 builder.Services.AddApplicationServices();
+builder.Services.AddHttpClient<ISpeedyService, SpeedyService>((sp, http) =>
+{
+    var opt = sp.GetRequiredService<IOptions<SpeedyOptions>>().Value;
+    http.BaseAddress = new Uri(opt.BaseUrl.TrimEnd('/') + "/");
+});
 builder.Services.AddSwaggerGen();
 
 

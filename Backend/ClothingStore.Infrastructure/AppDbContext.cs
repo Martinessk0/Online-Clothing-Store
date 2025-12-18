@@ -1,5 +1,4 @@
-﻿using ClothingStore.Core.Models.Product;
-using ClothingStore.Infrastructure.Data.Configuration;
+﻿using ClothingStore.Infrastructure.Data.Configuration;
 using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -19,6 +18,7 @@ namespace ClothingStore.Infrastructure
         //public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<UserInteraction> UserInteractions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -71,6 +71,7 @@ namespace ClothingStore.Infrastructure
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new ColorConfiguration());
             builder.ApplyConfiguration(new ProductVariantConfiguration());
+            builder.ApplyConfiguration(new ProductImageConfiguration());
 
 
             base.OnModelCreating(builder);

@@ -157,7 +157,7 @@ namespace ClothingStore.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            Description = "Warm and comfortable hoodies for casual wear and layering.",
+                            Description = "Warm hoodies for casual wear and layering.",
                             IsActive = true,
                             Name = "Hoodies"
                         },
@@ -181,6 +181,111 @@ namespace ClothingStore.Infrastructure.Migrations
                             Description = "Sneakers and casual shoes for everyday comfort and style.",
                             IsActive = true,
                             Name = "Shoes"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Comfort-first pants for lounging, training, and daily wear.",
+                            IsActive = true,
+                            Name = "Sweatpants"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Lightweight shorts for summer, sport, and casual outfits.",
+                            IsActive = true,
+                            Name = "Shorts"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Button-up shirts: casual, smart-casual, and essentials.",
+                            IsActive = true,
+                            Name = "Shirts"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Sweaters, cardigans, and knitted essentials.",
+                            IsActive = true,
+                            Name = "Knitwear"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Winter and transitional coats with modern silhouettes.",
+                            IsActive = true,
+                            Name = "Coats"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "Performance clothing for running, gym and outdoor.",
+                            IsActive = true,
+                            Name = "Activewear"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Description = "Everyday underwear basics with comfort materials.",
+                            IsActive = true,
+                            Name = "Underwear"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Description = "Crew, ankle and sport socks in multipacks.",
+                            IsActive = true,
+                            Name = "Socks"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Description = "Belts, wallets, sunglasses and small essentials.",
+                            IsActive = true,
+                            Name = "Accessories"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Description = "Backpacks, crossbody bags and travel-ready options.",
+                            IsActive = true,
+                            Name = "Bags"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Description = "Caps, beanies and seasonal headwear.",
+                            IsActive = true,
+                            Name = "Hats"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Description = "Casual and smart dresses for different occasions.",
+                            IsActive = true,
+                            Name = "Dresses"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Description = "Mini, midi and maxi skirts with versatile styling.",
+                            IsActive = true,
+                            Name = "Skirts"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Description = "Kidswear essentials: comfy, durable, easy-care.",
+                            IsActive = true,
+                            Name = "Kids"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Description = "Discounted items and last sizes. Limited availability.",
+                            IsActive = true,
+                            Name = "Sale"
                         });
                 });
 
@@ -239,30 +344,184 @@ namespace ClothingStore.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            Code = "dark-blue",
-                            Hex = "#00008B",
-                            Name = "Тъмно син"
+                            Code = "blue",
+                            Hex = "#1E90FF",
+                            Name = "Син"
                         },
                         new
                         {
                             Id = 6,
                             Code = "light-blue",
                             Hex = "#ADD8E6",
-                            Name = "Светло син"
+                            Name = "Светлосин"
                         },
                         new
                         {
                             Id = 7,
+                            Code = "red",
+                            Hex = "#E53935",
+                            Name = "Червен"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Code = "burgundy",
+                            Hex = "#800020",
+                            Name = "Бордо"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Code = "green",
+                            Hex = "#2E7D32",
+                            Name = "Зелен"
+                        },
+                        new
+                        {
+                            Id = 10,
                             Code = "olive",
                             Hex = "#808000",
                             Name = "Маслинен"
                         },
                         new
                         {
-                            Id = 8,
-                            Code = "white-gray",
-                            Hex = "#D3D3D3",
-                            Name = "Бяло/сиво"
+                            Id = 11,
+                            Code = "mint",
+                            Hex = "#98FF98",
+                            Name = "Ментов"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Code = "yellow",
+                            Hex = "#FDD835",
+                            Name = "Жълт"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Code = "mustard",
+                            Hex = "#D4A017",
+                            Name = "Горчица"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Code = "orange",
+                            Hex = "#FB8C00",
+                            Name = "Оранжев"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Code = "pink",
+                            Hex = "#EC407A",
+                            Name = "Розов"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Code = "purple",
+                            Hex = "#8E24AA",
+                            Name = "Лилав"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Code = "beige",
+                            Hex = "#F5F5DC",
+                            Name = "Бежов"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Code = "cream",
+                            Hex = "#FFFDD0",
+                            Name = "Крем"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Code = "brown",
+                            Hex = "#6D4C41",
+                            Name = "Кафяв"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Code = "tan",
+                            Hex = "#D2B48C",
+                            Name = "Тен"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Code = "khaki",
+                            Hex = "#C3B091",
+                            Name = "Каки"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Code = "teal",
+                            Hex = "#008080",
+                            Name = "Тийл"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Code = "cyan",
+                            Hex = "#00BCD4",
+                            Name = "Циан"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Code = "lime",
+                            Hex = "#CDDC39",
+                            Name = "Лайм"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Code = "charcoal",
+                            Hex = "#36454F",
+                            Name = "Графит"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Code = "off-white",
+                            Hex = "#FAF9F6",
+                            Name = "Екрю"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Code = "silver",
+                            Hex = "#C0C0C0",
+                            Name = "Сребрист"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Code = "gold",
+                            Hex = "#D4AF37",
+                            Name = "Златист"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Code = "lavender",
+                            Hex = "#B39DDB",
+                            Name = "Лавандула"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Code = "peach",
+                            Hex = "#FFCCBC",
+                            Name = "Праскова"
                         });
                 });
 
@@ -299,6 +558,13 @@ namespace ClothingStore.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<int?>("SpeedyOfficeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SpeedyOfficeLabel")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -410,122 +676,2402 @@ namespace ClothingStore.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Brand = "UrbanBasics",
+                            Brand = "StreetLab",
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Soft 100% cotton t-shirt with a regular fit. Easy to pair with jeans or shorts.",
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 001.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Classic Cotton T-Shirt",
-                            Price = 24.99m
+                            Name = "Premium Graphic Tee #001",
+                            Price = 23.25m
                         },
                         new
                         {
                             Id = 2,
-                            Brand = "StreetLab",
-                            CategoryId = 1,
+                            Brand = "NorthWear",
+                            CategoryId = 2,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Oversized fit t-shirt with a minimal front print and bold back graphic.",
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 002.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Oversized Graphic Tee",
-                            Price = 29.99m
+                            Name = "Essential Fleece Hoodie #002",
+                            Price = 57.50m
                         },
                         new
                         {
                             Id = 3,
-                            Brand = "NorthWear",
-                            CategoryId = 2,
+                            Brand = "DenimCo",
+                            CategoryId = 3,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Warm fleece-lined hoodie with a kangaroo pocket and adjustable drawstrings.",
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 003.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Premium Hoodie",
-                            Price = 59.90m
+                            Name = "Oversized Straight Jeans #003",
+                            Price = 73.75m
                         },
                         new
                         {
                             Id = 4,
-                            Brand = "NorthWear",
-                            CategoryId = 2,
+                            Brand = "AeroStyle",
+                            CategoryId = 4,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Everyday zip-up hoodie with soft interior, perfect for layering.",
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 004.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Zip-Up Hoodie",
-                            Price = 54.50m
+                            Name = "Relaxed Bomber Jacket #004",
+                            Price = 100.00m
                         },
                         new
                         {
                             Id = 5,
-                            Brand = "DenimCo",
-                            CategoryId = 3,
+                            Brand = "MoveX",
+                            CategoryId = 5,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Slim fit jeans with a comfortable stretch. Clean look for casual or smart outfits.",
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 005.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Slim Fit Jeans",
-                            Price = 79.00m
+                            Name = "Slim Leather Sneakers #005",
+                            Price = 91.25m
                         },
                         new
                         {
                             Id = 6,
-                            Brand = "DenimCo",
-                            CategoryId = 3,
+                            Brand = "CoreLine",
+                            CategoryId = 6,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Classic straight fit denim with durable stitching and mid-rise waist.",
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 006.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Straight Fit Jeans",
-                            Price = 74.00m
+                            Name = "Regular Fleece Pants #006",
+                            Price = 52.50m
                         },
                         new
                         {
                             Id = 7,
-                            Brand = "AeroStyle",
-                            CategoryId = 4,
+                            Brand = "PulseActive",
+                            CategoryId = 7,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Light bomber jacket with a smooth finish and ribbed cuffs. Great for spring/fall.",
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 007.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Lightweight Bomber Jacket",
-                            Price = 99.99m
+                            Name = "Vintage Denim Shorts #007",
+                            Price = 36.75m
                         },
                         new
                         {
                             Id = 8,
-                            Brand = "AeroStyle",
-                            CategoryId = 4,
+                            Brand = "MinimalForm",
+                            CategoryId = 8,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Insulated puffer jacket designed for cold days. Water-resistant outer layer.",
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 008.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Puffer Jacket",
-                            Price = 149.99m
+                            Name = "Modern Oxford Shirt #008",
+                            Price = 59.00m
                         },
                         new
                         {
                             Id = 9,
-                            Brand = "MoveX",
-                            CategoryId = 5,
+                            Brand = "StudioKnit",
+                            CategoryId = 9,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Comfortable lightweight sneakers with cushioned sole and breathable mesh upper.",
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 009.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Running Sneakers",
-                            Price = 89.90m
+                            Name = "Lightweight Cardigan #009",
+                            Price = 71.25m
                         },
                         new
                         {
                             Id = 10,
+                            Brand = "CityTailor",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 010.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Trench Coat #010",
+                            Price = 132.50m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Brand = "DailyCraft",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 011.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Running Jacket #011",
+                            Price = 53.75m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Brand = "NovaFit",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 012.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Boxers #012",
+                            Price = 33.00m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Brand = "Heritage",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 013.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Ankle Socks #013",
+                            Price = 25.25m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Brand = "MonoWear",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 014.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Wallet #014",
+                            Price = 32.50m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Brand = "UrbanBasics",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 015.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Tote Bag #015",
+                            Price = 35.00m
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Brand = "StreetLab",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 016.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Cap #016",
+                            Price = 15.25m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Brand = "NorthWear",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 017.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Midi Dress #017",
+                            Price = 77.50m
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Brand = "DenimCo",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 018.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Denim Skirt #018",
+                            Price = 48.75m
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Brand = "AeroStyle",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 019.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Kids Jacket #019",
+                            Price = 25.00m
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Brand = "MoveX",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 020.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Sale Item #020",
+                            Price = 31.25m
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Brand = "CoreLine",
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 021.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Graphic Tee #021",
+                            Price = 29.50m
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Brand = "PulseActive",
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 022.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Fleece Hoodie #022",
+                            Price = 63.75m
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Brand = "MinimalForm",
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 023.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Straight Jeans #023",
+                            Price = 80.00m
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Brand = "StudioKnit",
+                            CategoryId = 4,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 024.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Bomber Jacket #024",
+                            Price = 106.25m
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Brand = "CityTailor",
+                            CategoryId = 5,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 025.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Leather Sneakers #025",
+                            Price = 97.50m
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Brand = "DailyCraft",
+                            CategoryId = 6,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 026.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Fleece Pants #026",
+                            Price = 58.75m
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Brand = "NovaFit",
+                            CategoryId = 7,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 027.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Denim Shorts #027",
+                            Price = 43.00m
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Brand = "Heritage",
+                            CategoryId = 8,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 028.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Oxford Shirt #028",
+                            Price = 65.25m
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Brand = "MonoWear",
+                            CategoryId = 9,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 029.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Cardigan #029",
+                            Price = 77.50m
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Brand = "UrbanBasics",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 030.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Trench Coat #030",
+                            Price = 120.00m
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Brand = "StreetLab",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 031.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Running Jacket #031",
+                            Price = 41.25m
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Brand = "NorthWear",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 032.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Boxers #032",
+                            Price = 20.50m
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Brand = "DenimCo",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 033.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Ankle Socks #033",
+                            Price = 12.75m
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Brand = "AeroStyle",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 034.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Wallet #034",
+                            Price = 20.00m
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Brand = "MoveX",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 035.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Tote Bag #035",
+                            Price = 41.25m
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Brand = "CoreLine",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 036.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Cap #036",
+                            Price = 21.50m
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Brand = "PulseActive",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 037.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Midi Dress #037",
+                            Price = 83.75m
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Brand = "MinimalForm",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 038.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Denim Skirt #038",
+                            Price = 55.00m
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Brand = "StudioKnit",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 039.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Kids Jacket #039",
+                            Price = 31.25m
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Brand = "CityTailor",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 040.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Sale Item #040",
+                            Price = 37.50m
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Brand = "DailyCraft",
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 041.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Graphic Tee #041",
+                            Price = 35.75m
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Brand = "NovaFit",
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 042.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Fleece Hoodie #042",
+                            Price = 70.00m
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Brand = "Heritage",
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 043.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Straight Jeans #043",
+                            Price = 86.25m
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Brand = "MonoWear",
+                            CategoryId = 4,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 044.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Bomber Jacket #044",
+                            Price = 112.50m
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Brand = "UrbanBasics",
+                            CategoryId = 5,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 045.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Leather Sneakers #045",
+                            Price = 85.00m
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Brand = "StreetLab",
+                            CategoryId = 6,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 046.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Fleece Pants #046",
+                            Price = 46.25m
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Brand = "NorthWear",
+                            CategoryId = 7,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 047.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Denim Shorts #047",
+                            Price = 30.50m
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Brand = "DenimCo",
+                            CategoryId = 8,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 048.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Oxford Shirt #048",
+                            Price = 52.75m
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Brand = "AeroStyle",
+                            CategoryId = 9,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 049.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Cardigan #049",
+                            Price = 65.00m
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Brand = "MoveX",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 050.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Trench Coat #050",
+                            Price = 126.25m
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Brand = "CoreLine",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 051.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Running Jacket #051",
+                            Price = 47.50m
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Brand = "PulseActive",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 052.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Boxers #052",
+                            Price = 26.75m
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Brand = "MinimalForm",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 053.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Ankle Socks #053",
+                            Price = 19.00m
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Brand = "StudioKnit",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 054.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Wallet #054",
+                            Price = 26.25m
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Brand = "CityTailor",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 055.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Tote Bag #055",
+                            Price = 47.50m
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Brand = "DailyCraft",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 056.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Cap #056",
+                            Price = 27.75m
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Brand = "NovaFit",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 057.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Midi Dress #057",
+                            Price = 90.00m
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Brand = "Heritage",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 058.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Denim Skirt #058",
+                            Price = 61.25m
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Brand = "MonoWear",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 059.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Kids Jacket #059",
+                            Price = 37.50m
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Brand = "UrbanBasics",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 060.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Sale Item #060",
+                            Price = 25.00m
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Brand = "StreetLab",
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 061.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Graphic Tee #061",
+                            Price = 23.25m
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Brand = "NorthWear",
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 062.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Fleece Hoodie #062",
+                            Price = 57.50m
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Brand = "DenimCo",
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 063.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Straight Jeans #063",
+                            Price = 73.75m
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Brand = "AeroStyle",
+                            CategoryId = 4,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 064.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Bomber Jacket #064",
+                            Price = 100.00m
+                        },
+                        new
+                        {
+                            Id = 65,
                             Brand = "MoveX",
                             CategoryId = 5,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Minimal leather sneakers for everyday wear. Clean look and durable outsole.",
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 065.",
                             IsActive = true,
                             ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Casual Leather Sneakers",
-                            Price = 119.00m
+                            Name = "Slim Leather Sneakers #065",
+                            Price = 91.25m
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Brand = "CoreLine",
+                            CategoryId = 6,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 066.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Fleece Pants #066",
+                            Price = 52.50m
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Brand = "PulseActive",
+                            CategoryId = 7,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 067.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Denim Shorts #067",
+                            Price = 36.75m
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Brand = "MinimalForm",
+                            CategoryId = 8,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 068.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Oxford Shirt #068",
+                            Price = 59.00m
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Brand = "StudioKnit",
+                            CategoryId = 9,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 069.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Cardigan #069",
+                            Price = 71.25m
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Brand = "CityTailor",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 070.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Trench Coat #070",
+                            Price = 132.50m
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Brand = "DailyCraft",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 071.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Running Jacket #071",
+                            Price = 53.75m
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Brand = "NovaFit",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 072.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Boxers #072",
+                            Price = 33.00m
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Brand = "Heritage",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 073.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Ankle Socks #073",
+                            Price = 25.25m
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Brand = "MonoWear",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 074.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Wallet #074",
+                            Price = 32.50m
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Brand = "UrbanBasics",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 075.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Tote Bag #075",
+                            Price = 35.00m
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Brand = "StreetLab",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 076.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Cap #076",
+                            Price = 15.25m
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Brand = "NorthWear",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 077.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Midi Dress #077",
+                            Price = 77.50m
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Brand = "DenimCo",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 078.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Denim Skirt #078",
+                            Price = 48.75m
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Brand = "AeroStyle",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 079.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Kids Jacket #079",
+                            Price = 25.00m
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Brand = "MoveX",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 080.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Sale Item #080",
+                            Price = 31.25m
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Brand = "CoreLine",
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 081.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Graphic Tee #081",
+                            Price = 29.50m
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Brand = "PulseActive",
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 082.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Fleece Hoodie #082",
+                            Price = 63.75m
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Brand = "MinimalForm",
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 083.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Straight Jeans #083",
+                            Price = 80.00m
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Brand = "StudioKnit",
+                            CategoryId = 4,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 084.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Bomber Jacket #084",
+                            Price = 106.25m
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Brand = "CityTailor",
+                            CategoryId = 5,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 085.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Leather Sneakers #085",
+                            Price = 97.50m
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Brand = "DailyCraft",
+                            CategoryId = 6,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 086.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Fleece Pants #086",
+                            Price = 58.75m
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Brand = "NovaFit",
+                            CategoryId = 7,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 087.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Denim Shorts #087",
+                            Price = 43.00m
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Brand = "Heritage",
+                            CategoryId = 8,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 088.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Oxford Shirt #088",
+                            Price = 65.25m
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Brand = "MonoWear",
+                            CategoryId = 9,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 089.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Cardigan #089",
+                            Price = 77.50m
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Brand = "UrbanBasics",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 090.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Trench Coat #090",
+                            Price = 120.00m
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Brand = "StreetLab",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 091.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Running Jacket #091",
+                            Price = 41.25m
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Brand = "NorthWear",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 092.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Boxers #092",
+                            Price = 20.50m
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Brand = "DenimCo",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 093.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Ankle Socks #093",
+                            Price = 12.75m
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Brand = "AeroStyle",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 094.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Wallet #094",
+                            Price = 20.00m
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Brand = "MoveX",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 095.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Tote Bag #095",
+                            Price = 41.25m
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Brand = "CoreLine",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 096.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Cap #096",
+                            Price = 21.50m
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Brand = "PulseActive",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 097.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Midi Dress #097",
+                            Price = 83.75m
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Brand = "MinimalForm",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 098.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Denim Skirt #098",
+                            Price = 55.00m
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Brand = "StudioKnit",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 099.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Kids Jacket #099",
+                            Price = 31.25m
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Brand = "CityTailor",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 100.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Sale Item #100",
+                            Price = 37.50m
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Brand = "DailyCraft",
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 101.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Graphic Tee #101",
+                            Price = 35.75m
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Brand = "NovaFit",
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 102.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Fleece Hoodie #102",
+                            Price = 70.00m
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Brand = "Heritage",
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 103.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Straight Jeans #103",
+                            Price = 86.25m
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Brand = "MonoWear",
+                            CategoryId = 4,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 104.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Bomber Jacket #104",
+                            Price = 112.50m
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Brand = "UrbanBasics",
+                            CategoryId = 5,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 105.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Leather Sneakers #105",
+                            Price = 85.00m
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Brand = "StreetLab",
+                            CategoryId = 6,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 106.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Fleece Pants #106",
+                            Price = 46.25m
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Brand = "NorthWear",
+                            CategoryId = 7,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 107.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Denim Shorts #107",
+                            Price = 30.50m
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Brand = "DenimCo",
+                            CategoryId = 8,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 108.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Oxford Shirt #108",
+                            Price = 52.75m
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Brand = "AeroStyle",
+                            CategoryId = 9,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 109.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Cardigan #109",
+                            Price = 65.00m
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Brand = "MoveX",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 110.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Trench Coat #110",
+                            Price = 126.25m
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Brand = "CoreLine",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 111.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Running Jacket #111",
+                            Price = 47.50m
+                        },
+                        new
+                        {
+                            Id = 112,
+                            Brand = "PulseActive",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 112.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Boxers #112",
+                            Price = 26.75m
+                        },
+                        new
+                        {
+                            Id = 113,
+                            Brand = "MinimalForm",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 113.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Ankle Socks #113",
+                            Price = 19.00m
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Brand = "StudioKnit",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 114.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Wallet #114",
+                            Price = 26.25m
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Brand = "CityTailor",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 115.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Tote Bag #115",
+                            Price = 47.50m
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Brand = "DailyCraft",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 116.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Cap #116",
+                            Price = 27.75m
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Brand = "NovaFit",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 117.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Midi Dress #117",
+                            Price = 90.00m
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Brand = "Heritage",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 118.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Denim Skirt #118",
+                            Price = 61.25m
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Brand = "MonoWear",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 119.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Kids Jacket #119",
+                            Price = 37.50m
+                        },
+                        new
+                        {
+                            Id = 120,
+                            Brand = "UrbanBasics",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 120.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Sale Item #120",
+                            Price = 25.00m
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Brand = "StreetLab",
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 121.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Graphic Tee #121",
+                            Price = 23.25m
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Brand = "NorthWear",
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 122.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Fleece Hoodie #122",
+                            Price = 57.50m
+                        },
+                        new
+                        {
+                            Id = 123,
+                            Brand = "DenimCo",
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 123.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Straight Jeans #123",
+                            Price = 73.75m
+                        },
+                        new
+                        {
+                            Id = 124,
+                            Brand = "AeroStyle",
+                            CategoryId = 4,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 124.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Bomber Jacket #124",
+                            Price = 100.00m
+                        },
+                        new
+                        {
+                            Id = 125,
+                            Brand = "MoveX",
+                            CategoryId = 5,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 125.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Leather Sneakers #125",
+                            Price = 91.25m
+                        },
+                        new
+                        {
+                            Id = 126,
+                            Brand = "CoreLine",
+                            CategoryId = 6,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 126.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Fleece Pants #126",
+                            Price = 52.50m
+                        },
+                        new
+                        {
+                            Id = 127,
+                            Brand = "PulseActive",
+                            CategoryId = 7,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 127.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Denim Shorts #127",
+                            Price = 36.75m
+                        },
+                        new
+                        {
+                            Id = 128,
+                            Brand = "MinimalForm",
+                            CategoryId = 8,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 128.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Oxford Shirt #128",
+                            Price = 59.00m
+                        },
+                        new
+                        {
+                            Id = 129,
+                            Brand = "StudioKnit",
+                            CategoryId = 9,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 129.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Cardigan #129",
+                            Price = 71.25m
+                        },
+                        new
+                        {
+                            Id = 130,
+                            Brand = "CityTailor",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 130.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Trench Coat #130",
+                            Price = 132.50m
+                        },
+                        new
+                        {
+                            Id = 131,
+                            Brand = "DailyCraft",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 131.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Running Jacket #131",
+                            Price = 53.75m
+                        },
+                        new
+                        {
+                            Id = 132,
+                            Brand = "NovaFit",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 132.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Boxers #132",
+                            Price = 33.00m
+                        },
+                        new
+                        {
+                            Id = 133,
+                            Brand = "Heritage",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 133.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Ankle Socks #133",
+                            Price = 25.25m
+                        },
+                        new
+                        {
+                            Id = 134,
+                            Brand = "MonoWear",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 134.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Wallet #134",
+                            Price = 32.50m
+                        },
+                        new
+                        {
+                            Id = 135,
+                            Brand = "UrbanBasics",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 135.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Tote Bag #135",
+                            Price = 35.00m
+                        },
+                        new
+                        {
+                            Id = 136,
+                            Brand = "StreetLab",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 136.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Cap #136",
+                            Price = 15.25m
+                        },
+                        new
+                        {
+                            Id = 137,
+                            Brand = "NorthWear",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 137.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Midi Dress #137",
+                            Price = 77.50m
+                        },
+                        new
+                        {
+                            Id = 138,
+                            Brand = "DenimCo",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 138.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Denim Skirt #138",
+                            Price = 48.75m
+                        },
+                        new
+                        {
+                            Id = 139,
+                            Brand = "AeroStyle",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 139.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Kids Jacket #139",
+                            Price = 25.00m
+                        },
+                        new
+                        {
+                            Id = 140,
+                            Brand = "MoveX",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 140.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Sale Item #140",
+                            Price = 31.25m
+                        },
+                        new
+                        {
+                            Id = 141,
+                            Brand = "CoreLine",
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 141.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Graphic Tee #141",
+                            Price = 29.50m
+                        },
+                        new
+                        {
+                            Id = 142,
+                            Brand = "PulseActive",
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 142.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Fleece Hoodie #142",
+                            Price = 63.75m
+                        },
+                        new
+                        {
+                            Id = 143,
+                            Brand = "MinimalForm",
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 143.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Straight Jeans #143",
+                            Price = 80.00m
+                        },
+                        new
+                        {
+                            Id = 144,
+                            Brand = "StudioKnit",
+                            CategoryId = 4,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 144.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Bomber Jacket #144",
+                            Price = 106.25m
+                        },
+                        new
+                        {
+                            Id = 145,
+                            Brand = "CityTailor",
+                            CategoryId = 5,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 145.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Leather Sneakers #145",
+                            Price = 97.50m
+                        },
+                        new
+                        {
+                            Id = 146,
+                            Brand = "DailyCraft",
+                            CategoryId = 6,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 146.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Fleece Pants #146",
+                            Price = 58.75m
+                        },
+                        new
+                        {
+                            Id = 147,
+                            Brand = "NovaFit",
+                            CategoryId = 7,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 147.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Denim Shorts #147",
+                            Price = 43.00m
+                        },
+                        new
+                        {
+                            Id = 148,
+                            Brand = "Heritage",
+                            CategoryId = 8,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 148.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Oxford Shirt #148",
+                            Price = 65.25m
+                        },
+                        new
+                        {
+                            Id = 149,
+                            Brand = "MonoWear",
+                            CategoryId = 9,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 149.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Cardigan #149",
+                            Price = 77.50m
+                        },
+                        new
+                        {
+                            Id = 150,
+                            Brand = "UrbanBasics",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 150.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Trench Coat #150",
+                            Price = 120.00m
+                        },
+                        new
+                        {
+                            Id = 151,
+                            Brand = "StreetLab",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 151.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Running Jacket #151",
+                            Price = 41.25m
+                        },
+                        new
+                        {
+                            Id = 152,
+                            Brand = "NorthWear",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 152.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Boxers #152",
+                            Price = 20.50m
+                        },
+                        new
+                        {
+                            Id = 153,
+                            Brand = "DenimCo",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 153.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Ankle Socks #153",
+                            Price = 12.75m
+                        },
+                        new
+                        {
+                            Id = 154,
+                            Brand = "AeroStyle",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 154.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Wallet #154",
+                            Price = 20.00m
+                        },
+                        new
+                        {
+                            Id = 155,
+                            Brand = "MoveX",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 155.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Tote Bag #155",
+                            Price = 41.25m
+                        },
+                        new
+                        {
+                            Id = 156,
+                            Brand = "CoreLine",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 156.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Cap #156",
+                            Price = 21.50m
+                        },
+                        new
+                        {
+                            Id = 157,
+                            Brand = "PulseActive",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 157.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Midi Dress #157",
+                            Price = 83.75m
+                        },
+                        new
+                        {
+                            Id = 158,
+                            Brand = "MinimalForm",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 158.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Denim Skirt #158",
+                            Price = 55.00m
+                        },
+                        new
+                        {
+                            Id = 159,
+                            Brand = "StudioKnit",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 159.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Kids Jacket #159",
+                            Price = 31.25m
+                        },
+                        new
+                        {
+                            Id = 160,
+                            Brand = "CityTailor",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 160.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Sale Item #160",
+                            Price = 37.50m
+                        },
+                        new
+                        {
+                            Id = 161,
+                            Brand = "DailyCraft",
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 161.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Graphic Tee #161",
+                            Price = 35.75m
+                        },
+                        new
+                        {
+                            Id = 162,
+                            Brand = "NovaFit",
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 162.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Fleece Hoodie #162",
+                            Price = 70.00m
+                        },
+                        new
+                        {
+                            Id = 163,
+                            Brand = "Heritage",
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 163.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Straight Jeans #163",
+                            Price = 86.25m
+                        },
+                        new
+                        {
+                            Id = 164,
+                            Brand = "MonoWear",
+                            CategoryId = 4,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 164.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Bomber Jacket #164",
+                            Price = 112.50m
+                        },
+                        new
+                        {
+                            Id = 165,
+                            Brand = "UrbanBasics",
+                            CategoryId = 5,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 165.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Leather Sneakers #165",
+                            Price = 85.00m
+                        },
+                        new
+                        {
+                            Id = 166,
+                            Brand = "StreetLab",
+                            CategoryId = 6,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 166.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Fleece Pants #166",
+                            Price = 46.25m
+                        },
+                        new
+                        {
+                            Id = 167,
+                            Brand = "NorthWear",
+                            CategoryId = 7,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 167.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Denim Shorts #167",
+                            Price = 30.50m
+                        },
+                        new
+                        {
+                            Id = 168,
+                            Brand = "DenimCo",
+                            CategoryId = 8,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 168.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Oxford Shirt #168",
+                            Price = 52.75m
+                        },
+                        new
+                        {
+                            Id = 169,
+                            Brand = "AeroStyle",
+                            CategoryId = 9,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 169.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Cardigan #169",
+                            Price = 65.00m
+                        },
+                        new
+                        {
+                            Id = 170,
+                            Brand = "MoveX",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 170.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Trench Coat #170",
+                            Price = 126.25m
+                        },
+                        new
+                        {
+                            Id = 171,
+                            Brand = "CoreLine",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 171.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Running Jacket #171",
+                            Price = 47.50m
+                        },
+                        new
+                        {
+                            Id = 172,
+                            Brand = "PulseActive",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 172.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Boxers #172",
+                            Price = 26.75m
+                        },
+                        new
+                        {
+                            Id = 173,
+                            Brand = "MinimalForm",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 173.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Ankle Socks #173",
+                            Price = 19.00m
+                        },
+                        new
+                        {
+                            Id = 174,
+                            Brand = "StudioKnit",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 174.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Wallet #174",
+                            Price = 26.25m
+                        },
+                        new
+                        {
+                            Id = 175,
+                            Brand = "CityTailor",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 175.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Tote Bag #175",
+                            Price = 47.50m
+                        },
+                        new
+                        {
+                            Id = 176,
+                            Brand = "DailyCraft",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 176.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Cap #176",
+                            Price = 27.75m
+                        },
+                        new
+                        {
+                            Id = 177,
+                            Brand = "NovaFit",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 177.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Midi Dress #177",
+                            Price = 90.00m
+                        },
+                        new
+                        {
+                            Id = 178,
+                            Brand = "Heritage",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 178.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Denim Skirt #178",
+                            Price = 61.25m
+                        },
+                        new
+                        {
+                            Id = 179,
+                            Brand = "MonoWear",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 179.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Kids Jacket #179",
+                            Price = 37.50m
+                        },
+                        new
+                        {
+                            Id = 180,
+                            Brand = "UrbanBasics",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 180.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Sale Item #180",
+                            Price = 25.00m
+                        },
+                        new
+                        {
+                            Id = 181,
+                            Brand = "StreetLab",
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality graphic tee designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 181.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Graphic Tee #181",
+                            Price = 23.25m
+                        },
+                        new
+                        {
+                            Id = 182,
+                            Brand = "NorthWear",
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece hoodie designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 182.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Fleece Hoodie #182",
+                            Price = 57.50m
+                        },
+                        new
+                        {
+                            Id = 183,
+                            Brand = "DenimCo",
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality straight jeans designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 183.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Straight Jeans #183",
+                            Price = 73.75m
+                        },
+                        new
+                        {
+                            Id = 184,
+                            Brand = "AeroStyle",
+                            CategoryId = 4,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality bomber jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 184.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Bomber Jacket #184",
+                            Price = 100.00m
+                        },
+                        new
+                        {
+                            Id = 185,
+                            Brand = "MoveX",
+                            CategoryId = 5,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality leather sneakers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 185.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Leather Sneakers #185",
+                            Price = 91.25m
+                        },
+                        new
+                        {
+                            Id = 186,
+                            Brand = "CoreLine",
+                            CategoryId = 6,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality fleece pants designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 186.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Regular Fleece Pants #186",
+                            Price = 52.50m
+                        },
+                        new
+                        {
+                            Id = 187,
+                            Brand = "PulseActive",
+                            CategoryId = 7,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim shorts designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 187.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Vintage Denim Shorts #187",
+                            Price = 36.75m
+                        },
+                        new
+                        {
+                            Id = 188,
+                            Brand = "MinimalForm",
+                            CategoryId = 8,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality oxford shirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 188.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Modern Oxford Shirt #188",
+                            Price = 59.00m
+                        },
+                        new
+                        {
+                            Id = 189,
+                            Brand = "StudioKnit",
+                            CategoryId = 9,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cardigan designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 189.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Lightweight Cardigan #189",
+                            Price = 71.25m
+                        },
+                        new
+                        {
+                            Id = 190,
+                            Brand = "CityTailor",
+                            CategoryId = 10,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality trench coat designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 190.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Heavyweight Trench Coat #190",
+                            Price = 132.50m
+                        },
+                        new
+                        {
+                            Id = 191,
+                            Brand = "DailyCraft",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality running jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 191.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Soft Running Jacket #191",
+                            Price = 53.75m
+                        },
+                        new
+                        {
+                            Id = 192,
+                            Brand = "NovaFit",
+                            CategoryId = 12,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality boxers designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 192.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Technical Boxers #192",
+                            Price = 33.00m
+                        },
+                        new
+                        {
+                            Id = 193,
+                            Brand = "Heritage",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality ankle socks designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 193.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Water-Resistant Ankle Socks #193",
+                            Price = 25.25m
+                        },
+                        new
+                        {
+                            Id = 194,
+                            Brand = "MonoWear",
+                            CategoryId = 14,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality wallet designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 194.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Cozy Wallet #194",
+                            Price = 32.50m
+                        },
+                        new
+                        {
+                            Id = 195,
+                            Brand = "UrbanBasics",
+                            CategoryId = 15,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality tote bag designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 195.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Classic Tote Bag #195",
+                            Price = 35.00m
+                        },
+                        new
+                        {
+                            Id = 196,
+                            Brand = "StreetLab",
+                            CategoryId = 16,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality cap designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 196.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Premium Cap #196",
+                            Price = 15.25m
+                        },
+                        new
+                        {
+                            Id = 197,
+                            Brand = "NorthWear",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality midi dress designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 197.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Essential Midi Dress #197",
+                            Price = 77.50m
+                        },
+                        new
+                        {
+                            Id = 198,
+                            Brand = "DenimCo",
+                            CategoryId = 18,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality denim skirt designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 198.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Oversized Denim Skirt #198",
+                            Price = 48.75m
+                        },
+                        new
+                        {
+                            Id = 199,
+                            Brand = "AeroStyle",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality kids jacket designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 199.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Relaxed Kids Jacket #199",
+                            Price = 25.00m
+                        },
+                        new
+                        {
+                            Id = 200,
+                            Brand = "MoveX",
+                            CategoryId = 20,
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "High-quality sale item designed for comfort and daily wear. Balanced fit, durable stitching, and easy styling for multiple outfits. Model: 200.",
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Slim Sale Item #200",
+                            Price = 31.25m
                         });
                 });
 
@@ -559,6 +3105,1808 @@ namespace ClothingStore.Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImage");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsMain = true,
+                            ProductId = 1,
+                            PublicId = "seed/tshirt-001",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsMain = true,
+                            ProductId = 2,
+                            PublicId = "seed/hoodie-002",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsMain = true,
+                            ProductId = 3,
+                            PublicId = "seed/jeans-003",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IsMain = true,
+                            ProductId = 4,
+                            PublicId = "seed/jacket-004",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IsMain = true,
+                            ProductId = 5,
+                            PublicId = "seed/sneakers-005",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=5"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IsMain = true,
+                            ProductId = 6,
+                            PublicId = "seed/sweatpants-006",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=6"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IsMain = true,
+                            ProductId = 7,
+                            PublicId = "seed/shorts-007",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=7"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IsMain = true,
+                            ProductId = 8,
+                            PublicId = "seed/shirt-008",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=8"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            IsMain = true,
+                            ProductId = 9,
+                            PublicId = "seed/knitwear-009",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=9"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            IsMain = true,
+                            ProductId = 10,
+                            PublicId = "seed/coat-010",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=10"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            IsMain = true,
+                            ProductId = 11,
+                            PublicId = "seed/activewear-011",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=11"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            IsMain = true,
+                            ProductId = 12,
+                            PublicId = "seed/underwear-012",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=12"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            IsMain = true,
+                            ProductId = 13,
+                            PublicId = "seed/socks-013",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=13"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            IsMain = true,
+                            ProductId = 14,
+                            PublicId = "seed/accessories-014",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=14"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            IsMain = true,
+                            ProductId = 15,
+                            PublicId = "seed/bag-015",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=15"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            IsMain = true,
+                            ProductId = 16,
+                            PublicId = "seed/hat-016",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=16"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            IsMain = true,
+                            ProductId = 17,
+                            PublicId = "seed/dress-017",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=17"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            IsMain = true,
+                            ProductId = 18,
+                            PublicId = "seed/skirt-018",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=18"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            IsMain = true,
+                            ProductId = 19,
+                            PublicId = "seed/kids-clothing-019",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=19"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            IsMain = true,
+                            ProductId = 20,
+                            PublicId = "seed/clothing-020",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=20"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            IsMain = true,
+                            ProductId = 21,
+                            PublicId = "seed/tshirt-021",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=21"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            IsMain = true,
+                            ProductId = 22,
+                            PublicId = "seed/hoodie-022",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=22"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            IsMain = true,
+                            ProductId = 23,
+                            PublicId = "seed/jeans-023",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=23"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            IsMain = true,
+                            ProductId = 24,
+                            PublicId = "seed/jacket-024",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=24"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            IsMain = true,
+                            ProductId = 25,
+                            PublicId = "seed/sneakers-025",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=25"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            IsMain = true,
+                            ProductId = 26,
+                            PublicId = "seed/sweatpants-026",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=26"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            IsMain = true,
+                            ProductId = 27,
+                            PublicId = "seed/shorts-027",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=27"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            IsMain = true,
+                            ProductId = 28,
+                            PublicId = "seed/shirt-028",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=28"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            IsMain = true,
+                            ProductId = 29,
+                            PublicId = "seed/knitwear-029",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=29"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            IsMain = true,
+                            ProductId = 30,
+                            PublicId = "seed/coat-030",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=30"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            IsMain = true,
+                            ProductId = 31,
+                            PublicId = "seed/activewear-031",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=31"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            IsMain = true,
+                            ProductId = 32,
+                            PublicId = "seed/underwear-032",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=32"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            IsMain = true,
+                            ProductId = 33,
+                            PublicId = "seed/socks-033",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=33"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            IsMain = true,
+                            ProductId = 34,
+                            PublicId = "seed/accessories-034",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=34"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            IsMain = true,
+                            ProductId = 35,
+                            PublicId = "seed/bag-035",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=35"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            IsMain = true,
+                            ProductId = 36,
+                            PublicId = "seed/hat-036",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=36"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            IsMain = true,
+                            ProductId = 37,
+                            PublicId = "seed/dress-037",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=37"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            IsMain = true,
+                            ProductId = 38,
+                            PublicId = "seed/skirt-038",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=38"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            IsMain = true,
+                            ProductId = 39,
+                            PublicId = "seed/kids-clothing-039",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=39"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            IsMain = true,
+                            ProductId = 40,
+                            PublicId = "seed/clothing-040",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=40"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            IsMain = true,
+                            ProductId = 41,
+                            PublicId = "seed/tshirt-041",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=41"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            IsMain = true,
+                            ProductId = 42,
+                            PublicId = "seed/hoodie-042",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=42"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            IsMain = true,
+                            ProductId = 43,
+                            PublicId = "seed/jeans-043",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=43"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            IsMain = true,
+                            ProductId = 44,
+                            PublicId = "seed/jacket-044",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=44"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            IsMain = true,
+                            ProductId = 45,
+                            PublicId = "seed/sneakers-045",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=45"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            IsMain = true,
+                            ProductId = 46,
+                            PublicId = "seed/sweatpants-046",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=46"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            IsMain = true,
+                            ProductId = 47,
+                            PublicId = "seed/shorts-047",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=47"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            IsMain = true,
+                            ProductId = 48,
+                            PublicId = "seed/shirt-048",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=48"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            IsMain = true,
+                            ProductId = 49,
+                            PublicId = "seed/knitwear-049",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=49"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            IsMain = true,
+                            ProductId = 50,
+                            PublicId = "seed/coat-050",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=50"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            IsMain = true,
+                            ProductId = 51,
+                            PublicId = "seed/activewear-051",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=51"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            IsMain = true,
+                            ProductId = 52,
+                            PublicId = "seed/underwear-052",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=52"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            IsMain = true,
+                            ProductId = 53,
+                            PublicId = "seed/socks-053",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=53"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            IsMain = true,
+                            ProductId = 54,
+                            PublicId = "seed/accessories-054",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=54"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            IsMain = true,
+                            ProductId = 55,
+                            PublicId = "seed/bag-055",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=55"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            IsMain = true,
+                            ProductId = 56,
+                            PublicId = "seed/hat-056",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=56"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            IsMain = true,
+                            ProductId = 57,
+                            PublicId = "seed/dress-057",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=57"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            IsMain = true,
+                            ProductId = 58,
+                            PublicId = "seed/skirt-058",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=58"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            IsMain = true,
+                            ProductId = 59,
+                            PublicId = "seed/kids-clothing-059",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=59"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            IsMain = true,
+                            ProductId = 60,
+                            PublicId = "seed/clothing-060",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=60"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            IsMain = true,
+                            ProductId = 61,
+                            PublicId = "seed/tshirt-061",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=61"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            IsMain = true,
+                            ProductId = 62,
+                            PublicId = "seed/hoodie-062",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=62"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            IsMain = true,
+                            ProductId = 63,
+                            PublicId = "seed/jeans-063",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=63"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            IsMain = true,
+                            ProductId = 64,
+                            PublicId = "seed/jacket-064",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=64"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            IsMain = true,
+                            ProductId = 65,
+                            PublicId = "seed/sneakers-065",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=65"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            IsMain = true,
+                            ProductId = 66,
+                            PublicId = "seed/sweatpants-066",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=66"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            IsMain = true,
+                            ProductId = 67,
+                            PublicId = "seed/shorts-067",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=67"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            IsMain = true,
+                            ProductId = 68,
+                            PublicId = "seed/shirt-068",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=68"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            IsMain = true,
+                            ProductId = 69,
+                            PublicId = "seed/knitwear-069",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=69"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            IsMain = true,
+                            ProductId = 70,
+                            PublicId = "seed/coat-070",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=70"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            IsMain = true,
+                            ProductId = 71,
+                            PublicId = "seed/activewear-071",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=71"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            IsMain = true,
+                            ProductId = 72,
+                            PublicId = "seed/underwear-072",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=72"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            IsMain = true,
+                            ProductId = 73,
+                            PublicId = "seed/socks-073",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=73"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            IsMain = true,
+                            ProductId = 74,
+                            PublicId = "seed/accessories-074",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=74"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            IsMain = true,
+                            ProductId = 75,
+                            PublicId = "seed/bag-075",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=75"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            IsMain = true,
+                            ProductId = 76,
+                            PublicId = "seed/hat-076",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=76"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            IsMain = true,
+                            ProductId = 77,
+                            PublicId = "seed/dress-077",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=77"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            IsMain = true,
+                            ProductId = 78,
+                            PublicId = "seed/skirt-078",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=78"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            IsMain = true,
+                            ProductId = 79,
+                            PublicId = "seed/kids-clothing-079",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=79"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            IsMain = true,
+                            ProductId = 80,
+                            PublicId = "seed/clothing-080",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=80"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            IsMain = true,
+                            ProductId = 81,
+                            PublicId = "seed/tshirt-081",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=81"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            IsMain = true,
+                            ProductId = 82,
+                            PublicId = "seed/hoodie-082",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=82"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            IsMain = true,
+                            ProductId = 83,
+                            PublicId = "seed/jeans-083",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=83"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            IsMain = true,
+                            ProductId = 84,
+                            PublicId = "seed/jacket-084",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=84"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            IsMain = true,
+                            ProductId = 85,
+                            PublicId = "seed/sneakers-085",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=85"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            IsMain = true,
+                            ProductId = 86,
+                            PublicId = "seed/sweatpants-086",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=86"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            IsMain = true,
+                            ProductId = 87,
+                            PublicId = "seed/shorts-087",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=87"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            IsMain = true,
+                            ProductId = 88,
+                            PublicId = "seed/shirt-088",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=88"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            IsMain = true,
+                            ProductId = 89,
+                            PublicId = "seed/knitwear-089",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=89"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            IsMain = true,
+                            ProductId = 90,
+                            PublicId = "seed/coat-090",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=90"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            IsMain = true,
+                            ProductId = 91,
+                            PublicId = "seed/activewear-091",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=91"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            IsMain = true,
+                            ProductId = 92,
+                            PublicId = "seed/underwear-092",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=92"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            IsMain = true,
+                            ProductId = 93,
+                            PublicId = "seed/socks-093",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=93"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            IsMain = true,
+                            ProductId = 94,
+                            PublicId = "seed/accessories-094",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=94"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            IsMain = true,
+                            ProductId = 95,
+                            PublicId = "seed/bag-095",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=95"
+                        },
+                        new
+                        {
+                            Id = 96,
+                            IsMain = true,
+                            ProductId = 96,
+                            PublicId = "seed/hat-096",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=96"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            IsMain = true,
+                            ProductId = 97,
+                            PublicId = "seed/dress-097",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=97"
+                        },
+                        new
+                        {
+                            Id = 98,
+                            IsMain = true,
+                            ProductId = 98,
+                            PublicId = "seed/skirt-098",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=98"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            IsMain = true,
+                            ProductId = 99,
+                            PublicId = "seed/kids-clothing-099",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=99"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            IsMain = true,
+                            ProductId = 100,
+                            PublicId = "seed/clothing-100",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=100"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            IsMain = true,
+                            ProductId = 101,
+                            PublicId = "seed/tshirt-101",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=101"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            IsMain = true,
+                            ProductId = 102,
+                            PublicId = "seed/hoodie-102",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=102"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            IsMain = true,
+                            ProductId = 103,
+                            PublicId = "seed/jeans-103",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=103"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            IsMain = true,
+                            ProductId = 104,
+                            PublicId = "seed/jacket-104",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=104"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            IsMain = true,
+                            ProductId = 105,
+                            PublicId = "seed/sneakers-105",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=105"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            IsMain = true,
+                            ProductId = 106,
+                            PublicId = "seed/sweatpants-106",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=106"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            IsMain = true,
+                            ProductId = 107,
+                            PublicId = "seed/shorts-107",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=107"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            IsMain = true,
+                            ProductId = 108,
+                            PublicId = "seed/shirt-108",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=108"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            IsMain = true,
+                            ProductId = 109,
+                            PublicId = "seed/knitwear-109",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=109"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            IsMain = true,
+                            ProductId = 110,
+                            PublicId = "seed/coat-110",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=110"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            IsMain = true,
+                            ProductId = 111,
+                            PublicId = "seed/activewear-111",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=111"
+                        },
+                        new
+                        {
+                            Id = 112,
+                            IsMain = true,
+                            ProductId = 112,
+                            PublicId = "seed/underwear-112",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=112"
+                        },
+                        new
+                        {
+                            Id = 113,
+                            IsMain = true,
+                            ProductId = 113,
+                            PublicId = "seed/socks-113",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=113"
+                        },
+                        new
+                        {
+                            Id = 114,
+                            IsMain = true,
+                            ProductId = 114,
+                            PublicId = "seed/accessories-114",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=114"
+                        },
+                        new
+                        {
+                            Id = 115,
+                            IsMain = true,
+                            ProductId = 115,
+                            PublicId = "seed/bag-115",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=115"
+                        },
+                        new
+                        {
+                            Id = 116,
+                            IsMain = true,
+                            ProductId = 116,
+                            PublicId = "seed/hat-116",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=116"
+                        },
+                        new
+                        {
+                            Id = 117,
+                            IsMain = true,
+                            ProductId = 117,
+                            PublicId = "seed/dress-117",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=117"
+                        },
+                        new
+                        {
+                            Id = 118,
+                            IsMain = true,
+                            ProductId = 118,
+                            PublicId = "seed/skirt-118",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=118"
+                        },
+                        new
+                        {
+                            Id = 119,
+                            IsMain = true,
+                            ProductId = 119,
+                            PublicId = "seed/kids-clothing-119",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=119"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            IsMain = true,
+                            ProductId = 120,
+                            PublicId = "seed/clothing-120",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=120"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            IsMain = true,
+                            ProductId = 121,
+                            PublicId = "seed/tshirt-121",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=121"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            IsMain = true,
+                            ProductId = 122,
+                            PublicId = "seed/hoodie-122",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=122"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            IsMain = true,
+                            ProductId = 123,
+                            PublicId = "seed/jeans-123",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=123"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            IsMain = true,
+                            ProductId = 124,
+                            PublicId = "seed/jacket-124",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=124"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            IsMain = true,
+                            ProductId = 125,
+                            PublicId = "seed/sneakers-125",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=125"
+                        },
+                        new
+                        {
+                            Id = 126,
+                            IsMain = true,
+                            ProductId = 126,
+                            PublicId = "seed/sweatpants-126",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=126"
+                        },
+                        new
+                        {
+                            Id = 127,
+                            IsMain = true,
+                            ProductId = 127,
+                            PublicId = "seed/shorts-127",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=127"
+                        },
+                        new
+                        {
+                            Id = 128,
+                            IsMain = true,
+                            ProductId = 128,
+                            PublicId = "seed/shirt-128",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=128"
+                        },
+                        new
+                        {
+                            Id = 129,
+                            IsMain = true,
+                            ProductId = 129,
+                            PublicId = "seed/knitwear-129",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=129"
+                        },
+                        new
+                        {
+                            Id = 130,
+                            IsMain = true,
+                            ProductId = 130,
+                            PublicId = "seed/coat-130",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=130"
+                        },
+                        new
+                        {
+                            Id = 131,
+                            IsMain = true,
+                            ProductId = 131,
+                            PublicId = "seed/activewear-131",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=131"
+                        },
+                        new
+                        {
+                            Id = 132,
+                            IsMain = true,
+                            ProductId = 132,
+                            PublicId = "seed/underwear-132",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=132"
+                        },
+                        new
+                        {
+                            Id = 133,
+                            IsMain = true,
+                            ProductId = 133,
+                            PublicId = "seed/socks-133",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=133"
+                        },
+                        new
+                        {
+                            Id = 134,
+                            IsMain = true,
+                            ProductId = 134,
+                            PublicId = "seed/accessories-134",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=134"
+                        },
+                        new
+                        {
+                            Id = 135,
+                            IsMain = true,
+                            ProductId = 135,
+                            PublicId = "seed/bag-135",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=135"
+                        },
+                        new
+                        {
+                            Id = 136,
+                            IsMain = true,
+                            ProductId = 136,
+                            PublicId = "seed/hat-136",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=136"
+                        },
+                        new
+                        {
+                            Id = 137,
+                            IsMain = true,
+                            ProductId = 137,
+                            PublicId = "seed/dress-137",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=137"
+                        },
+                        new
+                        {
+                            Id = 138,
+                            IsMain = true,
+                            ProductId = 138,
+                            PublicId = "seed/skirt-138",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=138"
+                        },
+                        new
+                        {
+                            Id = 139,
+                            IsMain = true,
+                            ProductId = 139,
+                            PublicId = "seed/kids-clothing-139",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=139"
+                        },
+                        new
+                        {
+                            Id = 140,
+                            IsMain = true,
+                            ProductId = 140,
+                            PublicId = "seed/clothing-140",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=140"
+                        },
+                        new
+                        {
+                            Id = 141,
+                            IsMain = true,
+                            ProductId = 141,
+                            PublicId = "seed/tshirt-141",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=141"
+                        },
+                        new
+                        {
+                            Id = 142,
+                            IsMain = true,
+                            ProductId = 142,
+                            PublicId = "seed/hoodie-142",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=142"
+                        },
+                        new
+                        {
+                            Id = 143,
+                            IsMain = true,
+                            ProductId = 143,
+                            PublicId = "seed/jeans-143",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=143"
+                        },
+                        new
+                        {
+                            Id = 144,
+                            IsMain = true,
+                            ProductId = 144,
+                            PublicId = "seed/jacket-144",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=144"
+                        },
+                        new
+                        {
+                            Id = 145,
+                            IsMain = true,
+                            ProductId = 145,
+                            PublicId = "seed/sneakers-145",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=145"
+                        },
+                        new
+                        {
+                            Id = 146,
+                            IsMain = true,
+                            ProductId = 146,
+                            PublicId = "seed/sweatpants-146",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=146"
+                        },
+                        new
+                        {
+                            Id = 147,
+                            IsMain = true,
+                            ProductId = 147,
+                            PublicId = "seed/shorts-147",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=147"
+                        },
+                        new
+                        {
+                            Id = 148,
+                            IsMain = true,
+                            ProductId = 148,
+                            PublicId = "seed/shirt-148",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=148"
+                        },
+                        new
+                        {
+                            Id = 149,
+                            IsMain = true,
+                            ProductId = 149,
+                            PublicId = "seed/knitwear-149",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=149"
+                        },
+                        new
+                        {
+                            Id = 150,
+                            IsMain = true,
+                            ProductId = 150,
+                            PublicId = "seed/coat-150",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=150"
+                        },
+                        new
+                        {
+                            Id = 151,
+                            IsMain = true,
+                            ProductId = 151,
+                            PublicId = "seed/activewear-151",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=151"
+                        },
+                        new
+                        {
+                            Id = 152,
+                            IsMain = true,
+                            ProductId = 152,
+                            PublicId = "seed/underwear-152",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=152"
+                        },
+                        new
+                        {
+                            Id = 153,
+                            IsMain = true,
+                            ProductId = 153,
+                            PublicId = "seed/socks-153",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=153"
+                        },
+                        new
+                        {
+                            Id = 154,
+                            IsMain = true,
+                            ProductId = 154,
+                            PublicId = "seed/accessories-154",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=154"
+                        },
+                        new
+                        {
+                            Id = 155,
+                            IsMain = true,
+                            ProductId = 155,
+                            PublicId = "seed/bag-155",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=155"
+                        },
+                        new
+                        {
+                            Id = 156,
+                            IsMain = true,
+                            ProductId = 156,
+                            PublicId = "seed/hat-156",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=156"
+                        },
+                        new
+                        {
+                            Id = 157,
+                            IsMain = true,
+                            ProductId = 157,
+                            PublicId = "seed/dress-157",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=157"
+                        },
+                        new
+                        {
+                            Id = 158,
+                            IsMain = true,
+                            ProductId = 158,
+                            PublicId = "seed/skirt-158",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=158"
+                        },
+                        new
+                        {
+                            Id = 159,
+                            IsMain = true,
+                            ProductId = 159,
+                            PublicId = "seed/kids-clothing-159",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=159"
+                        },
+                        new
+                        {
+                            Id = 160,
+                            IsMain = true,
+                            ProductId = 160,
+                            PublicId = "seed/clothing-160",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=160"
+                        },
+                        new
+                        {
+                            Id = 161,
+                            IsMain = true,
+                            ProductId = 161,
+                            PublicId = "seed/tshirt-161",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=161"
+                        },
+                        new
+                        {
+                            Id = 162,
+                            IsMain = true,
+                            ProductId = 162,
+                            PublicId = "seed/hoodie-162",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=162"
+                        },
+                        new
+                        {
+                            Id = 163,
+                            IsMain = true,
+                            ProductId = 163,
+                            PublicId = "seed/jeans-163",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=163"
+                        },
+                        new
+                        {
+                            Id = 164,
+                            IsMain = true,
+                            ProductId = 164,
+                            PublicId = "seed/jacket-164",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=164"
+                        },
+                        new
+                        {
+                            Id = 165,
+                            IsMain = true,
+                            ProductId = 165,
+                            PublicId = "seed/sneakers-165",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=165"
+                        },
+                        new
+                        {
+                            Id = 166,
+                            IsMain = true,
+                            ProductId = 166,
+                            PublicId = "seed/sweatpants-166",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=166"
+                        },
+                        new
+                        {
+                            Id = 167,
+                            IsMain = true,
+                            ProductId = 167,
+                            PublicId = "seed/shorts-167",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=167"
+                        },
+                        new
+                        {
+                            Id = 168,
+                            IsMain = true,
+                            ProductId = 168,
+                            PublicId = "seed/shirt-168",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=168"
+                        },
+                        new
+                        {
+                            Id = 169,
+                            IsMain = true,
+                            ProductId = 169,
+                            PublicId = "seed/knitwear-169",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=169"
+                        },
+                        new
+                        {
+                            Id = 170,
+                            IsMain = true,
+                            ProductId = 170,
+                            PublicId = "seed/coat-170",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=170"
+                        },
+                        new
+                        {
+                            Id = 171,
+                            IsMain = true,
+                            ProductId = 171,
+                            PublicId = "seed/activewear-171",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=171"
+                        },
+                        new
+                        {
+                            Id = 172,
+                            IsMain = true,
+                            ProductId = 172,
+                            PublicId = "seed/underwear-172",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=172"
+                        },
+                        new
+                        {
+                            Id = 173,
+                            IsMain = true,
+                            ProductId = 173,
+                            PublicId = "seed/socks-173",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=173"
+                        },
+                        new
+                        {
+                            Id = 174,
+                            IsMain = true,
+                            ProductId = 174,
+                            PublicId = "seed/accessories-174",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=174"
+                        },
+                        new
+                        {
+                            Id = 175,
+                            IsMain = true,
+                            ProductId = 175,
+                            PublicId = "seed/bag-175",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=175"
+                        },
+                        new
+                        {
+                            Id = 176,
+                            IsMain = true,
+                            ProductId = 176,
+                            PublicId = "seed/hat-176",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=176"
+                        },
+                        new
+                        {
+                            Id = 177,
+                            IsMain = true,
+                            ProductId = 177,
+                            PublicId = "seed/dress-177",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=177"
+                        },
+                        new
+                        {
+                            Id = 178,
+                            IsMain = true,
+                            ProductId = 178,
+                            PublicId = "seed/skirt-178",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=178"
+                        },
+                        new
+                        {
+                            Id = 179,
+                            IsMain = true,
+                            ProductId = 179,
+                            PublicId = "seed/kids-clothing-179",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=179"
+                        },
+                        new
+                        {
+                            Id = 180,
+                            IsMain = true,
+                            ProductId = 180,
+                            PublicId = "seed/clothing-180",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=180"
+                        },
+                        new
+                        {
+                            Id = 181,
+                            IsMain = true,
+                            ProductId = 181,
+                            PublicId = "seed/tshirt-181",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/tshirt?lock=181"
+                        },
+                        new
+                        {
+                            Id = 182,
+                            IsMain = true,
+                            ProductId = 182,
+                            PublicId = "seed/hoodie-182",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hoodie?lock=182"
+                        },
+                        new
+                        {
+                            Id = 183,
+                            IsMain = true,
+                            ProductId = 183,
+                            PublicId = "seed/jeans-183",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jeans?lock=183"
+                        },
+                        new
+                        {
+                            Id = 184,
+                            IsMain = true,
+                            ProductId = 184,
+                            PublicId = "seed/jacket-184",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/jacket?lock=184"
+                        },
+                        new
+                        {
+                            Id = 185,
+                            IsMain = true,
+                            ProductId = 185,
+                            PublicId = "seed/sneakers-185",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sneakers?lock=185"
+                        },
+                        new
+                        {
+                            Id = 186,
+                            IsMain = true,
+                            ProductId = 186,
+                            PublicId = "seed/sweatpants-186",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/sweatpants?lock=186"
+                        },
+                        new
+                        {
+                            Id = 187,
+                            IsMain = true,
+                            ProductId = 187,
+                            PublicId = "seed/shorts-187",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shorts?lock=187"
+                        },
+                        new
+                        {
+                            Id = 188,
+                            IsMain = true,
+                            ProductId = 188,
+                            PublicId = "seed/shirt-188",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/shirt?lock=188"
+                        },
+                        new
+                        {
+                            Id = 189,
+                            IsMain = true,
+                            ProductId = 189,
+                            PublicId = "seed/knitwear-189",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/knitwear?lock=189"
+                        },
+                        new
+                        {
+                            Id = 190,
+                            IsMain = true,
+                            ProductId = 190,
+                            PublicId = "seed/coat-190",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/coat?lock=190"
+                        },
+                        new
+                        {
+                            Id = 191,
+                            IsMain = true,
+                            ProductId = 191,
+                            PublicId = "seed/activewear-191",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/activewear?lock=191"
+                        },
+                        new
+                        {
+                            Id = 192,
+                            IsMain = true,
+                            ProductId = 192,
+                            PublicId = "seed/underwear-192",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/underwear?lock=192"
+                        },
+                        new
+                        {
+                            Id = 193,
+                            IsMain = true,
+                            ProductId = 193,
+                            PublicId = "seed/socks-193",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/socks?lock=193"
+                        },
+                        new
+                        {
+                            Id = 194,
+                            IsMain = true,
+                            ProductId = 194,
+                            PublicId = "seed/accessories-194",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/accessories?lock=194"
+                        },
+                        new
+                        {
+                            Id = 195,
+                            IsMain = true,
+                            ProductId = 195,
+                            PublicId = "seed/bag-195",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/bag?lock=195"
+                        },
+                        new
+                        {
+                            Id = 196,
+                            IsMain = true,
+                            ProductId = 196,
+                            PublicId = "seed/hat-196",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/hat?lock=196"
+                        },
+                        new
+                        {
+                            Id = 197,
+                            IsMain = true,
+                            ProductId = 197,
+                            PublicId = "seed/dress-197",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/dress?lock=197"
+                        },
+                        new
+                        {
+                            Id = 198,
+                            IsMain = true,
+                            ProductId = 198,
+                            PublicId = "seed/skirt-198",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/skirt?lock=198"
+                        },
+                        new
+                        {
+                            Id = 199,
+                            IsMain = true,
+                            ProductId = 199,
+                            PublicId = "seed/kids-clothing-199",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/kids-clothing?lock=199"
+                        },
+                        new
+                        {
+                            Id = 200,
+                            IsMain = true,
+                            ProductId = 200,
+                            PublicId = "seed/clothing-200",
+                            SortOrder = 0,
+                            Url = "https://loremflickr.com/800/1000/clothing?lock=200"
+                        });
                 });
 
             modelBuilder.Entity("ClothingStore.Infrastructure.Data.Entities.ProductVariant", b =>
@@ -597,93 +4945,3648 @@ namespace ClothingStore.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ColorId = 1,
+                            ColorId = 4,
                             IsActive = true,
                             ProductId = 1,
-                            Size = "M",
-                            Stock = 120
+                            Size = "S",
+                            Stock = 15
                         },
                         new
                         {
                             Id = 2,
-                            ColorId = 2,
+                            ColorId = 8,
                             IsActive = true,
-                            ProductId = 2,
+                            ProductId = 1,
                             Size = "L",
-                            Stock = 80
+                            Stock = 19
                         },
                         new
                         {
                             Id = 3,
-                            ColorId = 3,
+                            ColorId = 7,
                             IsActive = true,
-                            ProductId = 3,
+                            ProductId = 2,
                             Size = "M",
-                            Stock = 60
+                            Stock = 20
                         },
                         new
                         {
                             Id = 4,
-                            ColorId = 4,
+                            ColorId = 15,
                             IsActive = true,
-                            ProductId = 4,
-                            Size = "S",
-                            Stock = 45
+                            ProductId = 2,
+                            Size = "XL",
+                            Stock = 28
                         },
                         new
                         {
                             Id = 5,
-                            ColorId = 5,
+                            ColorId = 10,
                             IsActive = true,
-                            ProductId = 5,
-                            Size = "32",
-                            Stock = 70
+                            ProductId = 3,
+                            Size = "33",
+                            Stock = 25
                         },
                         new
                         {
                             Id = 6,
-                            ColorId = 6,
+                            ColorId = 22,
                             IsActive = true,
-                            ProductId = 6,
-                            Size = "34",
-                            Stock = 55
+                            ProductId = 3,
+                            Size = "36",
+                            Stock = 37
                         },
                         new
                         {
                             Id = 7,
-                            ColorId = 7,
+                            ColorId = 13,
                             IsActive = true,
-                            ProductId = 7,
-                            Size = "L",
+                            ProductId = 4,
+                            Size = "XL",
                             Stock = 30
                         },
                         new
                         {
                             Id = 8,
-                            ColorId = 2,
+                            ColorId = 29,
+                            IsActive = true,
+                            ProductId = 4,
+                            Size = "S",
+                            Stock = 46
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 5,
+                            Size = "45",
+                            Stock = 35
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ColorId = 6,
+                            IsActive = true,
+                            ProductId = 5,
+                            Size = "41",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 6,
+                            Size = "S",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 6,
+                            Size = "L",
+                            Stock = 64
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 7,
+                            Size = "M",
+                            Stock = 45
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ColorId = 20,
+                            IsActive = true,
+                            ProductId = 7,
+                            Size = "XL",
+                            Stock = 73
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ColorId = 25,
                             IsActive = true,
                             ProductId = 8,
+                            Size = "L",
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ColorId = 27,
+                            IsActive = true,
+                            ProductId = 8,
+                            Size = "XS",
+                            Stock = 82
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 9,
+                            Size = "XL",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 9,
+                            Size = "S",
+                            Stock = 91
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 10,
+                            Size = "XS",
+                            Stock = 60
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ColorId = 11,
+                            IsActive = true,
+                            ProductId = 10,
+                            Size = "M",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 11,
+                            Size = "S",
+                            Stock = 65
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ColorId = 18,
+                            IsActive = true,
+                            ProductId = 11,
+                            Size = "L",
+                            Stock = 109
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 12,
+                            Size = "M",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 12,
+                            Size = "XL",
+                            Stock = 118
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 13,
+                            Size = "L",
+                            Stock = 75
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 13,
+                            Size = "XS",
+                            Stock = 127
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 14,
+                            Size = "XL",
+                            Stock = 80
+                        },
+                        new
+                        {
+                            Id = 28,
+                            ColorId = 9,
+                            IsActive = true,
+                            ProductId = 14,
+                            Size = "S",
+                            Stock = 16
+                        },
+                        new
+                        {
+                            Id = 29,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 15,
+                            Size = "XS",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 30,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 15,
                             Size = "M",
                             Stock = 25
                         },
                         new
                         {
-                            Id = 9,
-                            ColorId = 8,
+                            Id = 31,
+                            ColorId = 19,
                             IsActive = true,
-                            ProductId = 9,
-                            Size = "42",
+                            ProductId = 16,
+                            Size = "S",
+                            Stock = 90
+                        },
+                        new
+                        {
+                            Id = 32,
+                            ColorId = 23,
+                            IsActive = true,
+                            ProductId = 16,
+                            Size = "L",
+                            Stock = 34
+                        },
+                        new
+                        {
+                            Id = 33,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 17,
+                            Size = "M",
+                            Stock = 95
+                        },
+                        new
+                        {
+                            Id = 34,
+                            ColorId = 30,
+                            IsActive = true,
+                            ProductId = 17,
+                            Size = "XL",
+                            Stock = 43
+                        },
+                        new
+                        {
+                            Id = 35,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 18,
+                            Size = "L",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 36,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 18,
+                            Size = "XS",
+                            Stock = 52
+                        },
+                        new
+                        {
+                            Id = 37,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 19,
+                            Size = "116",
+                            Stock = 105
+                        },
+                        new
+                        {
+                            Id = 38,
+                            ColorId = 14,
+                            IsActive = true,
+                            ProductId = 19,
+                            Size = "128",
+                            Stock = 61
+                        },
+                        new
+                        {
+                            Id = 39,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 20,
+                            Size = "XS",
+                            Stock = 110
+                        },
+                        new
+                        {
+                            Id = 40,
+                            ColorId = 21,
+                            IsActive = true,
+                            ProductId = 20,
+                            Size = "M",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 41,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 21,
+                            Size = "S",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 42,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 21,
+                            Size = "L",
+                            Stock = 79
+                        },
+                        new
+                        {
+                            Id = 43,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 22,
+                            Size = "M",
+                            Stock = 120
+                        },
+                        new
+                        {
+                            Id = 44,
+                            ColorId = 5,
+                            IsActive = true,
+                            ProductId = 22,
+                            Size = "XL",
+                            Stock = 88
+                        },
+                        new
+                        {
+                            Id = 45,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 23,
+                            Size = "36",
+                            Stock = 125
+                        },
+                        new
+                        {
+                            Id = 46,
+                            ColorId = 12,
+                            IsActive = true,
+                            ProductId = 23,
+                            Size = "31",
+                            Stock = 97
+                        },
+                        new
+                        {
+                            Id = 47,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 24,
+                            Size = "XL",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 48,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 24,
+                            Size = "S",
+                            Stock = 106
+                        },
+                        new
+                        {
+                            Id = 49,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 25,
+                            Size = "41",
+                            Stock = 15
+                        },
+                        new
+                        {
+                            Id = 50,
+                            ColorId = 26,
+                            IsActive = true,
+                            ProductId = 25,
+                            Size = "43",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 51,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 26,
+                            Size = "S",
+                            Stock = 20
+                        },
+                        new
+                        {
+                            Id = 52,
+                            ColorId = 3,
+                            IsActive = true,
+                            ProductId = 26,
+                            Size = "L",
+                            Stock = 124
+                        },
+                        new
+                        {
+                            Id = 53,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 27,
+                            Size = "M",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 54,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 27,
+                            Size = "XL",
+                            Stock = 13
+                        },
+                        new
+                        {
+                            Id = 55,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 28,
+                            Size = "L",
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 56,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 28,
+                            Size = "XS",
+                            Stock = 22
+                        },
+                        new
+                        {
+                            Id = 57,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 29,
+                            Size = "XL",
+                            Stock = 35
+                        },
+                        new
+                        {
+                            Id = 58,
+                            ColorId = 24,
+                            IsActive = true,
+                            ProductId = 29,
+                            Size = "S",
+                            Stock = 31
+                        },
+                        new
+                        {
+                            Id = 59,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 30,
+                            Size = "XS",
                             Stock = 40
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 60,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 30,
+                            Size = "M",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 61,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 31,
+                            Size = "S",
+                            Stock = 45
+                        },
+                        new
+                        {
+                            Id = 62,
+                            ColorId = 8,
+                            IsActive = true,
+                            ProductId = 31,
+                            Size = "L",
+                            Stock = 49
+                        },
+                        new
+                        {
+                            Id = 63,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 32,
+                            Size = "M",
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 64,
+                            ColorId = 15,
+                            IsActive = true,
+                            ProductId = 32,
+                            Size = "XL",
+                            Stock = 58
+                        },
+                        new
+                        {
+                            Id = 65,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 33,
+                            Size = "L",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 66,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 33,
+                            Size = "XS",
+                            Stock = 67
+                        },
+                        new
+                        {
+                            Id = 67,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 34,
+                            Size = "XL",
+                            Stock = 60
+                        },
+                        new
+                        {
+                            Id = 68,
+                            ColorId = 29,
+                            IsActive = true,
+                            ProductId = 34,
+                            Size = "S",
+                            Stock = 76
+                        },
+                        new
+                        {
+                            Id = 69,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 35,
+                            Size = "XS",
+                            Stock = 65
+                        },
+                        new
+                        {
+                            Id = 70,
+                            ColorId = 6,
+                            IsActive = true,
+                            ProductId = 35,
+                            Size = "M",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 71,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 36,
+                            Size = "S",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 72,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 36,
+                            Size = "L",
+                            Stock = 94
+                        },
+                        new
+                        {
+                            Id = 73,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 37,
+                            Size = "M",
+                            Stock = 75
+                        },
+                        new
+                        {
+                            Id = 74,
+                            ColorId = 20,
+                            IsActive = true,
+                            ProductId = 37,
+                            Size = "XL",
+                            Stock = 103
+                        },
+                        new
+                        {
+                            Id = 75,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 38,
+                            Size = "L",
+                            Stock = 80
+                        },
+                        new
+                        {
+                            Id = 76,
+                            ColorId = 27,
+                            IsActive = true,
+                            ProductId = 38,
+                            Size = "XS",
+                            Stock = 112
+                        },
+                        new
+                        {
+                            Id = 77,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 39,
+                            Size = "140",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 78,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 39,
+                            Size = "104",
+                            Stock = 121
+                        },
+                        new
+                        {
+                            Id = 79,
                             ColorId = 1,
                             IsActive = true,
-                            ProductId = 10,
+                            ProductId = 40,
+                            Size = "XS",
+                            Stock = 90
+                        },
+                        new
+                        {
+                            Id = 80,
+                            ColorId = 11,
+                            IsActive = true,
+                            ProductId = 40,
+                            Size = "M",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 81,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 41,
+                            Size = "S",
+                            Stock = 95
+                        },
+                        new
+                        {
+                            Id = 82,
+                            ColorId = 18,
+                            IsActive = true,
+                            ProductId = 41,
+                            Size = "L",
+                            Stock = 19
+                        },
+                        new
+                        {
+                            Id = 83,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 42,
+                            Size = "M",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 84,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 42,
+                            Size = "XL",
+                            Stock = 28
+                        },
+                        new
+                        {
+                            Id = 85,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 43,
+                            Size = "31",
+                            Stock = 105
+                        },
+                        new
+                        {
+                            Id = 86,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 43,
+                            Size = "33",
+                            Stock = 37
+                        },
+                        new
+                        {
+                            Id = 87,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 44,
+                            Size = "XL",
+                            Stock = 110
+                        },
+                        new
+                        {
+                            Id = 88,
+                            ColorId = 9,
+                            IsActive = true,
+                            ProductId = 44,
+                            Size = "S",
+                            Stock = 46
+                        },
+                        new
+                        {
+                            Id = 89,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 45,
                             Size = "43",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 90,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 45,
+                            Size = "45",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 91,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 46,
+                            Size = "S",
+                            Stock = 120
+                        },
+                        new
+                        {
+                            Id = 92,
+                            ColorId = 23,
+                            IsActive = true,
+                            ProductId = 46,
+                            Size = "L",
+                            Stock = 64
+                        },
+                        new
+                        {
+                            Id = 93,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 47,
+                            Size = "M",
+                            Stock = 125
+                        },
+                        new
+                        {
+                            Id = 94,
+                            ColorId = 30,
+                            IsActive = true,
+                            ProductId = 47,
+                            Size = "XL",
+                            Stock = 73
+                        },
+                        new
+                        {
+                            Id = 95,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 48,
+                            Size = "L",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 96,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 48,
+                            Size = "XS",
+                            Stock = 82
+                        },
+                        new
+                        {
+                            Id = 97,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 49,
+                            Size = "XL",
+                            Stock = 15
+                        },
+                        new
+                        {
+                            Id = 98,
+                            ColorId = 14,
+                            IsActive = true,
+                            ProductId = 49,
+                            Size = "S",
+                            Stock = 91
+                        },
+                        new
+                        {
+                            Id = 99,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 50,
+                            Size = "XS",
+                            Stock = 20
+                        },
+                        new
+                        {
+                            Id = 100,
+                            ColorId = 21,
+                            IsActive = true,
+                            ProductId = 50,
+                            Size = "M",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 101,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 51,
+                            Size = "S",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 102,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 51,
+                            Size = "L",
+                            Stock = 109
+                        },
+                        new
+                        {
+                            Id = 103,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 52,
+                            Size = "M",
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 104,
+                            ColorId = 5,
+                            IsActive = true,
+                            ProductId = 52,
+                            Size = "XL",
+                            Stock = 118
+                        },
+                        new
+                        {
+                            Id = 105,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 53,
+                            Size = "L",
                             Stock = 35
+                        },
+                        new
+                        {
+                            Id = 106,
+                            ColorId = 12,
+                            IsActive = true,
+                            ProductId = 53,
+                            Size = "XS",
+                            Stock = 127
+                        },
+                        new
+                        {
+                            Id = 107,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 54,
+                            Size = "XL",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 108,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 54,
+                            Size = "S",
+                            Stock = 16
+                        },
+                        new
+                        {
+                            Id = 109,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 55,
+                            Size = "XS",
+                            Stock = 45
+                        },
+                        new
+                        {
+                            Id = 110,
+                            ColorId = 26,
+                            IsActive = true,
+                            ProductId = 55,
+                            Size = "M",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 111,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 56,
+                            Size = "S",
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 112,
+                            ColorId = 3,
+                            IsActive = true,
+                            ProductId = 56,
+                            Size = "L",
+                            Stock = 34
+                        },
+                        new
+                        {
+                            Id = 113,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 57,
+                            Size = "M",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 114,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 57,
+                            Size = "XL",
+                            Stock = 43
+                        },
+                        new
+                        {
+                            Id = 115,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 58,
+                            Size = "L",
+                            Stock = 60
+                        },
+                        new
+                        {
+                            Id = 116,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 58,
+                            Size = "XS",
+                            Stock = 52
+                        },
+                        new
+                        {
+                            Id = 117,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 59,
+                            Size = "116",
+                            Stock = 65
+                        },
+                        new
+                        {
+                            Id = 118,
+                            ColorId = 24,
+                            IsActive = true,
+                            ProductId = 59,
+                            Size = "128",
+                            Stock = 61
+                        },
+                        new
+                        {
+                            Id = 119,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 60,
+                            Size = "XS",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 120,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 60,
+                            Size = "M",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 121,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 61,
+                            Size = "S",
+                            Stock = 75
+                        },
+                        new
+                        {
+                            Id = 122,
+                            ColorId = 8,
+                            IsActive = true,
+                            ProductId = 61,
+                            Size = "L",
+                            Stock = 79
+                        },
+                        new
+                        {
+                            Id = 123,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 62,
+                            Size = "M",
+                            Stock = 80
+                        },
+                        new
+                        {
+                            Id = 124,
+                            ColorId = 15,
+                            IsActive = true,
+                            ProductId = 62,
+                            Size = "XL",
+                            Stock = 88
+                        },
+                        new
+                        {
+                            Id = 125,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 63,
+                            Size = "33",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 126,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 63,
+                            Size = "36",
+                            Stock = 97
+                        },
+                        new
+                        {
+                            Id = 127,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 64,
+                            Size = "XL",
+                            Stock = 90
+                        },
+                        new
+                        {
+                            Id = 128,
+                            ColorId = 29,
+                            IsActive = true,
+                            ProductId = 64,
+                            Size = "S",
+                            Stock = 106
+                        },
+                        new
+                        {
+                            Id = 129,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 65,
+                            Size = "45",
+                            Stock = 95
+                        },
+                        new
+                        {
+                            Id = 130,
+                            ColorId = 6,
+                            IsActive = true,
+                            ProductId = 65,
+                            Size = "41",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 131,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 66,
+                            Size = "S",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 132,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 66,
+                            Size = "L",
+                            Stock = 124
+                        },
+                        new
+                        {
+                            Id = 133,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 67,
+                            Size = "M",
+                            Stock = 105
+                        },
+                        new
+                        {
+                            Id = 134,
+                            ColorId = 20,
+                            IsActive = true,
+                            ProductId = 67,
+                            Size = "XL",
+                            Stock = 13
+                        },
+                        new
+                        {
+                            Id = 135,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 68,
+                            Size = "L",
+                            Stock = 110
+                        },
+                        new
+                        {
+                            Id = 136,
+                            ColorId = 27,
+                            IsActive = true,
+                            ProductId = 68,
+                            Size = "XS",
+                            Stock = 22
+                        },
+                        new
+                        {
+                            Id = 137,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 69,
+                            Size = "XL",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 138,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 69,
+                            Size = "S",
+                            Stock = 31
+                        },
+                        new
+                        {
+                            Id = 139,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 70,
+                            Size = "XS",
+                            Stock = 120
+                        },
+                        new
+                        {
+                            Id = 140,
+                            ColorId = 11,
+                            IsActive = true,
+                            ProductId = 70,
+                            Size = "M",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 141,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 71,
+                            Size = "S",
+                            Stock = 125
+                        },
+                        new
+                        {
+                            Id = 142,
+                            ColorId = 18,
+                            IsActive = true,
+                            ProductId = 71,
+                            Size = "L",
+                            Stock = 49
+                        },
+                        new
+                        {
+                            Id = 143,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 72,
+                            Size = "M",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 144,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 72,
+                            Size = "XL",
+                            Stock = 58
+                        },
+                        new
+                        {
+                            Id = 145,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 73,
+                            Size = "L",
+                            Stock = 15
+                        },
+                        new
+                        {
+                            Id = 146,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 73,
+                            Size = "XS",
+                            Stock = 67
+                        },
+                        new
+                        {
+                            Id = 147,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 74,
+                            Size = "XL",
+                            Stock = 20
+                        },
+                        new
+                        {
+                            Id = 148,
+                            ColorId = 9,
+                            IsActive = true,
+                            ProductId = 74,
+                            Size = "S",
+                            Stock = 76
+                        },
+                        new
+                        {
+                            Id = 149,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 75,
+                            Size = "XS",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 150,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 75,
+                            Size = "M",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 151,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 76,
+                            Size = "S",
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 152,
+                            ColorId = 23,
+                            IsActive = true,
+                            ProductId = 76,
+                            Size = "L",
+                            Stock = 94
+                        },
+                        new
+                        {
+                            Id = 153,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 77,
+                            Size = "M",
+                            Stock = 35
+                        },
+                        new
+                        {
+                            Id = 154,
+                            ColorId = 30,
+                            IsActive = true,
+                            ProductId = 77,
+                            Size = "XL",
+                            Stock = 103
+                        },
+                        new
+                        {
+                            Id = 155,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 78,
+                            Size = "L",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 156,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 78,
+                            Size = "XS",
+                            Stock = 112
+                        },
+                        new
+                        {
+                            Id = 157,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 79,
+                            Size = "140",
+                            Stock = 45
+                        },
+                        new
+                        {
+                            Id = 158,
+                            ColorId = 14,
+                            IsActive = true,
+                            ProductId = 79,
+                            Size = "104",
+                            Stock = 121
+                        },
+                        new
+                        {
+                            Id = 159,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 80,
+                            Size = "XS",
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 160,
+                            ColorId = 21,
+                            IsActive = true,
+                            ProductId = 80,
+                            Size = "M",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 161,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 81,
+                            Size = "S",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 162,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 81,
+                            Size = "L",
+                            Stock = 19
+                        },
+                        new
+                        {
+                            Id = 163,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 82,
+                            Size = "M",
+                            Stock = 60
+                        },
+                        new
+                        {
+                            Id = 164,
+                            ColorId = 5,
+                            IsActive = true,
+                            ProductId = 82,
+                            Size = "XL",
+                            Stock = 28
+                        },
+                        new
+                        {
+                            Id = 165,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 83,
+                            Size = "36",
+                            Stock = 65
+                        },
+                        new
+                        {
+                            Id = 166,
+                            ColorId = 12,
+                            IsActive = true,
+                            ProductId = 83,
+                            Size = "31",
+                            Stock = 37
+                        },
+                        new
+                        {
+                            Id = 167,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 84,
+                            Size = "XL",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 168,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 84,
+                            Size = "S",
+                            Stock = 46
+                        },
+                        new
+                        {
+                            Id = 169,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 85,
+                            Size = "41",
+                            Stock = 75
+                        },
+                        new
+                        {
+                            Id = 170,
+                            ColorId = 26,
+                            IsActive = true,
+                            ProductId = 85,
+                            Size = "43",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 171,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 86,
+                            Size = "S",
+                            Stock = 80
+                        },
+                        new
+                        {
+                            Id = 172,
+                            ColorId = 3,
+                            IsActive = true,
+                            ProductId = 86,
+                            Size = "L",
+                            Stock = 64
+                        },
+                        new
+                        {
+                            Id = 173,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 87,
+                            Size = "M",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 174,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 87,
+                            Size = "XL",
+                            Stock = 73
+                        },
+                        new
+                        {
+                            Id = 175,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 88,
+                            Size = "L",
+                            Stock = 90
+                        },
+                        new
+                        {
+                            Id = 176,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 88,
+                            Size = "XS",
+                            Stock = 82
+                        },
+                        new
+                        {
+                            Id = 177,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 89,
+                            Size = "XL",
+                            Stock = 95
+                        },
+                        new
+                        {
+                            Id = 178,
+                            ColorId = 24,
+                            IsActive = true,
+                            ProductId = 89,
+                            Size = "S",
+                            Stock = 91
+                        },
+                        new
+                        {
+                            Id = 179,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 90,
+                            Size = "XS",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 180,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 90,
+                            Size = "M",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 181,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 91,
+                            Size = "S",
+                            Stock = 105
+                        },
+                        new
+                        {
+                            Id = 182,
+                            ColorId = 8,
+                            IsActive = true,
+                            ProductId = 91,
+                            Size = "L",
+                            Stock = 109
+                        },
+                        new
+                        {
+                            Id = 183,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 92,
+                            Size = "M",
+                            Stock = 110
+                        },
+                        new
+                        {
+                            Id = 184,
+                            ColorId = 15,
+                            IsActive = true,
+                            ProductId = 92,
+                            Size = "XL",
+                            Stock = 118
+                        },
+                        new
+                        {
+                            Id = 185,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 93,
+                            Size = "L",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 186,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 93,
+                            Size = "XS",
+                            Stock = 127
+                        },
+                        new
+                        {
+                            Id = 187,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 94,
+                            Size = "XL",
+                            Stock = 120
+                        },
+                        new
+                        {
+                            Id = 188,
+                            ColorId = 29,
+                            IsActive = true,
+                            ProductId = 94,
+                            Size = "S",
+                            Stock = 16
+                        },
+                        new
+                        {
+                            Id = 189,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 95,
+                            Size = "XS",
+                            Stock = 125
+                        },
+                        new
+                        {
+                            Id = 190,
+                            ColorId = 6,
+                            IsActive = true,
+                            ProductId = 95,
+                            Size = "M",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 191,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 96,
+                            Size = "S",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 192,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 96,
+                            Size = "L",
+                            Stock = 34
+                        },
+                        new
+                        {
+                            Id = 193,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 97,
+                            Size = "M",
+                            Stock = 15
+                        },
+                        new
+                        {
+                            Id = 194,
+                            ColorId = 20,
+                            IsActive = true,
+                            ProductId = 97,
+                            Size = "XL",
+                            Stock = 43
+                        },
+                        new
+                        {
+                            Id = 195,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 98,
+                            Size = "L",
+                            Stock = 20
+                        },
+                        new
+                        {
+                            Id = 196,
+                            ColorId = 27,
+                            IsActive = true,
+                            ProductId = 98,
+                            Size = "XS",
+                            Stock = 52
+                        },
+                        new
+                        {
+                            Id = 197,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 99,
+                            Size = "116",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 198,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 99,
+                            Size = "128",
+                            Stock = 61
+                        },
+                        new
+                        {
+                            Id = 199,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 100,
+                            Size = "XS",
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 200,
+                            ColorId = 11,
+                            IsActive = true,
+                            ProductId = 100,
+                            Size = "M",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 201,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 101,
+                            Size = "S",
+                            Stock = 35
+                        },
+                        new
+                        {
+                            Id = 202,
+                            ColorId = 18,
+                            IsActive = true,
+                            ProductId = 101,
+                            Size = "L",
+                            Stock = 79
+                        },
+                        new
+                        {
+                            Id = 203,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 102,
+                            Size = "M",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 204,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 102,
+                            Size = "XL",
+                            Stock = 88
+                        },
+                        new
+                        {
+                            Id = 205,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 103,
+                            Size = "31",
+                            Stock = 45
+                        },
+                        new
+                        {
+                            Id = 206,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 103,
+                            Size = "33",
+                            Stock = 97
+                        },
+                        new
+                        {
+                            Id = 207,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 104,
+                            Size = "XL",
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 208,
+                            ColorId = 9,
+                            IsActive = true,
+                            ProductId = 104,
+                            Size = "S",
+                            Stock = 106
+                        },
+                        new
+                        {
+                            Id = 209,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 105,
+                            Size = "43",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 210,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 105,
+                            Size = "45",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 211,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 106,
+                            Size = "S",
+                            Stock = 60
+                        },
+                        new
+                        {
+                            Id = 212,
+                            ColorId = 23,
+                            IsActive = true,
+                            ProductId = 106,
+                            Size = "L",
+                            Stock = 124
+                        },
+                        new
+                        {
+                            Id = 213,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 107,
+                            Size = "M",
+                            Stock = 65
+                        },
+                        new
+                        {
+                            Id = 214,
+                            ColorId = 30,
+                            IsActive = true,
+                            ProductId = 107,
+                            Size = "XL",
+                            Stock = 13
+                        },
+                        new
+                        {
+                            Id = 215,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 108,
+                            Size = "L",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 216,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 108,
+                            Size = "XS",
+                            Stock = 22
+                        },
+                        new
+                        {
+                            Id = 217,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 109,
+                            Size = "XL",
+                            Stock = 75
+                        },
+                        new
+                        {
+                            Id = 218,
+                            ColorId = 14,
+                            IsActive = true,
+                            ProductId = 109,
+                            Size = "S",
+                            Stock = 31
+                        },
+                        new
+                        {
+                            Id = 219,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 110,
+                            Size = "XS",
+                            Stock = 80
+                        },
+                        new
+                        {
+                            Id = 220,
+                            ColorId = 21,
+                            IsActive = true,
+                            ProductId = 110,
+                            Size = "M",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 221,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 111,
+                            Size = "S",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 222,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 111,
+                            Size = "L",
+                            Stock = 49
+                        },
+                        new
+                        {
+                            Id = 223,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 112,
+                            Size = "M",
+                            Stock = 90
+                        },
+                        new
+                        {
+                            Id = 224,
+                            ColorId = 5,
+                            IsActive = true,
+                            ProductId = 112,
+                            Size = "XL",
+                            Stock = 58
+                        },
+                        new
+                        {
+                            Id = 225,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 113,
+                            Size = "L",
+                            Stock = 95
+                        },
+                        new
+                        {
+                            Id = 226,
+                            ColorId = 12,
+                            IsActive = true,
+                            ProductId = 113,
+                            Size = "XS",
+                            Stock = 67
+                        },
+                        new
+                        {
+                            Id = 227,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 114,
+                            Size = "XL",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 228,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 114,
+                            Size = "S",
+                            Stock = 76
+                        },
+                        new
+                        {
+                            Id = 229,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 115,
+                            Size = "XS",
+                            Stock = 105
+                        },
+                        new
+                        {
+                            Id = 230,
+                            ColorId = 26,
+                            IsActive = true,
+                            ProductId = 115,
+                            Size = "M",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 231,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 116,
+                            Size = "S",
+                            Stock = 110
+                        },
+                        new
+                        {
+                            Id = 232,
+                            ColorId = 3,
+                            IsActive = true,
+                            ProductId = 116,
+                            Size = "L",
+                            Stock = 94
+                        },
+                        new
+                        {
+                            Id = 233,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 117,
+                            Size = "M",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 234,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 117,
+                            Size = "XL",
+                            Stock = 103
+                        },
+                        new
+                        {
+                            Id = 235,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 118,
+                            Size = "L",
+                            Stock = 120
+                        },
+                        new
+                        {
+                            Id = 236,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 118,
+                            Size = "XS",
+                            Stock = 112
+                        },
+                        new
+                        {
+                            Id = 237,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 119,
+                            Size = "140",
+                            Stock = 125
+                        },
+                        new
+                        {
+                            Id = 238,
+                            ColorId = 24,
+                            IsActive = true,
+                            ProductId = 119,
+                            Size = "104",
+                            Stock = 121
+                        },
+                        new
+                        {
+                            Id = 239,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 120,
+                            Size = "XS",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 240,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 120,
+                            Size = "M",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 241,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 121,
+                            Size = "S",
+                            Stock = 15
+                        },
+                        new
+                        {
+                            Id = 242,
+                            ColorId = 8,
+                            IsActive = true,
+                            ProductId = 121,
+                            Size = "L",
+                            Stock = 19
+                        },
+                        new
+                        {
+                            Id = 243,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 122,
+                            Size = "M",
+                            Stock = 20
+                        },
+                        new
+                        {
+                            Id = 244,
+                            ColorId = 15,
+                            IsActive = true,
+                            ProductId = 122,
+                            Size = "XL",
+                            Stock = 28
+                        },
+                        new
+                        {
+                            Id = 245,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 123,
+                            Size = "33",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 246,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 123,
+                            Size = "36",
+                            Stock = 37
+                        },
+                        new
+                        {
+                            Id = 247,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 124,
+                            Size = "XL",
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 248,
+                            ColorId = 29,
+                            IsActive = true,
+                            ProductId = 124,
+                            Size = "S",
+                            Stock = 46
+                        },
+                        new
+                        {
+                            Id = 249,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 125,
+                            Size = "45",
+                            Stock = 35
+                        },
+                        new
+                        {
+                            Id = 250,
+                            ColorId = 6,
+                            IsActive = true,
+                            ProductId = 125,
+                            Size = "41",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 251,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 126,
+                            Size = "S",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 252,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 126,
+                            Size = "L",
+                            Stock = 64
+                        },
+                        new
+                        {
+                            Id = 253,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 127,
+                            Size = "M",
+                            Stock = 45
+                        },
+                        new
+                        {
+                            Id = 254,
+                            ColorId = 20,
+                            IsActive = true,
+                            ProductId = 127,
+                            Size = "XL",
+                            Stock = 73
+                        },
+                        new
+                        {
+                            Id = 255,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 128,
+                            Size = "L",
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 256,
+                            ColorId = 27,
+                            IsActive = true,
+                            ProductId = 128,
+                            Size = "XS",
+                            Stock = 82
+                        },
+                        new
+                        {
+                            Id = 257,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 129,
+                            Size = "XL",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 258,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 129,
+                            Size = "S",
+                            Stock = 91
+                        },
+                        new
+                        {
+                            Id = 259,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 130,
+                            Size = "XS",
+                            Stock = 60
+                        },
+                        new
+                        {
+                            Id = 260,
+                            ColorId = 11,
+                            IsActive = true,
+                            ProductId = 130,
+                            Size = "M",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 261,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 131,
+                            Size = "S",
+                            Stock = 65
+                        },
+                        new
+                        {
+                            Id = 262,
+                            ColorId = 18,
+                            IsActive = true,
+                            ProductId = 131,
+                            Size = "L",
+                            Stock = 109
+                        },
+                        new
+                        {
+                            Id = 263,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 132,
+                            Size = "M",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 264,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 132,
+                            Size = "XL",
+                            Stock = 118
+                        },
+                        new
+                        {
+                            Id = 265,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 133,
+                            Size = "L",
+                            Stock = 75
+                        },
+                        new
+                        {
+                            Id = 266,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 133,
+                            Size = "XS",
+                            Stock = 127
+                        },
+                        new
+                        {
+                            Id = 267,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 134,
+                            Size = "XL",
+                            Stock = 80
+                        },
+                        new
+                        {
+                            Id = 268,
+                            ColorId = 9,
+                            IsActive = true,
+                            ProductId = 134,
+                            Size = "S",
+                            Stock = 16
+                        },
+                        new
+                        {
+                            Id = 269,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 135,
+                            Size = "XS",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 270,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 135,
+                            Size = "M",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 271,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 136,
+                            Size = "S",
+                            Stock = 90
+                        },
+                        new
+                        {
+                            Id = 272,
+                            ColorId = 23,
+                            IsActive = true,
+                            ProductId = 136,
+                            Size = "L",
+                            Stock = 34
+                        },
+                        new
+                        {
+                            Id = 273,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 137,
+                            Size = "M",
+                            Stock = 95
+                        },
+                        new
+                        {
+                            Id = 274,
+                            ColorId = 30,
+                            IsActive = true,
+                            ProductId = 137,
+                            Size = "XL",
+                            Stock = 43
+                        },
+                        new
+                        {
+                            Id = 275,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 138,
+                            Size = "L",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 276,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 138,
+                            Size = "XS",
+                            Stock = 52
+                        },
+                        new
+                        {
+                            Id = 277,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 139,
+                            Size = "116",
+                            Stock = 105
+                        },
+                        new
+                        {
+                            Id = 278,
+                            ColorId = 14,
+                            IsActive = true,
+                            ProductId = 139,
+                            Size = "128",
+                            Stock = 61
+                        },
+                        new
+                        {
+                            Id = 279,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 140,
+                            Size = "XS",
+                            Stock = 110
+                        },
+                        new
+                        {
+                            Id = 280,
+                            ColorId = 21,
+                            IsActive = true,
+                            ProductId = 140,
+                            Size = "M",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 281,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 141,
+                            Size = "S",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 282,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 141,
+                            Size = "L",
+                            Stock = 79
+                        },
+                        new
+                        {
+                            Id = 283,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 142,
+                            Size = "M",
+                            Stock = 120
+                        },
+                        new
+                        {
+                            Id = 284,
+                            ColorId = 5,
+                            IsActive = true,
+                            ProductId = 142,
+                            Size = "XL",
+                            Stock = 88
+                        },
+                        new
+                        {
+                            Id = 285,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 143,
+                            Size = "36",
+                            Stock = 125
+                        },
+                        new
+                        {
+                            Id = 286,
+                            ColorId = 12,
+                            IsActive = true,
+                            ProductId = 143,
+                            Size = "31",
+                            Stock = 97
+                        },
+                        new
+                        {
+                            Id = 287,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 144,
+                            Size = "XL",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 288,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 144,
+                            Size = "S",
+                            Stock = 106
+                        },
+                        new
+                        {
+                            Id = 289,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 145,
+                            Size = "41",
+                            Stock = 15
+                        },
+                        new
+                        {
+                            Id = 290,
+                            ColorId = 26,
+                            IsActive = true,
+                            ProductId = 145,
+                            Size = "43",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 291,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 146,
+                            Size = "S",
+                            Stock = 20
+                        },
+                        new
+                        {
+                            Id = 292,
+                            ColorId = 3,
+                            IsActive = true,
+                            ProductId = 146,
+                            Size = "L",
+                            Stock = 124
+                        },
+                        new
+                        {
+                            Id = 293,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 147,
+                            Size = "M",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 294,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 147,
+                            Size = "XL",
+                            Stock = 13
+                        },
+                        new
+                        {
+                            Id = 295,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 148,
+                            Size = "L",
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 296,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 148,
+                            Size = "XS",
+                            Stock = 22
+                        },
+                        new
+                        {
+                            Id = 297,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 149,
+                            Size = "XL",
+                            Stock = 35
+                        },
+                        new
+                        {
+                            Id = 298,
+                            ColorId = 24,
+                            IsActive = true,
+                            ProductId = 149,
+                            Size = "S",
+                            Stock = 31
+                        },
+                        new
+                        {
+                            Id = 299,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 150,
+                            Size = "XS",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 300,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 150,
+                            Size = "M",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 301,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 151,
+                            Size = "S",
+                            Stock = 45
+                        },
+                        new
+                        {
+                            Id = 302,
+                            ColorId = 8,
+                            IsActive = true,
+                            ProductId = 151,
+                            Size = "L",
+                            Stock = 49
+                        },
+                        new
+                        {
+                            Id = 303,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 152,
+                            Size = "M",
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 304,
+                            ColorId = 15,
+                            IsActive = true,
+                            ProductId = 152,
+                            Size = "XL",
+                            Stock = 58
+                        },
+                        new
+                        {
+                            Id = 305,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 153,
+                            Size = "L",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 306,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 153,
+                            Size = "XS",
+                            Stock = 67
+                        },
+                        new
+                        {
+                            Id = 307,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 154,
+                            Size = "XL",
+                            Stock = 60
+                        },
+                        new
+                        {
+                            Id = 308,
+                            ColorId = 29,
+                            IsActive = true,
+                            ProductId = 154,
+                            Size = "S",
+                            Stock = 76
+                        },
+                        new
+                        {
+                            Id = 309,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 155,
+                            Size = "XS",
+                            Stock = 65
+                        },
+                        new
+                        {
+                            Id = 310,
+                            ColorId = 6,
+                            IsActive = true,
+                            ProductId = 155,
+                            Size = "M",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 311,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 156,
+                            Size = "S",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 312,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 156,
+                            Size = "L",
+                            Stock = 94
+                        },
+                        new
+                        {
+                            Id = 313,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 157,
+                            Size = "M",
+                            Stock = 75
+                        },
+                        new
+                        {
+                            Id = 314,
+                            ColorId = 20,
+                            IsActive = true,
+                            ProductId = 157,
+                            Size = "XL",
+                            Stock = 103
+                        },
+                        new
+                        {
+                            Id = 315,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 158,
+                            Size = "L",
+                            Stock = 80
+                        },
+                        new
+                        {
+                            Id = 316,
+                            ColorId = 27,
+                            IsActive = true,
+                            ProductId = 158,
+                            Size = "XS",
+                            Stock = 112
+                        },
+                        new
+                        {
+                            Id = 317,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 159,
+                            Size = "140",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 318,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 159,
+                            Size = "104",
+                            Stock = 121
+                        },
+                        new
+                        {
+                            Id = 319,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 160,
+                            Size = "XS",
+                            Stock = 90
+                        },
+                        new
+                        {
+                            Id = 320,
+                            ColorId = 11,
+                            IsActive = true,
+                            ProductId = 160,
+                            Size = "M",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 321,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 161,
+                            Size = "S",
+                            Stock = 95
+                        },
+                        new
+                        {
+                            Id = 322,
+                            ColorId = 18,
+                            IsActive = true,
+                            ProductId = 161,
+                            Size = "L",
+                            Stock = 19
+                        },
+                        new
+                        {
+                            Id = 323,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 162,
+                            Size = "M",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 324,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 162,
+                            Size = "XL",
+                            Stock = 28
+                        },
+                        new
+                        {
+                            Id = 325,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 163,
+                            Size = "31",
+                            Stock = 105
+                        },
+                        new
+                        {
+                            Id = 326,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 163,
+                            Size = "33",
+                            Stock = 37
+                        },
+                        new
+                        {
+                            Id = 327,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 164,
+                            Size = "XL",
+                            Stock = 110
+                        },
+                        new
+                        {
+                            Id = 328,
+                            ColorId = 9,
+                            IsActive = true,
+                            ProductId = 164,
+                            Size = "S",
+                            Stock = 46
+                        },
+                        new
+                        {
+                            Id = 329,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 165,
+                            Size = "43",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 330,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 165,
+                            Size = "45",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 331,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 166,
+                            Size = "S",
+                            Stock = 120
+                        },
+                        new
+                        {
+                            Id = 332,
+                            ColorId = 23,
+                            IsActive = true,
+                            ProductId = 166,
+                            Size = "L",
+                            Stock = 64
+                        },
+                        new
+                        {
+                            Id = 333,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 167,
+                            Size = "M",
+                            Stock = 125
+                        },
+                        new
+                        {
+                            Id = 334,
+                            ColorId = 30,
+                            IsActive = true,
+                            ProductId = 167,
+                            Size = "XL",
+                            Stock = 73
+                        },
+                        new
+                        {
+                            Id = 335,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 168,
+                            Size = "L",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 336,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 168,
+                            Size = "XS",
+                            Stock = 82
+                        },
+                        new
+                        {
+                            Id = 337,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 169,
+                            Size = "XL",
+                            Stock = 15
+                        },
+                        new
+                        {
+                            Id = 338,
+                            ColorId = 14,
+                            IsActive = true,
+                            ProductId = 169,
+                            Size = "S",
+                            Stock = 91
+                        },
+                        new
+                        {
+                            Id = 339,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 170,
+                            Size = "XS",
+                            Stock = 20
+                        },
+                        new
+                        {
+                            Id = 340,
+                            ColorId = 21,
+                            IsActive = true,
+                            ProductId = 170,
+                            Size = "M",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 341,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 171,
+                            Size = "S",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 342,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 171,
+                            Size = "L",
+                            Stock = 109
+                        },
+                        new
+                        {
+                            Id = 343,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 172,
+                            Size = "M",
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 344,
+                            ColorId = 5,
+                            IsActive = true,
+                            ProductId = 172,
+                            Size = "XL",
+                            Stock = 118
+                        },
+                        new
+                        {
+                            Id = 345,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 173,
+                            Size = "L",
+                            Stock = 35
+                        },
+                        new
+                        {
+                            Id = 346,
+                            ColorId = 12,
+                            IsActive = true,
+                            ProductId = 173,
+                            Size = "XS",
+                            Stock = 127
+                        },
+                        new
+                        {
+                            Id = 347,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 174,
+                            Size = "XL",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 348,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 174,
+                            Size = "S",
+                            Stock = 16
+                        },
+                        new
+                        {
+                            Id = 349,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 175,
+                            Size = "XS",
+                            Stock = 45
+                        },
+                        new
+                        {
+                            Id = 350,
+                            ColorId = 26,
+                            IsActive = true,
+                            ProductId = 175,
+                            Size = "M",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 351,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 176,
+                            Size = "S",
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 352,
+                            ColorId = 3,
+                            IsActive = true,
+                            ProductId = 176,
+                            Size = "L",
+                            Stock = 34
+                        },
+                        new
+                        {
+                            Id = 353,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 177,
+                            Size = "M",
+                            Stock = 55
+                        },
+                        new
+                        {
+                            Id = 354,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 177,
+                            Size = "XL",
+                            Stock = 43
+                        },
+                        new
+                        {
+                            Id = 355,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 178,
+                            Size = "L",
+                            Stock = 60
+                        },
+                        new
+                        {
+                            Id = 356,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 178,
+                            Size = "XS",
+                            Stock = 52
+                        },
+                        new
+                        {
+                            Id = 357,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 179,
+                            Size = "116",
+                            Stock = 65
+                        },
+                        new
+                        {
+                            Id = 358,
+                            ColorId = 24,
+                            IsActive = true,
+                            ProductId = 179,
+                            Size = "128",
+                            Stock = 61
+                        },
+                        new
+                        {
+                            Id = 359,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 180,
+                            Size = "XS",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 360,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 180,
+                            Size = "M",
+                            Stock = 70
+                        },
+                        new
+                        {
+                            Id = 361,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 181,
+                            Size = "S",
+                            Stock = 75
+                        },
+                        new
+                        {
+                            Id = 362,
+                            ColorId = 8,
+                            IsActive = true,
+                            ProductId = 181,
+                            Size = "L",
+                            Stock = 79
+                        },
+                        new
+                        {
+                            Id = 363,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 182,
+                            Size = "M",
+                            Stock = 80
+                        },
+                        new
+                        {
+                            Id = 364,
+                            ColorId = 15,
+                            IsActive = true,
+                            ProductId = 182,
+                            Size = "XL",
+                            Stock = 88
+                        },
+                        new
+                        {
+                            Id = 365,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 183,
+                            Size = "33",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 366,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 183,
+                            Size = "36",
+                            Stock = 97
+                        },
+                        new
+                        {
+                            Id = 367,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 184,
+                            Size = "XL",
+                            Stock = 90
+                        },
+                        new
+                        {
+                            Id = 368,
+                            ColorId = 29,
+                            IsActive = true,
+                            ProductId = 184,
+                            Size = "S",
+                            Stock = 106
+                        },
+                        new
+                        {
+                            Id = 369,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 185,
+                            Size = "45",
+                            Stock = 95
+                        },
+                        new
+                        {
+                            Id = 370,
+                            ColorId = 6,
+                            IsActive = true,
+                            ProductId = 185,
+                            Size = "41",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 371,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 186,
+                            Size = "S",
+                            Stock = 100
+                        },
+                        new
+                        {
+                            Id = 372,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 186,
+                            Size = "L",
+                            Stock = 124
+                        },
+                        new
+                        {
+                            Id = 373,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 187,
+                            Size = "M",
+                            Stock = 105
+                        },
+                        new
+                        {
+                            Id = 374,
+                            ColorId = 20,
+                            IsActive = true,
+                            ProductId = 187,
+                            Size = "XL",
+                            Stock = 13
+                        },
+                        new
+                        {
+                            Id = 375,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 188,
+                            Size = "L",
+                            Stock = 110
+                        },
+                        new
+                        {
+                            Id = 376,
+                            ColorId = 27,
+                            IsActive = true,
+                            ProductId = 188,
+                            Size = "XS",
+                            Stock = 22
+                        },
+                        new
+                        {
+                            Id = 377,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 189,
+                            Size = "XL",
+                            Stock = 115
+                        },
+                        new
+                        {
+                            Id = 378,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 189,
+                            Size = "S",
+                            Stock = 31
+                        },
+                        new
+                        {
+                            Id = 379,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 190,
+                            Size = "XS",
+                            Stock = 120
+                        },
+                        new
+                        {
+                            Id = 380,
+                            ColorId = 11,
+                            IsActive = true,
+                            ProductId = 190,
+                            Size = "M",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 381,
+                            ColorId = 4,
+                            IsActive = true,
+                            ProductId = 191,
+                            Size = "S",
+                            Stock = 125
+                        },
+                        new
+                        {
+                            Id = 382,
+                            ColorId = 18,
+                            IsActive = true,
+                            ProductId = 191,
+                            Size = "L",
+                            Stock = 49
+                        },
+                        new
+                        {
+                            Id = 383,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 192,
+                            Size = "M",
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 384,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 192,
+                            Size = "XL",
+                            Stock = 58
+                        },
+                        new
+                        {
+                            Id = 385,
+                            ColorId = 10,
+                            IsActive = true,
+                            ProductId = 193,
+                            Size = "L",
+                            Stock = 15
+                        },
+                        new
+                        {
+                            Id = 386,
+                            ColorId = 2,
+                            IsActive = true,
+                            ProductId = 193,
+                            Size = "XS",
+                            Stock = 67
+                        },
+                        new
+                        {
+                            Id = 387,
+                            ColorId = 13,
+                            IsActive = true,
+                            ProductId = 194,
+                            Size = "XL",
+                            Stock = 20
+                        },
+                        new
+                        {
+                            Id = 388,
+                            ColorId = 9,
+                            IsActive = true,
+                            ProductId = 194,
+                            Size = "S",
+                            Stock = 76
+                        },
+                        new
+                        {
+                            Id = 389,
+                            ColorId = 16,
+                            IsActive = true,
+                            ProductId = 195,
+                            Size = "XS",
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 390,
+                            ColorId = 17,
+                            IsActive = true,
+                            ProductId = 195,
+                            Size = "M",
+                            Stock = 85
+                        },
+                        new
+                        {
+                            Id = 391,
+                            ColorId = 19,
+                            IsActive = true,
+                            ProductId = 196,
+                            Size = "S",
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 392,
+                            ColorId = 23,
+                            IsActive = true,
+                            ProductId = 196,
+                            Size = "L",
+                            Stock = 94
+                        },
+                        new
+                        {
+                            Id = 393,
+                            ColorId = 22,
+                            IsActive = true,
+                            ProductId = 197,
+                            Size = "M",
+                            Stock = 35
+                        },
+                        new
+                        {
+                            Id = 394,
+                            ColorId = 30,
+                            IsActive = true,
+                            ProductId = 197,
+                            Size = "XL",
+                            Stock = 103
+                        },
+                        new
+                        {
+                            Id = 395,
+                            ColorId = 25,
+                            IsActive = true,
+                            ProductId = 198,
+                            Size = "L",
+                            Stock = 40
+                        },
+                        new
+                        {
+                            Id = 396,
+                            ColorId = 7,
+                            IsActive = true,
+                            ProductId = 198,
+                            Size = "XS",
+                            Stock = 112
+                        },
+                        new
+                        {
+                            Id = 397,
+                            ColorId = 28,
+                            IsActive = true,
+                            ProductId = 199,
+                            Size = "140",
+                            Stock = 45
+                        },
+                        new
+                        {
+                            Id = 398,
+                            ColorId = 14,
+                            IsActive = true,
+                            ProductId = 199,
+                            Size = "104",
+                            Stock = 121
+                        },
+                        new
+                        {
+                            Id = 399,
+                            ColorId = 1,
+                            IsActive = true,
+                            ProductId = 200,
+                            Size = "XS",
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 400,
+                            ColorId = 21,
+                            IsActive = true,
+                            ProductId = 200,
+                            Size = "M",
+                            Stock = 10
                         });
+                });
+
+            modelBuilder.Entity("ClothingStore.Infrastructure.Data.Entities.UserInteraction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnonymousId")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DurationSeconds")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Payload")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserInteractions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -920,6 +8823,27 @@ namespace ClothingStore.Infrastructure.Migrations
                     b.Navigation("Color");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ClothingStore.Infrastructure.Data.Entities.UserInteraction", b =>
+                {
+                    b.HasOne("ClothingStore.Infrastructure.Data.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("ClothingStore.Infrastructure.Data.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("ClothingStore.Infrastructure.Data.Entities.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

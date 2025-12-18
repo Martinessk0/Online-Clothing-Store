@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../models/product/product-dto';
 import { ProductService } from '../../../services/product-service';
 import { CartService } from '../../../services/cart-service';
 import { ProductVariant } from '../../../models/product/product-variant';
+import { RecommendationService } from '../../../services/recommendation-service';
 
 @Component({
   selector: 'app-product-details',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.scss'
+  styleUrl: './product-details.component.scss',
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
   product: Product | null = null;
   loading = false;
   error: string | null = null;
@@ -20,18 +22,45 @@ export class ProductDetailsComponent implements OnInit {
   selectedImageUrl: string | null = null;
   selectedVariant: ProductVariant | null = null;
 
+  // кога е отворен детайлът
+  private enterTimestamp = 0;
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private recommendationService: RecommendationService
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.enterTimestamp = Date.now(); // започваме да мерим време
+
+    const idParam = this.route.snapshot.paramMap.get('id');
+    const id = idParam ? Number(idParam) : NaN;
+
+    if (!id) {
+      this.error = 'Невалиден продукт.';
+      return;
+    }
+
     this.loadProduct(id);
   }
 
-  loadProduct(id: number): void {
+  ngOnDestroy(): void {
+    if (!this.product) return;
+
+    const diffMs = Date.now() - this.enterTimestamp;
+    const seconds = Math.max(1, Math.round(diffMs / 1000));
+
+    this.recommendationService.trackInteraction({
+      type: 'ProductView',
+      productId: this.product.id,
+      categoryId: this.product.categoryId,
+      durationSeconds: seconds,
+    });
+  }
+
+  private loadProduct(id: number): void {
     this.loading = true;
     this.error = null;
 
@@ -65,7 +94,16 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(): void {
     if (!this.product) return;
 
-    this.cartService.addProduct(this.product, 1, this.selectedVariant ?? undefined);
+    this.cartService.addProduct(
+      this.product,
+      1,
+      this.selectedVariant ?? undefined
+    );
+    this.recommendationService.trackInteraction({
+      type: 'AddToCart',
+      productId: this.product.id,
+      categoryId: this.product.categoryId,
+    });
   }
 
   getTotalStock(): number {
