@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../../services/cart-service';
 import { CartItem } from '../../../models/cart/cart-item';
@@ -21,6 +21,7 @@ export class CheckoutComponent {
 
   loading = false;
   backendError: string | null = null;
+  backendErrorsList: string[] = [];
   successOrderId: number | null = null;
 
   form = this.fb.group({
@@ -43,7 +44,32 @@ export class CheckoutComponent {
     return this.form.controls;
   }
 
+  isInvalid(name: keyof CheckoutComponent['form']['controls']): boolean {
+    const c = this.form.get(name as string);
+    return !!c && c.invalid && (c.dirty || c.touched);
+  }
+
+  errorText(name: keyof CheckoutComponent['form']['controls']): string | null {
+    const c = this.form.get(name as string);
+    if (!c || !(c.dirty || c.touched) || !c.errors) return null;
+
+    if (c.errors['required']) return 'Полето е задължително.';
+    if (c.errors['email']) return 'Моля, въведи валиден имейл.';
+    if (c.errors['minlength']) {
+      const req = c.errors['minlength'].requiredLength;
+      return `Минимална дължина: ${req} символа.`;
+    }
+    // Бекенд грешка, закачена към control-а
+    if (c.errors['server']) return String(c.errors['server']);
+
+    return 'Невалидна стойност.';
+  }
+
   submit(): void {
+    this.backendError = null;
+    this.backendErrorsList = [];
+    this.form.setErrors(null);
+
     if (this.form.invalid || !this.items.length) {
       this.form.markAllAsTouched();
       return;
@@ -63,7 +89,6 @@ export class CheckoutComponent {
     };
 
     this.loading = true;
-    this.backendError = null;
 
     this.orderService.createOrder(payload).subscribe({
       next: res => {
@@ -74,9 +99,63 @@ export class CheckoutComponent {
       error: err => {
         console.error(err);
         this.loading = false;
-        this.backendError =
-          err?.error?.message ?? 'Възникна грешка при създаване на поръчката.';
+        this.applyBackendErrors(err);
       }
     });
+  }
+
+  private applyBackendErrors(err: any): void {
+    const message = err?.error?.message;
+    if (message) this.backendError = message;
+
+    const errorsObj = err?.error?.errors;
+    if (errorsObj && typeof errorsObj === 'object') {
+      const flat: string[] = [];
+
+      for (const key of Object.keys(errorsObj)) {
+        const msgs = Array.isArray(errorsObj[key]) ? errorsObj[key] : [String(errorsObj[key])];
+        for (const m of msgs) flat.push(m);
+
+        const controlName = this.mapBackendFieldToControl(key);
+        if (controlName) {
+          const ctrl = this.form.get(controlName);
+          if (ctrl) {
+            ctrl.setErrors({ ...(ctrl.errors ?? {}), server: msgs.join(' ') });
+            ctrl.markAsTouched();
+          }
+        }
+      }
+
+      this.backendErrorsList = flat;
+      if (!this.backendError && flat.length) {
+        this.backendError = 'Моля, провери въведените данни.';
+      }
+      return;
+    }
+
+    const fallback =
+      err?.error?.detail ||
+      err?.message ||
+      'Възникна грешка при създаване на поръчката.';
+    this.backendError = this.backendError ?? fallback;
+  }
+
+  private mapBackendFieldToControl(field: string): string | null {
+    const clean = field.split('.').pop() ?? field;
+
+    const map: Record<string, string> = {
+      CustomerName: 'customerName',
+      customerName: 'customerName',
+      Email: 'email',
+      email: 'email',
+      Phone: 'phone',
+      phone: 'phone',
+      Address: 'address',
+      address: 'address',
+      PaymentMethod: 'paymentMethod',
+      paymentMethod: 'paymentMethod'
+    };
+
+    return map[clean] ?? null;
   }
 }
