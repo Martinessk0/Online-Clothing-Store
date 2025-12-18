@@ -46,3 +46,31 @@
     </div>
   </div>
 </section>
+
+<section class="mt-8 space-y-4">
+  <h2 class="text-lg font-semibold tracking-tight">
+    Препоръчани за теб
+  </h2>
+
+  <div *ngIf="loading" class="text-sm text-slate-500 dark:text-slate-400">
+    Зареждаме препоръките...
+  </div>
+
+  <div
+    *ngIf="!loading && !recommended.length"
+    class="text-sm text-slate-500 dark:text-slate-400"
+  >
+    В момента няма препоръчани продукти.
+  </div>
+
+  <div
+    *ngIf="!loading && recommended.length"
+    class="grid gap-4 grid-cols-2 md:grid-cols-4"
+  >
+    <app-product-card
+      *ngFor="let product of recommended"
+      [product]="product"
+    ></app-product-card>
+  </div>
+</section>
+
