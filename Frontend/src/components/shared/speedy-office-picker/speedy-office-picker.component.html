@@ -1,0 +1,29 @@
+@if (open) {
+  <div class="fixed inset-0 z-[100] bg-black/50 flex items-center justify-center p-3">
+    <div class="w-full max-w-5xl rounded-2xl bg-white dark:bg-slate-900 overflow-hidden border border-slate-200 dark:border-slate-700">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-700">
+        <div class="text-sm font-semibold">Избери Speedy офис</div>
+
+        <button
+          type="button"
+          (click)="close()"
+          class="text-xs px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800"
+        >
+          Затвори
+        </button>
+      </div>
+
+      <div class="h-[70vh]">
+        <iframe
+          [src]="widgetUrl"
+          class="w-full h-full"
+          frameborder="0"
+        ></iframe>
+      </div>
+
+      <div class="px-4 py-2 text-[11px] text-slate-500 dark:text-slate-400">
+        Ако не “хваща” избора: отвори DevTools → Console и виж какво идва като postMessage, после ще нагласим парсването.
+      </div>
+    </div>
+  </div>
+}

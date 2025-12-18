@@ -8,52 +8,35 @@
   </p>
 
   @if (backendError) {
-    <div
-      class="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700
-             dark:border-red-500/30 dark:bg-red-950/40 dark:text-red-300"
-    >
-      {{ backendError }}
-    </div>
+  <div class="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700
+             dark:border-red-500/30 dark:bg-red-950/40 dark:text-red-300">
+    {{ backendError }}
+  </div>
   }
 
   @if (backendErrorsList?.length) {
-    <div
-      class="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700
-             dark:border-red-500/30 dark:bg-red-950/40 dark:text-red-300"
-    >
-      <div class="font-semibold mb-1">Има проблем с данните:</div>
-      <ul class="list-disc pl-5 space-y-1">
-        @for (e of backendErrorsList; track e) {
-          <li>{{ e }}</li>
-        }
-      </ul>
-    </div>
+  <div class="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700
+             dark:border-red-500/30 dark:bg-red-950/40 dark:text-red-300">
+    <div class="font-semibold mb-1">Има проблем с данните:</div>
+    <ul class="list-disc pl-5 space-y-1">
+      @for (e of backendErrorsList; track e) {
+      <li>{{ e }}</li>
+      }
+    </ul>
+  </div>
   }
 
   <!-- Empty cart -->
-  <div
-    *ngIf="!items.length && !successOrderId"
-    class="text-sm text-slate-500 dark:text-slate-400"
-  >
+  <div *ngIf="!items.length && !successOrderId" class="text-sm text-slate-500 dark:text-slate-400">
     Нямаш продукти в количката.
-    <a
-      routerLink="/products"
-      class="text-blue-600 hover:underline dark:text-blue-400"
-    >
+    <a routerLink="/products" class="text-blue-600 hover:underline dark:text-blue-400">
       Върни се към продуктите
     </a>
   </div>
 
-  <div
-    *ngIf="items.length && !successOrderId"
-    class="grid gap-6 lg:grid-cols-[1.5fr,1fr]"
-  >
-    <form
-      [formGroup]="form"
-      (ngSubmit)="submit()"
-      class="space-y-4 rounded-2xl border border-slate-200 bg-white/80 p-4
-             dark:border-slate-700 dark:bg-slate-900/80"
-    >
+  <div *ngIf="items.length && !successOrderId" class="grid gap-6 lg:grid-cols-[1.5fr,1fr]">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4 rounded-2xl border border-slate-200 bg-white/80 p-4
+             dark:border-slate-700 dark:bg-slate-900/80">
       <h2 class="text-sm font-semibold text-slate-900 dark:text-slate-50 mb-1">
         Данни за доставка
       </h2>
@@ -64,19 +47,14 @@
             Име и фамилия
           </label>
 
-          <input
-            type="text"
-            formControlName="customerName"
-            [class.border-red-500]="isInvalid('customerName')"
-            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none
+          <input type="text" formControlName="customerName" [class.border-red-500]="isInvalid('customerName')" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none
                    focus:border-blue-500 focus:ring-1 focus:ring-blue-500
-                   dark:border-slate-700 dark:bg-slate-900"
-          />
+                   dark:border-slate-700 dark:bg-slate-900" />
 
           @if (errorText('customerName')) {
-            <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
-              {{ errorText('customerName') }}
-            </p>
+          <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
+            {{ errorText('customerName') }}
+          </p>
           }
         </div>
 
@@ -86,19 +64,14 @@
             Имейл
           </label>
 
-          <input
-            type="email"
-            formControlName="email"
-            [class.border-red-500]="isInvalid('email')"
-            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none
+          <input type="email" formControlName="email" [class.border-red-500]="isInvalid('email')" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none
                    focus:border-blue-500 focus:ring-1 focus:ring-blue-500
-                   dark:border-slate-700 dark:bg-slate-900"
-          />
+                   dark:border-slate-700 dark:bg-slate-900" />
 
           @if (errorText('email')) {
-            <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
-              {{ errorText('email') }}
-            </p>
+          <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
+            {{ errorText('email') }}
+          </p>
           }
         </div>
       </div>
@@ -110,19 +83,14 @@
             Телефон
           </label>
 
-          <input
-            type="tel"
-            formControlName="phone"
-            [class.border-red-500]="isInvalid('phone')"
-            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none
+          <input type="tel" formControlName="phone" [class.border-red-500]="isInvalid('phone')" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none
                    focus:border-blue-500 focus:ring-1 focus:ring-blue-500
-                   dark:border-slate-700 dark:bg-slate-900"
-          />
+                   dark:border-slate-700 dark:bg-slate-900" />
 
           @if (errorText('phone')) {
-            <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
-              {{ errorText('phone') }}
-            </p>
+          <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
+            {{ errorText('phone') }}
+          </p>
           }
         </div>
 
@@ -131,22 +99,55 @@
             Адрес за доставка
           </label>
 
-          <input
-            type="text"
-            formControlName="address"
-            [class.border-red-500]="isInvalid('address')"
-            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none
+          <input type="text" formControlName="address" [disabled]="form.get('deliveryMethod')?.value === 'SpeedyOffice'" [class.border-red-500]="isInvalid('address')" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none
                    focus:border-blue-500 focus:ring-1 focus:ring-blue-500
-                   dark:border-slate-700 dark:bg-slate-900"
-          />
+                   dark:border-slate-700 dark:bg-slate-900" />
 
           @if (errorText('address')) {
-            <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
-              {{ errorText('address') }}
-            </p>
+          <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
+            {{ errorText('address') }}
+          </p>
           }
         </div>
       </div>
+
+       <div class="space-y-2">
+        <label class="block text-xs font-medium text-slate-600 dark:text-slate-300 mb-1">
+          Доставка
+        </label>
+
+        <div class="grid gap-2 sm:grid-cols-2 text-xs">
+          <label class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-300 bg-slate-50 px-3 py-2
+                  hover:border-blue-500 dark:border-slate-700 dark:bg-slate-900/60">
+            <input type="radio" formControlName="deliveryMethod" value="Address" class="h-3 w-3" />
+            <span>Адрес</span>
+          </label>
+
+          <label class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-300 bg-slate-50 px-3 py-2
+                  hover:border-blue-500 dark:border-slate-700 dark:bg-slate-900/60">
+            <input type="radio" formControlName="deliveryMethod" value="SpeedyOffice" class="h-3 w-3" />
+            <span>Speedy офис</span>
+          </label>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button type="button" (click)="openSpeedyPicker()" class="text-xs px-3 py-2 rounded-xl border border-slate-300 hover:border-blue-500
+             dark:border-slate-700 dark:hover:border-blue-400">
+            Избери офис на карта
+          </button>
+
+          @if (selectedSpeedyOffice) {
+          <div class="text-[11px] text-slate-600 dark:text-slate-300">
+            Избран офис: <span class="font-semibold">{{ selectedSpeedyOffice.label }}</span>
+          </div>
+          }
+        </div>
+      </div>
+
+
+      <app-speedy-office-picker [(open)]="speedyPickerOpen"
+        (picked)="onSpeedyPicked($event)"></app-speedy-office-picker>
+
 
       <div class="space-y-2">
         <label class="block text-xs font-medium text-slate-600 dark:text-slate-300 mb-1">
@@ -154,46 +155,28 @@
         </label>
 
         <div class="grid gap-2 sm:grid-cols-2 text-xs">
-          <label
-            class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-300 bg-slate-50 px-3 py-2
-                   hover:border-blue-500 dark:border-slate-700 dark:bg-slate-900/60"
-          >
-            <input
-              type="radio"
-              formControlName="paymentMethod"
-              value="CashOnDelivery"
-              class="h-3 w-3"
-            />
+          <label class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-300 bg-slate-50 px-3 py-2
+                   hover:border-blue-500 dark:border-slate-700 dark:bg-slate-900/60">
+            <input type="radio" formControlName="paymentMethod" value="CashOnDelivery" class="h-3 w-3" />
             <span>Наложен платеж</span>
           </label>
 
-          <label
-            class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-300 bg-slate-50 px-3 py-2
-                   hover:border-blue-500 dark:border-slate-700 dark:bg-slate-900/60"
-          >
-            <input
-              type="radio"
-              formControlName="paymentMethod"
-              value="BankTransfer"
-              class="h-3 w-3"
-            />
+          <label class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-300 bg-slate-50 px-3 py-2
+                   hover:border-blue-500 dark:border-slate-700 dark:bg-slate-900/60">
+            <input type="radio" formControlName="paymentMethod" value="BankTransfer" class="h-3 w-3" />
             <span>Банков превод</span>
           </label>
         </div>
 
         @if (errorText('paymentMethod')) {
-          <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
-            {{ errorText('paymentMethod') }}
-          </p>
+        <p class="mt-1 text-[11px] text-red-600 dark:text-red-300">
+          {{ errorText('paymentMethod') }}
+        </p>
         }
       </div>
 
-      <button
-        type="submit"
-        [disabled]="loading"
-        class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white
-               hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed"
-      >
+      <button type="submit" [disabled]="loading" class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white
+               hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed">
         @if (!loading) { Завърши поръчката } @else { Обработка... }
       </button>
 
@@ -202,19 +185,14 @@
       </p>
     </form>
 
-    <aside
-      class="rounded-2xl border border-slate-200 bg-white/80 p-4 text-sm
-             dark:border-slate-700 dark:bg-slate-900/80"
-    >
+    <aside class="rounded-2xl border border-slate-200 bg-white/80 p-4 text-sm
+             dark:border-slate-700 dark:bg-slate-900/80">
       <h2 class="text-sm font-semibold text-slate-900 dark:text-slate-50 mb-2">
         Твоята поръчка
       </h2>
 
       <div class="space-y-2 max-h-72 overflow-y-auto pr-1">
-        <div
-          *ngFor="let item of items"
-          class="flex items-center justify-between gap-2 text-xs"
-        >
+        <div *ngFor="let item of items" class="flex items-center justify-between gap-2 text-xs">
           <div>
             <div class="font-medium text-slate-900 dark:text-slate-50">
               {{ item.name }}
@@ -241,11 +219,8 @@
     </aside>
   </div>
 
-  <div
-    *ngIf="successOrderId"
-    class="rounded-2xl border border-emerald-500/50 bg-emerald-50 px-4 py-3 text-sm
-           dark:border-emerald-600/60 dark:bg-emerald-950/40"
-  >
+  <div *ngIf="successOrderId" class="rounded-2xl border border-emerald-500/50 bg-emerald-50 px-4 py-3 text-sm
+           dark:border-emerald-600/60 dark:bg-emerald-950/40">
     <p class="font-semibold text-emerald-700 dark:text-emerald-300">
       Поръчката е успешно изпратена!
     </p>
@@ -256,11 +231,8 @@
     </p>
 
     <div class="mt-3 flex gap-2">
-      <a
-        routerLink="/products"
-        class="inline-flex items-center rounded-xl border border-emerald-600 px-3 py-1.5 text-xs font-medium text-emerald-700
-               hover:bg-emerald-600 hover:text-white dark:text-emerald-200 dark:hover:bg-emerald-600"
-      >
+      <a routerLink="/products" class="inline-flex items-center rounded-xl border border-emerald-600 px-3 py-1.5 text-xs font-medium text-emerald-700
+               hover:bg-emerald-600 hover:text-white dark:text-emerald-200 dark:hover:bg-emerald-600">
         Продължи с пазаруването
       </a>
     </div>
