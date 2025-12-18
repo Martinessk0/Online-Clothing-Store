@@ -24,10 +24,8 @@ export class ProductsComponent implements OnInit {
   sizes: string[] = [];
   colors: string[] = [];
 
-  constructor(private productService: ProductService) {}
-  constructor(
-    private productService: ProductService,
-    private recommendationService: RecommendationService
+  constructor(private productService: ProductService,
+    private recommendationService: RecommendationService    
   ) {}
 
   ngOnInit(): void {
