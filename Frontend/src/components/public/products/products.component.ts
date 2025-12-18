@@ -4,6 +4,7 @@ import { Product } from '../../../models/product/product-dto';
 import { ProductService } from '../../../services/product-service';
 import { ProductCardComponent } from '../../shared/product-card/product-card.component';
 import { FormsModule } from '@angular/forms';
+import { ProductFilterDto } from '../../../models/product/product-filter-dto';
 import { RecommendationService } from '../../../services/recommendation-service';
 
 @Component({
@@ -18,6 +19,12 @@ export class ProductsComponent implements OnInit {
   error: string | null = null;
   search = '';
 
+  filter: ProductFilterDto = {};
+  brands: string[] = [];
+  sizes: string[] = [];
+  colors: string[] = [];
+
+  constructor(private productService: ProductService) {}
   constructor(
     private productService: ProductService,
     private recommendationService: RecommendationService
@@ -25,7 +32,26 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProducts();
+    this.loadFilterOptions();
   }
+
+loadFilterOptions(): void {
+  this.productService.getProducts().subscribe({
+    next: (products) => {
+      this.brands = Array.from(new Set(products.map(p => p.brand))).sort();
+      this.sizes = Array.from(
+        new Set(products.flatMap(p => p.variants.map(v => v.size)))
+      ).sort();
+      this.colors = Array.from(
+        new Set(products.flatMap(p => p.variants.map(v => v.colorName)))
+      ).sort();
+    },
+    error: (err) => {
+      console.error(err);
+      this.error = 'Грешка при зареждане на филтрите.';
+    }
+  });
+}
 
   loadProducts(): void {
     this.loading = true;
@@ -57,19 +83,32 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  get filteredProducts(): Product[] {
-    const term = this.search?.trim().toLowerCase();
-    if (!term) return this.products;
+  clearFilters(): void {
+  this.filter = {};
+  this.search = '';
+  this.applyFilter();
+}
 
-    return this.products.filter((p) => {
-      const name = p.name.toLowerCase();
-      const desc = (p.description || '').toLowerCase();
-      const brand = (p.brand || '').toLowerCase();
-      return (
-        name.includes(term) ||
-        desc.includes(term) ||
-        brand.includes(term)
-      );
-    });
+  applyFilter(): void {
+  this.loading = true;
+  this.error = null;
+
+  // Add the search keyword to the filter
+  this.filter.keyword = this.search?.trim() || undefined;
+
+  this.productService.filterProducts(this.filter).subscribe({
+    next: (products) => {
+      this.products = products;
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error(err);
+      this.error = 'Грешка при филтриране на продуктите.';
+      this.loading = false;
+    }
+  });
+}
+get filteredProducts(): Product[] {
+    return this.products;
   }
 }

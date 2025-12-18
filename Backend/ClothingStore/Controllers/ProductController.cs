@@ -123,6 +123,51 @@ namespace ClothingStore.Controllers
             }
         }
 
+        [HttpPost("filter")]
+        public async Task<IActionResult> Filter([FromBody] ProductFilterDTO filterDTO)
+        {
+            try
+            {
+                var filteredProducts = await _productService.FilterAsync(filterDTO);
+
+                // Optional: map to DTO if you don't want to return entities directly
+                var result = filteredProducts.Select(p => new ProductDTO
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    Price = p.Price,
+                    Brand = p.Brand,
+                    CategoryId = p.CategoryId,
+                    Variants = p.Variants
+                                .Where(v => v.IsActive)
+                                .Select(v => new ProductVariantDTO
+                                {
+                                    Id = v.Id,
+                                    ColorId = v.ColorId,
+                                    ColorName = v.Color.Name,
+                                    Size = v.Size,
+                                    Stock = v.Stock
+                                }).ToList(),
+                    Images = p.Images
+                                .OrderBy(i => i.SortOrder)
+                                .Select(i => new ProductImageDto
+                                {
+                                    Id = i.Id,
+                                    Url = i.Url,
+                                    IsMain = i.IsMain
+                                }).ToList()
+                }).ToList();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error filtering products");
+                return StatusCode(500, "An error occurred while filtering products.");
+            }
+        }
+
         [HttpGet("recommended")]
         [AllowAnonymous]
         public async Task<IActionResult> GetRecommended([FromQuery] int? categoryId, [FromQuery] string? anonymousId)

@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 import { ProductCreateDto } from '../models/product/product-create-dto';
 import { Product } from '../models/product/product-dto';
 import { ProductUpdateDto } from '../models/product/product-update-dto';
+import { ProductFilterDto } from '../models/product/product-filter-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class ProductService {
 
   deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  filterProducts(filter: ProductFilterDto): Observable<Product[]> {
+    return this.http.post<Product[]>(`${this.baseUrl}/filter`, filter);
   }
 }

@@ -19,6 +19,8 @@ namespace ClothingStore.Core.Models.Product
         public string Brand { get; set; } = string.Empty;
         public int CategoryId { get; set; }
 
+        public DateTime? CreatedAt { get; set; }
+
         public List<ProductVariantDTO> Variants { get; set; } = new();
 
         public List<ProductImageDto> Images { get; set; } = new();
