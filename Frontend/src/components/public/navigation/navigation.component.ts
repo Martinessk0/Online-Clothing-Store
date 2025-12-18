@@ -18,22 +18,25 @@ export class NavigationComponent {
   private readonly cartService = inject(CartService);
 
   isMobileMenuOpen = false;
+  isProfileMenuOpen = false;
+
   isDark = computed(() => this.themeService.theme() === 'dark');
 
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 
-  get isAdmin(): boolean{
+  get isAdmin(): boolean {
     return this.authService.isAdmin();
   }
 
-    get cartQuantity(): number {
+  get cartQuantity(): number {
     return this.cartService.cart.totalQuantity;
   }
 
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    if (this.isMobileMenuOpen) this.isProfileMenuOpen = false;
   }
 
   toggleTheme(): void {
@@ -45,5 +48,11 @@ export class NavigationComponent {
     this.cartService.reloadForCurrentUser(false);
     this.router.navigate(['/']);
     this.isMobileMenuOpen = false;
+    this.isProfileMenuOpen = false;
+  }
+
+  closeMenus(): void {
+    this.isMobileMenuOpen = false;
+    this.isProfileMenuOpen = false;
   }
 }
