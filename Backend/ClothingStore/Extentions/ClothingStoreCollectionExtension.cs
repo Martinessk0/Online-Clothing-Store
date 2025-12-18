@@ -20,6 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IRecommendationService, RecommendationService>();
+            services.AddScoped<ISpeedyService, SpeedyService>();
 
             return services;
         }
