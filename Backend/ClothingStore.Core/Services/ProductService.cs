@@ -249,17 +249,71 @@ namespace ClothingStore.Core.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<List<Product>> FilterAsync(ProductDTO filterDTO)
+        public async Task<List<Product>> FilterAsync(ProductFilterDTO filterDTO)
         {
-            var filteredProducts = await repo.AllReadonly<Product>()
-                .WhereIf(!string.IsNullOrEmpty(filterDTO.Name), p => p.Name == filterDTO.Name)
-                .WhereIf(filterDTO.Price > 0, p => p.Price == filterDTO.Price)
-                .WhereIf(!string.IsNullOrEmpty(filterDTO.Brand), p => p.Brand == filterDTO.Brand)
-                //.WhereIf(!string.IsNullOrEmpty(filterDTO.Size), p => p.Size == filterDTO.Size)
-                //.WhereIf(!string.IsNullOrEmpty(filterDTO.Color), p => p.Color == filterDTO.Color)
-                .ToListAsync();
+            var query = repo.AllReadonly<Product>()
+                .Where(p => p.IsActive)
+                .Include(p => p.Variants)
+                    .ThenInclude(v => v.Color)
+                .AsQueryable();
 
-            return filteredProducts;
+            if (!string.IsNullOrEmpty(filterDTO.Keyword))
+            {
+                var keyword = $"%{filterDTO.Keyword.Trim()}%";
+                query = query.Where(p =>
+                    EF.Functions.Like(p.Name, keyword) ||
+                    EF.Functions.Like(p.Description, keyword) ||
+                    EF.Functions.Like(p.Brand, keyword)
+                );
+            }
+
+            // Price range
+            query = query.WhereIf(filterDTO.MinPrice.HasValue, p => p.Price >= filterDTO.MinPrice.Value);
+            query = query.WhereIf(filterDTO.MaxPrice.HasValue, p => p.Price <= filterDTO.MaxPrice.Value);
+
+            // Brand filter
+            query = query.WhereIf(!string.IsNullOrEmpty(filterDTO.Brand), p => p.Brand == filterDTO.Brand);
+
+            // Stock filter
+            query = query.WhereIf(filterDTO.InStockOnly.HasValue && filterDTO.InStockOnly.Value,
+                p => p.Variants.Any(v => v.Stock > 0 && v.IsActive));
+
+            // Size filter
+            query = query.WhereIf(!string.IsNullOrEmpty(filterDTO.Size),
+                p => p.Variants.Any(v => v.Size == filterDTO.Size && v.IsActive));
+
+            // Color filter
+            query = query.WhereIf(!string.IsNullOrEmpty(filterDTO.Color),
+                p => p.Variants.Any(v => v.Color.Name == filterDTO.Color && v.IsActive));
+
+            // Sorting
+            if (!string.IsNullOrEmpty(filterDTO.SortBy))
+            {
+                switch (filterDTO.SortBy)
+                {
+                    case "PriceAsc":
+                        query = query.OrderBy(p => p.Price);
+                        break;
+                    case "PriceDesc":
+                        query = query.OrderByDescending(p => p.Price);
+                        break;
+                    case "Newest":
+                        query = query.OrderByDescending(p => p.CreatedAt);
+                        break;
+                    case "Oldest":
+                        query = query.OrderBy(p => p.CreatedAt);
+                        break;
+                    default:
+                        query = query.OrderBy(p => p.Name);
+                        break;
+                }
+            }
+            else
+            {
+                query = query.OrderBy(p => p.Name);
+            }
+
+            return await query.ToListAsync();
         }
     }
 }

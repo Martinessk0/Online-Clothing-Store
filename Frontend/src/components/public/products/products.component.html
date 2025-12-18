@@ -1,50 +1,114 @@
-<div class="space-y-6">
-  <header class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-    <div>
-      <h1 class="text-2xl font-semibold tracking-tight">Продукти</h1>
-      <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
-        Разгледай нашите предложения за дрехи и аксесоари.
-      </p>
-    </div>
-
-    <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
-      <!-- <input
-        type="text"
-        [(ngModel)]="search"
-        placeholder="Търси по име / описание / марка..."
-        class="w-full sm:w-64 rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm
-               placeholder:text-slate-400 outline-none
-               focus:ring-2 focus:ring-slate-900/20
-               dark:border-slate-700 dark:bg-slate-900/60 dark:focus:ring-slate-100/20"
-      /> -->
-    </div>
-  </header>
-
-  <div *ngIf="loading" class="text-sm text-slate-500 dark:text-slate-400">
-    Зареждане на продукти...
+<div class="flex flex-col lg:flex-row gap-4">
+  <!-- Left: Filters Sidebar -->
+  <aside class="w-full lg:w-1/5 space-y-3 sticky top-4">
+    <h2 class="text-md font-semibold">Филтри</h2>
+<div class="flex flex-col">
+    <label class="text-sm font-medium mb-1">Търсене</label>
+    <input
+      type="text"
+      [(ngModel)]="search"
+      (input)="applyFilter()"
+      placeholder="Име / описание / марка"
+      class="w-full border rounded px-2 py-1 text-sm"
+    />
   </div>
 
-  <div *ngIf="error" class="text-sm text-red-600 dark:text-red-400">
-    {{ error }}
+  <!-- Price Range (keep side by side) -->
+  <div class="flex flex-col">
+    <label class="text-sm font-medium mb-1">Цена</label>
+    <div class="flex gap-1">
+      <input
+        type="number"
+        [(ngModel)]="filter.minPrice"
+        (input)="applyFilter()"
+        placeholder="Мин."
+        class="w-1/2 border rounded px-2 py-1 text-sm"
+      />
+      <input
+        type="number"
+        [(ngModel)]="filter.maxPrice"
+        (input)="applyFilter()"
+        placeholder="Макс."
+        class="w-1/2 border rounded px-2 py-1 text-sm"
+      />
+    </div>
   </div>
 
-  <div
-    *ngIf="!loading && filteredProducts.length"
-    class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-  >
+  <!-- Brand Dropdown -->
+  <div class="flex flex-col">
+    <label class="text-sm font-medium mb-1">Марка</label>
+    <select [(ngModel)]="filter.brand" (change)="applyFilter()"
+            class="w-full rounded-xl border px-2 py-1 text-sm">
+      <option value="">Всички марки</option>
+      <option *ngFor="let b of brands" [value]="b">{{ b }}</option>
+    </select>
+  </div>
+
+  <!-- Size Dropdown -->
+  <div class="flex flex-col">
+    <label class="text-sm font-medium mb-1">Размер</label>
+    <select [(ngModel)]="filter.size" (change)="applyFilter()"
+            class="w-full rounded-xl border px-2 py-1 text-sm">
+      <option value="">Всички размери</option>
+      <option *ngFor="let s of sizes" [value]="s">{{ s }}</option>
+    </select>
+  </div>
+
+  <!-- Color Dropdown -->
+  <div class="flex flex-col">
+    <label class="text-sm font-medium mb-1">Цвят</label>
+    <select [(ngModel)]="filter.color" (change)="applyFilter()"
+            class="w-full rounded-xl border px-2 py-1 text-sm">
+      <option value="">Всички цветове</option>
+      <option *ngFor="let c of colors" [value]="c">{{ c }}</option>
+    </select>
+  </div>
+
+  <!-- In-stock Checkbox -->
+  <div class="flex items-center gap-2">
+    <input type="checkbox" [(ngModel)]="filter.inStockOnly" (change)="applyFilter()" />
+    <label class="text-sm">Само налични</label>
+  </div>
+
+  <!-- Sorting Dropdown -->
+  <div class="flex flex-col">
+    <label class="text-sm font-medium mb-1">Сортирай</label>
+    <select [(ngModel)]="filter.sortBy" (change)="applyFilter()" class="w-full border rounded px-2 py-1 text-sm">
+      <!-- <option value="">Подреди по</option> -->
+      <option value="PriceAsc">Цена ↑</option>
+      <option value="PriceDesc">Цена ↓</option>
+      <option value="Newest">Най-нови</option>
+      <option value="Oldest">Най-стари</option>
+    </select>
+  </div>
+
+  <button
+  (click)="clearFilters()"
+  class="w-full mt-2 bg-slate-200 hover:bg-slate-300 text-sm px-3 py-1 rounded-xl"
+>
+  Изчисти филтрите
+</button>
+
+</aside>
+
+  <!-- Right: Products -->
+  <main class="flex-1 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div *ngIf="loading" class="text-sm text-slate-500">
+      Зареждане на продукти...
+    </div>
+
+    <div *ngIf="error" class="text-sm text-red-600">
+      {{ error }}
+    </div>
+
     <app-product-card
       *ngFor="let p of filteredProducts"
       [product]="p"
     ></app-product-card>
-  </div>
 
-  <div
-    *ngIf="!loading && !filteredProducts.length"
-    class="text-sm text-slate-500 dark:text-slate-400
-           bg-white/80 dark:bg-slate-900/60
-           border border-slate-200 dark:border-slate-700
-           rounded-xl px-4 py-3"
-  >
-    Няма намерени продукти.
-  </div>
+    <div *ngIf="!loading && !filteredProducts.length"
+      class="text-sm text-slate-500 bg-white/80 border border-slate-200 rounded px-3 py-2">
+      Няма намерени продукти.
+    </div>
+  </main>
 </div>

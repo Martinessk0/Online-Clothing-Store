@@ -15,7 +15,7 @@ namespace ClothingStore.Core.Contracts
         public Task<bool> DeleteProductAsync(int id);
         public Task<List<ProductDTO>> GetAllAsync();    
         public Task<ProductDTO> GetByIdAsync(int id);
-        public Task<List<Product>> FilterAsync(ProductDTO filterDTO);
+        public Task<List<Product>> FilterAsync(ProductFilterDTO filterDTO);
 
     }
 }
