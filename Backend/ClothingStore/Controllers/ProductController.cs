@@ -1,7 +1,9 @@
 ﻿using ClothingStore.Core.Contracts;
 using ClothingStore.Core.Models.Product;
 using ClothingStore.Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ClothingStore.Controllers
 {
@@ -11,10 +13,12 @@ namespace ClothingStore.Controllers
     {
         private readonly IProductService _productService;
         private readonly ILogger<AuthController> _logger;
-        public ProductController(IProductService productService, ILogger<AuthController> logger)
+        private readonly IRecommendationService _recommendationService;
+        public ProductController(IProductService productService, ILogger<AuthController> logger, IRecommendationService recommendationService)
         {
             _productService = productService;
             _logger = logger;
+            _recommendationService = recommendationService;
         }
 
         [HttpPost]
@@ -116,6 +120,30 @@ namespace ClothingStore.Controllers
             {
                 _logger.LogError(ex, "Error occurred while deleting product with ID {Id}.", id);
                 return StatusCode(500, new { message = "An error occurred while deleting the product." });
+            }
+        }
+
+        [HttpGet("recommended")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetRecommended([FromQuery] int? categoryId, [FromQuery] string? anonymousId)
+        {
+            try
+            {
+                string? userId = null;
+                if (User?.Identity?.IsAuthenticated == true)
+                {
+                    userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                }
+
+                var products = await _recommendationService
+                    .GetRecommendationsAsync(userId, anonymousId, categoryId, 4);
+
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while getting recommended products.");
+                return StatusCode(500, new { message = "Error while getting recommendations." });
             }
         }
     }
