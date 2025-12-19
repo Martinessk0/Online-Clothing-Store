@@ -1,5 +1,5 @@
 <div
-  class="flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 shadow-sm
+  class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-2xl border px-3 py-2 shadow-sm
          bg-white/80 border-slate-200 text-slate-900
          dark:bg-slate-900/80 dark:border-slate-800 dark:text-slate-50 mb-3"
 >
@@ -24,10 +24,10 @@
     </ng-template>
   </a>
 
-  <div class="flex-1">
+  <div class="flex-1 min-w-0">
     <a
       [routerLink]="['/products', item.productId]"
-      class="text-sm font-medium
+      class="block truncate text-sm font-medium
              text-slate-900 hover:text-blue-600
              dark:text-slate-50 dark:hover:text-blue-400"
     >
@@ -57,7 +57,8 @@
     </div>
   </div>
 
-  <div class="flex items-center gap-3">
+  <!-- Actions + price -->
+  <div class="flex w-full sm:w-auto items-center justify-between sm:justify-end gap-3">
     <button
       type="button"
       (click)="onRemoveClick()"
