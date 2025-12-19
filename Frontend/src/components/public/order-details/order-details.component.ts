@@ -10,7 +10,7 @@ import { OrderService } from '../../../services/order-service';
   templateUrl: './order-details.component.html',
   styleUrl: './order-details.component.scss'
 })
-export class OrderDetailsComponent  implements OnInit {
+export class OrderDetailsComponent implements OnInit {
   private readonly orderService = inject(OrderService);
   private readonly route = inject(ActivatedRoute);
 
@@ -39,7 +39,7 @@ export class OrderDetailsComponent  implements OnInit {
         this.order = order;
         this.loading = false;
       },
-      error: (err : any) => {
+      error: (err: any) => {
         console.error(err);
         this.error = 'Поръчката не беше намерена или нямаш достъп до нея.';
         this.loading = false;
@@ -52,17 +52,17 @@ export class OrderDetailsComponent  implements OnInit {
   }
 
   get paymentMethodLabel(): string {
-  if (!this.order) {
-    return '';
-  }
+    if (!this.order) {
+      return '';
+    }
 
-  switch (this.order.paymentMethod) {
-    case 'CashOnDelivery':
-      return 'Наложен платеж';
-    case 'BankTransfer':
-      return 'Банков превод';
-    default:
-      return this.order.paymentMethod;
+    switch (this.order.paymentMethod) {
+      case 'CashOnDelivery':
+        return 'Наложен платеж';
+      case 'PayPal':
+        return 'PayPal';
+      default:
+        return this.order.paymentMethod;
+    }
   }
-}
 }

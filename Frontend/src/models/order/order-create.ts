@@ -1,6 +1,6 @@
 import { OrderCreateItemDto } from "./order-item-create-dto";
 
-export type PaymentMethod = 'CashOnDelivery' | 'BankTransfer';
+export type PaymentMethod = 'CashOnDelivery' | 'PayPal';
 
 export interface OrderCreateDto {
   customerName?: string | null;

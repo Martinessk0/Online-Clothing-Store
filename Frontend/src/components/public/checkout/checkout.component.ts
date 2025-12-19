@@ -7,6 +7,9 @@ import { CartItem } from '../../../models/cart/cart-item';
 import { OrderCreateDto } from '../../../models/order/order-create';
 import { OrderService } from '../../../services/order-service';
 import { SpeedyOfficePickerComponent, SpeedyPickedOffice } from '../../shared/speedy-office-picker/speedy-office-picker.component';
+import { PaypalApiService } from '../../../services/paypal-api.service';
+import { PaypalLoaderService } from '../../../services/paypal-loader.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-checkout',
@@ -19,6 +22,8 @@ export class CheckoutComponent {
   private readonly cartService = inject(CartService);
   private readonly orderService = inject(OrderService);
   private readonly router = inject(Router);
+  private readonly paypalLoader = inject(PaypalLoaderService);
+  private readonly paypalApi = inject(PaypalApiService);
 
   loading = false;
   backendError: string | null = null;
@@ -26,6 +31,8 @@ export class CheckoutComponent {
   successOrderId: number | null = null;
   speedyPickerOpen = false;
   selectedSpeedyOffice: SpeedyPickedOffice | null = null;
+  paypalRendering = false;
+  paypalOrderId: number | null = null;
 
   form = this.fb.group({
     customerName: ['', [Validators.required, Validators.minLength(2)]],
@@ -73,6 +80,11 @@ export class CheckoutComponent {
     this.backendError = null;
     this.backendErrorsList = [];
     this.form.setErrors(null);
+
+    if (this.f.paymentMethod.value === 'PayPal') {
+      this.backendError = 'Моля, използвай PayPal бутоните по-долу.';
+      return;
+    }
 
     if (this.form.invalid || !this.items.length) {
       this.form.markAllAsTouched();
@@ -179,5 +191,108 @@ export class CheckoutComponent {
 
     this.form.get('address')?.markAsDirty();
     this.form.get('address')?.markAsTouched();
+  }
+
+  async renderPayPalButtons(containerId = 'paypal-buttons'): Promise<void> {
+    this.backendError = null;
+    this.backendErrorsList = [];
+
+    if (this.paypalRendering) return;
+
+    if (this.form.invalid || !this.items.length) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.paypalRendering = true;
+
+    try {
+      await this.paypalLoader.load();
+
+      const el = document.getElementById(containerId);
+      if (!el) return;
+      el.innerHTML = '';
+
+      window.paypal.Buttons({
+        createOrder: async () => {
+          // 1) Създаваме order в нашия бекенд (резервира стока)
+          const payload: OrderCreateDto = {
+            customerName: this.f.customerName.value ?? '',
+            email: this.f.email.value ?? '',
+            phone: this.f.phone.value ?? '',
+            address: this.f.address.value ?? '',
+            paymentMethod: 'PayPal',
+            items: this.items.map(i => ({
+              productId: i.productId,
+              productVariantId: i.variantId ?? null,
+              quantity: i.quantity
+            })),
+            speedyOfficeId: this.selectedSpeedyOffice?.id ?? null,
+            speedyOfficeLabel: this.selectedSpeedyOffice?.label ?? null
+          };
+
+          const res = await this.orderService.createOrder(payload).toPromise();
+          this.paypalOrderId = res!.orderId;
+
+          // 2) Create PayPal order през нашия бекенд
+          const pp = await this.paypalApi.create(this.paypalOrderId).toPromise();
+          return pp!.paypalOrderId;
+        },
+
+        onCancel: async () => {
+          try {
+            if (this.paypalOrderId) {
+              // await this.paypalApi.cancel(this.paypalOrderId).toPromise();
+            }
+          } catch (e) {
+            console.error('Cancel endpoint failed', e);
+          } finally {
+            this.paypalOrderId = null;
+          }
+
+          await this.swalBase().fire({
+            icon: 'info',
+            title: 'Плащането е прекъснато',
+            text: 'Не беше извършено плащане. Можеш да опиташ отново или да избереш наложен платеж.',
+            confirmButtonText: 'ОК'
+          });
+        },
+
+        onApprove: async (data: any) => {
+          if (!this.paypalOrderId) {
+            this.backendError = 'Липсва номер на поръчка.';
+            return;
+          }
+
+          await this.paypalApi.capture(this.paypalOrderId, data.orderID).toPromise();
+
+          this.successOrderId = this.paypalOrderId;
+          this.cartService.clear();
+        },
+
+        onError: (err: any) => {
+          console.error(err);
+          this.backendError = 'PayPal грешка. Моля, пробвай пак.';
+          this.router.navigate(['/cart']);
+        }
+      }).render(`#${containerId}`);
+    } catch (e) {
+      console.error(e);
+      this.backendError = 'Не успях да заредя PayPal.';
+    } finally {
+      this.paypalRendering = false;
+    }
+  }
+
+  private isDark(): boolean {
+    return document.documentElement.classList.contains('dark');
+  }
+
+  private swalBase() {
+    const dark = this.isDark();
+    return Swal.mixin({
+      background: dark ? '#0f172a' : '#ffffff',
+      color: dark ? '#e2e8f0' : '#0f172a'
+    });
   }
 }

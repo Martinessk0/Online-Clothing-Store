@@ -18,7 +18,7 @@
 
         <div class="text-right">
           <div class="text-sm font-semibold">
-            {{ order.totalAmount | number:'1.2-2' }} лв.
+            {{ order.totalAmount | number:'1.2-2' }} €
           </div>
           <div class="text-[11px] text-slate-400">
             Артикули: {{ order.itemsCount }}
@@ -111,7 +111,7 @@
             {{ order.itemsCount }}
           </td>
           <td class="px-4 py-3 align-middle text-sm font-semibold">
-            {{ order.totalAmount | number:'1.2-2' }} лв.
+            {{ order.totalAmount | number:'1.2-2' }} €
           </td>
           <td class="px-4 py-3 align-middle">
             <div class="flex items-center gap-2">
