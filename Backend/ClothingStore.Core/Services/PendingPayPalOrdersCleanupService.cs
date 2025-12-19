@@ -1,49 +1,51 @@
-﻿using ClothingStore.Infrastructure.Data.Common;
+﻿using ClothingStore.Core.Models.Paypal;
+using ClothingStore.Infrastructure.Data.Common;
 using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace ClothingStore.Core.Services
 {
     public class PendingPayPalOrdersCleanupService : BackgroundService
     {
         private readonly IServiceScopeFactory scopeFactory;
+        private readonly IOptionsMonitor<PayPalCleanupOptions> opt;
 
-        // След колко време да се “освободи” стоката (можеш да го направиш setting)
-        private static readonly TimeSpan ExpireAfter = TimeSpan.FromMinutes(1);
-
-        // Колко често да проверява
-        private static readonly TimeSpan Tick = TimeSpan.FromMinutes(10);
-
-        public PendingPayPalOrdersCleanupService(IServiceScopeFactory scopeFactory)
+        public PendingPayPalOrdersCleanupService(
+            IServiceScopeFactory scopeFactory,
+            IOptionsMonitor<PayPalCleanupOptions> opt)
         {
             this.scopeFactory = scopeFactory;
+            this.opt = opt;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
+                var expireAfter = TimeSpan.FromMinutes(opt.CurrentValue.ExpireAfterMinutes);
+                var tick = TimeSpan.FromSeconds(opt.CurrentValue.TickSeconds);
+
                 try
                 {
-                    await CleanupOnce(stoppingToken);
+                    await CleanupOnce(expireAfter,stoppingToken);
                 }
                 catch
                 {
-                    // не спираме worker-а при грешка
                 }
 
-                await Task.Delay(Tick, stoppingToken);
+                await Task.Delay(tick, stoppingToken);
             }
         }
 
-        private async Task CleanupOnce(CancellationToken ct)
+        private async Task CleanupOnce(TimeSpan expireAfter,CancellationToken ct)
         {
             using var scope = scopeFactory.CreateScope();
             var repo = scope.ServiceProvider.GetRequiredService<IRepository>();
 
-            var cutoff = DateTime.UtcNow.Subtract(ExpireAfter);
+            var cutoff = DateTime.UtcNow.Subtract(expireAfter);
 
             var expired = await repo.All<Order>()
                 .Include(o => o.Items)
@@ -56,7 +58,6 @@ namespace ClothingStore.Core.Services
             if (!expired.Any())
                 return;
 
-            // Връщаме stock само за variant-и (както ти е логиката)
             var variantIds = expired
                 .SelectMany(o => o.Items)
                 .Where(i => i.ProductVariantId.HasValue)

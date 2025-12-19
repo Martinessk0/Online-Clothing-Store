@@ -59,6 +59,9 @@ builder.Services.Configure<SpeedyOptions>(
 builder.Services.Configure<PayPalOptions>(
     builder.Configuration.GetSection("PayPal"));
 
+builder.Services.Configure<PayPalCleanupOptions>(
+    builder.Configuration.GetSection("PayPalCleanup"));
+
 var jwtSettings = builder.Configuration
     .GetSection("JWTSettingDev")
     .Get<JwtSettings>();
