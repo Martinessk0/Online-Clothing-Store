@@ -3,6 +3,7 @@ import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../../models/product/product-dto';
 import { CartService } from '../../../services/cart-service';
+import { CartAddedDialogService } from '../../../services/cart-added-dialog.service';
 
 @Component({
   selector: 'app-product-card',
@@ -12,6 +13,7 @@ import { CartService } from '../../../services/cart-service';
 })
 export class ProductCardComponent {
    private readonly cartService = inject(CartService);
+   private readonly dialog = inject(CartAddedDialogService);
 
   @Input({ required: true }) product!: Product;
 
@@ -39,5 +41,7 @@ export class ProductCardComponent {
 
     const firstVariant = this.product.variants?.[0] ?? null;
     this.cartService.addProduct(this.product, 1, firstVariant ?? undefined);
+
+    this.dialog.open(this.product);
   }
 }
