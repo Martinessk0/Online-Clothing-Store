@@ -1,6 +1,7 @@
 using ClothingStore.Core.Contracts;
 using ClothingStore.Core.Models.Auth;
 using ClothingStore.Core.Models.Cloudinary;
+using ClothingStore.Core.Models.Paypal;
 using ClothingStore.Core.Models.Speedy;
 using ClothingStore.Core.Services;
 using ClothingStore.Infrastructure;
@@ -55,6 +56,9 @@ builder.Services.Configure<JwtSettings>(
 builder.Services.Configure<SpeedyOptions>(
     builder.Configuration.GetSection("Speedy"));
 
+builder.Services.Configure<PayPalOptions>(
+    builder.Configuration.GetSection("PayPal"));
+
 var jwtSettings = builder.Configuration
     .GetSection("JWTSettingDev")
     .Get<JwtSettings>();
@@ -93,6 +97,13 @@ builder.Services.AddHttpClient<ISpeedyService, SpeedyService>((sp, http) =>
     var opt = sp.GetRequiredService<IOptions<SpeedyOptions>>().Value;
     http.BaseAddress = new Uri(opt.BaseUrl.TrimEnd('/') + "/");
 });
+builder.Services.AddHttpClient<IPayPalService, PayPalService>((sp, http) =>
+{
+    var opt = sp.GetRequiredService<IOptions<PayPalOptions>>().Value;
+    http.BaseAddress = new Uri(opt.BaseUrl.TrimEnd('/') + "/");
+});
+builder.Services.AddHostedService<PendingPayPalOrdersCleanupService>();
+
 builder.Services.AddSwaggerGen();
 
 

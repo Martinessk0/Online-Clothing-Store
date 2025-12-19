@@ -8,13 +8,14 @@ namespace ClothingStore.Infrastructure.Data.Entities
         Pending = 0,
         Processing = 1,
         Completed = 2,
-        Cancelled = 3
+        Cancelled = 3,
+        Paid = 4
     }
 
     public enum PaymentMethod
     {
         CashOnDelivery = 0,
-        BankTransfer = 1
+        PayPal = 1
     }
 
     public class Order
@@ -49,6 +50,11 @@ namespace ClothingStore.Infrastructure.Data.Entities
 
         [Required]
         public PaymentMethod PaymentMethod { get; set; } = PaymentMethod.CashOnDelivery;
+
+        [MaxLength(64)]
+        public string? PayPalOrderId { get; set; }
+
+        public DateTime? PaidAt { get; set; }
 
         public int? SpeedyOfficeId { get; set; }
 
