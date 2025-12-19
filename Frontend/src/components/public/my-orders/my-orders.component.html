@@ -16,10 +16,7 @@
     {{ error }}
   </div>
 
-  <div
-    *ngIf="!loading && !error && !orders.length"
-    class="text-sm text-slate-500 dark:text-slate-400"
-  >
+  <div *ngIf="!loading && !error && !orders.length" class="text-sm text-slate-500 dark:text-slate-400">
     Нямаш направени поръчки.
   </div>
 
@@ -28,68 +25,104 @@
     class="overflow-hidden rounded-2xl border border-slate-200 bg-white/80 shadow-sm
            dark:border-slate-800 dark:bg-slate-900/80"
   >
-    <table class="min-w-full text-sm">
-      <thead class="bg-slate-100/80 dark:bg-slate-900/60">
-        <tr>
-          <th
-            class="px-4 py-3 text-left font-medium text-xs text-slate-500 uppercase tracking-wide"
+    <!-- MOBILE: cards -->
+    <div class="sm:hidden divide-y divide-slate-100 dark:divide-slate-800">
+      <div *ngFor="let order of orders" class="p-4">
+        <div class="flex items-start justify-between gap-3">
+          <div class="min-w-0">
+            <div class="font-semibold text-slate-900 dark:text-slate-50">
+              Поръчка #{{ order.id }}
+            </div>
+            <div class="mt-1 text-xs text-slate-500 dark:text-slate-400">
+              {{ order.createdAt | date: 'dd.MM.yyyy HH:mm' }}
+            </div>
+          </div>
+
+          <span
+            class="shrink-0 inline-flex items-center rounded-full px-2 py-1 text-xs
+                   bg-slate-100 text-slate-700
+                   dark:bg-slate-800 dark:text-slate-200"
           >
-            № поръчка
-          </th>
-          <th
-            class="px-4 py-3 text-left font-medium text-xs text-slate-500 uppercase tracking-wide"
-          >
-            Дата
-          </th>
-          <th
-            class="px-4 py-3 text-left font-medium text-xs text-slate-500 uppercase tracking-wide"
-          >
-            Обща сума
-          </th>
-          <th
-            class="px-4 py-3 text-left font-medium text-xs text-slate-500 uppercase tracking-wide"
-          >
-            Статус
-          </th>
-          <th class="px-4 py-3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="let order of orders"
-          class="border-t border-slate-100 dark:border-slate-800"
-        >
-          <td class="px-4 py-3 align-middle">
-            <span class="font-medium text-slate-900 dark:text-slate-50">
-              #{{ order.id }}
-            </span>
-          </td>
-          <td class="px-4 py-3 align-middle text-slate-600 dark:text-slate-300">
-            {{ order.createdAt | date: 'dd.MM.yyyy HH:mm' }}
-          </td>
-          <td class="px-4 py-3 align-middle font-medium">
+            {{ order.status }}
+          </span>
+        </div>
+
+        <div class="mt-3 flex items-center justify-between">
+          <div class="text-sm font-medium">
             {{ order.totalAmount | number : '1.2-2' }} €
-          </td>
-          <td class="px-4 py-3 align-middle">
-            <span
-              class="inline-flex items-center rounded-full px-2 py-1 text-xs
-                     bg-slate-100 text-slate-700
-                     dark:bg-slate-800 dark:text-slate-200"
-            >
-              {{ order.status }}
-            </span>
-          </td>
-          <td class="px-4 py-3 align-middle text-right">
-            <a
-              [routerLink]="['/orders', order.id]"
-              class="text-xs font-medium text-blue-600 hover:underline
-                     dark:text-blue-400"
-            >
-              Детайли
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+
+          <a
+            [routerLink]="['/orders', order.id]"
+            class="inline-flex items-center rounded-xl px-3 py-2 text-xs font-semibold
+                   border border-slate-200 bg-white/70 text-slate-900
+                   hover:bg-white
+                   dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-50 dark:hover:bg-slate-900"
+          >
+            Детайли
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESKTOP/TABLET: table -->
+    <div class="hidden sm:block">
+      <!-- ако някога стане тясно и на tablet, това помага:
+           <div class="overflow-x-auto"> ... </div>
+      -->
+      <table class="min-w-full text-sm">
+        <thead class="bg-slate-100/80 dark:bg-slate-900/60">
+          <tr>
+            <th class="px-4 py-3 text-left font-medium text-xs text-slate-500 uppercase tracking-wide">
+              № поръчка
+            </th>
+            <th class="px-4 py-3 text-left font-medium text-xs text-slate-500 uppercase tracking-wide">
+              Дата
+            </th>
+            <th class="px-4 py-3 text-left font-medium text-xs text-slate-500 uppercase tracking-wide">
+              Обща сума
+            </th>
+            <th class="px-4 py-3 text-left font-medium text-xs text-slate-500 uppercase tracking-wide">
+              Статус
+            </th>
+            <th class="px-4 py-3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            *ngFor="let order of orders"
+            class="border-t border-slate-100 dark:border-slate-800"
+          >
+            <td class="px-4 py-3 align-middle">
+              <span class="font-medium text-slate-900 dark:text-slate-50">#{{ order.id }}</span>
+            </td>
+            <td class="px-4 py-3 align-middle text-slate-600 dark:text-slate-300">
+              {{ order.createdAt | date: 'dd.MM.yyyy HH:mm' }}
+            </td>
+            <td class="px-4 py-3 align-middle font-medium">
+              {{ order.totalAmount | number : '1.2-2' }} €
+            </td>
+            <td class="px-4 py-3 align-middle">
+              <span
+                class="inline-flex items-center rounded-full px-2 py-1 text-xs
+                       bg-slate-100 text-slate-700
+                       dark:bg-slate-800 dark:text-slate-200"
+              >
+                {{ order.status }}
+              </span>
+            </td>
+            <td class="px-4 py-3 align-middle text-right">
+              <a
+                [routerLink]="['/orders', order.id]"
+                class="text-xs font-medium text-blue-600 hover:underline dark:text-blue-400"
+              >
+                Детайли
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
