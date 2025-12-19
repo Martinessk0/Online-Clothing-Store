@@ -12,5 +12,7 @@ namespace ClothingStore.Core.Contracts
         Task<IEnumerable<AdminOrderListItemDto>> GetAllOrdersAsync();
         Task<bool> UpdateOrderStatusAsync(int orderId, string newStatus);
         Task<IEnumerable<string>> GetAllStatusesAsync();
+
+        Task<AdminOrderDetailsDto?> GetAdminOrderDetailsAsync(int id);
     }
 }

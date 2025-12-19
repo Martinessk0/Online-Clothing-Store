@@ -22,7 +22,6 @@ namespace ClothingStore.Core.Services
             if (dto.Items == null || dto.Items.Count == 0)
                 throw new ArgumentException("Order must contain at least one item.");
 
-            // Само COD + PayPal
             if (dto.PaymentMethod != PaymentMethod.CashOnDelivery &&
                 dto.PaymentMethod != PaymentMethod.PayPal)
             {
@@ -48,7 +47,7 @@ namespace ClothingStore.Core.Services
             List<ProductVariant> variants = new();
             if (variantIds.Any())
             {
-                variants = await repo.All<ProductVariant>()   // важно: All (НЕ Readonly), защото ще update-ваме stock
+                variants = await repo.All<ProductVariant>()
                     .Include(v => v.Color)
                     .Where(v => variantIds.Contains(v.Id) && v.IsActive)
                     .ToListAsync();
@@ -70,9 +69,6 @@ namespace ClothingStore.Core.Services
                 addressToStore = $"Speedy офис: {label}";
             }
 
-            // Статус при създаване:
-            // - PayPal -> Pending (не е платена още)
-            // - COD -> Pending (или Processing ако искаш)
             var initialStatus = OrderStatus.Pending;
 
             var order = new Order
@@ -122,9 +118,6 @@ namespace ClothingStore.Core.Services
 
                 order.Items.Add(orderItem);
 
-                // ✅ Резервация на stock при CreateOrder
-                // PayPal неплатено -> timeout job ще върне stock
-                // COD -> остава намален, защото поръчката е “реална”
                 if (variant != null)
                 {
                     variant.Stock -= quantity;
@@ -249,8 +242,6 @@ namespace ClothingStore.Core.Services
 
             if (!Enum.TryParse<OrderStatus>(newStatus, ignoreCase: true, out var statusEnum))
                 return false;
-
-            // (По желание) защита: да не се “разплатят” платени поръчки през админ панела
             if (order.Status == OrderStatus.Paid && statusEnum != OrderStatus.Paid)
                 return false;
 
@@ -264,5 +255,68 @@ namespace ClothingStore.Core.Services
             var names = Enum.GetNames(typeof(OrderStatus)).AsEnumerable();
             return Task.FromResult(names);
         }
+
+        public async Task<AdminOrderDetailsDto?> GetAdminOrderDetailsAsync(int id)
+        {
+            var order = await repo.AllReadonly<Order>()
+                .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
+                        .ThenInclude(p => p.Images)
+                .Where(o => o.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (order == null) return null;
+
+            var dto = new AdminOrderDetailsDto
+            {
+                Id = order.Id,
+                CreatedAt = order.CreatedAt,
+                Status = order.Status.ToString(),
+
+                CustomerName = order.CustomerName,
+                Email = order.Email,
+                Phone = order.Phone,
+                Address = order.Address,
+
+                TotalAmount = order.TotalAmount,
+
+                PaymentMethod = order.PaymentMethod.ToString(),
+                PaidAt = order.PaidAt,
+
+                SpeedyOfficeId = order.SpeedyOfficeId,
+                SpeedyOfficeLabel = order.SpeedyOfficeLabel,
+
+                PayPalOrderId = order.PayPalOrderId
+            };
+
+            foreach (var item in order.Items)
+            {
+                var imageUrl = item.Product.Images
+                    .OrderByDescending(img => img.IsMain)
+                    .ThenBy(img => img.SortOrder)
+                    .Select(img => img.Url)
+                    .FirstOrDefault();
+
+                dto.Items.Add(new AdminOrderDetailsItemDto
+                {
+                    ProductId = item.ProductId,
+                    ProductVariantId = item.ProductVariantId,
+
+                    ProductName = item.Product.Name,
+                    ImageUrl = imageUrl,
+
+                    ColorName = item.ColorName,
+                    Size = item.Size,
+
+                    Quantity = item.Quantity,
+
+                    UnitPrice = item.UnitPrice,
+                    LineTotal = item.LineTotal
+                });
+            }
+
+            return dto;
+        }
+
     }
 }

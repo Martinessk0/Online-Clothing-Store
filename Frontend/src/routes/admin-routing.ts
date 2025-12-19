@@ -7,6 +7,7 @@ import { AdminUsersComponent } from '../components/admin/admin-users/admin-users
 import { AdminCategoryComponent } from '../components/admin/admin-category/admin-category.component';
 import { AdminProductComponent } from '../components/admin/admin-product/admin-product.component';
 import { AdminOrderComponent } from '../components/admin/admin-order/admin-order.component';
+import { AdminOrderDetailsComponent } from '../components/admin/admin-order-details/admin-order-details.component';
 
 
 export const adminRoutes: Routes = [
@@ -39,6 +40,10 @@ export const adminRoutes: Routes = [
       {
         path: 'orders',
         component: AdminOrderComponent,
+      },
+       {
+        path: 'orders/:id',
+        component: AdminOrderDetailsComponent,
       },
 
     ],

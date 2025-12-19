@@ -49,5 +49,15 @@ namespace ClothingStore.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AdminOrderDetailsDto>> GetById(int id)
+        {
+            var dto = await orderService.GetAdminOrderDetailsAsync(id);
+            if (dto == null) return NotFound();
+
+            return Ok(dto);
+        }
+
     }
 }

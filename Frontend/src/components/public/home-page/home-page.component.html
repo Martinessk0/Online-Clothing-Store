@@ -1,37 +1,179 @@
-<section class="gap-8 items-center flex flex-col lg:grid lg:grid-cols-2">
-  <div class="w-full order-1 lg:order-2">
-    <div class="aspect-[4/3] w-full rounded-3xl border border-dashed border-gray-300 dark:border-gray-700
-             flex items-center justify-center overflow-hidden">
-      <img src="/assets/images/home-page-light.png" alt="ClothesStore light"
-        class="w-full h-full object-cover block dark:hidden" />
+<section class="relative overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 -z-10">
+    <div
+      class="h-full w-full bg-gradient-to-b
+             from-slate-50 via-white to-slate-50
+             dark:from-slate-950 dark:via-slate-950 dark:to-slate-950"
+    ></div>
 
-      <img src="/assets/images/home-page-dark.png" alt="ClothesStore dark"
-        class="w-full h-full object-cover hidden dark:block" />
-    </div>
+    <!-- Decorative blobs -->
+    <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl opacity-30
+                bg-blue-500/40 dark:bg-blue-400/20"></div>
+    <div class="absolute -bottom-24 -right-24 h-72 w-72 rounded-full blur-3xl opacity-30
+                bg-indigo-500/40 dark:bg-indigo-400/20"></div>
+
+    <!-- Subtle grid -->
+    <div class="absolute inset-0 opacity-[0.06] dark:opacity-[0.08]"
+         style="background-image: linear-gradient(to right, rgba(15,23,42,.35) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15,23,42,.35) 1px, transparent 1px);
+                background-size: 48px 48px;"></div>
   </div>
 
-  <div class="order-2 lg:order-1 text-center lg:text-left">
-    <h1 class="text-3xl sm:text-4xl font-bold mb-4">
-      Добре дошъл в <span class="text-blue-600">ClothesStore</span>
-    </h1>
-    <p class="text-gray-600 dark:text-gray-300 mb-6 text-sm sm:text-base">
-      Открий модерни дрехи на добри цени. Регистрирай се, за да проследяваш поръчките си
-      и да запазваш любимите си продукти.
-    </p>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-10">
+    <!-- HERO -->
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <!-- Copy -->
+      <div class="text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs
+                    text-slate-700 shadow-sm backdrop-blur
+                    dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-200">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+          Нови предложения всяка седмица
+        </div>
 
-    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-      <a routerLink="/register" class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
-               text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
-        Започни сега
-      </a>
-      <a routerLink="/products" class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
-               border border-gray-300 text-gray-700 hover:bg-gray-100
-               dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
-        Разгледай продукти
-      </a>
+        <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50">
+          Добре дошъл в
+          <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            ClothesStore
+          </span>
+        </h1>
+
+        <p class="mt-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300 max-w-xl mx-auto lg:mx-0">
+          Открий модерни дрехи на добри цени. Регистрирай се, за да проследяваш поръчките си
+          и да запазваш любимите си продукти.
+        </p>
+
+        <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+          <a
+            routerLink="/register"
+            class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-semibold
+                   text-white bg-gradient-to-r from-blue-600 to-indigo-600
+                   hover:opacity-95 shadow-sm"
+          >
+            Започни сега
+          </a>
+
+          <a
+            routerLink="/products"
+            class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-semibold
+                   border border-slate-200 bg-white/70 text-slate-800
+                   hover:bg-white shadow-sm backdrop-blur
+                   dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-100 dark:hover:bg-slate-900"
+          >
+            Разгледай продукти
+          </a>
+        </div>
+
+        <!-- Trust row -->
+        <div class="mt-7 grid grid-cols-3 gap-3 max-w-xl mx-auto lg:mx-0">
+          <div class="rounded-2xl border border-slate-200 bg-white/70 p-3 text-left shadow-sm backdrop-blur
+                      dark:border-slate-800 dark:bg-slate-900/60">
+            <p class="text-xs text-slate-500 dark:text-slate-400">Доставка</p>
+            <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">Бърза</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white/70 p-3 text-left shadow-sm backdrop-blur
+                      dark:border-slate-800 dark:bg-slate-900/60">
+            <p class="text-xs text-slate-500 dark:text-slate-400">Връщане</p>
+            <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">Лесно</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white/70 p-3 text-left shadow-sm backdrop-blur
+                      dark:border-slate-800 dark:bg-slate-900/60">
+            <p class="text-xs text-slate-500 dark:text-slate-400">Плащане</p>
+            <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">Сигурно</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="w-full">
+        <div
+          class="relative aspect-[4/3] w-full rounded-3xl border border-slate-200 bg-white/70 shadow-sm backdrop-blur
+                 dark:border-slate-800 dark:bg-slate-900/60 overflow-hidden"
+        >
+          <!-- small highlight -->
+          <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-blue-500/10 blur-2xl"></div>
+
+          <img
+            src="/assets/images/home-page-light.png"
+            alt="ClothesStore light"
+            class="w-full h-full object-cover block dark:hidden"
+          />
+          <img
+            src="/assets/images/home-page-dark.png"
+            alt="ClothesStore dark"
+            class="w-full h-full object-cover hidden dark:block"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Categories -->
+    <div class="mt-10 sm:mt-12">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-50">
+            Бърз достъп
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            Избери категория и започни да разглеждаш.
+          </p>
+        </div>
+
+        <a
+          routerLink="/products"
+          class="text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400"
+        >
+          Всички продукти
+        </a>
+      </div>
+
+      <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <a routerLink="/products" [queryParams]="{ category: 'men' }"
+           class="group rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm backdrop-blur
+                  hover:shadow-md transition
+                  dark:border-slate-800 dark:bg-slate-900/60">
+          <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">Мъже</p>
+          <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Яке • Суитшърт • Дънки</p>
+          <div class="mt-3 h-1 w-10 rounded-full bg-blue-600/70 group-hover:w-14 transition-all"></div>
+        </a>
+
+        <a routerLink="/products" [queryParams]="{ category: 'women' }"
+           class="group rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm backdrop-blur
+                  hover:shadow-md transition
+                  dark:border-slate-800 dark:bg-slate-900/60">
+          <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">Жени</p>
+          <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Рокля • Блуза • Палто</p>
+          <div class="mt-3 h-1 w-10 rounded-full bg-indigo-600/70 group-hover:w-14 transition-all"></div>
+        </a>
+
+        <a routerLink="/products" [queryParams]="{ category: 'kids' }"
+           class="group rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm backdrop-blur
+                  hover:shadow-md transition
+                  dark:border-slate-800 dark:bg-slate-900/60">
+          <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">Деца</p>
+          <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Тениски • Екипи • Якенца</p>
+          <div class="mt-3 h-1 w-10 rounded-full bg-emerald-600/70 group-hover:w-14 transition-all"></div>
+        </a>
+
+        <a routerLink="/products" [queryParams]="{ category: 'accessories' }"
+           class="group rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm backdrop-blur
+                  hover:shadow-md transition
+                  dark:border-slate-800 dark:bg-slate-900/60">
+          <p class="text-sm font-semibold text-slate-900 dark:text-slate-50">Аксесоари</p>
+          <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Шапки • Чанти • Колани</p>
+          <div class="mt-3 h-1 w-10 rounded-full bg-fuchsia-600/70 group-hover:w-14 transition-all"></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Keep your carousel (unchanged) -->
+    <div class="mt-10 sm:mt-12">
+      <app-recommendations-carousel
+        source="recommended"
+        title="Препоръчани за теб"
+        [autoRotate]="true"
+      ></app-recommendations-carousel>
     </div>
   </div>
 </section>
-
-<app-recommendations-carousel source="recommended" title="Препоръчани за теб"
-  [autoRotate]="true"></app-recommendations-carousel>
