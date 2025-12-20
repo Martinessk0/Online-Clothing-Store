@@ -129,13 +129,11 @@ namespace ClothingStore.UnitTests.Orders
                 Size = "M"
             };
 
-            // Add them to the in-memory context
             context.Add(color);
             context.Add(product);
             context.Add(variant);
             await context.SaveChangesAsync();
 
-            // Prepare the order DTO with quantity greater than stock
             var dto = new OrderCreateDto
             {
                 PaymentMethod = PaymentMethod.CashOnDelivery,
@@ -145,15 +143,13 @@ namespace ClothingStore.UnitTests.Orders
             {
                 ProductId = product.Id,
                 ProductVariantId = variant.Id,
-                Quantity = 2 // More than stock
+                Quantity = 2 
             }
         }
             };
 
-            // Act
             Func<Task> act = async () => await service.CreateOrderAsync(dto, null);
 
-            // Assert
             await act.Should()
                 .ThrowAsync<ArgumentException>()
                 .WithMessage("Not enough stock for selected variant.");
