@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothingStore.Core", "Cloth
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothingStore.Infrastructure", "ClothingStore.Infrastructure\ClothingStore.Infrastructure.csproj", "{B52E1017-6BEE-4B03-9691-7886A5EE159F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothingStore.UnitTests", "ClothingStore.UnitTests\ClothingStore.UnitTests.csproj", "{CA3A576B-44DB-47B0-9A71-76327425A24E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +29,15 @@ Global
 		{B52E1017-6BEE-4B03-9691-7886A5EE159F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B52E1017-6BEE-4B03-9691-7886A5EE159F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B52E1017-6BEE-4B03-9691-7886A5EE159F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA3A576B-44DB-47B0-9A71-76327425A24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA3A576B-44DB-47B0-9A71-76327425A24E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA3A576B-44DB-47B0-9A71-76327425A24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA3A576B-44DB-47B0-9A71-76327425A24E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BEF03EA7-605A-4627-84EB-FE1A1B2DEC92}
 	EndGlobalSection
 EndGlobal
