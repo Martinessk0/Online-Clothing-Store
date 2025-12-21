@@ -1,7 +1,7 @@
 <section class="mt-8 space-y-4">
   <div class="flex items-center justify-between gap-3">
     <h2 class="text-lg font-semibold tracking-tight">
-      {{ title }}
+      {{ title | translate }}
     </h2>
 
     <div class="flex items-center gap-2">
@@ -10,7 +10,7 @@
         (click)="prev()"
         class="h-9 w-9 rounded-xl border border-slate-300 bg-white/80 text-sm
                hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900/60 dark:hover:bg-slate-800"
-        aria-label="Предишни"
+        [attr.aria-label]="'CAROUSEL.PREV' | translate"
       >
         ‹
       </button>
@@ -20,7 +20,7 @@
         (click)="next()"
         class="h-9 w-9 rounded-xl border border-slate-300 bg-white/80 text-sm
                hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900/60 dark:hover:bg-slate-800"
-        aria-label="Следващи"
+        [attr.aria-label]="'CAROUSEL.NEXT' | translate"
       >
         ›
       </button>
@@ -28,23 +28,15 @@
   </div>
 
   <div *ngIf="loading" class="text-sm text-slate-500 dark:text-slate-400">
-    Зареждаме продуктите...
+    {{ 'CAROUSEL.LOADING' | translate }}
   </div>
 
   <div *ngIf="!loading && !products.length" class="text-sm text-slate-500 dark:text-slate-400">
-    В момента няма продукти за показване.
+    {{ 'HOME.NO_PRODUCTS' | translate }}
   </div>
 
-  <div
-    *ngIf="!loading && products.length"
-    #track
-    class="carousel-track"
-  >
-    <div
-      *ngFor="let product of products"
-      class="carousel-card"
-      data-card
-    >
+  <div *ngIf="!loading && products.length" #track class="carousel-track">
+    <div *ngFor="let product of products" class="carousel-card" data-card>
       <app-product-card [product]="product"></app-product-card>
     </div>
   </div>

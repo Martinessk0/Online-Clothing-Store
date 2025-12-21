@@ -1,14 +1,18 @@
 import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+
 import { AuthService } from '../../../services/auth-service';
 import { ThemeService } from '../../../services/theme-service';
 import { CartService } from '../../../services/cart-service';
+import { LanguageService } from '../../../services/language.service';
+
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslateModule],
   templateUrl: './navigation.component.html'
 })
 export class NavigationComponent {
@@ -16,12 +20,24 @@ export class NavigationComponent {
   private readonly router = inject(Router);
   private readonly themeService = inject(ThemeService);
   private readonly cartService = inject(CartService);
+  private readonly language = inject(LanguageService);
 
   isMobileMenuOpen = false;
   isProfileMenuOpen = false;
 
+  // Theme
   isDark = computed(() => this.themeService.theme() === 'dark');
 
+  // Language helpers (за HTML)
+  currentLang(): 'bg' | 'en' {
+    return this.language.currentLang();
+  }
+
+  switchLang(lang: 'bg' | 'en'): void {
+    this.language.setLanguage(lang);
+  }
+
+  // Auth
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
@@ -30,10 +46,12 @@ export class NavigationComponent {
     return this.authService.isAdmin();
   }
 
+  // Cart
   get cartQuantity(): number {
     return this.cartService.cart.totalQuantity;
   }
 
+  // UI
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
     if (this.isMobileMenuOpen) this.isProfileMenuOpen = false;

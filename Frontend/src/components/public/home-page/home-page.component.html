@@ -1,37 +1,59 @@
 <section class="gap-8 items-center flex flex-col lg:grid lg:grid-cols-2">
   <div class="w-full order-1 lg:order-2">
-    <div class="aspect-[4/3] w-full rounded-3xl border border-dashed border-gray-300 dark:border-gray-700
-             flex items-center justify-center overflow-hidden">
-      <img src="/assets/images/home-page-light.png" alt="ClothesStore light"
-        class="w-full h-full object-cover block dark:hidden" />
+    <div
+      class="aspect-[4/3] w-full rounded-3xl border border-dashed border-gray-300 dark:border-gray-700
+             flex items-center justify-center overflow-hidden"
+    >
+      <img
+        src="/assets/images/home-page-light.png"
+        alt="ClothesStore light"
+        class="w-full h-full object-cover block dark:hidden"
+      />
 
-      <img src="/assets/images/home-page-dark.png" alt="ClothesStore dark"
-        class="w-full h-full object-cover hidden dark:block" />
+      <img
+        src="/assets/images/home-page-dark.png"
+        alt="ClothesStore dark"
+        class="w-full h-full object-cover hidden dark:block"
+      />
     </div>
   </div>
 
   <div class="order-2 lg:order-1 text-center lg:text-left">
+    <!-- TITLE -->
     <h1 class="text-3xl sm:text-4xl font-bold mb-4">
-      Добре дошъл в <span class="text-blue-600">ClothesStore</span>
+      {{ 'HOME.TITLE' | translate }}
+      <span class="text-blue-600">ClothesStore</span>
     </h1>
+
+    <!-- SUBTITLE -->
     <p class="text-gray-600 dark:text-gray-300 mb-6 text-sm sm:text-base">
-      Открий модерни дрехи на добри цени. Регистрирай се, за да проследяваш поръчките си
-      и да запазваш любимите си продукти.
+      {{ 'HOME.SUBTITLE' | translate }}
     </p>
 
+    <!-- BUTTONS -->
     <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-      <a routerLink="/register" class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
-               text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
-        Започни сега
+      <a
+        routerLink="/register"
+        class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
+               text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+      >
+        {{ 'HOME.START_NOW' | translate }}
       </a>
-      <a routerLink="/products" class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
+
+      <a
+        routerLink="/products"
+        class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium
                border border-gray-300 text-gray-700 hover:bg-gray-100
-               dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
-        Разгледай продукти
+               dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+      >
+        {{ 'HOME.BROWSE_PRODUCTS' | translate }}
       </a>
     </div>
   </div>
 </section>
 
-<app-recommendations-carousel source="recommended" title="Препоръчани за теб"
-  [autoRotate]="true"></app-recommendations-carousel>
+<app-recommendations-carousel
+  source="recommended"
+  title="HOME.RECOMMENDED_TITLE"
+  [autoRotate]="true"
+></app-recommendations-carousel>

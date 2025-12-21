@@ -1,22 +1,41 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Subscription, timer } from 'rxjs';
+
+import { TranslateModule } from '@ngx-translate/core';
+
 import { Product } from '../../../models/product/product-dto';
 import { ProductService } from '../../../services/product-service';
 import { RecommendationService } from '../../../services/recommendation-service';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { ProductCardComponent } from '../../shared/product-card/product-card.component';
 
 type CarouselSource = 'recommended' | 'all';
 
 @Component({
   selector: 'app-recommendations-carousel',
-  imports: [CommonModule, RouterModule, ProductCardComponent],
+  standalone: true,
+  imports: [CommonModule, RouterModule, TranslateModule, ProductCardComponent],
   templateUrl: './recommendations-carousel.component.html',
   styleUrl: './recommendations-carousel.component.scss'
 })
-export class RecommendationsCarouselComponent implements OnInit ,OnChanges, OnDestroy {
-  @Input() title = 'Препоръчани за теб';
+export class RecommendationsCarouselComponent implements OnInit, OnChanges, OnDestroy {
+  /**
+   * IMPORTANT:
+   * title трябва да е translation key, напр. 'HOME.RECOMMENDED_TITLE'
+   * (и в HTML: {{ title | translate }})
+   */
+  @Input() title: string = 'HOME.RECOMMENDED_TITLE';
+
   @Input() source: CarouselSource = 'recommended';
   @Input() autoRotate = true;
   @Input() rotateMs = 3500;
@@ -32,9 +51,11 @@ export class RecommendationsCarouselComponent implements OnInit ,OnChanges, OnDe
   constructor(
     private recommendationService: RecommendationService,
     private productService: ProductService
-  ) { }
+  ) {}
 
-  ngOnInit(): void { this.load(); }
+  ngOnInit(): void {
+    this.load();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['autoRotate'] || changes['rotateMs']) {
@@ -54,35 +75,43 @@ export class RecommendationsCarouselComponent implements OnInit ,OnChanges, OnDe
     if (!this.autoRotate) return;
     if (!this.products?.length) return;
 
+    // малък delay, за да е сигурно че trackRef е наличен след render
     setTimeout(() => {
       const el = this.trackRef?.nativeElement;
       if (!el) return;
 
-      this.autoSub.add(
-        timer(this.rotateMs, this.rotateMs).subscribe(() => this.next())
-      );
+      this.autoSub.add(timer(this.rotateMs, this.rotateMs).subscribe(() => this.next()));
     });
   }
 
   load(): void {
     this.loading = true;
 
+    // ако искаш по-късно да поддържаш 'all', тук просто сменяш req$
     const req$ = this.recommendationService.getRecommended();
-    this.sub.add(req$.subscribe({
-      next: (items) => {
-        this.products = items ?? [];
-        this.loading = false;
-        this.restartAutoRotate();
-      },
-      error: () => {
-        this.loading = false;
-        this.products = [];
-      }
-    }));
+
+    this.sub.add(
+      req$.subscribe({
+        next: (items) => {
+          this.products = items ?? [];
+          this.loading = false;
+          this.restartAutoRotate();
+        },
+        error: () => {
+          this.loading = false;
+          this.products = [];
+        }
+      })
+    );
   }
 
-  next(): void { this.scrollByPage(1); }
-  prev(): void { this.scrollByPage(-1); }
+  next(): void {
+    this.scrollByPage(1);
+  }
+
+  prev(): void {
+    this.scrollByPage(-1);
+  }
 
   private scrollByPage(direction: 1 | -1): void {
     const el = this.trackRef?.nativeElement;
