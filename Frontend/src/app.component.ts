@@ -8,13 +8,12 @@ import { LanguageService } from './services/language.service';
   standalone: true,
   imports: [RouterOutlet, CartAddedDialogComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   constructor(private language: LanguageService) {}
 
   ngOnInit(): void {
-    // Задава default (ако LanguageService пази/чете localStorage, ще си вземе избора)
-    this.language.setLanguage('bg');
+    this.language.init('bg'); // взима от localStorage ако има, иначе bg
   }
 }

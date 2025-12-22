@@ -1,13 +1,15 @@
 <div class="max-w-5xl mx-auto px-4 py-8 space-y-6">
-  <h1 class="mb-2 text-2xl font-semibold tracking-tight">Кошница</h1>
+  <h1 class="mb-2 text-2xl font-semibold tracking-tight">
+    {{ 'CART.TITLE' | translate }}
+  </h1>
 
   <div *ngIf="!items.length" class="text-sm text-slate-500 dark:text-slate-400">
-    Кошницата ти е празна.
+    {{ 'CART.EMPTY' | translate }}
     <a
       routerLink="/products"
       class="text-blue-600 hover:underline dark:text-blue-400"
     >
-      Виж продуктите
+      {{ 'CART.VIEW_PRODUCTS' | translate }}
     </a>
   </div>
 
@@ -26,7 +28,7 @@
         class="text-[11px] text-slate-500 hover:text-slate-700
                dark:text-slate-400 dark:hover:text-slate-200"
       >
-        Изчисти количката
+        {{ 'CART.CLEAR' | translate }}
       </button>
     </div>
 
@@ -36,12 +38,12 @@
              dark:bg-slate-900/80 dark:border-slate-800 dark:text-slate-50"
     >
       <div class="flex justify-between text-sm font-medium">
-        <span>Продукти</span>
+        <span>{{ 'CART.ITEMS' | translate }}</span>
         <span>{{ totalQuantity }}</span>
       </div>
 
       <div class="flex justify-between text-sm font-semibold">
-        <span>Обща сума</span>
+        <span>{{ 'CART.TOTAL' | translate }}</span>
         <span>{{ total | number: '1.2-2' }} €</span>
       </div>
 
@@ -50,11 +52,11 @@
         class="mt-2 inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white
                hover:bg-blue-700"
       >
-        Продължи към поръчка
+        {{ 'CART.CHECKOUT' | translate }}
       </a>
 
       <p class="text-[11px] text-slate-500 dark:text-slate-400">
-        Можеш да завършиш поръчката и като гост без регистрация.
+        {{ 'CART.GUEST_INFO' | translate }}
       </p>
     </aside>
   </div>

@@ -4,11 +4,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
 import { RegisterRequest } from '../../../models/auth/register-request';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {
@@ -17,19 +18,18 @@ export class RegisterComponent {
   private readonly router = inject(Router);
 
   submitted = false;
+
   backendError: string | null = null;
+  backendErrorKey: string | null = null;
 
   form = this.fb.group(
     {
       firstName: ['', [Validators.required, Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.maxLength(50)]],
-
       email: ['', [Validators.required, Validators.email]],
-
       phoneNumber: ['', [Validators.maxLength(20)]],
       city: ['', [Validators.maxLength(100)]],
       address: ['', [Validators.maxLength(200)]],
-
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
     },
@@ -53,30 +53,27 @@ export class RegisterComponent {
   onSubmit(): void {
     this.submitted = true;
     this.backendError = null;
+    this.backendErrorKey = null;
 
-    if (this.form.invalid) {
-      return;
-    }
+    if (this.form.invalid) return;
 
     const payload: RegisterRequest = {
       email: this.f.email.value ?? '',
       password: this.f.password.value ?? '',
       confirmPassword: this.f.confirmPassword.value ?? '',
-
       firstName: this.f.firstName.value ?? '',
       lastName: this.f.lastName.value ?? '',
-
       phoneNumber: this.f.phoneNumber.value || null,
       city: this.f.city.value || null,
       address: this.f.address.value || null
     };
 
     this.authService.register(payload).subscribe({
-      next: () => {
-        this.router.navigate(['/login']);
-      },
+      next: () => this.router.navigate(['/login']),
       error: (err) => {
-        this.backendError = err?.error?.message ?? 'Възникна грешка при регистрацията.';
+        const msg = err?.error?.message ?? null;
+        this.backendError = msg;
+        if (!msg) this.backendErrorKey = 'REGISTER.ERROR_GENERIC';
       }
     });
   }

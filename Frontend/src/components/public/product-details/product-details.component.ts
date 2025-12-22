@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { TranslateModule } from '@ngx-translate/core';
+
 import { Product } from '../../../models/product/product-dto';
 import { ProductService } from '../../../services/product-service';
 import { CartService } from '../../../services/cart-service';
@@ -10,7 +13,7 @@ import { RecommendationService } from '../../../services/recommendation-service'
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })
@@ -99,6 +102,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       1,
       this.selectedVariant ?? undefined
     );
+
     this.recommendationService.trackInteraction({
       type: 'AddToCart',
       productId: this.product.id,

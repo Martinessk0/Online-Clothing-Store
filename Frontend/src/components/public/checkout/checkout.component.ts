@@ -1,19 +1,33 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+
+import { TranslateModule } from '@ngx-translate/core';
+
 import { CartService } from '../../../services/cart-service';
 import { CartItem } from '../../../models/cart/cart-item';
 import { OrderCreateDto } from '../../../models/order/order-create';
 import { OrderService } from '../../../services/order-service';
-import { SpeedyOfficePickerComponent, SpeedyPickedOffice } from '../../shared/speedy-office-picker/speedy-office-picker.component';
+import {
+  SpeedyOfficePickerComponent,
+  SpeedyPickedOffice
+} from '../../shared/speedy-office-picker/speedy-office-picker.component';
 import { PaypalApiService } from '../../../services/paypal-api.service';
 import { PaypalLoaderService } from '../../../services/paypal-loader.service';
+
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-checkout',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, SpeedyOfficePickerComponent],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterLink,
+    SpeedyOfficePickerComponent,
+    TranslateModule
+  ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
@@ -40,7 +54,7 @@ export class CheckoutComponent {
     phone: ['', [Validators.required, Validators.minLength(6)]],
     address: ['', [Validators.required, Validators.minLength(5)]],
     paymentMethod: ['CashOnDelivery', Validators.required],
-    deliveryMethod: ['Address', Validators.required],
+    deliveryMethod: ['Address', Validators.required]
   });
 
   get items(): CartItem[] {
@@ -70,7 +84,6 @@ export class CheckoutComponent {
       const req = c.errors['minlength'].requiredLength;
       return `Минимална дължина: ${req} символа.`;
     }
-    // Бекенд грешка, закачена към control-а
     if (c.errors['server']) return String(c.errors['server']);
 
     return 'Невалидна стойност.';
@@ -215,7 +228,6 @@ export class CheckoutComponent {
 
       window.paypal.Buttons({
         createOrder: async () => {
-          // 1) Създаваме order в нашия бекенд (резервира стока)
           const payload: OrderCreateDto = {
             customerName: this.f.customerName.value ?? '',
             email: this.f.email.value ?? '',
@@ -234,45 +246,31 @@ export class CheckoutComponent {
           const res = await this.orderService.createOrder(payload).toPromise();
           this.paypalOrderId = res!.orderId;
 
-          // 2) Create PayPal order през нашия бекенд
           const pp = await this.paypalApi.create(this.paypalOrderId).toPromise();
           return pp!.paypalOrderId;
         },
 
         onCancel: async () => {
-          try {
-            if (this.paypalOrderId) {
-              // await this.paypalApi.cancel(this.paypalOrderId).toPromise();
-            }
-          } catch (e) {
-            console.error('Cancel endpoint failed', e);
-          } finally {
-            this.paypalOrderId = null;
-          }
-
+          this.paypalOrderId = null;
           await this.swalBase().fire({
             icon: 'info',
             title: 'Плащането е прекъснато',
-            text: 'Не беше извършено плащане. Можеш да опиташ отново или да избереш наложен платеж.',
+            text: 'Не беше извършено плащане.',
             confirmButtonText: 'ОК'
           });
         },
 
         onApprove: async (data: any) => {
-          if (!this.paypalOrderId) {
-            this.backendError = 'Липсва номер на поръчка.';
-            return;
-          }
+          if (!this.paypalOrderId) return;
 
           await this.paypalApi.capture(this.paypalOrderId, data.orderID).toPromise();
-
           this.successOrderId = this.paypalOrderId;
           this.cartService.clear();
         },
 
         onError: (err: any) => {
           console.error(err);
-          this.backendError = 'PayPal грешка. Моля, пробвай пак.';
+          this.backendError = 'PayPal грешка.';
           this.router.navigate(['/cart']);
         }
       }).render(`#${containerId}`);

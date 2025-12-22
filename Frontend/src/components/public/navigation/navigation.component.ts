@@ -28,16 +28,16 @@ export class NavigationComponent {
   // Theme
   isDark = computed(() => this.themeService.theme() === 'dark');
 
-  // Language helpers (за HTML)
+  // ===== LANGUAGE =====
   currentLang(): 'bg' | 'en' {
     return this.language.currentLang();
   }
 
   switchLang(lang: 'bg' | 'en'): void {
-    this.language.setLanguage(lang);
+    this.language.setLang(lang); // 👈 ВАЖНО: setLang, не setLanguage
   }
 
-  // Auth
+  // ===== AUTH =====
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
@@ -46,15 +46,17 @@ export class NavigationComponent {
     return this.authService.isAdmin();
   }
 
-  // Cart
+  // ===== CART =====
   get cartQuantity(): number {
     return this.cartService.cart.totalQuantity;
   }
 
-  // UI
+  // ===== UI =====
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
-    if (this.isMobileMenuOpen) this.isProfileMenuOpen = false;
+    if (this.isMobileMenuOpen) {
+      this.isProfileMenuOpen = false;
+    }
   }
 
   toggleTheme(): void {

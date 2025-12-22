@@ -3,27 +3,29 @@
     class="w-full max-w-md bg-white rounded-2xl shadow-md px-4 py-6 sm:px-6 sm:py-8
            dark:bg-gray-900 dark:shadow-lg dark:border dark:border-gray-800"
   >
-    <h1 class="text-2xl font-semibold text-center mb-2">Регистрация</h1>
+    <h1 class="text-2xl font-semibold text-center mb-2">
+      {{ 'COMMON.REGISTER' | translate }}
+    </h1>
+
     <p class="text-sm text-center text-gray-500 dark:text-gray-400 mb-6">
-      Създай акаунт, за да проследяваш поръчките си и да запазваш любими продукти.
+      {{ 'REGISTER.SUBTITLE' | translate }}
     </p>
 
-    @if (backendError) {
+    @if (backendError || backendErrorKey) {
       <div
         class="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700
                dark:border-red-500/30 dark:bg-red-950/40 dark:text-red-300"
       >
-        {{ backendError }}
+        {{ backendError ?? (backendErrorKey | translate) }}
       </div>
     }
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
 
-      <!-- Име + Фамилия -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            Собствено име
+            {{ 'REGISTER.FIRST_NAME' | translate }}
           </label>
           <input
             type="text"
@@ -31,18 +33,18 @@
             class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
                    focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                    dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
-            placeholder="Иван"
+            [placeholder]="'REGISTER.FIRST_NAME_PLACEHOLDER' | translate"
           />
           @if (f.firstName.invalid && (f.firstName.dirty || f.firstName.touched || submitted)) {
             <p class="mt-1 text-xs text-red-600 dark:text-red-400">
-              Моля, въведи собствено име.
+              {{ 'REGISTER.FIRST_NAME_ERROR' | translate }}
             </p>
           }
         </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            Фамилия
+            {{ 'REGISTER.LAST_NAME' | translate }}
           </label>
           <input
             type="text"
@@ -50,20 +52,19 @@
             class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
                    focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                    dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
-            placeholder="Петров"
+            [placeholder]="'REGISTER.LAST_NAME_PLACEHOLDER' | translate"
           />
           @if (f.lastName.invalid && (f.lastName.dirty || f.lastName.touched || submitted)) {
             <p class="mt-1 text-xs text-red-600 dark:text-red-400">
-              Моля, въведи фамилия.
+              {{ 'REGISTER.LAST_NAME_ERROR' | translate }}
             </p>
           }
         </div>
       </div>
 
-      <!-- Имейл -->
       <div>
         <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-          Имейл
+          {{ 'REGISTER.EMAIL' | translate }}
         </label>
         <input
           type="email"
@@ -75,15 +76,14 @@
         />
         @if (f.email.invalid && (f.email.dirty || f.email.touched || submitted)) {
           <p class="mt-1 text-xs text-red-600 dark:text-red-400">
-            Моля, въведи валиден имейл.
+            {{ 'REGISTER.EMAIL_ERROR' | translate }}
           </p>
         }
       </div>
 
-      <!-- Телефон -->
       <div>
         <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-          Телефон (по желание)
+          {{ 'REGISTER.PHONE_OPTIONAL' | translate }}
         </label>
         <input
           type="tel"
@@ -95,11 +95,10 @@
         />
       </div>
 
-      <!-- Град + Адрес -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            Град (по желание)
+            {{ 'REGISTER.CITY_OPTIONAL' | translate }}
           </label>
           <input
             type="text"
@@ -107,13 +106,13 @@
             class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
                    focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                    dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
-            placeholder="София"
+            [placeholder]="'REGISTER.CITY_PLACEHOLDER' | translate"
           />
         </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-            Адрес (по желание)
+            {{ 'REGISTER.ADDRESS_OPTIONAL' | translate }}
           </label>
           <input
             type="text"
@@ -121,15 +120,14 @@
             class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
                    focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                    dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
-            placeholder="ул. „Иван Шишман“ 10, вх. А"
+            [placeholder]="'REGISTER.ADDRESS_PLACEHOLDER' | translate"
           />
         </div>
       </div>
 
-      <!-- Парола -->
       <div>
         <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-          Парола
+          {{ 'REGISTER.PASSWORD' | translate }}
         </label>
         <input
           type="password"
@@ -141,15 +139,14 @@
         />
         @if (f.password.invalid && (f.password.dirty || f.password.touched || submitted)) {
           <p class="mt-1 text-xs text-red-600 dark:text-red-400">
-            Паролата трябва да е поне 6 символа.
+            {{ 'REGISTER.PASSWORD_ERROR' | translate }}
           </p>
         }
       </div>
 
-      <!-- Повтори паролата -->
       <div>
         <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-          Повтори паролата
+          {{ 'REGISTER.CONFIRM_PASSWORD' | translate }}
         </label>
         <input
           type="password"
@@ -161,7 +158,7 @@
         />
         @if ((f.confirmPassword.dirty || f.confirmPassword.touched || submitted) && passwordMismatch) {
           <p class="mt-1 text-xs text-red-600 dark:text-red-400">
-            Паролите не съвпадат.
+            {{ 'REGISTER.CONFIRM_PASSWORD_ERROR' | translate }}
           </p>
         }
       </div>
@@ -173,13 +170,13 @@
                bg-blue-600 hover:bg-blue-700
                dark:bg-blue-500 dark:hover:bg-blue-600"
       >
-        Регистрация
+        {{ 'COMMON.REGISTER' | translate }}
       </button>
 
       <p class="text-xs text-center text-gray-500 dark:text-gray-400">
-        Вече имаш акаунт?
+        {{ 'REGISTER.HAVE_ACCOUNT' | translate }}
         <a routerLink="/login" class="text-blue-600 dark:text-blue-400 hover:underline">
-          Влез
+          {{ 'REGISTER.LOGIN' | translate }}
         </a>
       </p>
     </form>
