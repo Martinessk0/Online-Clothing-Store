@@ -3,9 +3,12 @@
     class="w-full max-w-md bg-white rounded-2xl shadow-md px-4 py-6 sm:px-6 sm:py-8
            dark:bg-gray-900 dark:shadow-lg dark:border dark:border-gray-800"
   >
-    <h1 class="text-2xl font-semibold text-center mb-2">Вход</h1>
+    <h1 class="text-2xl font-semibold text-center mb-2">
+      {{ 'LOGIN.TITLE' | translate }}
+    </h1>
+
     <p class="text-sm text-center text-gray-500 dark:text-gray-400 mb-6">
-      Влез в акаунта си, за да завършиш поръчката и да управляваш профила си.
+      {{ 'LOGIN.SUBTITLE' | translate }}
     </p>
 
     @if (backendError) {
@@ -19,35 +22,43 @@
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Имейл</label>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          {{ 'LOGIN.EMAIL' | translate }}
+        </label>
+
         <input
           type="email"
           formControlName="email"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
                  focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                  dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
-          placeholder="you@example.com"
+          [placeholder]="'LOGIN.EMAIL_PLACEHOLDER' | translate"
         />
-        @if (f.email.invalid && (f.email.dirty || f.email.touched || submitted)) {
+
+        @if (errorTextEmail()) {
           <p class="mt-1 text-xs text-red-600 dark:text-red-400">
-            Моля, въведи валиден имейл.
+            {{ errorTextEmail() }}
           </p>
         }
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Парола</label>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          {{ 'LOGIN.PASSWORD' | translate }}
+        </label>
+
         <input
           type="password"
           formControlName="password"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
                  focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                  dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
-          placeholder="••••••••"
+          [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
         />
-        @if (f.password.invalid && (f.password.dirty || f.password.touched || submitted)) {
+
+        @if (errorTextPassword()) {
           <p class="mt-1 text-xs text-red-600 dark:text-red-400">
-            Паролата трябва да е поне 6 символа.
+            {{ errorTextPassword() }}
           </p>
         }
       </div>
@@ -58,13 +69,13 @@
                bg-blue-600 hover:bg-blue-700
                dark:bg-blue-500 dark:hover:bg-blue-600"
       >
-        Вход
+        {{ 'LOGIN.SUBMIT' | translate }}
       </button>
 
       <p class="text-xs text-center text-gray-500 dark:text-gray-400">
-        Нямаш акаунт?
+        {{ 'LOGIN.NO_ACCOUNT' | translate }}
         <a routerLink="/register" class="text-blue-600 dark:text-blue-400 hover:underline">
-          Регистрирай се
+          {{ 'LOGIN.REGISTER' | translate }}
         </a>
       </p>
     </form>

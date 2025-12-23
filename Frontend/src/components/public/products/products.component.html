@@ -1,16 +1,21 @@
 <div class="flex flex-col gap-4 lg:flex-row">
   <!-- Left: Filters Sidebar -->
   <aside class="w-full space-y-3 lg:w-1/5 lg:sticky lg:top-20">
-    <h2 class="text-md font-semibold text-slate-900 dark:text-slate-100">Филтри</h2>
+    <h2 class="text-md font-semibold text-slate-900 dark:text-slate-100">
+      {{ 'PRODUCTS.FILTERS_TITLE' | translate }}
+    </h2>
 
     <!-- Search -->
     <div class="flex flex-col">
-      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">Търсене</label>
+      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">
+        {{ 'PRODUCTS.SEARCH' | translate }}
+      </label>
+
       <input
         type="text"
         [(ngModel)]="search"
         (input)="applyFilter()"
-        placeholder="Име / описание / марка"
+        [placeholder]="'PRODUCTS.SEARCH_PLACEHOLDER' | translate"
         class="w-full rounded-xl border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900
                placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500
                dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
@@ -19,22 +24,26 @@
 
     <!-- Price Range -->
     <div class="flex flex-col">
-      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">Цена</label>
+      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">
+        {{ 'PRODUCTS.PRICE' | translate }}
+      </label>
+
       <div class="flex gap-1">
         <input
           type="number"
           [(ngModel)]="filter.minPrice"
           (input)="applyFilter()"
-          placeholder="Мин."
+          [placeholder]="'PRODUCTS.MIN' | translate"
           class="w-1/2 rounded-xl border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900
                  placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500
                  dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
         />
+
         <input
           type="number"
           [(ngModel)]="filter.maxPrice"
           (input)="applyFilter()"
-          placeholder="Макс."
+          [placeholder]="'PRODUCTS.MAX' | translate"
           class="w-1/2 rounded-xl border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900
                  placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500
                  dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
@@ -44,7 +53,10 @@
 
     <!-- Brand -->
     <div class="flex flex-col">
-      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">Марка</label>
+      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">
+        {{ 'PRODUCTS.BRAND' | translate }}
+      </label>
+
       <select
         [(ngModel)]="filter.brand"
         (change)="applyFilter()"
@@ -52,14 +64,17 @@
                focus:outline-none focus:ring-2 focus:ring-blue-500
                dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
       >
-        <option value="">Всички марки</option>
+        <option value="">{{ 'PRODUCTS.ALL_BRANDS' | translate }}</option>
         <option *ngFor="let b of brands" [value]="b">{{ b }}</option>
       </select>
     </div>
 
     <!-- Size -->
     <div class="flex flex-col">
-      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">Размер</label>
+      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">
+        {{ 'PRODUCTS.SIZE' | translate }}
+      </label>
+
       <select
         [(ngModel)]="filter.size"
         (change)="applyFilter()"
@@ -67,14 +82,17 @@
                focus:outline-none focus:ring-2 focus:ring-blue-500
                dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
       >
-        <option value="">Всички размери</option>
+        <option value="">{{ 'PRODUCTS.ALL_SIZES' | translate }}</option>
         <option *ngFor="let s of sizes" [value]="s">{{ s }}</option>
       </select>
     </div>
 
     <!-- Color -->
     <div class="flex flex-col">
-      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">Цвят</label>
+      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">
+        {{ 'PRODUCTS.COLOR' | translate }}
+      </label>
+
       <select
         [(ngModel)]="filter.color"
         (change)="applyFilter()"
@@ -82,7 +100,7 @@
                focus:outline-none focus:ring-2 focus:ring-blue-500
                dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
       >
-        <option value="">Всички цветове</option>
+        <option value="">{{ 'PRODUCTS.ALL_COLORS' | translate }}</option>
         <option *ngFor="let c of colors" [value]="c">{{ c }}</option>
       </select>
     </div>
@@ -95,12 +113,17 @@
         (change)="applyFilter()"
         class="h-4 w-4 accent-blue-600 dark:accent-blue-500"
       />
-      <label class="text-sm text-slate-700 dark:text-slate-200">Само налични</label>
+      <label class="text-sm text-slate-700 dark:text-slate-200">
+        {{ 'PRODUCTS.IN_STOCK_ONLY' | translate }}
+      </label>
     </div>
 
     <!-- Sorting -->
     <div class="flex flex-col">
-      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">Сортирай</label>
+      <label class="mb-1 text-sm font-medium text-slate-700 dark:text-slate-200">
+        {{ 'PRODUCTS.SORT' | translate }}
+      </label>
+
       <select
         [(ngModel)]="filter.sortBy"
         (change)="applyFilter()"
@@ -108,10 +131,10 @@
                focus:outline-none focus:ring-2 focus:ring-blue-500
                dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
       >
-        <option value="PriceAsc">Цена ↑</option>
-        <option value="PriceDesc">Цена ↓</option>
-        <option value="Newest">Най-нови</option>
-        <option value="Oldest">Най-стари</option>
+        <option value="PriceAsc">{{ 'PRODUCTS.SORT_PRICE_ASC' | translate }}</option>
+        <option value="PriceDesc">{{ 'PRODUCTS.SORT_PRICE_DESC' | translate }}</option>
+        <option value="Newest">{{ 'PRODUCTS.SORT_NEWEST' | translate }}</option>
+        <option value="Oldest">{{ 'PRODUCTS.SORT_OLDEST' | translate }}</option>
       </select>
     </div>
 
@@ -120,18 +143,19 @@
       class="w-full rounded-xl bg-slate-200 px-3 py-1 text-sm text-slate-900 hover:bg-slate-300
              dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
     >
-      Изчисти филтрите
+      {{ 'PRODUCTS.CLEAR_FILTERS' | translate }}
     </button>
   </aside>
 
   <!-- Right: Products -->
   <main class="grid flex-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    <div *ngIf="loading" class="text-sm text-slate-500 dark:text-slate-400">
-      Зареждане на продукти...
+    <!-- Единственото error съобщение -->
+    <div *ngIf="errorKey" class="text-sm text-red-600">
+      {{ errorKey | translate }}
     </div>
 
-    <div *ngIf="error" class="text-sm text-red-600">
-      {{ error }}
+    <div *ngIf="loading" class="text-sm text-slate-500 dark:text-slate-400">
+      {{ 'PRODUCTS.LOADING' | translate }}
     </div>
 
     <app-product-card *ngFor="let p of filteredProducts" [product]="p"></app-product-card>
@@ -141,7 +165,7 @@
       class="rounded border border-slate-200 bg-white/80 px-3 py-2 text-sm text-slate-500
              dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-400"
     >
-      Няма намерени продукти.
+      {{ 'PRODUCTS.NO_RESULTS' | translate }}
     </div>
   </main>
 </div>

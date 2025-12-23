@@ -3,31 +3,23 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { TranslateModule } from '@ngx-translate/core';
-
 import { CartService } from '../../../services/cart-service';
 import { CartItem } from '../../../models/cart/cart-item';
 import { OrderCreateDto } from '../../../models/order/order-create';
 import { OrderService } from '../../../services/order-service';
-import {
-  SpeedyOfficePickerComponent,
-  SpeedyPickedOffice
-} from '../../shared/speedy-office-picker/speedy-office-picker.component';
+
+import { SpeedyOfficePickerComponent, SpeedyPickedOffice } from '../../shared/speedy-office-picker/speedy-office-picker.component';
 import { PaypalApiService } from '../../../services/paypal-api.service';
 import { PaypalLoaderService } from '../../../services/paypal-loader.service';
 
 import Swal from 'sweetalert2';
 
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterLink,
-    SpeedyOfficePickerComponent,
-    TranslateModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, SpeedyOfficePickerComponent, TranslateModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
@@ -38,13 +30,16 @@ export class CheckoutComponent {
   private readonly router = inject(Router);
   private readonly paypalLoader = inject(PaypalLoaderService);
   private readonly paypalApi = inject(PaypalApiService);
+  private readonly t = inject(TranslateService);
 
   loading = false;
   backendError: string | null = null;
   backendErrorsList: string[] = [];
   successOrderId: number | null = null;
+
   speedyPickerOpen = false;
   selectedSpeedyOffice: SpeedyPickedOffice | null = null;
+
   paypalRendering = false;
   paypalOrderId: number | null = null;
 
@@ -54,7 +49,7 @@ export class CheckoutComponent {
     phone: ['', [Validators.required, Validators.minLength(6)]],
     address: ['', [Validators.required, Validators.minLength(5)]],
     paymentMethod: ['CashOnDelivery', Validators.required],
-    deliveryMethod: ['Address', Validators.required]
+    deliveryMethod: ['Address', Validators.required],
   });
 
   get items(): CartItem[] {
@@ -78,15 +73,15 @@ export class CheckoutComponent {
     const c = this.form.get(name as string);
     if (!c || !(c.dirty || c.touched) || !c.errors) return null;
 
-    if (c.errors['required']) return 'Полето е задължително.';
-    if (c.errors['email']) return 'Моля, въведи валиден имейл.';
+    if (c.errors['required']) return this.t.instant('CHECKOUT.VALIDATION.REQUIRED');
+    if (c.errors['email']) return this.t.instant('CHECKOUT.VALIDATION.EMAIL');
     if (c.errors['minlength']) {
       const req = c.errors['minlength'].requiredLength;
-      return `Минимална дължина: ${req} символа.`;
+      return this.t.instant('CHECKOUT.VALIDATION.MIN_LENGTH', { n: req });
     }
     if (c.errors['server']) return String(c.errors['server']);
 
-    return 'Невалидна стойност.';
+    return this.t.instant('CHECKOUT.VALIDATION.INVALID');
   }
 
   submit(): void {
@@ -95,7 +90,7 @@ export class CheckoutComponent {
     this.form.setErrors(null);
 
     if (this.f.paymentMethod.value === 'PayPal') {
-      this.backendError = 'Моля, използвай PayPal бутоните по-долу.';
+      this.backendError = this.t.instant('CHECKOUT.ERRORS.USE_PAYPAL_BUTTONS');
       return;
     }
 
@@ -159,7 +154,7 @@ export class CheckoutComponent {
 
       this.backendErrorsList = flat;
       if (!this.backendError && flat.length) {
-        this.backendError = 'Моля, провери въведените данни.';
+        this.backendError = this.t.instant('CHECKOUT.ERRORS.CHECK_INPUT');
       }
       return;
     }
@@ -167,7 +162,7 @@ export class CheckoutComponent {
     const fallback =
       err?.error?.detail ||
       err?.message ||
-      'Възникна грешка при създаване на поръчката.';
+      this.t.instant('CHECKOUT.ERRORS.CREATE_ORDER');
     this.backendError = this.backendError ?? fallback;
   }
 
@@ -252,31 +247,36 @@ export class CheckoutComponent {
 
         onCancel: async () => {
           this.paypalOrderId = null;
+
           await this.swalBase().fire({
             icon: 'info',
-            title: 'Плащането е прекъснато',
-            text: 'Не беше извършено плащане.',
-            confirmButtonText: 'ОК'
+            title: this.t.instant('CHECKOUT.PAYPAL.CANCEL_TITLE'),
+            text: this.t.instant('CHECKOUT.PAYPAL.CANCEL_TEXT'),
+            confirmButtonText: this.t.instant('CHECKOUT.PAYPAL.OK')
           });
         },
 
         onApprove: async (data: any) => {
-          if (!this.paypalOrderId) return;
+          if (!this.paypalOrderId) {
+            this.backendError = this.t.instant('CHECKOUT.PAYPAL.MISSING_ORDER');
+            return;
+          }
 
           await this.paypalApi.capture(this.paypalOrderId, data.orderID).toPromise();
+
           this.successOrderId = this.paypalOrderId;
           this.cartService.clear();
         },
 
         onError: (err: any) => {
           console.error(err);
-          this.backendError = 'PayPal грешка.';
+          this.backendError = this.t.instant('CHECKOUT.PAYPAL.ERROR');
           this.router.navigate(['/cart']);
         }
       }).render(`#${containerId}`);
     } catch (e) {
       console.error(e);
-      this.backendError = 'Не успях да заредя PayPal.';
+      this.backendError = this.t.instant('CHECKOUT.PAYPAL.LOAD_FAIL');
     } finally {
       this.paypalRendering = false;
     }

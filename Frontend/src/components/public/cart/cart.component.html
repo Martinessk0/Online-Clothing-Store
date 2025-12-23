@@ -38,12 +38,12 @@
              dark:bg-slate-900/80 dark:border-slate-800 dark:text-slate-50"
     >
       <div class="flex justify-between text-sm font-medium">
-        <span>{{ 'CART.ITEMS' | translate }}</span>
+        <span>{{ 'CART.SUMMARY_PRODUCTS' | translate }}</span>
         <span>{{ totalQuantity }}</span>
       </div>
 
       <div class="flex justify-between text-sm font-semibold">
-        <span>{{ 'CART.TOTAL' | translate }}</span>
+        <span>{{ 'CART.SUMMARY_TOTAL' | translate }}</span>
         <span>{{ total | number: '1.2-2' }} €</span>
       </div>
 
@@ -52,11 +52,11 @@
         class="mt-2 inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white
                hover:bg-blue-700"
       >
-        {{ 'CART.CHECKOUT' | translate }}
+        {{ 'CART.CONTINUE' | translate }}
       </a>
 
       <p class="text-[11px] text-slate-500 dark:text-slate-400">
-        {{ 'CART.GUEST_INFO' | translate }}
+        {{ 'CART.GUEST_NOTE' | translate }}
       </p>
     </aside>
   </div>
