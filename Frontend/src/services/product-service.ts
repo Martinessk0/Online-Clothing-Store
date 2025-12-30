@@ -6,6 +6,9 @@ import { ProductCreateDto } from '../models/product/product-create-dto';
 import { Product } from '../models/product/product-dto';
 import { ProductUpdateDto } from '../models/product/product-update-dto';
 import { ProductFilterDto } from '../models/product/product-filter-dto';
+import { PagedResult } from '../models/pagedResult/paged-result';
+import { ProductFilterOptions } from '../models/product/product-filter-options';
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +38,22 @@ export class ProductService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  filterProducts(filter: ProductFilterDto): Observable<Product[]> {
-    return this.http.post<Product[]>(`${this.baseUrl}/filter`, filter);
-  }
+  filterProducts(
+  filter: ProductFilterDto,
+  page: number,
+  pageSize: number
+): Observable<PagedResult<Product>> {
+  return this.http.post<PagedResult<Product>>(
+    `${this.baseUrl}/filter?page=${page}&pageSize=${pageSize}`,
+    filter
+  );
+}
+
+getFilterOptions(): Observable<ProductFilterOptions> {
+  return this.http.get<ProductFilterOptions>(
+    `${this.baseUrl}/filter-options`
+  );
+}
+
+
 }
