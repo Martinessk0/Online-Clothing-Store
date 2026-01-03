@@ -38,5 +38,11 @@ namespace ClothingStore.Infrastructure.Data.Entities
 
         public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
 
+        public ICollection<ProductReview> Reviews { get; set; } = new List<ProductReview>();
+
+        public double AverageRating { get; set; } = 0;
+        public int ReviewCount { get; set; } = 0;
+
+
     }
 }
