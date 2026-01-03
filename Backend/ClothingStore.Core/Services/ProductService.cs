@@ -1,4 +1,5 @@
 ﻿using ClothingStore.Core.Contracts;
+using ClothingStore.Core.Models.PagedResults;
 using ClothingStore.Core.Models.Product;
 using ClothingStore.Infrastructure.Data.Common;
 using ClothingStore.Infrastructure.Data.Entities;
@@ -323,10 +324,18 @@ namespace ClothingStore.Core.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<List<Product>> FilterAsync(ProductFilterDTO filterDTO)
+        public async Task<PagedResultDTO<ProductDTO>> FilterAsync(
+            ProductFilterDTO filterDTO,
+            int page,
+            int pageSize)
         {
+            page = page <= 0 ? 1 : page;
+            pageSize = pageSize <= 0 ? 10 : pageSize;
+
+
             var query = repo.AllReadonly<Product>()
                 .Where(p => p.IsActive)
+                .Include(p => p.Images)
                 .Include(p => p.Variants)
                     .ThenInclude(v => v.Color)
                 .AsQueryable();
@@ -387,7 +396,78 @@ namespace ClothingStore.Core.Services
                 query = query.OrderBy(p => p.Name);
             }
 
-            return await query.ToListAsync();
+
+            var totalCount = await query.CountAsync();
+
+            var items = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(p => new ProductDTO
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    Price = p.Price,
+                    Brand = p.Brand,
+                    CategoryId = p.CategoryId,
+                    CreatedAt = p.CreatedAt,
+                    Variants = p.Variants.Where(v => v.IsActive).Select(v => new ProductVariantDTO
+                    {
+                        Id = v.Id,
+                        ColorId = v.ColorId,
+                        ColorName = v.Color.Name,
+                        ColorHex = v.Color.Hex,
+                        Size = v.Size,
+                        Stock = v.Stock
+                    }).ToList(),
+                    Images = p.Images
+                        .OrderByDescending(i => i.IsMain)
+                        .Select(i => new ProductImageDto
+                        {
+                            Id = i.Id,
+                            Url = i.Url,
+                            IsMain = i.IsMain
+                        }).ToList()
+                })
+                .ToListAsync();
+
+            return new PagedResultDTO<ProductDTO>
+            {
+                Items = items,
+                TotalCount = totalCount
+            };     
         }
+
+        public async Task<ProductFilterOptionsDTO> GetFilterOptionsAsync()
+        {
+            var brands = await repo.AllReadonly<Product>()
+                .Where(p => p.IsActive && p.Brand != null)
+                .Select(p => p.Brand!)
+                .Distinct()
+                .OrderBy(b => b)
+                .ToListAsync();
+
+            var sizes = await repo.AllReadonly<ProductVariant>()
+                .Where(v => v.IsActive)
+                .Select(v => v.Size)
+                .Distinct()
+                .OrderBy(s => s)
+                .ToListAsync();
+
+            var colors = await repo.AllReadonly<ProductVariant>()
+                .Where(v => v.IsActive)
+                .Select(v => v.Color.Name)
+                .Distinct()
+                .OrderBy(c => c)
+                .ToListAsync();
+
+            return new ProductFilterOptionsDTO
+            {
+                Brands = brands,
+                Sizes = sizes,
+                Colors = colors
+            };
+        }
+
     }
 }

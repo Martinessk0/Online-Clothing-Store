@@ -1,6 +1,5 @@
 ﻿using ClothingStore.Core.Contracts;
 using ClothingStore.Core.Models.Product;
-using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -124,42 +123,16 @@ namespace ClothingStore.Controllers
         }
 
         [HttpPost("filter")]
-        public async Task<IActionResult> Filter([FromBody] ProductFilterDTO filterDTO)
+        public async Task<IActionResult> Filter(    
+            [FromBody] ProductFilterDTO filterDTO,
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 12)
         {
             try
             {
-                var filteredProducts = await _productService.FilterAsync(filterDTO);
+                var filteredProducts = await _productService.FilterAsync(filterDTO, page, pageSize);
 
-                // Optional: map to DTO if you don't want to return entities directly
-                var result = filteredProducts.Select(p => new ProductDTO
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Description = p.Description,
-                    Price = p.Price,
-                    Brand = p.Brand,
-                    CategoryId = p.CategoryId,
-                    Variants = p.Variants
-                                .Where(v => v.IsActive)
-                                .Select(v => new ProductVariantDTO
-                                {
-                                    Id = v.Id,
-                                    ColorId = v.ColorId,
-                                    ColorName = v.Color.Name,
-                                    Size = v.Size,
-                                    Stock = v.Stock
-                                }).ToList(),
-                    Images = p.Images
-                                .OrderBy(i => i.SortOrder)
-                                .Select(i => new ProductImageDto
-                                {
-                                    Id = i.Id,
-                                    Url = i.Url,
-                                    IsMain = i.IsMain
-                                }).ToList()
-                }).ToList();
-
-                return Ok(result);
+                return Ok(filteredProducts);
             }
             catch (Exception ex)
             {
@@ -167,6 +140,23 @@ namespace ClothingStore.Controllers
                 return StatusCode(500, "An error occurred while filtering products.");
             }
         }
+
+        [HttpGet("filter-options")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetFilterOptions()
+        {
+            try
+            {
+                var options = await _productService.GetFilterOptionsAsync();
+                return Ok(options);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error loading filter options");
+                return StatusCode(500, "Error loading filter options");
+            }
+        }
+
 
         [HttpGet("recommended")]
         [AllowAnonymous]
