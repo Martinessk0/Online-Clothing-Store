@@ -22,7 +22,6 @@
 
   <div *ngIf="!loading && !error && orders.length" class="overflow-hidden rounded-2xl border border-slate-200 bg-white/80 shadow-sm
            dark:border-slate-800 dark:bg-slate-900/80">
-    <!-- MOBILE: cards -->
     <div class="sm:hidden divide-y divide-slate-100 dark:divide-slate-800">
       <div *ngFor="let order of orders" class="p-4">
         <div class="flex items-start justify-between gap-3">
@@ -57,11 +56,7 @@
       </div>
     </div>
 
-    <!-- DESKTOP/TABLET: table -->
     <div class="hidden sm:block">
-      <!-- ако някога стане тясно и на tablet, това помага:
-           <div class="overflow-x-auto"> ... </div>
-      -->
       <table class="min-w-full text-sm">
         <thead class="bg-slate-100/80 dark:bg-slate-900/60">
           <tr>
