@@ -108,7 +108,6 @@ export class AdminOrderComponent implements OnInit {
     this.detailsError = null;
     this.orderDetails = null;
 
-    // IMPORTANT: трябва да имаш това в AdminOrderService
     this.adminOrderService.getOrderDetails(orderId).subscribe({
       next: (dto: AdminOrderDetailsDto) => {
         this.orderDetails = dto;

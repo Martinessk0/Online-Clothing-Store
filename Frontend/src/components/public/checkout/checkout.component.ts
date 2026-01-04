@@ -70,7 +70,7 @@ export class CheckoutComponent {
       const req = c.errors['minlength'].requiredLength;
       return `Минимална дължина: ${req} символа.`;
     }
-    // Бекенд грешка, закачена към control-а
+
     if (c.errors['server']) return String(c.errors['server']);
 
     return 'Невалидна стойност.';

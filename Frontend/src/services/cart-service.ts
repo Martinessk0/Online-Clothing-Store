@@ -25,11 +25,9 @@ export class CartService {
   private storageKey: string = GUEST_KEY;
 
   constructor() {
-    // при стартиране – зареждаме кошницата за текущия потребител (или guest)
     this.reloadForCurrentUser(false);
   }
 
-  /** Кой ключ да ползваме за даден user */
   private getStorageKeyForUser(userId: string | null): string {
     if (!userId) {
       return GUEST_KEY;
@@ -38,7 +36,6 @@ export class CartService {
     return CART_KEY_PREFIX + userId;
   }
 
-  /** Зарежда кошница за текущия потребител */
   reloadForCurrentUser(mergeGuestIntoUser: boolean): void {
     const userId = this.authService.getUserId();
 
