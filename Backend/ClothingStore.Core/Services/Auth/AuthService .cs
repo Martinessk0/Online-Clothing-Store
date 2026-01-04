@@ -147,28 +147,27 @@ namespace ClothingStore.Core.Services.Auth
                 ?? throw new InvalidOperationException("User not found.");
 
             if (request.FirstName != null)
-            {
-                user.FirstName = request.FirstName;
-            }
+                user.FirstName = request.FirstName.Trim();
 
             if (request.LastName != null)
-            {
-                user.LastName = request.LastName;
-            }
-
-            if (request.PhoneNumber != null)
-            {
-                user.PhoneNumber = request.PhoneNumber;
-            }
+                user.LastName = request.LastName.Trim();
 
             if (request.City != null)
             {
-                user.City = request.City;
+                var city = request.City.Trim();
+                user.City = city == string.Empty ? null : city;
             }
 
             if (request.Address != null)
             {
-                user.Address = request.Address;
+                var address = request.Address.Trim();
+                user.Address = address == string.Empty ? null : address;
+            }
+
+            if (request.PhoneNumber != null)
+            {
+                var phone = request.PhoneNumber.Trim();
+                user.PhoneNumber = phone == string.Empty ? null : phone;
             }
 
             var result = await _userManager.UpdateAsync(user);
@@ -193,7 +192,6 @@ namespace ClothingStore.Core.Services.Auth
                 Address = user.Address
             };
         }
-
 
 
     }

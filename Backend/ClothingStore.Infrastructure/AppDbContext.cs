@@ -71,7 +71,6 @@ namespace ClothingStore.Infrastructure
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new ColorConfiguration());
             builder.ApplyConfiguration(new ProductVariantConfiguration());
-            builder.ApplyConfiguration(new ProductImageConfiguration());
 
 
             base.OnModelCreating(builder);
