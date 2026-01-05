@@ -165,7 +165,6 @@ export class AdminProductComponent implements OnInit {
 
   removeVariant(index: number): void {
     if (this.variants.length === 1) {
-      // поне 1 ред да остане
       this.variants.at(0).reset({
         colorId: null,
         size: '',

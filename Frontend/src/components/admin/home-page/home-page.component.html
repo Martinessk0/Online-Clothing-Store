@@ -31,30 +31,31 @@
   </div>
 
   <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-    <app-admin-card
-      title="Общо потребители"
-      [stat]="'5'"
-      statHint="Виж пълния списък в секцията „Users“."
-    ></app-admin-card>
+  <app-admin-card
+    title="Общо потребители"
+    [stat]="stats?.totalUsers"
+    statHint="Виж пълния списък в секцията „Users“."
+  ></app-admin-card>
 
-    <app-admin-card
-      title="Активни поръчки"
-      [stat]="'6'"
-      statHint="Следене на статусите на поръчките."
-    ></app-admin-card>
+  <app-admin-card
+    title="Активни поръчки"
+    [stat]="stats?.activeOrders"
+    statHint="Следене на статусите на поръчките."
+  ></app-admin-card>
 
-    <app-admin-card
-      title="Продукти в каталога"
-      [stat]="'2'"
-      statHint="Управлявай наличностите и описанията."
-    ></app-admin-card>
+  <app-admin-card
+    title="Продукти в каталога"
+    [stat]="stats?.activeProducts"
+    statHint="Управлявай наличностите и описанията."
+  ></app-admin-card>
 
-    <app-admin-card
-      title="Днешни продажби"
-      [stat]="'0'"
-      statHint="Обобщена информация за оборота."
-    ></app-admin-card>
-  </div>
+  <app-admin-card
+    title="Днешни продажби"
+     [stat]="stats?.todaySalesTotal | currency:'EUR':'symbol':'1.2-2'"
+    statHint="Обобщена информация за оборота (само платени/завършени поръчки за днес)."
+  ></app-admin-card>
+</div>
+
 
   <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
     <app-admin-card
