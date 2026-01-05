@@ -28,6 +28,24 @@
           За проекта
         </a>
 
+        <a routerLink="/terms" (click)="closeMenus()"
+          class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400">
+          Общи условия
+        </a>
+
+        <a routerLink="/privacy" (click)="closeMenus()"
+          class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400">
+          Поверителност
+        </a>
+     
+        <a routerLink="/contact" (click)="closeMenus()"
+          class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+          routerLinkActive="text-blue-600 dark:text-blue-400">
+          Контакти
+        </a>
+
         @if (isLoggedIn) {
         <div class="relative">
           <button type="button" (click)="isProfileMenuOpen = !isProfileMenuOpen" class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium
@@ -171,6 +189,21 @@
                   dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400"
         routerLinkActive="text-blue-600 dark:text-blue-400">
         За проекта
+      </a>
+
+      <a routerLink="/terms" (click)="closeMenus()" class="block w-full rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
+             dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400">
+        Общи условия
+      </a>
+
+      <a routerLink="/privacy" (click)="closeMenus()" class="block w-full rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
+             dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400">
+        Поверителност
+      </a>
+
+      <a routerLink="/contact" (click)="closeMenus()" class="block w-full rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600
+             dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400">
+        Контакти
       </a>
 
       <div class="h-px bg-gray-100 dark:bg-gray-800"></div>

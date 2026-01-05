@@ -1,0 +1,58 @@
+<section class="max-w-2xl mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-4">Контакти</h1>
+  <p class="mb-4 text-sm text-gray-500">
+    Този уебсайт е учебен проект към ТУ–София.
+  </p>
+
+  <p class="mb-6">
+    При въпроси относно проекта можете да се свържете с екипа на проекта на имейл:
+    <span class="font-semibold">project&#64;example.com</span>
+    (замени с какъвто имейл искаш да пише в документацията).
+  </p>
+
+  <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium mb-1">Име</label>
+      <input
+        type="text"
+        name="name"
+        ngModel
+        class="w-full rounded-md border px-3 py-2 text-sm"
+        placeholder="Вашето име"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Имейл</label>
+      <input
+        type="email"
+        name="email"
+        ngModel
+        class="w-full rounded-md border px-3 py-2 text-sm"
+        placeholder="example@email.com"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Съобщение</label>
+      <textarea
+        name="message"
+        rows="4"
+        ngModel
+        class="w-full rounded-md border px-3 py-2 text-sm"
+        placeholder="Вашето съобщение"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="rounded-md px-4 py-2 text-sm font-medium border border-gray-800 hover:bg-gray-800 hover:text-white"
+    >
+      Изпрати
+    </button>
+  </form>
+
+  <p class="mt-4 text-xs text-gray-500">
+    Формата не изпраща реални имейли. Използва се само за демонстрация на функционалност.
+  </p>
+</section>
