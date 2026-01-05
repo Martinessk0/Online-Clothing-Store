@@ -1,14 +1,20 @@
 <section class="max-w-2xl mx-auto px-4 py-8">
   <h1 class="text-3xl font-bold mb-4">Контакти</h1>
   <p class="mb-4 text-sm text-gray-500">
-    Този уебсайт е учебен проект към ТУ–София.
+    Тази форма е с демонстрационна цел. Съобщението се изпраща към собственика на сайта.
   </p>
 
-  <p class="mb-6">
-    При въпроси относно проекта можете да се свържете с екипа на проекта на имейл:
-    <span class="font-semibold">project&#64;example.com</span>
-    (замени с какъвто имейл искаш да пише в документацията).
-  </p>
+  @if (successMessage) {
+    <div class="mb-3 text-sm text-green-600">
+      {{ successMessage }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="mb-3 text-sm text-red-600">
+      {{ errorMessage }}
+    </div>
+  }
 
   <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="space-y-4">
     <div>
@@ -16,29 +22,31 @@
       <input
         type="text"
         name="name"
-        ngModel
+        [(ngModel)]="model.name"
         class="w-full rounded-md border px-3 py-2 text-sm"
-        placeholder="Вашето име"
+        placeholder="Вашето име (по избор)"
       />
     </div>
 
     <div>
-      <label class="block text-sm font-medium mb-1">Имейл</label>
+      <label class="block text-sm font-medium mb-1">Имейл *</label>
       <input
         type="email"
         name="email"
-        ngModel
+        required
+        [(ngModel)]="model.email"
         class="w-full rounded-md border px-3 py-2 text-sm"
         placeholder="example@email.com"
       />
     </div>
 
     <div>
-      <label class="block text-sm font-medium mb-1">Съобщение</label>
+      <label class="block text-sm font-medium mb-1">Съобщение *</label>
       <textarea
         name="message"
+        required
         rows="4"
-        ngModel
+        [(ngModel)]="model.message"
         class="w-full rounded-md border px-3 py-2 text-sm"
         placeholder="Вашето съобщение"
       ></textarea>
@@ -46,13 +54,10 @@
 
     <button
       type="submit"
-      class="rounded-md px-4 py-2 text-sm font-medium border border-gray-800 hover:bg-gray-800 hover:text-white"
+      [disabled]="isSending"
+      class="rounded-md px-4 py-2 text-sm font-medium border border-gray-800 hover:bg-gray-800 hover:text-white disabled:opacity-60"
     >
-      Изпрати
+      @if (!isSending) { Изпрати } @else { Изпращане... }
     </button>
   </form>
-
-  <p class="mt-4 text-xs text-gray-500">
-    Формата не изпраща реални имейли. Използва се само за демонстрация на функционалност.
-  </p>
 </section>

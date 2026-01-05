@@ -23,6 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ISpeedyService, SpeedyService>();
             services.AddScoped<IPayPalService, PayPalService>();
             services.AddScoped<IAdminDashboardService, AdminDashboardService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             return services;
         }
