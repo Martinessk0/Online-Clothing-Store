@@ -43,6 +43,10 @@ public class ProductReviewService : IProductReviewService
         if (alreadyReviewed)
             throw new InvalidOperationException("You already reviewed this product.");
 
+        if (dto.Rating < 1 || dto.Rating > 5)
+            throw new ArgumentOutOfRangeException(nameof(dto.Rating), "Rating must be between 1 and 5.");
+
+
         var review = new ProductReview
         {
             ProductId = dto.ProductId,
@@ -53,6 +57,7 @@ public class ProductReviewService : IProductReviewService
         };
 
         await repo.AddAsync(review);
+        await repo.SaveChangesAsync();
 
         await RecalculateProductRatingAsync(dto.ProductId);
     }
@@ -62,6 +67,7 @@ public class ProductReviewService : IProductReviewService
     // ---------------------------
     public async Task UpdateAsync(int reviewId, UpdateReviewDto dto, string userId)
     {
+
         var review = await repo.All<ProductReview>()
             .FirstOrDefaultAsync(r => r.Id == reviewId);
 
@@ -71,10 +77,14 @@ public class ProductReviewService : IProductReviewService
         if (review.UserId != userId)
             throw new UnauthorizedAccessException("Not your review.");
 
+        if (dto.Rating < 1 || dto.Rating > 5)
+            throw new ArgumentOutOfRangeException(nameof(dto.Rating), "Rating must be between 1 and 5.");
+
         review.Rating = dto.Rating;
         review.Comment = dto.Comment;
         review.UpdatedAt = DateTime.UtcNow;
 
+        await repo.SaveChangesAsync();
         await RecalculateProductRatingAsync(review.ProductId);
     }
 
@@ -84,7 +94,7 @@ public class ProductReviewService : IProductReviewService
     public async Task<IEnumerable<ReviewDto>> GetByProductAsync(int productId)
     {
         return await repo.AllReadonly<ProductReview>()
-            .Where(r => r.ProductId == productId && r.IsVisible)
+            .Where(r => r.ProductId == productId && r.IsVisible && r.Product.IsActive)
             .Include(r => r.User)
             .OrderByDescending(r => r.CreatedAt)
             .Select(r => new ReviewDto
@@ -93,6 +103,7 @@ public class ProductReviewService : IProductReviewService
                 Rating = r.Rating,
                 Comment = r.Comment,
                 CreatedAt = r.CreatedAt,
+                UserId = r.UserId,
                 UserName = r.User!.UserName!
             })
             .ToListAsync();

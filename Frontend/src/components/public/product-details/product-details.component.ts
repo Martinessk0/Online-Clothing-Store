@@ -6,11 +6,15 @@ import { ProductService } from '../../../services/product-service';
 import { CartService } from '../../../services/cart-service';
 import { ProductVariant } from '../../../models/product/product-variant';
 import { RecommendationService } from '../../../services/recommendation-service';
+import { Review } from '../../../models/review/review-dto';
+import { ReviewService } from '../../../services/review-service';
+import { ReviewFormComponent } from '../review/review-form.component';
+import { AuthService } from '../../../services/auth-service';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReviewFormComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })
@@ -25,11 +29,18 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   // кога е отворен детайлът
   private enterTimestamp = 0;
 
+  reviews: Review[] = [];
+  editingReview?: Review;
+  editRating = 5;
+  editComment = '';
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private recommendationService: RecommendationService
+    private recommendationService: RecommendationService,
+    private reviewService: ReviewService,
+    public authService: AuthService 
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +55,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     }
 
     this.loadProduct(id);
+    this.loadReviews(id);
+
   }
 
   ngOnDestroy(): void {
@@ -60,7 +73,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  private loadProduct(id: number): void {
+   loadProduct(id: number): void {
     this.loading = true;
     this.error = null;
 
@@ -110,4 +123,43 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     if (!this.product?.variants?.length) return 0;
     return this.product.variants.reduce((sum, v) => sum + v.stock, 0);
   }
+
+  //Reviews
+  startEdit(review: Review): void {
+    this.editingReview = review;
+    this.editRating = review.rating;
+    this.editComment = review.comment ?? '';
+  }
+
+  cancelEdit(): void {
+    this.editingReview = undefined;
+  }
+
+  saveEdit(): void {
+    if (!this.editingReview) return;
+
+    this.reviewService
+      .update(this.editingReview.id, {
+        rating: this.editRating,
+        comment: this.editComment,
+      })
+      .subscribe({
+        next: () => {
+          this.editingReview = undefined;
+          this.loadReviews(this.product!.id);
+        },
+      });
+  }
+
+   loadReviews(productId: number): void {
+  this.reviewService.getByProduct(productId).subscribe({
+    next: (r) => {
+      this.reviews = r;
+      this.editingReview = undefined;
+    },
+    error: () => (this.reviews = [])
+  });
+}
+
+
 }
