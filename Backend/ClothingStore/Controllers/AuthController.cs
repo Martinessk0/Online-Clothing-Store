@@ -92,5 +92,28 @@ namespace ClothingStore.Controllers
             var profile = await _authService.UpdateProfileAsync(userId, request);
             return Ok(profile);
         }
+
+        [HttpGet("confirm-email")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail([FromQuery] string userId, [FromQuery] string token)
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(token))
+            {
+                return BadRequest(new { message = "Невалиден линк за потвърждение." });
+            }
+
+            try
+            {
+                await _authService.ConfirmEmailAsync(userId, token);
+                return Ok(new { message = "Имейлът е потвърден успешно." });
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogWarning(ex, "Email confirmation failed for {UserId}", userId);
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+
     }
 }

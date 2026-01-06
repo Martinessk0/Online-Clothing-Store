@@ -30,7 +30,7 @@ export class LoginComponent {
     return this.form.controls;
   }
 
-  onSubmit(): void {
+   onSubmit(): void {
     this.submitted = true;
     this.backendError = null;
 
@@ -43,14 +43,21 @@ export class LoginComponent {
       password: this.f.password.value ?? ''
     };
 
-
     this.authService.login(payload).subscribe({
       next: (res) => {
         this.cartService.reloadForCurrentUser(false);
         this.router.navigate(['/']);
       },
       error: (err) => {
-        this.backendError = err?.error?.message ?? 'Невалиден имейл или парола.';
+        const msg =
+          err?.error?.message ??
+          (typeof err?.error === 'string' ? err.error : '');
+
+        if (msg === 'Email is not confirmed.' || msg === 'Email is not confirmed') {
+          this.backendError = 'Имейлът не е потвърден. Моля, провери пощата си.';
+        } else {
+          this.backendError = msg || 'Невалиден имейл или парола.';
+        }
       }
     });
   }

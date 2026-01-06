@@ -18,6 +18,7 @@ export class RegisterComponent {
 
   submitted = false;
   backendError: string | null = null;
+  successMessage: string | null = null;
 
   form = this.fb.group(
     {
@@ -50,9 +51,11 @@ export class RegisterComponent {
     return !!this.form.errors?.['passwordMismatch'] && this.submitted;
   }
 
+
   onSubmit(): void {
     this.submitted = true;
     this.backendError = null;
+    this.successMessage = null;
 
     if (this.form.invalid) {
       return;
@@ -73,7 +76,13 @@ export class RegisterComponent {
 
     this.authService.register(payload).subscribe({
       next: () => {
-        this.router.navigate(['/login']);
+        this.successMessage =
+          'Регистрацията беше успешна. Моля, провери имейла си и потвърди акаунта.';
+        this.backendError = null;
+        this.form.reset();
+        this.submitted = false;
+
+        // setTimeout(() => this.router.navigate(['/login']), 3000);
       },
       error: (err) => {
         this.backendError = err?.error?.message ?? 'Възникна грешка при регистрацията.';

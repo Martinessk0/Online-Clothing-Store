@@ -15,6 +15,7 @@ import { AboutComponent } from '../components/public/about/about.component';
 import { TermsComponent } from '../components/public/terms/terms.component';
 import { PrivacyComponent } from '../components/public/privacy/privacy.component';
 import { ContactComponent } from '../components/public/contact/contact.component';
+import { ConfirmEmailComponent } from '../components/public/confirm-email/confirm-email.component';
 
 
 export const publicRoutes: Routes = [
@@ -77,6 +78,10 @@ export const publicRoutes: Routes = [
         component: ProfileComponent,
         canActivate: [authGuard],
       },
+       {
+        path: 'confirm-email',
+        component: ConfirmEmailComponent
+      }
     ],
   },
 ];

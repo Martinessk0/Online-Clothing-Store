@@ -5,5 +5,7 @@ namespace ClothingStore.Core.Contracts
     public interface IEmailService
     {
         Task SendContactEmailAsync(ContactRequest request);
+
+        Task SendAsync(string toEmail, string subject, string body);
     }
 }

@@ -1,32 +1,35 @@
-﻿using ClothingStore.Core.Contracts.Auth;
+﻿using ClothingStore.Core.Contracts;
+using ClothingStore.Core.Contracts.Auth;
 using ClothingStore.Core.Models.Auth;
 using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ClothingStore.Core.Services.Auth
 {
     public class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IConfiguration _configuration;
         private readonly JwtSettings _jwtSettings;
+        private readonly IEmailService _emailService;
 
         public AuthService(
             UserManager<ApplicationUser> userManager,
-            //SignInManager<IdentityUser> signInManager,
-            IOptions<JwtSettings> jwtOptions)
+              IConfiguration configuration,
+              IEmailService emailService,
+              IOptions<JwtSettings> jwtOptions)
         {
             _userManager = userManager;
-            //_signInManager = signInManager;
+            _configuration = configuration;
+            _emailService = emailService;
             _jwtSettings = jwtOptions.Value;
         }
 
@@ -60,8 +63,28 @@ namespace ClothingStore.Core.Services.Auth
 
             await _userManager.AddToRoleAsync(user, "User");
 
+            var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var tokenBytes = Encoding.UTF8.GetBytes(emailToken);
+
+            var encodedToken = WebEncoders.Base64UrlEncode(tokenBytes);
+
+            var frontendBaseUrl = _configuration["Frontend:BaseUrl"] ?? "http://localhost:4200";
+            var confirmationUrl =
+                $"{frontendBaseUrl.TrimEnd('/')}/confirm-email?userId={user.Id}&token={encodedToken}";
+
+
+            var subject = "Потвърждение на регистрация в Clothing Store";
+            var body =
+                $"Здравей, {user.FirstName ?? "потребител"}!\n\n" +
+                "За да активираш профила си, отвори следния линк:\n" +
+                confirmationUrl + "\n\n" +
+                "Ако не си създавал акаунт, игнорирай този имейл.";
+
+            await _emailService.SendAsync(user.Email!, subject, body);
+
             return await GenerateTokenAsync(user);
         }
+
 
         public async Task<AuthResponse> LoginAsync(LoginRequest request)
         {
@@ -71,14 +94,44 @@ namespace ClothingStore.Core.Services.Auth
                 throw new InvalidOperationException("Invalid credentials.");
             }
 
-            var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
-            if (!passwordValid)
+            var isPasswordValid = await _userManager.CheckPasswordAsync(user, request.Password);
+
+            if (!isPasswordValid)
             {
                 throw new InvalidOperationException("Invalid credentials.");
             }
 
             return await GenerateTokenAsync(user);
         }
+
+        public async Task ConfirmEmailAsync(string userId, string token)
+        {
+            var user = await _userManager.FindByIdAsync(userId)
+                ?? throw new InvalidOperationException("User not found.");
+
+            byte[] tokenBytes;
+
+            try
+            {
+                tokenBytes = WebEncoders.Base64UrlDecode(token);
+            }
+            catch
+            {
+                throw new InvalidOperationException("Invalid token.");
+            }
+
+            var normalToken = Encoding.UTF8.GetString(tokenBytes);
+
+            var result = await _userManager.ConfirmEmailAsync(user, normalToken);
+
+            if (!result.Succeeded)
+            {
+                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+                throw new InvalidOperationException(errors);
+            }
+        }
+
+
 
         private async Task<AuthResponse> GenerateTokenAsync(ApplicationUser user)
         {
@@ -90,14 +143,12 @@ namespace ClothingStore.Core.Services.Auth
             };
 
             var roles = await _userManager.GetRolesAsync(user);
-            //claims.AddRange(roles.Select(r => new Claim("roles", r)));
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
-
-                claims.Add(new Claim("roles", role));
             }
 
+            claims.Add(new Claim("roles", string.Join(",", roles)));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -137,7 +188,8 @@ namespace ClothingStore.Core.Services.Auth
                 Roles = roles,
                 CreatedAt = user.CreatedAt,
                 City = user.City,
-                Address = user.Address
+                Address = user.Address,
+                EmailConfirmed = user.EmailConfirmed,
             };
         }
 
