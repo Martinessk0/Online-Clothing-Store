@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, map } from "rxjs";
 import { AuthResponseModel } from "../models/auth/auth-response";
@@ -125,5 +125,15 @@ export class AuthService {
     return null;
   }
 }
+
+confirmEmail(userId: string, token: string) {
+  return this.http.get<{ message: string }>(
+    `${this.apiUrl}/auth/confirm-email`,
+    {
+      params: { userId, token }
+    }
+  );
+}
+
 
 }
