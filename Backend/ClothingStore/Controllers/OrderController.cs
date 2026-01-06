@@ -68,6 +68,7 @@ namespace ClothingStore.Controllers
 
         [HttpGet("{id}")]
         [Authorize]
+        [Authorize(Policy = "ConfirmedEmail")]
         public async Task<ActionResult<OrderDto>> Get(int id)
         {
             var userId = GetUserId();
@@ -84,6 +85,7 @@ namespace ClothingStore.Controllers
 
         [HttpGet("my")]
         [Authorize]
+        [Authorize(Policy = "ConfirmedEmail")]
         public async Task<ActionResult<IEnumerable<OrderDto>>> GetMyOrders()
         {
             var userId = GetUserId();

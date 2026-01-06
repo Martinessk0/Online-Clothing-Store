@@ -66,5 +66,50 @@ namespace ClothingStore.Core.Services
             }
         }
 
+        public Task SendAsync(string toEmail, string subject, string body)
+        {
+            return SendInternalAsync(toEmail, subject, body, replyToEmail: null, replyToName: null);
+        }
+
+        private async Task SendInternalAsync(
+            string toEmail,
+            string subject,
+            string body,
+            string? replyToEmail,
+            string? replyToName)
+        {
+            if (string.IsNullOrWhiteSpace(toEmail))
+            {
+                throw new ArgumentException("Recipient email is required.", nameof(toEmail));
+            }
+
+            var message = new MimeMessage();
+
+            message.From.Add(new MailboxAddress(_options.FromName, _options.FromEmail));
+            message.To.Add(MailboxAddress.Parse(toEmail));
+            message.Subject = subject;
+            message.Body = new TextPart(TextFormat.Plain)
+            {
+                Text = body
+            };
+
+            if (!string.IsNullOrWhiteSpace(replyToEmail))
+            {
+                message.ReplyTo.Add(new MailboxAddress(replyToName ?? replyToEmail, replyToEmail));
+            }
+
+            using var client = new SmtpClient();
+
+            await client.ConnectAsync(
+                _options.SmtpServer,
+                _options.SmtpPort,
+                _options.UseSsl ? SecureSocketOptions.SslOnConnect : SecureSocketOptions.StartTlsWhenAvailable);
+
+            await client.AuthenticateAsync(_options.UserName, _options.Password);
+
+            await client.SendAsync(message);
+            await client.DisconnectAsync(true);
+        }
+
     }
 }

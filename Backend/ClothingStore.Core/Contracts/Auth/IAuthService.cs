@@ -9,5 +9,7 @@ namespace ClothingStore.Core.Contracts.Auth
 
         Task<UserProfileResponse> GetProfileAsync(string userId);
         Task<UserProfileResponse> UpdateProfileAsync(string userId, UpdateUserProfileRequest request);
+
+        Task ConfirmEmailAsync(string userId, string token);
     }
 }
