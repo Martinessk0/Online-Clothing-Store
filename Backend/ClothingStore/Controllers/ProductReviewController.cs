@@ -36,10 +36,13 @@ public class ProductReviewController : ControllerBase
 
     [HttpGet("product/{productId}")]
     [AllowAnonymous]
-    public async Task<IActionResult> GetByProduct(int productId)
+    public async Task<IActionResult> GetByProduct(
+    int productId,
+    [FromQuery] bool includeHidden = false)
     {
-        return Ok(await service.GetByProductAsync(productId));
+        return Ok(await service.GetByProductAsync(productId, includeHidden));
     }
+
 
     [HttpPatch("{id}/visibility")]
     [Authorize(Roles = "Admin")]

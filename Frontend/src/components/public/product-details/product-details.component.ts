@@ -211,17 +211,17 @@ refreshProduct() {
   });
 }
 
-toggleReviewVisibility(review: Review, hide: boolean) {
-  this.reviewService.setVisibility(review.id, !hide).subscribe({
+toggleReviewVisibility(review: Review, isVisible: boolean) {
+  this.reviewService.setVisibility(review.id, isVisible).subscribe({
     next: () => {
-      // Update review visibility in UI
-      review.isVisible = !hide;
-      this.refreshProduct(); // recalc AverageRating
-      this.loadReviews(this.product!.id); // refresh the list
+      review.isVisible = isVisible;
+      this.refreshProduct();     
+      this.loadReviews(this.product!.id);
     },
-    error: (err) => console.error(err),
+    error: err => console.error(err)
   });
 }
+
 
 
 }

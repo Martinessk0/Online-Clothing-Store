@@ -178,23 +178,23 @@
           (click)="startEdit(r)"
         >
          Редактирай
-        </button>
-      <!-- Admin controls -->
+      </button>
+
       <button
         *ngIf="authService.isAdmin() && r.isVisible"
         class="mt-2 text-xs text-red-600"
-        (click)="toggleReviewVisibility(r, true)"
+        (click)="toggleReviewVisibility(r, false)"
       >
         Скрий
       </button>
 
       <button
-      *ngIf="authService.isAdmin() && !r.isVisible"
-      class="mt-2 text-xs text-green-600"
-      (click)="toggleReviewVisibility(r, false)"
-    >
-      Покажи
-    </button>
+        *ngIf="authService.isAdmin() && !r.isVisible"
+        class="mt-2 text-xs text-green-600"
+        (click)="toggleReviewVisibility(r, true)"
+      >
+        Покажи
+      </button>
 
     </article>
   </div>

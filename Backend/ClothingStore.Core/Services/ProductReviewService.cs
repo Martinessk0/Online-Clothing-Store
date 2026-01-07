@@ -202,8 +202,16 @@ namespace ClothingStore.Core.Services
                 throw new ArgumentException("Review not found.");
 
             review.IsVisible = isVisible;
+            review.UpdatedAt = DateTime.UtcNow;
+
+            // 🔑 MUST save first
+            await repo.SaveChangesAsync();
+
+            // 🔑 THEN recalculate (now AsNoTracking sees correct data)
             await RecalculateProductRatingAsync(review.ProductId);
         }
+
+
 
         // ---------------------------
         // RATING RECALCULATION
