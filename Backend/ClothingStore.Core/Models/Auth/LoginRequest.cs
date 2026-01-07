@@ -10,5 +10,8 @@ namespace ClothingStore.Core.Models.Auth
 
         [Required]
         public string Password { get; set; } = string.Empty;
+
+        public string? TwoFactorCode { get; set; }
+        public string? RecoveryCode { get; set; }
     }
 }

@@ -18,5 +18,7 @@
         public string? Address { get; set; }
 
         public bool EmailConfirmed { get; set; }
+
+        public bool TwoFactorEnabled { get; set; }
     }
 }
