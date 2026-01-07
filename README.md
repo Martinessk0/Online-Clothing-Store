@@ -64,7 +64,7 @@
 - Microsoft SQL Server
 - Identity таблици (потребители, роли)
 - Основни таблици:
-  - `Products`, `Categories`, `Colors`, `ProductVariants`, `ProductImages`
+  - `Products`, `Categories`, `Colors`, `ProductVariants`, `ProductImages`, `ProductReview`
   - `Orders`, `OrderItems`
   - `Carts`, `CartItems`
   - `UserInteraction` (за препоръки / track-ване на взаимодействия)
@@ -85,6 +85,7 @@
   - снимки (от Cloudinary)
   - налични размери и цветове (`ProductVariant`)
   - цена и текуща наличност
+  - ревюта и рейтинг на продукт (`ProductReview`)
 - Кошница за гост:
   - пази се в `localStorage` (`CartService`)
   - добавяне / премахване / промяна на количество
