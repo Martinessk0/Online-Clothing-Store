@@ -43,7 +43,6 @@ public class ProductReviewController : ControllerBase
         return Ok(await service.GetByProductAsync(productId, includeHidden));
     }
 
-
     [HttpPatch("{id}/visibility")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> SetVisibility(int id, bool isVisible)
@@ -61,5 +60,4 @@ public class ProductReviewController : ControllerBase
 
         return Ok(new { canReview });
     }
-
 }

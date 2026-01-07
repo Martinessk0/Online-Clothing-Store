@@ -11,4 +11,6 @@ export interface UserProfile {
 
   city?: string | null;
   address?: string | null;
+
+  emailConfirmed?: boolean;
 }

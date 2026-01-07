@@ -9,6 +9,17 @@
     </div>
   } @else if (profile) {
 
+        @if (!profile.emailConfirmed) {
+      <div
+        class="mb-4 rounded-xl border border-amber-400 bg-amber-50 px-4 py-3 text-sm text-amber-800
+               dark:bg-amber-950/40 dark:border-amber-500/60 dark:text-amber-100">
+        Имейлът ти все още не е потвърден. Провери пощата си и използвай линка
+        за потвърждение. Докато не го направиш, част от функционалностите
+        (поръчки, детайли за поръчки и др.) са ограничени.
+      </div>
+    }
+
+
     <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm p-6 space-y-6">
 
       <!-- Горна част -->

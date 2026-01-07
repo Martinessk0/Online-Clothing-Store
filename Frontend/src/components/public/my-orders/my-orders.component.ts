@@ -21,7 +21,7 @@ export class MyOrdersComponent implements OnInit {
     this.loadOrders();
   }
 
-  private loadOrders(): void {
+   loadOrders(): void {
     this.loading = true;
     this.error = null;
 
@@ -32,9 +32,17 @@ export class MyOrdersComponent implements OnInit {
       },
       error: (err) => {
         console.error(err);
-        this.error = 'Възникна грешка при зареждане на поръчките.';
+
+        if (err.status === 403) {
+          this.error =
+            'Трябва да потвърдиш имейла си, за да виждаш своите поръчки.';
+        } else {
+          this.error = 'Възникна грешка при зареждане на поръчките.';
+        }
+
         this.loading = false;
       }
     });
   }
+
 }

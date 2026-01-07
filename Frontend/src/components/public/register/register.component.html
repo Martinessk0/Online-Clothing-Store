@@ -17,15 +17,27 @@
       </div>
     }
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+    @if (successMessage) {
+      <div
+        class="mb-4 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700
+               dark:border-green-500/30 dark:bg-green-950/40 dark:text-green-300"
+      >
+        {{ successMessage }}
+      </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4" autocomplete="on">
 
       <!-- Име + Фамилия -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          <label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
             Собствено име
           </label>
           <input
+            id="firstName"
+            name="firstName"
+            autocomplete="given-name"
             type="text"
             formControlName="firstName"
             class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
@@ -41,10 +53,13 @@
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          <label for="lastName" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
             Фамилия
           </label>
           <input
+            id="lastName"
+            name="lastName"
+            autocomplete="family-name"
             type="text"
             formControlName="lastName"
             class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
@@ -62,10 +77,13 @@
 
       <!-- Имейл -->
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Имейл
         </label>
         <input
+          id="email"
+          name="email"
+          autocomplete="email"
           type="email"
           formControlName="email"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
@@ -82,10 +100,13 @@
 
       <!-- Телефон -->
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+        <label for="phoneNumber" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Телефон (по желание)
         </label>
         <input
+          id="phoneNumber"
+          name="phoneNumber"
+          autocomplete="tel"
           type="tel"
           formControlName="phoneNumber"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
@@ -98,10 +119,13 @@
       <!-- Град + Адрес -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          <label for="city" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
             Град (по желание)
           </label>
           <input
+            id="city"
+            name="city"
+            autocomplete="address-level2"
             type="text"
             formControlName="city"
             class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
@@ -112,10 +136,13 @@
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+          <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
             Адрес (по желание)
           </label>
           <input
+            id="address"
+            name="address"
+            autocomplete="street-address"
             type="text"
             formControlName="address"
             class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
@@ -128,10 +155,13 @@
 
       <!-- Парола -->
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+        <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Парола
         </label>
         <input
+          id="password"
+          name="password"
+          autocomplete="new-password"
           type="password"
           formControlName="password"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
@@ -148,10 +178,13 @@
 
       <!-- Повтори паролата -->
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+        <label for="confirmPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Повтори паролата
         </label>
         <input
+          id="confirmPassword"
+          name="confirmPassword"
+          autocomplete="new-password"
           type="password"
           formControlName="confirmPassword"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none

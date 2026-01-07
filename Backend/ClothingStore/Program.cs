@@ -15,6 +15,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authorization;
+using ClothingStore.Core.Models.Email;
+using ClothingStore.Infrastructure.Data.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -92,6 +95,18 @@ builder.Services
             NameClaimType = ClaimTypes.Name,
         };
     });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ConfirmedEmail", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.Requirements.Add(new ConfirmedEmailRequirement());
+    });
+});
+
+builder.Services.AddScoped<IAuthorizationHandler, ConfirmedEmailHandler>();
+
 
 builder.Services.AddControllers()
      .AddJsonOptions(options =>

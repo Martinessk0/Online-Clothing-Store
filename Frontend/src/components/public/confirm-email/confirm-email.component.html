@@ -1,0 +1,19 @@
+<div class="max-w-xl mx-auto px-4 py-16 text-center">
+  <h1 class="text-2xl font-semibold mb-4">Потвърждение на имейл</h1>
+
+  <p *ngIf="status === 'loading'">
+    {{ message }}
+  </p>
+
+  <p *ngIf="status === 'success'" class="text-green-500">
+    {{ message }}
+  </p>
+
+  <p *ngIf="status === 'error'" class="text-red-500">
+    {{ message }}
+  </p>
+
+  <a href="/profile" class="inline-block mt-6 text-sm underline">
+    Към профила
+  </a>
+</div>
