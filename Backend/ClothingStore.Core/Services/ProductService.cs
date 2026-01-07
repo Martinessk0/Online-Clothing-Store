@@ -222,9 +222,6 @@ namespace ClothingStore.Core.Services
             await repo.SaveChangesAsync();
         }
 
-
-
-
         public async Task<bool> DeleteProductAsync(int id)
         {
             Product product = await repo.GetByIdAsync<Product>(id);
@@ -283,7 +280,6 @@ namespace ClothingStore.Core.Services
                 .ToListAsync();
         }
 
-
         public async Task<ProductDTO?> GetByIdAsync(int id)
         {
             return await repo.AllReadonly<Product>()
@@ -299,6 +295,8 @@ namespace ClothingStore.Core.Services
                     Price = p.Price,
                     Brand = p.Brand,
                     CategoryId = p.CategoryId,
+                    AverageRating = p.AverageRating,   
+                    ReviewCount = p.ReviewCount,
                     Variants = p.Variants
                         .Where(v => v.IsActive)
                         .Select(v => new ProductVariantDTO

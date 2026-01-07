@@ -14,6 +14,7 @@ namespace ClothingStore.Infrastructure
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductReview> ProductReviews { get; set; }
         //public DbSet<Cart> Carts { get; set; }
         //public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -43,7 +44,7 @@ namespace ClothingStore.Infrastructure
             //    .HasForeignKey(c => c.UserId);
 
             builder.Entity<Order>()
-                .HasOne(o => o.User)    
+                .HasOne(o => o.User)
                 .WithMany()
                 .HasForeignKey(o => o.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -64,6 +65,22 @@ namespace ClothingStore.Infrastructure
                 .HasForeignKey(oi => oi.ProductVariantId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<ProductReview>()
+                .HasOne(r => r.Product)
+                .WithMany(p => p.Reviews)
+                .HasForeignKey(r => r.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<ProductReview>()
+                .HasOne(r => r.User)
+                .WithMany()
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ProductReview>()
+                .HasIndex(r => new { r.ProductId, r.UserId })
+                .IsUnique();
+
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new RoleAssignConfiguration());
@@ -74,8 +91,6 @@ namespace ClothingStore.Infrastructure
 
 
             base.OnModelCreating(builder);
-
-
         }
     }
 }

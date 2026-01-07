@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ClothingStore.Core.Models.ProductReview;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,10 @@ namespace ClothingStore.Core.Models.Product
 
         public string Brand { get; set; } = string.Empty;
         public int CategoryId { get; set; }
+
+        public double AverageRating { get; set; }
+        public int ReviewCount { get; set; }
+        public List<ReviewDto> Reviews { get; set; } = new();
 
         public DateTime? CreatedAt { get; set; }
 

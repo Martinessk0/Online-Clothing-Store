@@ -8,11 +8,12 @@ import { ProductFilterDto } from '../../../models/product/product-filter-dto';
 import { RecommendationService } from '../../../services/recommendation-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PagedResult } from '../../../models/pagedResult/paged-result';
+import { ReviewFormComponent } from '../review/review-form.component';
 
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, FormsModule, ProductCardComponent],
+  imports: [CommonModule, FormsModule, ProductCardComponent, CommonModule, ReviewFormComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

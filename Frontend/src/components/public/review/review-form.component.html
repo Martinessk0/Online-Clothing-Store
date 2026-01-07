@@ -1,0 +1,48 @@
+<form
+  class="mt-4 space-y-3 rounded-xl border border-slate-200 p-3 text-sm
+         dark:border-slate-700"
+  (ngSubmit)="submit()"
+>
+  <h3 class="font-medium">
+    {{ review ? 'Редактирай отзив' : 'Остави отзив' }}
+  </h3>
+
+
+  <label class="block text-xs">Оценка</label>
+  <select
+    [(ngModel)]="rating"
+    name="rating"
+    class="w-full rounded border p-2 text-sm"
+  >
+    <option *ngFor="let r of [5,4,3,2,1]" [value]="r">
+      {{ r }} ⭐
+    </option>
+  </select>
+
+  <label class="block text-xs">Коментар</label>
+  <textarea
+    [(ngModel)]="comment"
+    name="comment"
+    rows="3"
+    class="w-full rounded border p-2 text-sm"
+  ></textarea>
+
+    <button
+        type="submit"
+        [disabled]="submitting"
+        class="rounded bg-blue-600 px-4 py-2 text-white text-xs"
+        >
+        {{ review ? 'Запази' : 'Изпрати' }}
+    </button>
+
+    <button
+        *ngIf="review"
+        type="button"
+        class="ml-2 rounded bg-slate-200 px-4 py-2 text-xs"
+        (click)="cancelEdit()"
+        >
+        Отказ
+    </button>
+
+  <p *ngIf="error" class="text-xs text-red-600">{{ error }}</p>
+</form>
