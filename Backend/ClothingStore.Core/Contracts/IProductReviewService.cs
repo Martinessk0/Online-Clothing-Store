@@ -9,10 +9,10 @@ namespace ClothingStore.Core.Contracts
 {
     public interface IProductReviewService
     {
-        Task CreateAsync(CreateReviewDto dto, string userId);
-        Task UpdateAsync(int reviewId, UpdateReviewDto dto, string userId);
-        Task<IEnumerable<ReviewDto>> GetByProductAsync(int productId);
-
-        Task SetVisibilityAsync(int reviewId, bool isVisible); // Admin
+        Task CreateReviewAsync(CreateReviewDto dto, string userId);
+        Task UpdateReviewAsync(int reviewId, UpdateReviewDto dto, string userId);
+        Task<IEnumerable<ReviewDto>> GetByProductAsync(int productId, bool includeHidden = false);
+        Task SetVisibilityAsync(int reviewId, bool isVisible);
+        Task<bool> CanReviewAsync(int productId, string userId);
     }
 }

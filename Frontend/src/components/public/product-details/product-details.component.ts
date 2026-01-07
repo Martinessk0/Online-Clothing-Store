@@ -33,6 +33,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   editingReview?: Review;
   editRating = 5;
   editComment = '';
+  canReview = false;
+  showNewReviewForm = false; // only for creating a new review
+   // only for editing
 
   constructor(
     private route: ActivatedRoute,
@@ -56,7 +59,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
     this.loadProduct(id);
     this.loadReviews(id);
-
   }
 
   ngOnDestroy(): void {
@@ -81,6 +83,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       next: (p) => {
         this.product = p;
         this.loading = false;
+
+          this.loadCanReview(p.id);
 
         const mainImage = p.images?.find((i) => i.isMain);
         this.selectedImageUrl = mainImage?.url || p.images?.[0]?.url || null;
@@ -152,12 +156,70 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
    loadReviews(productId: number): void {
-  this.reviewService.getByProduct(productId).subscribe({
-    next: (r) => {
-      this.reviews = r;
-      this.editingReview = undefined;
+
+    const includeHidden = this.authService.isAdmin();
+
+    this.reviewService.getByProduct(productId, includeHidden).subscribe({
+      next: (r) => {
+        this.reviews = r;
+        this.showNewReviewForm = false;
+        this.editingReview = undefined;
+      },
+      error: () => (this.reviews = [])
+  });
+}
+
+
+loadCanReview(productId: number) {
+  if (!this.authService.isLoggedIn()) return;
+
+  this.reviewService.canReview(productId).subscribe({
+    next: r => this.canReview = r.canReview,
+    error: () => this.canReview = false
+  });
+}
+
+openReviewForm(): void {
+  this.editingReview = undefined; // new review
+  this.showNewReviewForm = true;
+}
+
+closeReviewForm(): void {
+  this.showNewReviewForm = false;
+  this.editingReview = undefined;
+}
+
+onNewReviewSubmitted() {
+  this.showNewReviewForm = false;
+  this.loadReviews(this.product!.id);
+  this.refreshProduct(); 
+}
+
+onEditReviewSubmitted() {
+  this.editingReview = undefined;
+  this.loadReviews(this.product!.id);
+  this.refreshProduct(); 
+}
+
+
+
+refreshProduct() {
+  if (!this.product) return;
+  this.productService.getProduct(this.product.id).subscribe({
+    next: p => this.product = p, // now AverageRating updates in the UI
+    error: err => console.error(err)
+  });
+}
+
+toggleReviewVisibility(review: Review, hide: boolean) {
+  this.reviewService.setVisibility(review.id, !hide).subscribe({
+    next: () => {
+      // Update review visibility in UI
+      review.isVisible = !hide;
+      this.refreshProduct(); // recalc AverageRating
+      this.loadReviews(this.product!.id); // refresh the list
     },
-    error: () => (this.reviews = [])
+    error: (err) => console.error(err),
   });
 }
 

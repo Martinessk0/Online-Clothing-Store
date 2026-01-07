@@ -4,141 +4,246 @@ using ClothingStore.Infrastructure.Data.Common;
 using ClothingStore.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-public class ProductReviewService : IProductReviewService
+namespace ClothingStore.Core.Services
 {
-    private readonly IRepository repo;
-
-    public ProductReviewService(IRepository repo)
+    public class ProductReviewService : IProductReviewService
     {
-        this.repo = repo;
-    }
+        private readonly IRepository repo;
 
-    // ---------------------------
-    // CREATE
-    // ---------------------------
-    public async Task CreateAsync(CreateReviewDto dto, string userId)
-    {
-        // 1. Product exists
-        var productExists = await repo.AllReadonly<Product>()
-            .AnyAsync(p => p.Id == dto.ProductId && p.IsActive);
-
-        if (!productExists)
-            throw new ArgumentException("Product not found.");
-
-        // 2. User has purchased product (PAID or COMPLETED)
-        var hasPurchased = await repo.AllReadonly<Order>()
-            .Where(o =>
-                o.UserId == userId &&
-                (o.Status == OrderStatus.Paid || o.Status == OrderStatus.Completed))
-            .SelectMany(o => o.Items)
-            .AnyAsync(i => i.ProductId == dto.ProductId);
-
-        if (!hasPurchased)
-            throw new InvalidOperationException("You can review only purchased products.");
-
-        // 3. One review per product per user (DB enforces this too)
-        var alreadyReviewed = await repo.AllReadonly<ProductReview>()
-            .AnyAsync(r => r.ProductId == dto.ProductId && r.UserId == userId);
-
-        if (alreadyReviewed)
-            throw new InvalidOperationException("You already reviewed this product.");
-
-        if (dto.Rating < 1 || dto.Rating > 5)
-            throw new ArgumentOutOfRangeException(nameof(dto.Rating), "Rating must be between 1 and 5.");
-
-
-        var review = new ProductReview
+        public ProductReviewService(IRepository repo)
         {
-            ProductId = dto.ProductId,
-            UserId = userId,
-            Rating = dto.Rating,
-            Comment = dto.Comment,
-            CreatedAt = DateTime.UtcNow
-        };
+            this.repo = repo;
+        }
 
-        await repo.AddAsync(review);
-        await repo.SaveChangesAsync();
+        // ---------------------------
+        // CREATE
+        // ---------------------------
+        //    public async Task CreateReviewAsync(CreateReviewDto dto, string userId)
+        //    {
+        //        // 1. Product exists
+        //        var productExists = await repo.AllReadonly<Product>()
+        //            .AnyAsync(p => p.Id == dto.ProductId && p.IsActive);
 
-        await RecalculateProductRatingAsync(dto.ProductId);
-    }
+        //        if (!productExists)
+        //            throw new ArgumentException("Product not found.");
 
-    // ---------------------------
-    // UPDATE (owner only)
-    // ---------------------------
-    public async Task UpdateAsync(int reviewId, UpdateReviewDto dto, string userId)
-    {
+        //        // 2. User has completed the order for this product (ONLY Completed)
+        //        var hasPurchased = await repo.AllReadonly<Order>()
+        //            .Include(o => o.Items)
+        //            .Where(o =>
+        //                o.UserId == userId &&
+        //                (o.Status == OrderStatus.Completed || o.Status == OrderStatus.Paid))
+        //            .SelectMany(o => o.Items)
+        //            .AnyAsync(i => i.ProductId == dto.ProductId);
 
-        var review = await repo.All<ProductReview>()
-            .FirstOrDefaultAsync(r => r.Id == reviewId);
+        //        if (!hasPurchased)
+        //            throw new InvalidOperationException("You can review only products from completed orders.");
 
-        if (review == null)
-            throw new ArgumentException("Review not found.");
+        //        if (dto.Rating < 1 || dto.Rating > 5)
+        //            throw new ArgumentOutOfRangeException(nameof(dto.Rating), "Rating must be between 1 and 5.");
 
-        if (review.UserId != userId)
-            throw new UnauthorizedAccessException("Not your review.");
+        //        var existingReview = await repo.All<ProductReview>()
+        //.FirstOrDefaultAsync(r =>
+        //    r.ProductId == dto.ProductId &&
+        //    r.UserId == userId);
 
-        if (dto.Rating < 1 || dto.Rating > 5)
-            throw new ArgumentOutOfRangeException(nameof(dto.Rating), "Rating must be between 1 and 5.");
+        //        if (existingReview != null)
+        //        {
+        //            throw new InvalidOperationException("You have already left a review for this product.");
+        //        }
 
-        review.Rating = dto.Rating;
-        review.Comment = dto.Comment;
-        review.UpdatedAt = DateTime.UtcNow;
 
-        await repo.SaveChangesAsync();
-        await RecalculateProductRatingAsync(review.ProductId);
-    }
+        //        var review = new ProductReview
+        //        {
+        //            ProductId = dto.ProductId,
+        //            UserId = userId,
+        //            Rating = dto.Rating,
+        //            Comment = dto.Comment,
+        //            CreatedAt = DateTime.UtcNow,
+        //            IsVisible = true
+        //        };
 
-    // ---------------------------
-    // GET BY PRODUCT
-    // ---------------------------
-    public async Task<IEnumerable<ReviewDto>> GetByProductAsync(int productId)
-    {
-        return await repo.AllReadonly<ProductReview>()
-            .Where(r => r.ProductId == productId && r.IsVisible && r.Product.IsActive)
-            .Include(r => r.User)
-            .OrderByDescending(r => r.CreatedAt)
-            .Select(r => new ReviewDto
+        //        await repo.AddAsync(review);
+        //        await repo.SaveChangesAsync();
+
+        //        await RecalculateProductRatingAsync(dto.ProductId);
+        //    }
+        public async Task CreateReviewAsync(CreateReviewDto dto, string userId)
+        {
+            // 1. Product exists
+            var productExists = await repo.AllReadonly<Product>()
+                .AnyAsync(p => p.Id == dto.ProductId && p.IsActive);
+
+            if (!productExists)
+                throw new ArgumentException("Product not found.");
+
+            // 2. User has completed the order for this product
+            var hasPurchased = await repo.AllReadonly<Order>()
+                .Include(o => o.Items)
+                .Where(o =>
+                    o.UserId == userId &&
+                    (o.Status == OrderStatus.Completed || o.Status == OrderStatus.Paid))
+                .SelectMany(o => o.Items)
+                .AnyAsync(i => i.ProductId == dto.ProductId);
+
+            if (!hasPurchased)
+                throw new InvalidOperationException("You can review only products from completed orders.");
+
+            if (dto.Rating < 1 || dto.Rating > 5)
+                throw new ArgumentOutOfRangeException(nameof(dto.Rating), "Rating must be between 1 and 5.");
+
+            // 3. Ensure one review per user per product
+            var existingReview = await repo.All<ProductReview>()
+                .FirstOrDefaultAsync(r =>
+                    r.ProductId == dto.ProductId &&
+                    r.UserId == userId);
+
+            if (existingReview != null)
+                throw new InvalidOperationException("You have already left a review for this product.");
+
+            // 4. Create new review
+            var review = new ProductReview
             {
-                Id = r.Id,
-                Rating = r.Rating,
-                Comment = r.Comment,
-                CreatedAt = r.CreatedAt,
-                UserId = r.UserId,
-                UserName = r.User!.UserName!
-            })
-            .ToListAsync();
-    }
+                ProductId = dto.ProductId,
+                UserId = userId,
+                Rating = dto.Rating,
+                Comment = dto.Comment,
+                CreatedAt = DateTime.UtcNow,
+                IsVisible = true
+            };
 
-    // ---------------------------
-    // ADMIN: HIDE / UNHIDE
-    // ---------------------------
-    public async Task SetVisibilityAsync(int reviewId, bool isVisible)
-    {
-        var review = await repo.GetByIdAsync<ProductReview>(reviewId);
-        if (review == null)
-            throw new ArgumentException("Review not found.");
+            await repo.AddAsync(review);
+            await repo.SaveChangesAsync();
 
-        review.IsVisible = isVisible;
-        await RecalculateProductRatingAsync(review.ProductId);
-    }
+            // 5. Recalculate product rating after creating
+            await RecalculateProductRatingAsync(dto.ProductId);
+        }
 
-    // ---------------------------
-    // RATING RECALCULATION
-    // ---------------------------
-    private async Task RecalculateProductRatingAsync(int productId)
-    {
-        var reviews = await repo.AllReadonly<ProductReview>()
-            .Where(r => r.ProductId == productId && r.IsVisible)
-            .ToListAsync();
 
-        var product = await repo.GetByIdAsync<Product>(productId);
-        if (product == null) return;
+        // ---------------------------
+        // UPDATE (owner only)
+        // ---------------------------
+        public async Task UpdateReviewAsync(int reviewId, UpdateReviewDto dto, string userId)
+        {
+            var review = await repo.All<ProductReview>()
+                .FirstOrDefaultAsync(r => r.Id == reviewId);
 
-        product.ReviewCount = reviews.Count;
-        product.AverageRating = reviews.Count == 0
-            ? 0
-            : Math.Round(reviews.Average(r => r.Rating), 2);
+            if (review == null)
+                throw new ArgumentException("Review not found.");
 
-        await repo.SaveChangesAsync();
+            if (review.UserId != userId)
+                throw new UnauthorizedAccessException("Not your review.");
+
+            if (dto.Rating < 1 || dto.Rating > 5)
+                throw new ArgumentOutOfRangeException(nameof(dto.Rating), "Rating must be between 1 and 5.");
+
+            review.Rating = dto.Rating;
+            review.Comment = dto.Comment;
+            review.UpdatedAt = DateTime.UtcNow;
+
+            await repo.SaveChangesAsync();
+            await RecalculateProductRatingAsync(review.ProductId);
+        }
+
+        // ---------------------------
+        // GET BY PRODUCT
+        // ---------------------------
+
+        public async Task<IEnumerable<ReviewDto>> GetByProductAsync(int productId, bool includeHidden = false)
+        {
+            var query = repo.AllReadonly<ProductReview>()
+                .Where(r => r.ProductId == productId && r.Product.IsActive);
+
+            if (!includeHidden)
+                query = query.Where(r => r.IsVisible);
+
+            return await query
+                .Include(r => r.User)
+                .OrderByDescending(r => r.CreatedAt)
+                .Select(r => new ReviewDto
+                {
+                    Id = r.Id,
+                    Rating = r.Rating,
+                    Comment = r.Comment,
+                    CreatedAt = r.CreatedAt,
+                    UserId = r.UserId,
+                    UserName = r.User!.UserName!,
+                    IsVisible = r.IsVisible
+                })
+                .ToListAsync();
+        }
+
+        //public async Task<IEnumerable<ReviewDto>> GetByProductAsync(int productId)
+        //{
+        //    return await repo.AllReadonly<ProductReview>()
+        //        .Where(r => r.ProductId == productId && r.IsVisible && r.Product.IsActive)
+        //        .Include(r => r.User)
+        //        .OrderByDescending(r => r.CreatedAt)
+        //        .Select(r => new ReviewDto
+        //        {
+        //            Id = r.Id,
+        //            Rating = r.Rating,
+        //            Comment = r.Comment,
+        //            CreatedAt = r.CreatedAt,
+        //            UserId = r.UserId,
+        //            UserName = r.User!.UserName!,
+        //            IsVisible = r.IsVisible
+        //        })
+        //        .ToListAsync();
+        //}
+
+        // ---------------------------
+        // ADMIN: HIDE / UNHIDE
+        // ---------------------------
+        public async Task SetVisibilityAsync(int reviewId, bool isVisible)
+        {
+            var review = await repo.GetByIdAsync<ProductReview>(reviewId);
+            if (review == null)
+                throw new ArgumentException("Review not found.");
+
+            review.IsVisible = isVisible;
+            await RecalculateProductRatingAsync(review.ProductId);
+        }
+
+        // ---------------------------
+        // RATING RECALCULATION
+        // ---------------------------
+        private async Task RecalculateProductRatingAsync(int productId)
+        {
+            var reviews = await repo.AllReadonly<ProductReview>()
+                .Where(r => r.ProductId == productId && r.IsVisible)
+                .ToListAsync();
+
+            var product = await repo.GetByIdAsync<Product>(productId);
+            if (product == null) return;
+
+            product.ReviewCount = reviews.Count;
+            product.AverageRating = reviews.Count == 0
+                ? 0
+                : Math.Round(reviews.Average(r => r.Rating), 2);
+
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task<bool> CanReviewAsync(int productId, string userId)
+        {
+            // Must have purchased
+            var hasPurchased = await repo.AllReadonly<Order>()
+                .Where(o => o.UserId == userId &&
+                            (o.Status == OrderStatus.Completed || o.Status == OrderStatus.Paid))
+                .SelectMany(o => o.Items)
+                .AnyAsync(i => i.ProductId == productId);
+
+            if (!hasPurchased) return false;
+
+            // Must not have already left a review
+            var hasReviewed = await repo.AllReadonly<ProductReview>()
+                .AnyAsync(r => r.UserId == userId && r.ProductId == productId);
+
+            return !hasReviewed;
+        }
+
+
+
     }
 }

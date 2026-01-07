@@ -13,6 +13,7 @@ namespace ClothingStore.Core.Models.ProductReview
         public string? Comment { get; set; }
         public string UserId { get; set; } = string.Empty;
         public string UserName { get; set; } = string.Empty;
+        public bool IsVisible { get; set; } = true;
         public DateTime CreatedAt { get; set; }
     }
 }

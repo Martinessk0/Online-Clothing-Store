@@ -3,6 +3,7 @@ export interface Review {
   rating: number;        
   comment?: string;   
   userId: string;   
-  userName: string;     
+  userName: string;    
+  isVisible: boolean; 
   createdAt: string;   
 }

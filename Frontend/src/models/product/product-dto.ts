@@ -9,7 +9,7 @@ export interface Product {
   brand: string;
   categoryId: number;
   averageRating: number;
-  reviewsCount: number;
+  reviewCount: number;
   variants: ProductVariant[];
   images: ProductImage[];
 }

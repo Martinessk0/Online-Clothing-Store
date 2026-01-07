@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 [ApiController]
-[Route("api/reviews")]
+[Route("api/[controller]")]
 public class ProductReviewController : ControllerBase
+
 {
     private readonly IProductReviewService service;
 
@@ -20,7 +21,7 @@ public class ProductReviewController : ControllerBase
     public async Task<IActionResult> Create(CreateReviewDto dto)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
-        await service.CreateAsync(dto, userId);
+        await service.CreateReviewAsync(dto, userId);
         return Ok();
     }
 
@@ -29,7 +30,7 @@ public class ProductReviewController : ControllerBase
     public async Task<IActionResult> Update(int id, UpdateReviewDto dto)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
-        await service.UpdateAsync(id, dto, userId);
+        await service.UpdateReviewAsync(id, dto, userId);
         return NoContent();
     }
 
@@ -47,4 +48,15 @@ public class ProductReviewController : ControllerBase
         await service.SetVisibilityAsync(id, isVisible);
         return NoContent();
     }
+
+    [HttpGet("can-review/{productId}")]
+    [Authorize]
+    public async Task<IActionResult> CanReview(int productId)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+        var canReview = await service.CanReviewAsync(productId, userId);
+
+        return Ok(new { canReview });
+    }
+
 }

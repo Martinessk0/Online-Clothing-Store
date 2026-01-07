@@ -15,6 +15,7 @@ export class ReviewFormComponent implements OnChanges {
   @Input() review?: Review;
 
   @Output() reviewSubmitted = new EventEmitter<void>();
+  @Output() cancelled = new EventEmitter<void>();
 
   rating = 5;
   comment = '';
@@ -70,5 +71,6 @@ export class ReviewFormComponent implements OnChanges {
 
   cancelEdit(): void {
     this.reset();
+    this.cancelled.emit();
   }
 }

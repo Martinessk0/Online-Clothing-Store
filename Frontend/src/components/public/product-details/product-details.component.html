@@ -136,7 +136,7 @@
   class="mt-8 space-y-4 rounded-2xl border border-slate-200 bg-white/80 p-4
          dark:border-slate-800 dark:bg-slate-900/80"
   *ngIf="product"
->
+> 
   <h2 class="text-sm font-semibold text-slate-900 dark:text-slate-100">
     Отзиви и оценки
   </h2>
@@ -147,7 +147,7 @@
       ⭐ {{ product.averageRating | number:'1.1-1' }}
     </span>
     <span class="text-slate-500">
-      ({{ product.reviewsCount }} отзива)
+      ({{ product.reviewCount }} отзива)
     </span>
   </div>
 
@@ -177,16 +177,25 @@
           class="mt-2 mr-3 text-xs text-blue-600"
           (click)="startEdit(r)"
         >
-    Редактирай
-  </button>
-
+         Редактирай
+        </button>
       <!-- Admin controls -->
       <button
-        *ngIf="authService.isAdmin()"
+        *ngIf="authService.isAdmin() && r.isVisible"
         class="mt-2 text-xs text-red-600"
+        (click)="toggleReviewVisibility(r, true)"
       >
         Скрий
       </button>
+
+      <button
+      *ngIf="authService.isAdmin() && !r.isVisible"
+      class="mt-2 text-xs text-green-600"
+      (click)="toggleReviewVisibility(r, false)"
+    >
+      Покажи
+    </button>
+
     </article>
   </div>
 
@@ -196,13 +205,40 @@
     </p>
   </ng-template>
 
-  <!-- Review form -->
-  <app-review-form
-    *ngIf="authService.isLoggedIn()"
-    [productId]="product.id"
-    [review]="editingReview"
-    (reviewSubmitted)="loadReviews(product.id)"
-  ></app-review-form>
+  <!-- Leave new review button -->
+      <button
+        *ngIf="authService.isLoggedIn() && canReview && !showNewReviewForm"
+        (click)="showNewReviewForm = true"
+        class="mt-3 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white
+              hover:bg-blue-700 transition"
+      >
+        Остави отзив
+      </button>
+
+<!-- New review form -->
+    <app-review-form
+      *ngIf="authService.isLoggedIn() && showNewReviewForm"
+      [productId]="product.id"
+      (reviewSubmitted)="onNewReviewSubmitted()"
+      (cancelled)="showNewReviewForm = false"
+    ></app-review-form>
+
+    <!-- Edit review form -->
+    <app-review-form
+      *ngIf="authService.isLoggedIn() && editingReview"
+      [productId]="product.id"
+      [review]="editingReview"
+      (reviewSubmitted)="onEditReviewSubmitted()"
+      (cancelled)="editingReview = undefined"
+    ></app-review-form>
+
+
+
+    <p *ngIf="authService.isLoggedIn() && !canReview"
+      class="text-xs text-slate-500">
+      Можеш да оставиш отзив само след покупка.
+    </p>
+
 </section>
 
 

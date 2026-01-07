@@ -295,6 +295,8 @@ namespace ClothingStore.Core.Services
                     Price = p.Price,
                     Brand = p.Brand,
                     CategoryId = p.CategoryId,
+                    AverageRating = p.AverageRating,   
+                    ReviewCount = p.ReviewCount,
                     Variants = p.Variants
                         .Where(v => v.IsActive)
                         .Select(v => new ProductVariantDTO
