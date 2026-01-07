@@ -9,6 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 import { UserProfile } from "../models/auth/user-profile";
 import { TwoFactorSetupResponse } from "../models/auth/two-factor-setup";
 import { TwoFactorEnableResponse } from "../models/auth/two-factor-enable";
+import { ResetPasswordRequest } from "../models/auth/reset-password-request";
 
 @Injectable({
   providedIn: 'root',
@@ -159,6 +160,18 @@ export class AuthService {
     return this.http.post<{ message: string }>(`${this.apiUrl}/auth/2fa/disable`, {});
   }
 
+  requestPasswordReset(email: string) {
+    return this.http.post<{ message: string }>(
+      `${this.apiUrl}/auth/forgot-password`,
+      { email }
+    );
+  }
 
+  resetPassword(payload: ResetPasswordRequest) {
+    return this.http.post<{ message: string }>(
+      `${this.apiUrl}/auth/reset-password`,
+      payload
+    );
+  }
 
 }
