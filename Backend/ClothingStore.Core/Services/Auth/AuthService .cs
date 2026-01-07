@@ -362,5 +362,64 @@ namespace ClothingStore.Core.Services.Auth
                    $"?secret={unformattedKey}&issuer={UrlEncoder.Default.Encode(issuer)}&digits=6";
         }
 
+
+        public async Task RequestPasswordResetAsync(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return;
+            }
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null || !user.EmailConfirmed)
+            {
+                return;
+            }
+
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var tokenBytes = Encoding.UTF8.GetBytes(resetToken);
+            var encodedToken = WebEncoders.Base64UrlEncode(tokenBytes);
+
+            var frontendBaseUrl = _configuration["Frontend:BaseUrl"] ?? "http://localhost:4200";
+            var resetUrl =
+                $"{frontendBaseUrl.TrimEnd('/')}/reset-password?userId={user.Id}&token={encodedToken}";
+
+            var subject = "Смяна на парола в Clothing Store";
+            var body =
+                $"Здравей, {user.FirstName ?? "потребител"}!\n\n" +
+                "Получихме заявка за смяна на паролата за твоя акаунт.\n" +
+                "За да избереш нова парола, отвори следния линк:\n" +
+                resetUrl + "\n\n" +
+                "Ако не си изпращал такава заявка, игнорирай този имейл.";
+
+            await _emailService.SendAsync(user.Email!, subject, body);
+        }
+
+        public async Task ResetPasswordAsync(ResetPasswordRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(request.UserId)
+                ?? throw new InvalidOperationException("User not found.");
+
+            byte[] tokenBytes;
+            try
+            {
+                tokenBytes = WebEncoders.Base64UrlDecode(request.Token);
+            }
+            catch
+            {
+                throw new InvalidOperationException("Invalid token.");
+            }
+
+            var normalToken = Encoding.UTF8.GetString(tokenBytes);
+
+            var result = await _userManager.ResetPasswordAsync(user, normalToken, request.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+                throw new InvalidOperationException(errors);
+            }
+        }
+
     }
 }

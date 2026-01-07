@@ -149,6 +149,57 @@ namespace ClothingStore.Controllers
         }
 
 
+        [HttpPost("forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // За сигурност винаги връщаме 200, дори при невалиден имейл.
+            try
+            {
+                await _authService.RequestPasswordResetAsync(request.Email);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Error requesting password reset for {Email}", request.Email);
+            }
+
+            return Ok(new
+            {
+                message = "Ако този имейл съществува в системата, изпратихме линк за смяна на паролата."
+            });
+        }
+
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                await _authService.ResetPasswordAsync(request);
+                return Ok(new
+                {
+                    message = "Паролата е сменена успешно. Вече можеш да влезеш с новата парола."
+                });
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogWarning(ex, "Reset password failed for {UserId}", request.UserId);
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+
+
 
     }
 }

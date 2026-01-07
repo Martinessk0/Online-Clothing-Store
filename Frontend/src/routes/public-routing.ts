@@ -16,6 +16,8 @@ import { TermsComponent } from '../components/public/terms/terms.component';
 import { PrivacyComponent } from '../components/public/privacy/privacy.component';
 import { ContactComponent } from '../components/public/contact/contact.component';
 import { ConfirmEmailComponent } from '../components/public/confirm-email/confirm-email.component';
+import { ForgotPasswordComponent } from '../components/public/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from '../components/public/reset-password/reset-password.component';
 
 
 export const publicRoutes: Routes = [
@@ -60,9 +62,26 @@ export const publicRoutes: Routes = [
         path: 'about',
         component: AboutComponent,
       },
-      { path: 'terms', component: TermsComponent },
-      { path: 'privacy', component: PrivacyComponent },
-      { path: 'contact', component: ContactComponent },
+      {
+        path: 'terms',
+        component: TermsComponent
+      },
+      {
+        path: 'privacy',
+        component: PrivacyComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+      },
+      {
+        path: 'reset-password',
+        component: ResetPasswordComponent,
+      },
       {
         path: 'orders',
         component: MyOrdersComponent,
@@ -78,7 +97,7 @@ export const publicRoutes: Routes = [
         component: ProfileComponent,
         canActivate: [authGuard],
       },
-       {
+      {
         path: 'confirm-email',
         component: ConfirmEmailComponent
       }
