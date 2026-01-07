@@ -11,5 +11,9 @@ namespace ClothingStore.Core.Contracts.Auth
         Task<UserProfileResponse> UpdateProfileAsync(string userId, UpdateUserProfileRequest request);
 
         Task ConfirmEmailAsync(string userId, string token);
+
+        Task<TwoFactorSetupResponse> GetTwoFactorSetupAsync(string userId);
+        Task<TwoFactorEnableResponse> EnableTwoFactorAsync(string userId, TwoFactorEnableRequest request);
+        Task DisableTwoFactorAsync(string userId);
     }
 }

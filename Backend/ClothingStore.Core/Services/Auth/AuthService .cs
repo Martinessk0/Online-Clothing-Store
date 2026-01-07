@@ -8,9 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Identity;
 
 namespace ClothingStore.Core.Services.Auth
 {
@@ -90,19 +91,51 @@ namespace ClothingStore.Core.Services.Auth
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null)
-            {
                 throw new InvalidOperationException("Invalid credentials.");
-            }
+
+            if (!user.EmailConfirmed)
+                throw new InvalidOperationException("Email is not confirmed.");
 
             var isPasswordValid = await _userManager.CheckPasswordAsync(user, request.Password);
-
             if (!isPasswordValid)
-            {
                 throw new InvalidOperationException("Invalid credentials.");
+
+            if (user.TwoFactorEnabled)
+            {
+                if (!string.IsNullOrWhiteSpace(request.RecoveryCode))
+                {
+                    var recovery = request.RecoveryCode.Replace(" ", "");
+                    var redeemed = await _userManager.RedeemTwoFactorRecoveryCodeAsync(user, recovery);
+                    if (!redeemed.Succeeded)
+                        throw new InvalidOperationException("Invalid recovery code.");
+
+                    return await GenerateTokenAsync(user);
+                }
+
+                if (string.IsNullOrWhiteSpace(request.TwoFactorCode))
+                {
+                    return new AuthResponse
+                    {
+                        RequiresTwoFactor = true,
+                        Token = string.Empty,
+                        ExpiresAtUtc = DateTime.UtcNow
+                    };
+                }
+
+                var code = request.TwoFactorCode.Replace(" ", "").Replace("-", "");
+                var valid2fa = await _userManager.VerifyTwoFactorTokenAsync(
+                    user,
+                    TokenOptions.DefaultAuthenticatorProvider,
+                    code
+                );
+
+                if (!valid2fa)
+                    throw new InvalidOperationException("Invalid two-factor code.");
             }
 
             return await GenerateTokenAsync(user);
         }
+
 
         public async Task ConfirmEmailAsync(string userId, string token)
         {
@@ -190,6 +223,7 @@ namespace ClothingStore.Core.Services.Auth
                 City = user.City,
                 Address = user.Address,
                 EmailConfirmed = user.EmailConfirmed,
+                TwoFactorEnabled = user.TwoFactorEnabled
             };
         }
 
@@ -245,6 +279,88 @@ namespace ClothingStore.Core.Services.Auth
             };
         }
 
+
+        public async Task<TwoFactorSetupResponse> GetTwoFactorSetupAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId)
+                ?? throw new InvalidOperationException("User not found.");
+
+            if (!user.EmailConfirmed)
+                throw new InvalidOperationException("Email is not confirmed.");
+
+            var key = await _userManager.GetAuthenticatorKeyAsync(user);
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                await _userManager.ResetAuthenticatorKeyAsync(user);
+                key = await _userManager.GetAuthenticatorKeyAsync(user);
+            }
+
+            var email = user.Email ?? user.UserName ?? "user";
+            var issuer = "ClothingStore";
+
+            return new TwoFactorSetupResponse
+            {
+                IsTwoFactorEnabled = user.TwoFactorEnabled,
+                SharedKey = FormatKey(key!),
+                AuthenticatorUri = GenerateOtpAuthUri(issuer, email, key!)
+            };
+        }
+
+        public async Task<TwoFactorEnableResponse> EnableTwoFactorAsync(string userId, TwoFactorEnableRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(userId)
+                ?? throw new InvalidOperationException("User not found.");
+
+            var code = request.Code.Replace(" ", "").Replace("-", "");
+            var isValid = await _userManager.VerifyTwoFactorTokenAsync(
+                user,
+                TokenOptions.DefaultAuthenticatorProvider,
+                code
+            );
+
+            if (!isValid)
+                throw new InvalidOperationException("Invalid two-factor code.");
+
+            var enableResult = await _userManager.SetTwoFactorEnabledAsync(user, true);
+            if (!enableResult.Succeeded)
+                throw new InvalidOperationException("Could not enable two-factor authentication.");
+
+            var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
+
+            return new TwoFactorEnableResponse
+            {
+                RecoveryCodes = recoveryCodes
+            };
+        }
+
+        public async Task DisableTwoFactorAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId)
+                ?? throw new InvalidOperationException("User not found.");
+
+            var disableResult = await _userManager.SetTwoFactorEnabledAsync(user, false);
+            if (!disableResult.Succeeded)
+                throw new InvalidOperationException("Could not disable two-factor authentication.");
+        }
+
+        private static string FormatKey(string unformattedKey)
+        {
+            var result = new System.Text.StringBuilder();
+            for (var i = 0; i + 4 <= unformattedKey.Length; i += 4)
+            {
+                result.Append(unformattedKey.Substring(i, 4)).Append(' ');
+            }
+            if (unformattedKey.Length % 4 != 0)
+                result.Append(unformattedKey.Substring(unformattedKey.Length - unformattedKey.Length % 4));
+
+            return result.ToString().Trim().ToLowerInvariant();
+        }
+
+        private static string GenerateOtpAuthUri(string issuer, string email, string unformattedKey)
+        {
+            return $"otpauth://totp/{UrlEncoder.Default.Encode(issuer)}:{UrlEncoder.Default.Encode(email)}" +
+                   $"?secret={unformattedKey}&issuer={UrlEncoder.Default.Encode(issuer)}&digits=6";
+        }
 
     }
 }

@@ -4,5 +4,7 @@
     {
         public string Token { get; set; } = string.Empty;
         public DateTime ExpiresAtUtc { get; set; }
+
+        public bool RequiresTwoFactor { get; set; }
     }
 }

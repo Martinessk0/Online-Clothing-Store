@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
 import { UserProfile } from '../../../models/auth/user-profile';
+import { TwoFactorSetupResponse } from '../../../models/auth/two-factor-setup';
+import { TwoFactorEnableResponse } from '../../../models/auth/two-factor-enable';
+import * as QRCode from 'qrcode';
+
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +24,13 @@ export class ProfileComponent implements OnInit {
   isSaving = false;
   isEditing = false;
   error: string | null = null;
+
+  twoFaSetup: TwoFactorSetupResponse | null = null;
+  twoFaCode = '';
+  twoFaError: string | null = null;
+  recoveryCodes: string[] | null = null;
+  is2faBusy = false;
+  qrDataUrl: string | null = null;
 
   editModel = {
     firstName: '' as string | null,
@@ -128,4 +139,74 @@ export class ProfileComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/home-page']);
   }
+
+  start2faSetup(): void {
+    this.twoFaError = null;
+    this.recoveryCodes = null;
+    this.is2faBusy = true;
+
+    this.authService.getTwoFactorSetup().subscribe({
+      next: async (res) => {
+        this.twoFaSetup = res;
+
+        this.qrDataUrl = null;
+        if (res.authenticatorUri) {
+          await this.buildQr(res.authenticatorUri);
+        }
+
+        this.is2faBusy = false;
+      },
+      error: (err) => {
+        this.twoFaError = err?.error?.message ?? 'Неуспешно зареждане на 2FA setup.';
+        this.is2faBusy = false;
+      }
+    });
+  }
+
+  enable2fa(): void {
+    if (!this.twoFaCode.trim()) return;
+
+    this.twoFaError = null;
+    this.is2faBusy = true;
+
+    this.authService.enableTwoFactor(this.twoFaCode).subscribe({
+      next: (res: TwoFactorEnableResponse) => {
+        this.recoveryCodes = res.recoveryCodes;
+        this.twoFaCode = '';
+        this.is2faBusy = false;
+        this.loadProfile(); // refresh
+      },
+      error: (err) => {
+        this.twoFaError = err?.error?.message ?? 'Грешен код.';
+        this.is2faBusy = false;
+      }
+    });
+  }
+
+  disable2fa(): void {
+    this.twoFaError = null;
+    this.is2faBusy = true;
+
+    this.authService.disableTwoFactor().subscribe({
+      next: () => {
+        this.twoFaSetup = null;
+        this.recoveryCodes = null;
+        this.is2faBusy = false;
+        this.loadProfile();
+      },
+      error: (err) => {
+        this.twoFaError = err?.error?.message ?? 'Неуспешно изключване на 2FA.';
+        this.is2faBusy = false;
+      }
+    });
+  }
+
+  private async buildQr(uri: string): Promise<void> {
+    this.qrDataUrl = await QRCode.toDataURL(uri, {
+      width: 220,
+      margin: 1,
+      errorCorrectionLevel: 'M'
+    });
+  }
+
 }

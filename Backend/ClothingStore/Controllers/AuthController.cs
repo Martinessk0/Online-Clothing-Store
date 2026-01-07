@@ -115,5 +115,40 @@ namespace ClothingStore.Controllers
         }
 
 
+        [HttpGet("2fa/setup")]
+        [Authorize]
+        public async Task<ActionResult<TwoFactorSetupResponse>> GetTwoFactorSetup()
+        {
+            var userId = GetUserId();
+            if (userId == null) return Unauthorized();
+
+            var setup = await _authService.GetTwoFactorSetupAsync(userId);
+            return Ok(setup);
+        }
+
+        [HttpPost("2fa/enable")]
+        [Authorize]
+        public async Task<ActionResult<TwoFactorEnableResponse>> EnableTwoFactor([FromBody] TwoFactorEnableRequest request)
+        {
+            var userId = GetUserId();
+            if (userId == null) return Unauthorized();
+
+            var result = await _authService.EnableTwoFactorAsync(userId, request);
+            return Ok(result);
+        }
+
+        [HttpPost("2fa/disable")]
+        [Authorize]
+        public async Task<IActionResult> DisableTwoFactor()
+        {
+            var userId = GetUserId();
+            if (userId == null) return Unauthorized();
+
+            await _authService.DisableTwoFactorAsync(userId);
+            return Ok(new { message = "2FA disabled." });
+        }
+
+
+
     }
 }

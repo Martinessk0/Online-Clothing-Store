@@ -7,6 +7,8 @@ import { RegisterRequest } from "../models/auth/register-request";
 import { environment } from "../environments/environment";
 import { jwtDecode } from 'jwt-decode';
 import { UserProfile } from "../models/auth/user-profile";
+import { TwoFactorSetupResponse } from "../models/auth/two-factor-setup";
+import { TwoFactorEnableResponse } from "../models/auth/two-factor-enable";
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +18,7 @@ export class AuthService {
   private apiUrl: string = environment.apiUrl;
   private tokenKey = 'token';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(data: LoginRequest): Observable<AuthResponseModel> {
     return this.http
@@ -44,7 +46,7 @@ export class AuthService {
       );
   }
 
-  getProfile() : Observable<UserProfile> {
+  getProfile(): Observable<UserProfile> {
     return this.http.get<UserProfile>(`${this.apiUrl}/auth/profile`);
   }
 
@@ -63,37 +65,33 @@ export class AuthService {
     return token != null && !this.isTokenExpired(token);
   }
 
-public isAdmin(): boolean {
-  const token = this.getToken();
-  if (!token) return false;
+  public isAdmin(): boolean {
+    const token = this.getToken();
+    if (!token) return false;
 
-  try {
-    const decoded: any = jwtDecode(token);
+    try {
+      const decoded: any = jwtDecode(token);
 
-    // 1) Първо пробваме стандартния role claim (този с дългия URL),
-    // ако го няма, падаме към role / roles.
-    const rolesClaim =
-      decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ??
-      decoded.role ??
-      decoded.roles;
+      const rolesClaim =
+        decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ??
+        decoded.role ??
+        decoded.roles;
 
-    console.log('rolesClaim:', rolesClaim, 'type:', typeof rolesClaim);
+      console.log('rolesClaim:', rolesClaim, 'type:', typeof rolesClaim);
 
-    // 2) Ако е масив -> ['User','Admin']
-    if (Array.isArray(rolesClaim)) {
-      return rolesClaim.includes('Admin');
+      if (Array.isArray(rolesClaim)) {
+        return rolesClaim.includes('Admin');
+      }
+
+      if (typeof rolesClaim === 'string') {
+        return rolesClaim.split(',').includes('Admin');
+      }
+
+      return false;
+    } catch {
+      return false;
     }
-
-    // 3) Ако е стринг -> 'User,Admin' или 'Admin'
-    if (typeof rolesClaim === 'string') {
-      return rolesClaim.split(',').includes('Admin');
-    }
-
-    return false;
-  } catch {
-    return false;
   }
-}
 
   public logout(): void {
     localStorage.removeItem(this.tokenKey);
@@ -123,31 +121,44 @@ public isAdmin(): boolean {
   }
 
   public getUserId(): string | null {
-  const token = this.getToken();
-  if (!token) return null;
+    const token = this.getToken();
+    if (!token) return null;
 
-  try {
-    const decoded: any = jwtDecode(token);
+    try {
+      const decoded: any = jwtDecode(token);
 
-    const nameIdClaim =
-      decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] ??
-      decoded.nameid ??
-      null;
+      const nameIdClaim =
+        decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] ??
+        decoded.nameid ??
+        null;
 
-    return nameIdClaim ?? null;
-  } catch {
-    return null;
-  }
-}
-
-confirmEmail(userId: string, token: string) {
-  return this.http.get<{ message: string }>(
-    `${this.apiUrl}/auth/confirm-email`,
-    {
-      params: { userId, token }
+      return nameIdClaim ?? null;
+    } catch {
+      return null;
     }
-  );
-}
+  }
+
+  confirmEmail(userId: string, token: string) {
+    return this.http.get<{ message: string }>(
+      `${this.apiUrl}/auth/confirm-email`,
+      {
+        params: { userId, token }
+      }
+    );
+  }
+
+  getTwoFactorSetup(): Observable<TwoFactorSetupResponse> {
+    return this.http.get<TwoFactorSetupResponse>(`${this.apiUrl}/auth/2fa/setup`);
+  }
+
+  enableTwoFactor(code: string): Observable<TwoFactorEnableResponse> {
+    return this.http.post<TwoFactorEnableResponse>(`${this.apiUrl}/auth/2fa/enable`, { code });
+  }
+
+  disableTwoFactor(): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.apiUrl}/auth/2fa/disable`, {});
+  }
+
 
 
 }
