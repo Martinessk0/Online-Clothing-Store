@@ -1,0 +1,63 @@
+<section class="max-w-2xl mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-4">Контакти</h1>
+  <p class="mb-4 text-sm text-gray-500">
+    Тази форма е с демонстрационна цел. Съобщението се изпраща към собственика на сайта.
+  </p>
+
+  @if (successMessage) {
+    <div class="mb-3 text-sm text-green-600">
+      {{ successMessage }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="mb-3 text-sm text-red-600">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium mb-1">Име</label>
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="model.name"
+        class="w-full rounded-md border px-3 py-2 text-sm"
+        placeholder="Вашето име (по избор)"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Имейл *</label>
+      <input
+        type="email"
+        name="email"
+        required
+        [(ngModel)]="model.email"
+        class="w-full rounded-md border px-3 py-2 text-sm"
+        placeholder="example@email.com"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Съобщение *</label>
+      <textarea
+        name="message"
+        required
+        rows="4"
+        [(ngModel)]="model.message"
+        class="w-full rounded-md border px-3 py-2 text-sm"
+        placeholder="Вашето съобщение"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="isSending"
+      class="rounded-md px-4 py-2 text-sm font-medium border border-gray-800 hover:bg-gray-800 hover:text-white disabled:opacity-60"
+    >
+      @if (!isSending) { Изпрати } @else { Изпращане... }
+    </button>
+  </form>
+</section>

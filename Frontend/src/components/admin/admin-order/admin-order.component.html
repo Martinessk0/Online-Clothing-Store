@@ -46,7 +46,7 @@
             {{ order.totalAmount | number : '1.2-2' }} €
           </div>
 
-          <a [routerLink]="['/orders', order.id]" class="inline-flex items-center rounded-xl px-3 py-2 text-xs font-semibold
+          <a [routerLink]="['/admin/orders', order.id]" class="inline-flex items-center rounded-xl px-3 py-2 text-xs font-semibold
                    border border-slate-200 bg-white/70 text-slate-900
                    hover:bg-white
                    dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-50 dark:hover:bg-slate-900">
@@ -97,7 +97,7 @@
             <td class="px-4 py-3 align-middle text-right">
               <a [routerLink]="['/admin/orders', order.id]" class="inline-flex rounded-xl border border-slate-300 bg-white px-3 py-1 text-xs
          hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800">
-                Виж
+                Детайли
               </a>
             </td>
           </tr>

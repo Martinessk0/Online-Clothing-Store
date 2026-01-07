@@ -1,6 +1,7 @@
 using ClothingStore.Core.Contracts;
 using ClothingStore.Core.Models.Auth;
 using ClothingStore.Core.Models.Cloudinary;
+using ClothingStore.Core.Models.Email;
 using ClothingStore.Core.Models.Paypal;
 using ClothingStore.Core.Models.Speedy;
 using ClothingStore.Core.Services;
@@ -61,6 +62,9 @@ builder.Services.Configure<PayPalOptions>(
 
 builder.Services.Configure<PayPalCleanupOptions>(
     builder.Configuration.GetSection("PayPalCleanup"));
+
+builder.Services.Configure<EmailOptions>(
+    builder.Configuration.GetSection("Email"));
 
 var jwtSettings = builder.Configuration
     .GetSection("JWTSettingDev")
