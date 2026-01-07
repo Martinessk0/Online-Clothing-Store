@@ -15,69 +15,15 @@ namespace ClothingStore.Core.Services
             this.repo = repo;
         }
 
-        // ---------------------------
-        // CREATE
-        // ---------------------------
-        //    public async Task CreateReviewAsync(CreateReviewDto dto, string userId)
-        //    {
-        //        // 1. Product exists
-        //        var productExists = await repo.AllReadonly<Product>()
-        //            .AnyAsync(p => p.Id == dto.ProductId && p.IsActive);
-
-        //        if (!productExists)
-        //            throw new ArgumentException("Product not found.");
-
-        //        // 2. User has completed the order for this product (ONLY Completed)
-        //        var hasPurchased = await repo.AllReadonly<Order>()
-        //            .Include(o => o.Items)
-        //            .Where(o =>
-        //                o.UserId == userId &&
-        //                (o.Status == OrderStatus.Completed || o.Status == OrderStatus.Paid))
-        //            .SelectMany(o => o.Items)
-        //            .AnyAsync(i => i.ProductId == dto.ProductId);
-
-        //        if (!hasPurchased)
-        //            throw new InvalidOperationException("You can review only products from completed orders.");
-
-        //        if (dto.Rating < 1 || dto.Rating > 5)
-        //            throw new ArgumentOutOfRangeException(nameof(dto.Rating), "Rating must be between 1 and 5.");
-
-        //        var existingReview = await repo.All<ProductReview>()
-        //.FirstOrDefaultAsync(r =>
-        //    r.ProductId == dto.ProductId &&
-        //    r.UserId == userId);
-
-        //        if (existingReview != null)
-        //        {
-        //            throw new InvalidOperationException("You have already left a review for this product.");
-        //        }
-
-
-        //        var review = new ProductReview
-        //        {
-        //            ProductId = dto.ProductId,
-        //            UserId = userId,
-        //            Rating = dto.Rating,
-        //            Comment = dto.Comment,
-        //            CreatedAt = DateTime.UtcNow,
-        //            IsVisible = true
-        //        };
-
-        //        await repo.AddAsync(review);
-        //        await repo.SaveChangesAsync();
-
-        //        await RecalculateProductRatingAsync(dto.ProductId);
-        //    }
+        
         public async Task CreateReviewAsync(CreateReviewDto dto, string userId)
         {
-            // 1. Product exists
             var productExists = await repo.AllReadonly<Product>()
                 .AnyAsync(p => p.Id == dto.ProductId && p.IsActive);
 
             if (!productExists)
                 throw new ArgumentException("Product not found.");
 
-            // 2. User has completed the order for this product
             var hasPurchased = await repo.AllReadonly<Order>()
                 .Include(o => o.Items)
                 .Where(o =>
@@ -92,7 +38,6 @@ namespace ClothingStore.Core.Services
             if (dto.Rating < 1 || dto.Rating > 5)
                 throw new ArgumentOutOfRangeException(nameof(dto.Rating), "Rating must be between 1 and 5.");
 
-            // 3. Ensure one review per user per product
             var existingReview = await repo.All<ProductReview>()
                 .FirstOrDefaultAsync(r =>
                     r.ProductId == dto.ProductId &&
@@ -101,7 +46,6 @@ namespace ClothingStore.Core.Services
             if (existingReview != null)
                 throw new InvalidOperationException("You have already left a review for this product.");
 
-            // 4. Create new review
             var review = new ProductReview
             {
                 ProductId = dto.ProductId,
@@ -115,14 +59,9 @@ namespace ClothingStore.Core.Services
             await repo.AddAsync(review);
             await repo.SaveChangesAsync();
 
-            // 5. Recalculate product rating after creating
             await RecalculateProductRatingAsync(dto.ProductId);
         }
 
-
-        // ---------------------------
-        // UPDATE (owner only)
-        // ---------------------------
         public async Task UpdateReviewAsync(int reviewId, UpdateReviewDto dto, string userId)
         {
             var review = await repo.All<ProductReview>()
@@ -144,10 +83,6 @@ namespace ClothingStore.Core.Services
             await repo.SaveChangesAsync();
             await RecalculateProductRatingAsync(review.ProductId);
         }
-
-        // ---------------------------
-        // GET BY PRODUCT
-        // ---------------------------
 
         public async Task<IEnumerable<ReviewDto>> GetByProductAsync(int productId, bool includeHidden = false)
         {
@@ -173,28 +108,6 @@ namespace ClothingStore.Core.Services
                 .ToListAsync();
         }
 
-        //public async Task<IEnumerable<ReviewDto>> GetByProductAsync(int productId)
-        //{
-        //    return await repo.AllReadonly<ProductReview>()
-        //        .Where(r => r.ProductId == productId && r.IsVisible && r.Product.IsActive)
-        //        .Include(r => r.User)
-        //        .OrderByDescending(r => r.CreatedAt)
-        //        .Select(r => new ReviewDto
-        //        {
-        //            Id = r.Id,
-        //            Rating = r.Rating,
-        //            Comment = r.Comment,
-        //            CreatedAt = r.CreatedAt,
-        //            UserId = r.UserId,
-        //            UserName = r.User!.UserName!,
-        //            IsVisible = r.IsVisible
-        //        })
-        //        .ToListAsync();
-        //}
-
-        // ---------------------------
-        // ADMIN: HIDE / UNHIDE
-        // ---------------------------
         public async Task SetVisibilityAsync(int reviewId, bool isVisible)
         {
             var review = await repo.GetByIdAsync<ProductReview>(reviewId);
@@ -204,18 +117,11 @@ namespace ClothingStore.Core.Services
             review.IsVisible = isVisible;
             review.UpdatedAt = DateTime.UtcNow;
 
-            // 🔑 MUST save first
             await repo.SaveChangesAsync();
 
-            // 🔑 THEN recalculate (now AsNoTracking sees correct data)
             await RecalculateProductRatingAsync(review.ProductId);
         }
 
-
-
-        // ---------------------------
-        // RATING RECALCULATION
-        // ---------------------------
         private async Task RecalculateProductRatingAsync(int productId)
         {
             var reviews = await repo.AllReadonly<ProductReview>()
@@ -235,7 +141,6 @@ namespace ClothingStore.Core.Services
 
         public async Task<bool> CanReviewAsync(int productId, string userId)
         {
-            // Must have purchased
             var hasPurchased = await repo.AllReadonly<Order>()
                 .Where(o => o.UserId == userId &&
                             (o.Status == OrderStatus.Completed || o.Status == OrderStatus.Paid))
@@ -244,14 +149,10 @@ namespace ClothingStore.Core.Services
 
             if (!hasPurchased) return false;
 
-            // Must not have already left a review
             var hasReviewed = await repo.AllReadonly<ProductReview>()
                 .AnyAsync(r => r.UserId == userId && r.ProductId == productId);
 
             return !hasReviewed;
         }
-
-
-
     }
 }

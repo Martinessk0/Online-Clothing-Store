@@ -124,106 +124,103 @@
     </button>
   </aside>
 
-  <!-- Right: Products -->
-  <!-- Right: Products + Pagination -->
-<main class="flex-1">
-  <!-- Loading -->
-  <div *ngIf="loading" class="text-sm text-slate-500 dark:text-slate-400">
-    Зареждане на продукти...
-  </div>
+  <!-- Right: Products Grid -->
+  <main class="flex-1">
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-sm text-slate-500 dark:text-slate-400">
+      Зареждане на продукти...
+    </div>
 
-  <!-- Error -->
-  <div *ngIf="error" class="text-sm text-red-600">
-    {{ error }}
-  </div>
+    <!-- Error -->
+    <div *ngIf="error" class="text-sm text-red-600">
+      {{ error }}
+    </div>
 
-  <!-- Products grid -->
-  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    <app-product-card
-    *ngFor="let p of products"
-    [product]="p">
-  </app-product-card>
-  </div>
+    <!-- Products grid -->
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <app-product-card
+      *ngFor="let p of products"
+      [product]="p">
+    </app-product-card>
+    </div>
 
-  <!-- Empty -->
-  <div
-    *ngIf="!loading && !products.length"
-    class="mt-4 rounded border border-slate-200 bg-white/80 px-3 py-2 text-sm text-slate-500
-           dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-400"
-  >
-    Няма намерени продукти.
-  </div>
+    <!-- Empty -->
+    <div
+      *ngIf="!loading && !products.length"
+      class="mt-4 rounded border border-slate-200 bg-white/80 px-3 py-2 text-sm text-slate-500
+            dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-400"
+    >
+      Няма намерени продукти.
+    </div>
 
-  <div
-  *ngIf="totalPages > 1"
-  class="mt-6 flex items-center justify-center gap-2"
->
-  <!-- Previous -->
-  <button
-    (click)="changePage(currentPage - 1)"
-    [disabled]="currentPage === 1"
-    class="rounded-lg border px-3 py-1 text-sm
-           disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    ‹
-  </button>
+    <div
+      *ngIf="totalPages > 1"
+      class="mt-6 flex items-center justify-center gap-2"
+      >
+      <!-- Previous -->
+      <button
+        (click)="changePage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+        class="rounded-lg border px-3 py-1 text-sm
+              disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        ‹
+      </button>
 
-  <!-- First page (always visible) -->
-<button
-  (click)="changePage(1)"
-  class="rounded-lg border px-3 py-1 text-sm"
-  [class.bg-slate-900]="currentPage === 1"
-  [class.text-white]="currentPage === 1"
-  [class.dark:bg-slate-100]="currentPage === 1"
-  [class.dark:text-slate-900]="currentPage === 1"
->
-  1
-</button>
-
+      <!-- First page (always visible) -->
+      <button
+        (click)="changePage(1)"
+        class="rounded-lg border px-3 py-1 text-sm"
+        [class.bg-slate-900]="currentPage === 1"
+        [class.text-white]="currentPage === 1"
+        [class.dark:bg-slate-100]="currentPage === 1"
+        [class.dark:text-slate-900]="currentPage === 1"
+      >
+      1
+      </button>
 
 
 
-  <!-- Left ellipsis -->
-  <span *ngIf="showLeftEllipsis" class="px-2">…</span>
 
-  <!-- Page window -->
-  <button
-    *ngFor="let page of visiblePages"
-    (click)="changePage(page)"
-    class="rounded-lg border px-3 py-1 text-sm"
-    [class.bg-slate-900]="currentPage === page"
-    [class.text-white]="currentPage === page"
-    [class.dark:bg-slate-100]="currentPage === page"
-    [class.dark:text-slate-900]="currentPage === page"
-  >
-    {{ page }}
-  </button>
+      <!-- Left ellipsis -->
+      <span *ngIf="showLeftEllipsis" class="px-2">…</span>
 
-  <!-- Right ellipsis -->
-  <span *ngIf="showRightEllipsis" class="px-2">…</span>
+      <!-- Page window -->
+      <button
+        *ngFor="let page of visiblePages"
+        (click)="changePage(page)"
+        class="rounded-lg border px-3 py-1 text-sm"
+        [class.bg-slate-900]="currentPage === page"
+        [class.text-white]="currentPage === page"
+        [class.dark:bg-slate-100]="currentPage === page"
+        [class.dark:text-slate-900]="currentPage === page"
+      >
+        {{ page }}
+      </button>
 
-  <!-- Last page (always visible) -->
-<button
-  (click)="changePage(totalPages)"
-  class="rounded-lg border px-3 py-1 text-sm"
-  [class.bg-slate-900]="currentPage === totalPages"
-  [class.text-white]="currentPage === totalPages"
-  [class.dark:bg-slate-100]="currentPage === totalPages"
-  [class.dark:text-slate-900]="currentPage === totalPages"
->
-  {{ totalPages }}
-</button>
+      <!-- Right ellipsis -->
+      <span *ngIf="showRightEllipsis" class="px-2">…</span>
 
-  <!-- Next -->
-  <button
-    (click)="changePage(currentPage + 1)"
-    [disabled]="currentPage === totalPages"
-    class="rounded-lg border px-3 py-1 text-sm
-           disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    ›
-  </button>
-</div>
+        <!-- Last page (always visible) -->
+        <button
+          (click)="changePage(totalPages)"
+          class="rounded-lg border px-3 py-1 text-sm"
+          [class.bg-slate-900]="currentPage === totalPages"
+          [class.text-white]="currentPage === totalPages"
+          [class.dark:bg-slate-100]="currentPage === totalPages"
+          [class.dark:text-slate-900]="currentPage === totalPages"
+          >
+          {{ totalPages }}
+          </button>
 
-</main>
+        <!-- Next -->
+        <button
+          (click)="changePage(currentPage + 1)"
+          [disabled]="currentPage === totalPages"
+          class="rounded-lg border px-3 py-1 text-sm
+                disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+        </button>
+    </div>
+  </main>
 </div>

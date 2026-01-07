@@ -11,10 +11,9 @@ export class ReviewService {
 
   constructor(private http: HttpClient) {}
 
- getByProduct(productId: number, includeHidden: boolean = false) {
-  return this.http.get<Review[]>(`${this.baseUrl}/product/${productId}?includeHidden=${includeHidden}`);
-}
-
+  getByProduct(productId: number, includeHidden: boolean = false) {
+    return this.http.get<Review[]>(`${this.baseUrl}/product/${productId}?includeHidden=${includeHidden}`);
+  }
 
   create(data: { productId: number; rating: number; comment?: string }) {
     return this.http.post(this.baseUrl, data);
@@ -34,10 +33,10 @@ export class ReviewService {
     );
   }
 
-canReview(productId: number) {
-  return this.http.get<{ canReview: boolean }>(
-    `${this.baseUrl}/can-review/${productId}`
-  );
-}
+  canReview(productId: number) {
+    return this.http.get<{ canReview: boolean }>(
+      `${this.baseUrl}/can-review/${productId}`
+    );
+  }
 
 }
