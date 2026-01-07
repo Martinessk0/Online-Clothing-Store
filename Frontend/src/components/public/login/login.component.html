@@ -1,63 +1,80 @@
 <div class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 sm:px-6 lg:px-8">
-  <div
-    class="w-full max-w-md bg-white rounded-2xl shadow-md px-4 py-6 sm:px-6 sm:py-8
-           dark:bg-gray-900 dark:shadow-lg dark:border dark:border-gray-800"
-  >
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-md px-4 py-6 sm:px-6 sm:py-8
+           dark:bg-gray-900 dark:shadow-lg dark:border dark:border-gray-800">
     <h1 class="text-2xl font-semibold text-center mb-2">Вход</h1>
     <p class="text-sm text-center text-gray-500 dark:text-gray-400 mb-6">
       Влез в акаунта си, за да завършиш поръчката и да управляваш профила си.
     </p>
 
     @if (backendError) {
-      <div
-        class="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700
-               dark:border-red-500/30 dark:bg-red-950/40 dark:text-red-300"
-      >
-        {{ backendError }}
-      </div>
+    <div class="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700
+               dark:border-red-500/30 dark:bg-red-950/40 dark:text-red-300">
+      {{ backendError }}
+    </div>
     }
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
       <div>
         <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Имейл</label>
-        <input
-          type="email"
-          formControlName="email"
-          class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
+        <input type="email" formControlName="email" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
                  focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                  dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
-          placeholder="you@example.com"
-        />
+          placeholder="you@example.com" />
         @if (f.email.invalid && (f.email.dirty || f.email.touched || submitted)) {
-          <p class="mt-1 text-xs text-red-600 dark:text-red-400">
-            Моля, въведи валиден имейл.
-          </p>
+        <p class="mt-1 text-xs text-red-600 dark:text-red-400">
+          Моля, въведи валиден имейл.
+        </p>
         }
       </div>
 
       <div>
         <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Парола</label>
-        <input
-          type="password"
-          formControlName="password"
-          class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
+        <input type="password" formControlName="password" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
                  focus:border-blue-500 focus:ring-1 focus:ring-blue-500
-                 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
-          placeholder="••••••••"
-        />
+                 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100" placeholder="••••••••" />
         @if (f.password.invalid && (f.password.dirty || f.password.touched || submitted)) {
-          <p class="mt-1 text-xs text-red-600 dark:text-red-400">
-            Паролата трябва да е поне 6 символа.
-          </p>
+        <p class="mt-1 text-xs text-red-600 dark:text-red-400">
+          Паролата трябва да е поне 6 символа.
+        </p>
         }
       </div>
 
-      <button
-        type="submit"
-        class="w-full rounded-lg px-4 py-2 text-sm font-medium text-white
+      @if (needs2fa) {
+      <div class="space-y-2">
+        <div class="flex items-center gap-2">
+          <input type="checkbox" formControlName="useRecovery" class="h-4 w-4" (change)="onUseRecoveryChanged()" />
+          <span class="text-sm text-gray-600 dark:text-gray-300">Използвай recovery code</span>
+        </div>
+
+        @if (!useRecoveryValue) {
+        <div>
+          <label class="block text-sm font-medium mb-1">Код от Authenticator</label>
+          <input type="text" formControlName="twoFactorCode" inputmode="numeric" autocomplete="one-time-code" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
+                 focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+                 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
+            placeholder="123456" />
+        </div>
+        } @else {
+        <div>
+          <label class="block text-sm font-medium mb-1">Recovery code</label>
+          <input type="text" formControlName="recoveryCode" autocomplete="off" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none
+                 focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+                 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500"
+            placeholder="XXXXXXXXXX" />
+          <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+            Всеки recovery code се използва само веднъж.
+          </p>
+        </div>
+        }
+      </div>
+      }
+
+
+
+
+      <button type="submit" class="w-full rounded-lg px-4 py-2 text-sm font-medium text-white
                bg-blue-600 hover:bg-blue-700
-               dark:bg-blue-500 dark:hover:bg-blue-600"
-      >
+               dark:bg-blue-500 dark:hover:bg-blue-600">
         Вход
       </button>
 

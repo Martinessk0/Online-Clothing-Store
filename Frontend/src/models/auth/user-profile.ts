@@ -13,4 +13,5 @@ export interface UserProfile {
   address?: string | null;
 
   emailConfirmed?: boolean;
+  twoFactorEnabled?: boolean;
 }
