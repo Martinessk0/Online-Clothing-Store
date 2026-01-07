@@ -63,23 +63,37 @@ export class AuthService {
     return token != null && !this.isTokenExpired(token);
   }
 
-  public isAdmin(): boolean {
-    const token = this.getToken();
-    if (!token) return false;
+public isAdmin(): boolean {
+  const token = this.getToken();
+  if (!token) return false;
 
+  try {
     const decoded: any = jwtDecode(token);
-    const roles = decoded.role ?? decoded.roles;
 
-    if (Array.isArray(roles)) {
-      return roles.includes('Admin');
+    // 1) Първо пробваме стандартния role claim (този с дългия URL),
+    // ако го няма, падаме към role / roles.
+    const rolesClaim =
+      decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ??
+      decoded.role ??
+      decoded.roles;
+
+    console.log('rolesClaim:', rolesClaim, 'type:', typeof rolesClaim);
+
+    // 2) Ако е масив -> ['User','Admin']
+    if (Array.isArray(rolesClaim)) {
+      return rolesClaim.includes('Admin');
     }
 
-    if (typeof roles === 'string') {
-      return roles === 'Admin';
+    // 3) Ако е стринг -> 'User,Admin' или 'Admin'
+    if (typeof rolesClaim === 'string') {
+      return rolesClaim.split(',').includes('Admin');
     }
 
     return false;
+  } catch {
+    return false;
   }
+}
 
   public logout(): void {
     localStorage.removeItem(this.tokenKey);

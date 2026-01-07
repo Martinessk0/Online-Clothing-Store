@@ -27,6 +27,7 @@ export class NavigationComponent {
   }
 
   get isAdmin(): boolean {
+    console.log('this.authService.isAdmin()',this.authService.isAdmin());
     return this.authService.isAdmin();
   }
 
