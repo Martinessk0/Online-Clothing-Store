@@ -55,5 +55,4 @@ getFilterOptions(): Observable<ProductFilterOptions> {
   );
 }
 
-
 }

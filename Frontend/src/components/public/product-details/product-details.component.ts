@@ -155,7 +155,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-   loadReviews(productId: number): void {
+  loadReviews(productId: number): void {
 
     const includeHidden = this.authService.isAdmin();
 
@@ -201,8 +201,6 @@ onEditReviewSubmitted() {
   this.refreshProduct(); 
 }
 
-
-
 refreshProduct() {
   if (!this.product) return;
   this.productService.getProduct(this.product.id).subscribe({
@@ -221,7 +219,5 @@ toggleReviewVisibility(review: Review, isVisible: boolean) {
     error: err => console.error(err)
   });
 }
-
-
 
 }
