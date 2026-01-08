@@ -466,6 +466,5 @@ namespace ClothingStore.Core.Services
                 Colors = colors
             };
         }
-
     }
 }

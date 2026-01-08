@@ -15,7 +15,6 @@ namespace ClothingStore.Core.Services
             this.repo = repo;
         }
 
-        
         public async Task CreateReviewAsync(CreateReviewDto dto, string userId)
         {
             var productExists = await repo.AllReadonly<Product>()
@@ -101,7 +100,7 @@ namespace ClothingStore.Core.Services
                     Rating = r.Rating,
                     Comment = r.Comment,
                     CreatedAt = r.CreatedAt,
-                    UserId = r.UserId,
+                    UserId = r.UserId!,
                     UserName = r.User!.UserName!,
                     IsVisible = r.IsVisible
                 })
